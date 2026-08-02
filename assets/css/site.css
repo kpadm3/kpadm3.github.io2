@@ -1043,7 +1043,7 @@ a{color:inherit;text-decoration:none}a:hover{color:var(--accent)}button{font:inh
 .technology-filter-v3{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:18px}
 .technology-filter-v3 button{padding:8px 12px;border:1px solid var(--line);border-radius:999px;background:#091626;color:var(--muted);cursor:pointer;font-size:.7rem;font-weight:750}
 .technology-filter-v3 button.active,.technology-filter-v3 button:hover{border-color:transparent;background:linear-gradient(90deg,var(--accent),#5ba7ff);color:#041019}
-.technology-grid-v3{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px}
+.technology-grid-v3{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px;view-transition-name:tech-grid}
 .technology-card-v3{--mx:50%;--my:50%;position:relative;isolation:isolate;overflow:hidden;min-height:178px;display:flex;align-items:center;gap:16px;padding:16px;border:1px solid var(--line);border-radius:16px;background:linear-gradient(145deg,rgba(15,29,49,.96),rgba(8,19,33,.98));transition:transform .25s cubic-bezier(.22,1,.36,1),border-color .22s ease,box-shadow .22s ease}
 .technology-card-v3::before{content:"";position:absolute;inset:0;z-index:-1;background:radial-gradient(280px circle at var(--mx) var(--my),rgba(53,212,241,.17),transparent 68%);opacity:0;transition:opacity .22s ease}
 .technology-card-v3:hover,.technology-card-v3.is-active{transform:translateY(-6px);border-color:rgba(53,212,241,.72);box-shadow:0 26px 54px rgba(0,0,0,.34),0 0 0 1px rgba(53,212,241,.12)}

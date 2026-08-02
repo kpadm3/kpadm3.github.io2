@@ -151,19 +151,63 @@
     });
   }
 
+  // Spring-driven magnetic pull: a critically-damped spring chases the
+  // pointer target every frame, so the button overshoots slightly and
+  // settles instead of snapping linearly to the cursor offset.
   document.querySelectorAll(".magnetic").forEach((button) => {
     if (coarse || reduced) return;
 
+    const spring = { x: 0, y: 0, vx: 0, vy: 0, tx: 0, ty: 0 };
+    const stiffness = 0.18;
+    const damping = 0.72;
+    let raf = null;
+    let settled = true;
+
+    const tick = () => {
+      const ax = (spring.tx - spring.x) * stiffness;
+      const ay = (spring.ty - spring.y) * stiffness;
+      spring.vx = (spring.vx + ax) * damping;
+      spring.vy = (spring.vy + ay) * damping;
+      spring.x += spring.vx;
+      spring.y += spring.vy;
+
+      button.style.transform =
+        `translate3d(${spring.x.toFixed(2)}px, ${spring.y.toFixed(2)}px, 0) translateY(-2px)`;
+
+      const atRest =
+        Math.abs(spring.tx - spring.x) < 0.05 &&
+        Math.abs(spring.ty - spring.y) < 0.05 &&
+        Math.abs(spring.vx) < 0.02 &&
+        Math.abs(spring.vy) < 0.02;
+
+      if (atRest && spring.tx === 0 && spring.ty === 0) {
+        settled = true;
+        button.style.transform = "";
+        raf = null;
+        return;
+      }
+
+      raf = requestAnimationFrame(tick);
+    };
+
+    const ensureRunning = () => {
+      if (raf === null) {
+        settled = false;
+        raf = requestAnimationFrame(tick);
+      }
+    };
+
     button.addEventListener("pointermove", (event) => {
       const rect = button.getBoundingClientRect();
-      const x = event.clientX - rect.left - rect.width / 2;
-      const y = event.clientY - rect.top - rect.height / 2;
-      button.style.transform =
-        `translate3d(${x * 0.05}px, ${y * 0.07}px, 0) translateY(-2px)`;
+      spring.tx = (event.clientX - rect.left - rect.width / 2) * 0.35;
+      spring.ty = (event.clientY - rect.top - rect.height / 2) * 0.4;
+      ensureRunning();
     });
 
     button.addEventListener("pointerleave", () => {
-      button.style.transform = "";
+      spring.tx = 0;
+      spring.ty = 0;
+      ensureRunning();
     });
   });
 })();
@@ -248,18 +292,96 @@
 
   const filterButtons = Array.from(document.querySelectorAll("[data-logo-filter]"));
   const technologyCards = Array.from(document.querySelectorAll(".technology-card-v3"));
+
+  const applyFilter = (group) => {
+    technologyCards.forEach(card => {
+      card.hidden = group !== "all" && card.dataset.group !== group;
+    });
+  };
+
   filterButtons.forEach(button => {
     button.addEventListener("click", () => {
       const group = button.dataset.logoFilter;
       filterButtons.forEach(item => item.classList.remove("active"));
       button.classList.add("active");
-      technologyCards.forEach(card => {
-        card.hidden = group !== "all" && card.dataset.group !== group;
-      });
+
+      // View Transitions morph the grid (cards resize/reflow/fade) instead
+      // of an instant show/hide, so switching categories reads as one
+      // continuous layout change rather than a jump cut.
+      if (document.startViewTransition && !matchMedia("(prefers-reduced-motion: reduce)").matches) {
+        document.startViewTransition(() => applyFilter(group));
+      } else {
+        applyFilter(group);
+      }
     });
   });
 
   document.querySelectorAll(".solution-card-v3,.technology-card-v3").forEach(card => {
     card.classList.add("visible");
   });
+})();
+
+// Headline text scramble: the emphasized line decodes from random
+// characters into the real words, staggered left to right, once on load.
+(() => {
+  "use strict";
+
+  const target = document.querySelector(".gradient-text");
+  const reduced = matchMedia("(prefers-reduced-motion: reduce)").matches;
+  if (!target || reduced) return;
+
+  const finalText = target.textContent;
+  const glyphs = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
+  const perCharTicks = 7;
+  const tickMs = 32;
+  const staggerMs = 22;
+
+  let frame = 0;
+  let timer = null;
+
+  const render = () => {
+    frame += 1;
+
+    let output = "";
+    for (let i = 0; i < finalText.length; i += 1) {
+      const char = finalText[i];
+      if (char === " ") {
+        output += " ";
+        continue;
+      }
+
+      const revealFrame = perCharTicks + Math.floor(i * (staggerMs / tickMs));
+
+      if (frame >= revealFrame) {
+        output += char;
+      } else {
+        output += glyphs[Math.floor(Math.random() * glyphs.length)];
+      }
+    }
+
+    target.textContent = output;
+
+    const totalFrames = perCharTicks + Math.ceil((finalText.length * staggerMs) / tickMs);
+    if (frame < totalFrames) {
+      timer = setTimeout(render, tickMs);
+    } else {
+      target.textContent = finalText;
+    }
+  };
+
+  const start = () => {
+    if (timer) return;
+    render();
+  };
+
+  if ("IntersectionObserver" in window) {
+    const observer = new IntersectionObserver((entries) => {
+      if (!entries.some((entry) => entry.isIntersecting)) return;
+      start();
+      observer.disconnect();
+    }, { threshold: 0.4 });
+    observer.observe(target);
+  } else {
+    start();
+  }
 })();
