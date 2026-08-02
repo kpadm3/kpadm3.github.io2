@@ -1273,3 +1273,265 @@ a{color:inherit;text-decoration:none}a:hover{color:var(--accent)}button{font:inh
   .recruiter-cta{padding:22px}
 }
 
+/* =========================================================
+   V3 BUILD 03 — RANDOM HERO DIAGRAMS
+========================================================= */
+.hero-diagram-stage{
+  min-height:540px;
+  display:grid;
+  place-items:center;
+  overflow:hidden;
+}
+.hero-diagram{
+  position:absolute;
+  inset:42px 22px 62px;
+  display:grid;
+  place-items:center;
+  opacity:0;
+  visibility:hidden;
+  transform:translateY(14px) scale(.97);
+  transition:
+    opacity .48s ease,
+    transform .55s cubic-bezier(.22,1,.36,1),
+    visibility .48s ease;
+}
+.hero-diagram.is-active{
+  opacity:1;
+  visibility:visible;
+  transform:none;
+}
+.diagram-label{
+  position:absolute;
+  top:0;
+  left:50%;
+  transform:translateX(-50%);
+  padding:7px 11px;
+  border:1px solid rgba(53,212,241,.28);
+  border-radius:999px;
+  background:rgba(5,17,29,.72);
+  color:var(--accent);
+  font-size:.58rem;
+  font-weight:900;
+  letter-spacing:.09em;
+  text-transform:uppercase;
+  white-space:nowrap;
+}
+
+/* Stacked layers */
+.stacked-visual{
+  position:relative;
+  width:min(420px,88%);
+  height:355px;
+  margin-top:12px;
+  perspective:1000px;
+}
+.stack-layer{
+  --layer:#35d4f1;
+  position:absolute;
+  left:50%;
+  width:72%;
+  min-height:78px;
+  display:grid;
+  grid-template-columns:40px 1fr;
+  align-items:center;
+  column-gap:12px;
+  padding:12px 18px;
+  border:1px solid color-mix(in srgb,var(--layer) 58%,var(--line));
+  border-radius:15px;
+  background:
+    linear-gradient(135deg,color-mix(in srgb,var(--layer) 13%,#0b1c30),rgba(5,15,27,.97));
+  box-shadow:
+    0 18px 34px rgba(0,0,0,.3),
+    0 0 24px color-mix(in srgb,var(--layer) 10%,transparent);
+  transform:
+    translateX(-50%)
+    translateY(var(--y))
+    translateZ(var(--z))
+    rotateX(58deg)
+    rotateZ(-1deg);
+  transform-style:preserve-3d;
+  animation:stack-float 5.4s ease-in-out infinite;
+  animation-delay:var(--delay);
+}
+.stack-layer span{
+  grid-row:1/3;
+  color:var(--layer);
+  font-weight:900;
+  font-size:.72rem;
+}
+.stack-layer strong{
+  color:var(--text);
+  font-size:.78rem;
+}
+.stack-layer small{
+  color:var(--muted);
+  font-size:.58rem;
+}
+.layer-1{--y:4px;--z:90px;--delay:-.2s;--layer:#4da3ff}
+.layer-2{--y:48px;--z:72px;--delay:-.7s;--layer:#35d4f1}
+.layer-3{--y:92px;--z:54px;--delay:-1.2s;--layer:#30d5c8}
+.layer-4{--y:136px;--z:36px;--delay:-1.7s;--layer:#a278ff}
+.layer-5{--y:180px;--z:18px;--delay:-2.2s;--layer:#8fc93a}
+.layer-6{--y:224px;--z:0px;--delay:-2.7s;--layer:#e168c2}
+@keyframes stack-float{
+  0%,100%{
+    transform:
+      translateX(-50%) translateY(var(--y)) translateZ(var(--z))
+      rotateX(58deg) rotateZ(-1deg);
+  }
+  50%{
+    transform:
+      translateX(-50%) translateY(calc(var(--y) - 7px)) translateZ(calc(var(--z) + 8px))
+      rotateX(56deg) rotateZ(1deg);
+  }
+}
+.diagram-impact{
+  position:absolute;
+  bottom:0;
+  left:50%;
+  width:min(390px,84%);
+  transform:translateX(-50%);
+  padding:13px 16px;
+  border:1px solid rgba(53,212,241,.3);
+  border-radius:14px;
+  background:rgba(6,19,33,.84);
+  text-align:center;
+}
+.diagram-impact strong{
+  display:block;
+  color:var(--accent);
+  font-size:.76rem;
+  text-transform:uppercase;
+  letter-spacing:.08em;
+}
+.diagram-impact span{
+  display:block;
+  margin-top:5px;
+  color:var(--muted);
+  font-size:.6rem;
+}
+
+/* Funnel */
+.funnel-visual{
+  width:min(430px,88%);
+  display:grid;
+  justify-items:center;
+  gap:7px;
+  margin-top:6px;
+}
+.funnel-step{
+  --funnel:#4da3ff;
+  width:var(--w);
+  min-height:45px;
+  display:grid;
+  grid-template-columns:38px 1fr;
+  align-items:center;
+  padding:8px 16px;
+  border:1px solid color-mix(in srgb,var(--funnel) 62%,var(--line));
+  clip-path:polygon(7% 0,93% 0,100% 100%,0 100%);
+  background:
+    linear-gradient(90deg,color-mix(in srgb,var(--funnel) 28%,#0a1b2d),rgba(5,16,28,.96));
+  box-shadow:0 12px 26px rgba(0,0,0,.25);
+  animation:funnel-pulse 4.8s ease-in-out infinite;
+  animation-delay:var(--delay);
+}
+.funnel-step span{
+  color:var(--funnel);
+  font-size:.65rem;
+  font-weight:900;
+}
+.funnel-step strong{
+  color:var(--soft);
+  font-size:.7rem;
+}
+.funnel-1{--w:100%;--funnel:#4da3ff;--delay:-.2s}
+.funnel-2{--w:90%;--funnel:#35d4f1;--delay:-.7s}
+.funnel-3{--w:80%;--funnel:#30d5c8;--delay:-1.2s}
+.funnel-4{--w:70%;--funnel:#f3bd68;--delay:-1.7s}
+.funnel-5{--w:60%;--funnel:#a278ff;--delay:-2.2s}
+.funnel-6{--w:50%;--funnel:#e168c2;--delay:-2.7s}
+@keyframes funnel-pulse{
+  0%,100%{filter:brightness(1);transform:translateY(0)}
+  50%{filter:brightness(1.14);transform:translateY(-2px)}
+}
+.funnel-output{
+  position:absolute;
+  bottom:2px;
+  left:50%;
+  width:min(390px,84%);
+  transform:translateX(-50%);
+  padding:14px 16px 13px;
+  border:1px solid rgba(53,212,241,.32);
+  border-radius:15px;
+  background:
+    radial-gradient(circle at 50% 0,rgba(53,212,241,.12),transparent 56%),
+    rgba(5,17,29,.88);
+  text-align:center;
+}
+.funnel-output i{
+  display:block;
+  width:2px;
+  height:24px;
+  margin:-38px auto 8px;
+  background:linear-gradient(var(--accent),transparent);
+  box-shadow:0 0 18px rgba(53,212,241,.45);
+}
+.funnel-output strong{
+  display:block;
+  color:var(--accent);
+  font-size:.76rem;
+  letter-spacing:.08em;
+  text-transform:uppercase;
+}
+.funnel-output span{
+  display:block;
+  margin-top:5px;
+  color:var(--muted);
+  font-size:.6rem;
+}
+
+/* Selector */
+.diagram-selector{
+  position:absolute;
+  left:50%;
+  bottom:18px;
+  z-index:10;
+  display:flex;
+  gap:6px;
+  transform:translateX(-50%);
+  padding:5px;
+  border:1px solid rgba(93,135,179,.32);
+  border-radius:999px;
+  background:rgba(4,13,24,.78);
+  backdrop-filter:blur(12px);
+}
+.diagram-selector button{
+  padding:6px 10px;
+  border:0;
+  border-radius:999px;
+  background:transparent;
+  color:var(--muted);
+  cursor:pointer;
+  font-size:.58rem;
+  font-weight:800;
+}
+.diagram-selector button:hover,
+.diagram-selector button.active{
+  background:linear-gradient(90deg,var(--accent),#5ba7ff);
+  color:#041019;
+}
+
+@media(max-width:1000px){
+  .hero-diagram-stage{min-height:520px}
+}
+@media(max-width:650px){
+  .hero-diagram-stage{min-height:470px}
+  .hero-diagram{inset:38px 4px 58px}
+  .stacked-visual{width:96%;height:325px}
+  .stack-layer{width:80%;padding:10px 13px}
+  .funnel-visual{width:96%}
+}
+@media(prefers-reduced-motion:reduce){
+  .stack-layer,.funnel-step{animation:none}
+}
+

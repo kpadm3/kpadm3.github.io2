@@ -77,34 +77,46 @@
         </div>
       </div>
 
-      <div class="hero-stage" data-parallax aria-label="Animated enterprise architecture illustration">
+      <div class="hero-stage hero-diagram-stage" data-parallax aria-label="Animated enterprise delivery diagram">
         <div class="hero-spotlight" aria-hidden="true"></div>
-        <div class="hero-rings" aria-hidden="true">
-          <i></i><i></i><i></i>
+
+        <div class="hero-diagram is-active" data-hero-diagram="stacked" aria-label="Stacked layers from requirements to business impact">
+          <div class="diagram-label">Requirements to impact</div>
+          <div class="stacked-visual">
+            <article class="stack-layer layer-1"><span>01</span><strong>Requirements</strong><small>Needs, scope, outcomes</small></article>
+            <article class="stack-layer layer-2"><span>02</span><strong>Architecture</strong><small>Systems, data, interfaces</small></article>
+            <article class="stack-layer layer-3"><span>03</span><strong>Analysis</strong><small>Rules, options, decisions</small></article>
+            <article class="stack-layer layer-4"><span>04</span><strong>Design</strong><small>Processes, models, details</small></article>
+            <article class="stack-layer layer-5"><span>05</span><strong>Delivery</strong><small>Build, test, release</small></article>
+            <article class="stack-layer layer-6"><span>06</span><strong>Validation</strong><small>Measure, improve, sustain</small></article>
+          </div>
+          <div class="diagram-impact">
+            <strong>Business Impact</strong>
+            <span>Clear requirements. Governed delivery. Measurable outcomes.</span>
+          </div>
         </div>
 
-        <div class="architecture-orbit" aria-hidden="true">
-          <span class="orbit-node node-a">Business</span>
-          <span class="orbit-node node-b">Analysis</span>
-          <span class="orbit-node node-c">Design</span>
-          <span class="orbit-node node-d">Delivery</span>
+        <div class="hero-diagram" data-hero-diagram="funnel" aria-label="Funnel from business requirements to measurable impact">
+          <div class="diagram-label">Funnel to impact</div>
+          <div class="funnel-visual">
+            <article class="funnel-step funnel-1"><span>01</span><strong>Requirements</strong></article>
+            <article class="funnel-step funnel-2"><span>02</span><strong>Architecture</strong></article>
+            <article class="funnel-step funnel-3"><span>03</span><strong>Analysis</strong></article>
+            <article class="funnel-step funnel-4"><span>04</span><strong>Design</strong></article>
+            <article class="funnel-step funnel-5"><span>05</span><strong>Delivery</strong></article>
+            <article class="funnel-step funnel-6"><span>06</span><strong>Validation</strong></article>
+          </div>
+          <div class="funnel-output">
+            <i aria-hidden="true"></i>
+            <strong>Business Impact</strong>
+            <span>Requirements become validated, release-ready outcomes.</span>
+          </div>
         </div>
 
-        <div class="isometric-stack hero-stack" aria-hidden="true">
-          <i></i><i></i><i></i><i></i>
-        </div>
-
-        <div class="hero-system-card card-a">
-          <span>01</span>
-          <strong>Requirements</strong>
-        </div>
-        <div class="hero-system-card card-b">
-          <span>02</span>
-          <strong>Architecture</strong>
-        </div>
-        <div class="hero-system-card card-c">
-          <span>03</span>
-          <strong>Validation</strong>
+        <div class="diagram-selector" aria-label="Choose hero diagram">
+          <button type="button" class="active" data-diagram-select="stacked">Stacked</button>
+          <button type="button" data-diagram-select="funnel">Funnel</button>
+          <button type="button" data-diagram-random>Shuffle</button>
         </div>
 
         <div class="stage-grid" aria-hidden="true"></div>
