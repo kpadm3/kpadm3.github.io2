@@ -51,25 +51,67 @@
     });
   });
 
-  all('[data-counter]').forEach(counter=>{
-    const target=Number(counter.dataset.counter||0);
-    const suffix=counter.dataset.suffix||'';
-    if(reduced){counter.textContent=`${target}${suffix}`;return}
-    const observer=new IntersectionObserver(entries=>{
-      if(!entries[0].isIntersecting)return;
-      const start=performance.now();
-      const duration=900;
-      const tick=now=>{
-        const p=Math.min(1,(now-start)/duration);
-        const eased=1-Math.pow(1-p,3);
-        counter.textContent=`${Math.round(target*eased)}${suffix}`;
-        if(p<1)requestAnimationFrame(tick);
-      };
-      requestAnimationFrame(tick);
-      observer.disconnect();
-    },{threshold:.65});
-    observer.observe(counter);
-  });
+  // Reliable animated counters.
+  // Starts once when the metric area enters the viewport and has a timed fallback.
+  const counters = all("[data-counter]");
+  let countersStarted = false;
+
+  const animateCounter = (counter) => {
+    if (counter.dataset.animated === "true") return;
+    counter.dataset.animated = "true";
+
+    const target = Number(counter.dataset.counter || 0);
+    const suffix = counter.dataset.suffix || "";
+    const duration = 1200;
+    const startTime = performance.now();
+
+    counter.textContent = `0${suffix}`;
+
+    const update = (now) => {
+      const elapsed = now - startTime;
+      const progress = Math.min(1, elapsed / duration);
+      const eased = 1 - Math.pow(1 - progress, 4);
+      const current = Math.round(target * eased);
+
+      counter.textContent = `${current}${suffix}`;
+
+      if (progress < 1) {
+        requestAnimationFrame(update);
+      } else {
+        counter.textContent = `${target}${suffix}`;
+      }
+    };
+
+    requestAnimationFrame(update);
+  };
+
+  const startCounters = () => {
+    if (countersStarted || counters.length === 0) return;
+    countersStarted = true;
+    counters.forEach(animateCounter);
+  };
+
+  const metricSection =
+    document.querySelector(".metric-strip") ||
+    counters[0]?.closest("section");
+
+  if (metricSection && "IntersectionObserver" in window) {
+    const counterObserver = new IntersectionObserver((entries) => {
+      if (!entries.some((entry) => entry.isIntersecting)) return;
+      startCounters();
+      counterObserver.disconnect();
+    }, {
+      threshold: 0.15,
+      rootMargin: "0px 0px -5% 0px"
+    });
+
+    counterObserver.observe(metricSection);
+  } else {
+    startCounters();
+  }
+
+  // Fallback for browser caching, unusual viewport sizes, or observer delays.
+  window.setTimeout(startCounters, 900);
 
   const stage=document.querySelector('[data-parallax]');
   if(stage && !coarse && !reduced){
@@ -126,3 +168,98 @@
   });
 })();
 
+// Phase 2 — Technology and solution interactions
+(() => {
+  "use strict";
+
+  const cards = Array.from(
+    document.querySelectorAll(".technology-card, .solution-card-v2")
+  );
+  const coarse = window.matchMedia("(pointer: coarse)").matches;
+  const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  cards.forEach((card) => {
+    if (!coarse && !reduced) {
+      card.addEventListener("pointermove", (event) => {
+        const rect = card.getBoundingClientRect();
+        card.style.setProperty("--mouse-x", `${event.clientX - rect.left}px`);
+        card.style.setProperty("--mouse-y", `${event.clientY - rect.top}px`);
+      });
+    }
+
+    card.addEventListener("click", (event) => {
+      if (event.target.closest("a, button")) return;
+      card.classList.toggle("is-active");
+    });
+  });
+
+  const filterButtons = Array.from(
+    document.querySelectorAll("[data-tech-filter]")
+  );
+  const technologyCards = Array.from(
+    document.querySelectorAll(".technology-card")
+  );
+
+  const categories = [
+    "enterprise", "enterprise", "delivery", "enterprise", "delivery", "enterprise",
+    "analysis", "analysis", "analysis", "integration", "integration", "integration",
+    "delivery", "delivery", "delivery", "ai", "ai", "ai"
+  ];
+
+  technologyCards.forEach((card, index) => {
+    card.dataset.group = categories[index] || "all";
+  });
+
+  filterButtons.forEach((button) => {
+    button.addEventListener("click", () => {
+      const group = button.dataset.techFilter;
+
+      filterButtons.forEach((item) => item.classList.remove("active"));
+      button.classList.add("active");
+
+      technologyCards.forEach((card) => {
+        const visible = group === "all" || card.dataset.group === group;
+        card.hidden = !visible;
+      });
+    });
+  });
+})();
+
+
+
+// Phase 2 fixed interactions
+(() => {
+  "use strict";
+  const cards = Array.from(document.querySelectorAll(".technology-card-v3,.solution-card-v3"));
+  const coarse = matchMedia("(pointer:coarse)").matches;
+  cards.forEach(card => {
+    if(!coarse){
+      card.addEventListener("pointermove", e => {
+        const r = card.getBoundingClientRect();
+        card.style.setProperty("--mx", `${e.clientX-r.left}px`);
+        card.style.setProperty("--my", `${e.clientY-r.top}px`);
+      });
+    }
+    card.addEventListener("click", e => {
+      if(e.target.closest("a,button")) return;
+      card.classList.toggle("is-active");
+    });
+  });
+
+  const filterButtons = Array.from(document.querySelectorAll("[data-logo-filter]"));
+  const technologyCards = Array.from(document.querySelectorAll(".technology-card-v3"));
+  filterButtons.forEach(button => {
+    button.addEventListener("click", () => {
+      const group = button.dataset.logoFilter;
+      filterButtons.forEach(item => item.classList.remove("active"));
+      button.classList.add("active");
+      technologyCards.forEach(card => {
+        card.hidden = group !== "all" && card.dataset.group !== group;
+      });
+    });
+  });
+
+  document.querySelectorAll(".solution-card-v3,.technology-card-v3").forEach(card => {
+    card.classList.add("visible");
+  });
+})();
