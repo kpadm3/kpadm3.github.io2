@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Contact | Krishna Padmanabhan</title>
-<meta name="description" content="Connect with Krishna Padmanabhan — open to enterprise product delivery, business analysis, and transformation initiatives. Edmonton, Alberta, Canada.">
+<meta name="description" content="Connect with Krishna Padmanabhan. Open to enterprise product delivery, business analysis, and transformation initiatives. Edmonton, Alberta, Canada.">
 <meta name="theme-color" content="#050b14">
 <link rel="stylesheet" href="assets/css/site.css">
 <style>
@@ -168,7 +168,7 @@ a.contact-item:hover{border-color:rgba(77,163,255,.56);transform:translateX(3px)
     <section class="page-hero reveal-case">
       <div class="page-kicker">Let's Connect</div>
       <h1 class="page-title">Get in Touch</h1>
-      <p class="page-lead">Open to discussing enterprise product delivery, business analysis, and transformation initiatives. Based in Edmonton, Alberta — available for remote and hybrid engagements across Canada.</p>
+      <p class="page-lead">Open to discussing enterprise product delivery, business analysis, and transformation initiatives. Based in Edmonton, Alberta. Available for remote and hybrid engagements across Canada.</p>
     </section>
 
     <div class="contact-layout">
@@ -238,7 +238,7 @@ a.contact-item:hover{border-color:rgba(77,163,255,.56);transform:translateX(3px)
     <div class="cta-panel glass-panel reveal-case">
       <div class="cta-copy">
         <h2>Interested in working together?</h2>
-        <p>Let's explore how I can contribute to your next enterprise initiative — from requirements and analysis through delivery and production support.</p>
+        <p>Let's explore how I can contribute to your next enterprise initiative, from requirements and analysis through delivery and production support.</p>
       </div>
       <div class="cta-actions">
         <a class="button magnetic" href="mailto:pskrishna204@gmail.com">Start a Conversation</a>
@@ -297,7 +297,7 @@ document.getElementById("contactForm").addEventListener("submit", function(e) {
   const msg = document.getElementById("contact-message").value.trim();
   const status = document.getElementById("form-status");
   if (!name || !email || !msg) { status.textContent = "Please fill in all fields."; status.style.color = "#f2b45c"; return; }
-  const subject = encodeURIComponent("Portfolio Enquiry — " + name);
+  const subject = encodeURIComponent("Portfolio Enquiry from " + name);
   const body = encodeURIComponent("Name: " + name + "\nEmail: " + email + "\n\n" + msg);
   window.location.href = "mailto:pskrishna204@gmail.com?subject=" + subject + "&body=" + body;
   status.textContent = "Opening your email client…";
