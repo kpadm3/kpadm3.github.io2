@@ -322,8 +322,11 @@
 })();
 
 // Headline word reveal: the emphasized line splits into words that rise
-// from a soft blur into sharp focus, staggered left to right. Reads as a
-// confident, polished entrance rather than a decoding/glitch effect.
+// from a soft blur into sharp focus, staggered left to right. Pure CSS
+// animation with no JS-driven trigger (no IntersectionObserver, no
+// requestAnimationFrame, nothing that can silently fail to fire) — the
+// browser runs the keyframe animation unconditionally as soon as each
+// span exists, so there is no failure mode that leaves it stuck invisible.
 (() => {
   "use strict";
 
@@ -338,37 +341,11 @@
   words.forEach((word, index) => {
     const span = document.createElement("span");
     span.className = "word-reveal";
-    span.style.transitionDelay = `${index * 80}ms`;
+    span.style.animationDelay = `${index * 80}ms`;
     span.textContent = word;
     target.appendChild(span);
     target.appendChild(document.createTextNode(index < words.length - 1 ? " " : ""));
   });
-
-  let started = false;
-
-  const start = () => {
-    if (started) return;
-    started = true;
-    target.querySelectorAll(".word-reveal").forEach((span) => {
-      span.classList.add("is-visible");
-    });
-  };
-
-  if ("IntersectionObserver" in window) {
-    const observer = new IntersectionObserver((entries) => {
-      if (!entries.some((entry) => entry.isIntersecting)) return;
-      start();
-      observer.disconnect();
-    }, { threshold: 0.4 });
-    observer.observe(target);
-  } else {
-    start();
-  }
-
-  // Hard fallback: guarantees the headline reveals even if the observer
-  // never fires (tab restored from cache, unusual viewport, browser
-  // quirk) — same safety-net pattern already used for the metric counters.
-  setTimeout(start, 900);
 })();
 
 // Scroll-linked parallax depth: the two ambient glow layers drift at
