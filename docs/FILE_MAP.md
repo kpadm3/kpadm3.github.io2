@@ -5,7 +5,7 @@
 - `solutions.html` — filterable solution library
 - `solutions/*.html` — six fully static solution pages
 - `experience.html` — career timeline and capability profile
-- `approach.html` — analysis and delivery method
+- `framework.html` — analysis and delivery framework
 - `contact.html` — contact placeholders and GitHub link
 
 ## Design
