@@ -1,18 +1,32 @@
-# LOCKED DESIGN SYSTEM
+# Phase 1 Locked Design System
 
+## Core palette
 - Background: `#050b14`
+- Secondary background: `#081321`
 - Panel: `#0b192b`
-- Primary accent: `#35d4f1`
+- Text: `#f5f8fc`
+- Muted: `#91a5bb`
+- Line: `#243c5a`
+- Accent: `#35d4f1`
 - Secondary accent: `#8c70ff`
-- Card radius: `16px`
-- Desktop logo size: `64px`
-- Mobile logo size: `56px`
-- Desktop solution grid: 3 columns
-- Tablet solution grid: 2 columns
-- Mobile solution grid: 1 column
-- Hover: 5–6px lift, accent border, controlled shadow
-- Motion: reveal only; disabled when reduced motion is requested
-- Public name: Krishna
-- Contact details: placeholders until replaced
 
-Do not change these values without a deliberate design revision.
+## Component rules
+- Card radius: 18px
+- Button radius: 11px
+- Desktop max width: 1240px
+- Card hover lift: 5–6px
+- Tilt: maximum roughly 2–3 degrees
+- Motion: 500ms reveal, 200–260ms interaction
+- Mobile: tap focus replaces hover
+- Reduced motion: all nonessential motion disabled
+
+## Locked components
+- Sticky navigation
+- Hero
+- Metric card
+- Capability card
+- Solution card
+- Technology tile
+- Information panel
+- CTA button
+- Mobile card behaviour

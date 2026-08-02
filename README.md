@@ -1,9 +1,12 @@
-# Krishna — Enterprise Solutions Portfolio
+# Krishna Portfolio V2 — Phase 1 Foundation
 
-This is a clean, static GitHub Pages build.
+This release contains only the locked visual foundation and representative components.
 
-The site does not depend on JavaScript to display its content. JavaScript is limited
-to filters, scroll reveal, the progress bar, and current-year text.
+## Files
+- `index.html`
+- `assets/css/site.css`
+- `assets/js/site.js`
+- `docs/DESIGN_SYSTEM.md`
+- `docs/QA_CHECKLIST.md`
 
-Upload the complete contents to the repository root and enable GitHub Pages from
-`main` and `/ (root)`.
+Do not add real portfolio content until the foundation is approved.
