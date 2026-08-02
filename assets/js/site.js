@@ -344,11 +344,13 @@
     target.appendChild(document.createTextNode(index < words.length - 1 ? " " : ""));
   });
 
+  let started = false;
+
   const start = () => {
-    requestAnimationFrame(() => {
-      target.querySelectorAll(".word-reveal").forEach((span) => {
-        span.classList.add("is-visible");
-      });
+    if (started) return;
+    started = true;
+    target.querySelectorAll(".word-reveal").forEach((span) => {
+      span.classList.add("is-visible");
     });
   };
 
@@ -362,6 +364,11 @@
   } else {
     start();
   }
+
+  // Hard fallback: guarantees the headline reveals even if the observer
+  // never fires (tab restored from cache, unusual viewport, browser
+  // quirk) — same safety-net pattern already used for the metric counters.
+  setTimeout(start, 900);
 })();
 
 // Scroll-linked parallax depth: the two ambient glow layers drift at
