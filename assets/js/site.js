@@ -183,3 +183,41 @@
   });
 })();
 
+
+
+// Phase 2 fixed interactions
+(() => {
+  "use strict";
+  const cards = Array.from(document.querySelectorAll(".technology-card-v3,.solution-card-v3"));
+  const coarse = matchMedia("(pointer:coarse)").matches;
+  cards.forEach(card => {
+    if(!coarse){
+      card.addEventListener("pointermove", e => {
+        const r = card.getBoundingClientRect();
+        card.style.setProperty("--mx", `${e.clientX-r.left}px`);
+        card.style.setProperty("--my", `${e.clientY-r.top}px`);
+      });
+    }
+    card.addEventListener("click", e => {
+      if(e.target.closest("a,button")) return;
+      card.classList.toggle("is-active");
+    });
+  });
+
+  const filterButtons = Array.from(document.querySelectorAll("[data-logo-filter]"));
+  const technologyCards = Array.from(document.querySelectorAll(".technology-card-v3"));
+  filterButtons.forEach(button => {
+    button.addEventListener("click", () => {
+      const group = button.dataset.logoFilter;
+      filterButtons.forEach(item => item.classList.remove("active"));
+      button.classList.add("active");
+      technologyCards.forEach(card => {
+        card.hidden = group !== "all" && card.dataset.group !== group;
+      });
+    });
+  });
+
+  document.querySelectorAll(".solution-card-v3,.technology-card-v3").forEach(card => {
+    card.classList.add("visible");
+  });
+})();
