@@ -89,101 +89,200 @@
         <div class="hero-spotlight" aria-hidden="true"></div>
         <svg class="hero-diagram-svg" viewBox="0 0 545 336" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
           <defs>
+            <style>
+              @keyframes flow{to{stroke-dashoffset:-22}}
+              @keyframes pulse-node{0%,100%{opacity:.42}50%{opacity:.78}}
+              @keyframes pulse-final{0%,100%{opacity:.7}50%{opacity:1}}
+              @keyframes glow-bar{0%,100%{opacity:.7}50%{opacity:1}}
+              @keyframes dot-r{0%{transform:translateX(0)}100%{transform:translateX(26px)}}
+              @keyframes dot-l{0%{transform:translateX(0)}100%{transform:translateX(-26px)}}
+              @keyframes dot-d{0%{transform:translateY(0)}100%{transform:translateY(26px)}}
+              @keyframes ring-pulse{0%,100%{r:54;opacity:.12}50%{r:62;opacity:.05}}
+              .fl{animation:flow 1.6s linear infinite}
+              .fl2{animation:flow 2s linear infinite}
+              .fl3{animation:flow 1.8s linear infinite}
+              .pb{animation:pulse-node 3s ease-in-out infinite}
+              .pb-final{animation:pulse-final 2.4s ease-in-out infinite}
+              .gb{animation:glow-bar 2.6s ease-in-out infinite}
+              .rp{animation:ring-pulse 3.5s ease-in-out infinite}
+            </style>
             <marker id="arr" markerWidth="8" markerHeight="7" refX="6" refY="3.5" orient="auto">
-              <path d="M1,1 L7,3.5 L1,6" stroke="#35d4f1" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" fill="none" opacity="0.9"/>
+              <path d="M1,1 L7,3.5 L1,6" stroke="#35d4f1" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
             </marker>
-            <filter id="fg" x="-20%" y="-60%" width="140%" height="220%">
-              <feGaussianBlur in="SourceGraphic" stdDeviation="2" result="b"/>
+            <!-- Soft glow on lines -->
+            <filter id="fg" x="-30%" y="-80%" width="160%" height="260%">
+              <feGaussianBlur in="SourceGraphic" stdDeviation="2.5" result="b"/>
+              <feMerge><feMergeNode in="b"/><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+            </filter>
+            <!-- Strong glow on accent bars -->
+            <filter id="ng" x="-200%" y="-10%" width="500%" height="120%">
+              <feGaussianBlur in="SourceGraphic" stdDeviation="5" result="b"/>
               <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
             </filter>
-            <filter id="ng" x="-80%" y="-10%" width="260%" height="120%">
-              <feGaussianBlur in="SourceGraphic" stdDeviation="4" result="b"/>
+            <!-- Node outer glow -->
+            <filter id="nout" x="-6%" y="-6%" width="112%" height="112%">
+              <feGaussianBlur in="SourceGraphic" stdDeviation="3.5" result="b"/>
               <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
             </filter>
+            <!-- Dot grid -->
             <pattern id="dgrid" width="26" height="26" patternUnits="userSpaceOnUse">
-              <circle cx="0" cy="0" r="0.65" fill="#1a3350" opacity="0.5"/>
+              <circle cx="0" cy="0" r="0.7" fill="#1a3350" opacity="0.55"/>
+              <circle cx="13" cy="13" r="0.4" fill="#1a3350" opacity="0.3"/>
             </pattern>
+            <!-- Node fill gradient -->
             <linearGradient id="nfill" x1="0" y1="0" x2="0" y2="1">
-              <stop offset="0%" stop-color="#091c30"/>
-              <stop offset="100%" stop-color="#030e1b"/>
+              <stop offset="0%" stop-color="#0c2036"/>
+              <stop offset="100%" stop-color="#040f1e"/>
             </linearGradient>
+            <!-- Final node fill (brighter) -->
+            <linearGradient id="nfill-active" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%" stop-color="#0f2a42"/>
+              <stop offset="100%" stop-color="#061526"/>
+            </linearGradient>
+            <!-- Centre ambient -->
             <radialGradient id="cg" cx="50%" cy="50%" r="50%">
-              <stop offset="0%" stop-color="#35d4f1" stop-opacity="0.07"/>
+              <stop offset="0%" stop-color="#35d4f1" stop-opacity="0.09"/>
               <stop offset="100%" stop-color="#35d4f1" stop-opacity="0"/>
             </radialGradient>
+            <!-- Corner ambient blobs -->
+            <radialGradient id="bl1" cx="50%" cy="50%" r="50%">
+              <stop offset="0%" stop-color="#4da3ff" stop-opacity="0.07"/>
+              <stop offset="100%" stop-color="#4da3ff" stop-opacity="0"/>
+            </radialGradient>
+            <radialGradient id="bl2" cx="50%" cy="50%" r="50%">
+              <stop offset="0%" stop-color="#9b7cff" stop-opacity="0.06"/>
+              <stop offset="100%" stop-color="#9b7cff" stop-opacity="0"/>
+            </radialGradient>
+            <!-- Flow line gradient -->
+            <linearGradient id="lg-r" x1="0" y1="0" x2="1" y2="0">
+              <stop offset="0%" stop-color="#35d4f1" stop-opacity="0.3"/>
+              <stop offset="100%" stop-color="#35d4f1" stop-opacity="0.85"/>
+            </linearGradient>
+            <linearGradient id="lg-l" x1="1" y1="0" x2="0" y2="0">
+              <stop offset="0%" stop-color="#35d4f1" stop-opacity="0.3"/>
+              <stop offset="100%" stop-color="#35d4f1" stop-opacity="0.85"/>
+            </linearGradient>
           </defs>
 
-          <!-- Background -->
+          <!-- ── BACKGROUND ── -->
           <rect width="545" height="336" fill="url(#dgrid)"/>
-          <ellipse cx="272" cy="157" rx="210" ry="118" fill="url(#cg)"/>
+          <ellipse cx="272" cy="157" rx="220" ry="130" fill="url(#cg)"/>
+          <ellipse cx="80" cy="60" rx="100" ry="80" fill="url(#bl1)"/>
+          <ellipse cx="460" cy="270" rx="110" ry="80" fill="url(#bl2)"/>
 
-          <!-- ── ROW 1 ── -->
+          <!-- ── CONNECTING LINES (behind nodes) ── -->
 
-          <!-- N1 Requirements -->
-          <rect x="15" y="28" width="148" height="68" rx="10" fill="url(#nfill)" stroke="#35d4f1" stroke-width="1" stroke-opacity="0.42"/>
-          <rect x="15" y="28" width="3" height="68" rx="2" fill="#35d4f1" opacity="0.85" filter="url(#ng)"/>
+          <!-- Row 1 flow lines (animated dash) -->
+          <line x1="167" y1="62" x2="193" y2="62" stroke="url(#lg-r)" stroke-width="2" filter="url(#fg)"/>
+          <line x1="167" y1="62" x2="193" y2="62" stroke="#35d4f1" stroke-width="1.5" stroke-dasharray="4,18" class="fl" filter="url(#fg)"/>
+
+          <line x1="349" y1="62" x2="375" y2="62" stroke="url(#lg-r)" stroke-width="2" filter="url(#fg)"/>
+          <line x1="349" y1="62" x2="375" y2="62" stroke="#35d4f1" stroke-width="1.5" stroke-dasharray="4,18" class="fl2" filter="url(#fg)"/>
+
+          <!-- Vertical dashed connector -->
+          <line x1="453" y1="100" x2="453" y2="212" stroke="#35d4f1" stroke-width="1.5" stroke-opacity="0.35" stroke-dasharray="5,5" class="fl3" marker-end="url(#arr)" filter="url(#fg)"/>
+
+          <!-- Row 2 flow lines (left) -->
+          <line x1="377" y1="252" x2="349" y2="252" stroke="url(#lg-l)" stroke-width="2" filter="url(#fg)"/>
+          <line x1="377" y1="252" x2="349" y2="252" stroke="#35d4f1" stroke-width="1.5" stroke-dasharray="4,18" class="fl" filter="url(#fg)"/>
+
+          <line x1="195" y1="252" x2="167" y2="252" stroke="url(#lg-l)" stroke-width="2" filter="url(#fg)"/>
+          <line x1="195" y1="252" x2="167" y2="252" stroke="#35d4f1" stroke-width="1.5" stroke-dasharray="4,18" class="fl2" filter="url(#fg)"/>
+
+          <!-- Arrow tips on horizontal lines -->
+          <line x1="188" y1="62" x2="193" y2="62" stroke="#35d4f1" stroke-width="2" marker-end="url(#arr)" filter="url(#fg)"/>
+          <line x1="370" y1="62" x2="375" y2="62" stroke="#35d4f1" stroke-width="2" marker-end="url(#arr)" filter="url(#fg)"/>
+          <line x1="354" y1="252" x2="349" y2="252" stroke="#35d4f1" stroke-width="2" marker-end="url(#arr)" filter="url(#fg)"/>
+          <line x1="172" y1="252" x2="167" y2="252" stroke="#35d4f1" stroke-width="2" marker-end="url(#arr)" filter="url(#fg)"/>
+
+          <!-- ── NODE MACRO (repeated 6×) ── -->
+
+          <!-- N1 Requirements (x=15,y=28) -->
+          <rect x="12" y="25" width="154" height="74" rx="12" fill="#35d4f1" fill-opacity="0.04" filter="url(#nout)"/>
+          <rect x="15" y="28" width="148" height="68" rx="10" fill="url(#nfill)" stroke="#35d4f1" stroke-width="1" class="pb"/>
+          <!-- top accent line -->
+          <rect x="30" y="28" width="50" height="1.5" rx="1" fill="#35d4f1" opacity="0.6"/>
+          <!-- corner TL -->
+          <path d="M15,38 L15,28 L25,28" stroke="#35d4f1" stroke-width="1.5" stroke-opacity="0.8" fill="none"/>
+          <!-- left glow bar -->
+          <rect x="15" y="28" width="3" height="68" rx="2" fill="#35d4f1" class="gb" filter="url(#ng)"/>
+          <!-- icon -->
+          <text x="145" y="52" font-size="18" fill="#35d4f1" opacity="0.18" font-family="system-ui,sans-serif" text-anchor="middle">◎</text>
+          <!-- step -->
           <text x="27" y="48" font-size="8" font-weight="900" fill="#35d4f1" font-family="system-ui,sans-serif" letter-spacing="1.2">01</text>
+          <!-- title -->
           <text x="27" y="66" font-size="12" font-weight="800" fill="#edf5fb" font-family="system-ui,sans-serif">Requirements</text>
-          <text x="27" y="83" font-size="8" fill="#55789a" font-family="system-ui,sans-serif">Discovery &amp; elicitation</text>
+          <!-- sub -->
+          <text x="27" y="83" font-size="8" fill="#557898" font-family="system-ui,sans-serif">Discovery &amp; elicitation</text>
 
-          <!-- Arrow N1→N2 -->
-          <line x1="167" y1="62" x2="193" y2="62" stroke="#35d4f1" stroke-width="1.4" stroke-opacity="0.65" marker-end="url(#arr)" filter="url(#fg)"/>
-
-          <!-- N2 Analysis -->
-          <rect x="197" y="28" width="148" height="68" rx="10" fill="url(#nfill)" stroke="#35d4f1" stroke-width="1" stroke-opacity="0.42"/>
-          <rect x="197" y="28" width="3" height="68" rx="2" fill="#35d4f1" opacity="0.85" filter="url(#ng)"/>
+          <!-- N2 Analysis (x=197,y=28) -->
+          <rect x="194" y="25" width="154" height="74" rx="12" fill="#35d4f1" fill-opacity="0.04" filter="url(#nout)"/>
+          <rect x="197" y="28" width="148" height="68" rx="10" fill="url(#nfill)" stroke="#35d4f1" stroke-width="1" class="pb"/>
+          <rect x="212" y="28" width="50" height="1.5" rx="1" fill="#35d4f1" opacity="0.6"/>
+          <path d="M197,38 L197,28 L207,28" stroke="#35d4f1" stroke-width="1.5" stroke-opacity="0.8" fill="none"/>
+          <rect x="197" y="28" width="3" height="68" rx="2" fill="#35d4f1" class="gb" filter="url(#ng)"/>
+          <text x="327" y="52" font-size="18" fill="#35d4f1" opacity="0.18" font-family="system-ui,sans-serif" text-anchor="middle">⬡</text>
           <text x="209" y="48" font-size="8" font-weight="900" fill="#35d4f1" font-family="system-ui,sans-serif" letter-spacing="1.2">02</text>
           <text x="209" y="66" font-size="12" font-weight="800" fill="#edf5fb" font-family="system-ui,sans-serif">Analysis</text>
-          <text x="209" y="83" font-size="8" fill="#55789a" font-family="system-ui,sans-serif">Modeling &amp; design</text>
+          <text x="209" y="83" font-size="8" fill="#557898" font-family="system-ui,sans-serif">Modeling &amp; design</text>
 
-          <!-- Arrow N2→N3 -->
-          <line x1="349" y1="62" x2="375" y2="62" stroke="#35d4f1" stroke-width="1.4" stroke-opacity="0.65" marker-end="url(#arr)" filter="url(#fg)"/>
-
-          <!-- N3 Solution Design -->
-          <rect x="379" y="28" width="148" height="68" rx="10" fill="url(#nfill)" stroke="#35d4f1" stroke-width="1" stroke-opacity="0.42"/>
-          <rect x="379" y="28" width="3" height="68" rx="2" fill="#35d4f1" opacity="0.85" filter="url(#ng)"/>
+          <!-- N3 Solution Design (x=379,y=28) -->
+          <rect x="376" y="25" width="154" height="74" rx="12" fill="#35d4f1" fill-opacity="0.04" filter="url(#nout)"/>
+          <rect x="379" y="28" width="148" height="68" rx="10" fill="url(#nfill)" stroke="#35d4f1" stroke-width="1" class="pb"/>
+          <rect x="394" y="28" width="50" height="1.5" rx="1" fill="#35d4f1" opacity="0.6"/>
+          <path d="M379,38 L379,28 L389,28" stroke="#35d4f1" stroke-width="1.5" stroke-opacity="0.8" fill="none"/>
+          <rect x="379" y="28" width="3" height="68" rx="2" fill="#35d4f1" class="gb" filter="url(#ng)"/>
+          <text x="509" y="52" font-size="18" fill="#35d4f1" opacity="0.18" font-family="system-ui,sans-serif" text-anchor="middle">◈</text>
           <text x="391" y="48" font-size="8" font-weight="900" fill="#35d4f1" font-family="system-ui,sans-serif" letter-spacing="1.2">03</text>
           <text x="391" y="66" font-size="12" font-weight="800" fill="#edf5fb" font-family="system-ui,sans-serif">Solution Design</text>
-          <text x="391" y="83" font-size="8" fill="#55789a" font-family="system-ui,sans-serif">Architecture &amp; spec</text>
+          <text x="391" y="83" font-size="8" fill="#557898" font-family="system-ui,sans-serif">Architecture &amp; spec</text>
 
-          <!-- Vertical connector N3↓N4 (dashed, right column) -->
-          <line x1="453" y1="98" x2="453" y2="214" stroke="#35d4f1" stroke-width="1.4" stroke-opacity="0.4" stroke-dasharray="5,4" marker-end="url(#arr)" filter="url(#fg)"/>
-
-          <!-- Centre badge -->
-          <rect x="200" y="142" width="146" height="30" rx="15" fill="rgba(53,212,241,0.05)" stroke="#35d4f1" stroke-opacity="0.16" stroke-width="1"/>
-          <text x="273" y="162" font-size="8" font-weight="900" fill="#35d4f1" opacity="0.55" font-family="system-ui,sans-serif" text-anchor="middle" letter-spacing="1.4">ENTERPRISE DELIVERY</text>
+          <!-- ── CENTRE BADGE ── -->
+          <rect x="198" y="140" width="150" height="34" rx="17" fill="rgba(53,212,241,0.06)" stroke="#35d4f1" stroke-opacity="0.2" stroke-width="1"/>
+          <rect x="198" y="140" width="150" height="34" rx="17" stroke="#35d4f1" stroke-opacity="0.08" stroke-width="6"/>
+          <text x="273" y="163" font-size="8.5" font-weight="900" fill="#35d4f1" opacity="0.65" font-family="system-ui,sans-serif" text-anchor="middle" letter-spacing="1.4">ENTERPRISE DELIVERY</text>
 
           <!-- ── ROW 2 ── -->
 
-          <!-- N4 Validation (x=379) -->
-          <rect x="379" y="218" width="148" height="68" rx="10" fill="url(#nfill)" stroke="#35d4f1" stroke-width="1" stroke-opacity="0.42"/>
-          <rect x="379" y="218" width="3" height="68" rx="2" fill="#35d4f1" opacity="0.85" filter="url(#ng)"/>
+          <!-- N4 Validation (x=379,y=218) -->
+          <rect x="376" y="215" width="154" height="74" rx="12" fill="#35d4f1" fill-opacity="0.04" filter="url(#nout)"/>
+          <rect x="379" y="218" width="148" height="68" rx="10" fill="url(#nfill)" stroke="#35d4f1" stroke-width="1" class="pb"/>
+          <rect x="394" y="218" width="50" height="1.5" rx="1" fill="#35d4f1" opacity="0.6"/>
+          <path d="M379,228 L379,218 L389,218" stroke="#35d4f1" stroke-width="1.5" stroke-opacity="0.8" fill="none"/>
+          <rect x="379" y="218" width="3" height="68" rx="2" fill="#35d4f1" class="gb" filter="url(#ng)"/>
+          <text x="509" y="242" font-size="18" fill="#35d4f1" opacity="0.18" font-family="system-ui,sans-serif" text-anchor="middle">▤</text>
           <text x="391" y="238" font-size="8" font-weight="900" fill="#35d4f1" font-family="system-ui,sans-serif" letter-spacing="1.2">04</text>
           <text x="391" y="256" font-size="12" font-weight="800" fill="#edf5fb" font-family="system-ui,sans-serif">Validation</text>
-          <text x="391" y="273" font-size="8" fill="#55789a" font-family="system-ui,sans-serif">UAT &amp; acceptance</text>
+          <text x="391" y="273" font-size="8" fill="#557898" font-family="system-ui,sans-serif">UAT &amp; acceptance</text>
 
-          <!-- Arrow N4→N5 (left) -->
-          <line x1="377" y1="252" x2="349" y2="252" stroke="#35d4f1" stroke-width="1.4" stroke-opacity="0.65" marker-end="url(#arr)" filter="url(#fg)"/>
-
-          <!-- N5 Release (x=197) -->
-          <rect x="197" y="218" width="148" height="68" rx="10" fill="url(#nfill)" stroke="#35d4f1" stroke-width="1" stroke-opacity="0.42"/>
-          <rect x="197" y="218" width="3" height="68" rx="2" fill="#35d4f1" opacity="0.85" filter="url(#ng)"/>
+          <!-- N5 Release (x=197,y=218) -->
+          <rect x="194" y="215" width="154" height="74" rx="12" fill="#35d4f1" fill-opacity="0.04" filter="url(#nout)"/>
+          <rect x="197" y="218" width="148" height="68" rx="10" fill="url(#nfill)" stroke="#35d4f1" stroke-width="1" class="pb"/>
+          <rect x="212" y="218" width="50" height="1.5" rx="1" fill="#35d4f1" opacity="0.6"/>
+          <path d="M197,228 L197,218 L207,218" stroke="#35d4f1" stroke-width="1.5" stroke-opacity="0.8" fill="none"/>
+          <rect x="197" y="218" width="3" height="68" rx="2" fill="#35d4f1" class="gb" filter="url(#ng)"/>
+          <text x="327" y="242" font-size="18" fill="#35d4f1" opacity="0.18" font-family="system-ui,sans-serif" text-anchor="middle">◇</text>
           <text x="209" y="238" font-size="8" font-weight="900" fill="#35d4f1" font-family="system-ui,sans-serif" letter-spacing="1.2">05</text>
           <text x="209" y="256" font-size="12" font-weight="800" fill="#edf5fb" font-family="system-ui,sans-serif">Release</text>
-          <text x="209" y="273" font-size="8" fill="#55789a" font-family="system-ui,sans-serif">Deployment &amp; cutover</text>
+          <text x="209" y="273" font-size="8" fill="#557898" font-family="system-ui,sans-serif">Deployment &amp; cutover</text>
 
-          <!-- Arrow N5→N6 (left) -->
-          <line x1="195" y1="252" x2="167" y2="252" stroke="#35d4f1" stroke-width="1.4" stroke-opacity="0.65" marker-end="url(#arr)" filter="url(#fg)"/>
-
-          <!-- N6 Hypercare (x=15) — highlighted final stage -->
-          <rect x="15" y="218" width="148" height="68" rx="10" fill="url(#nfill)" stroke="#35d4f1" stroke-width="1.5" stroke-opacity="0.7"/>
+          <!-- N6 Hypercare (x=15,y=218) — FINAL, highlighted -->
+          <!-- pulse ring behind node -->
+          <circle cx="89" cy="252" r="54" stroke="#35d4f1" stroke-width="1" fill="none" class="rp"/>
+          <rect x="12" y="215" width="154" height="74" rx="12" fill="#35d4f1" fill-opacity="0.07" filter="url(#nout)"/>
+          <rect x="15" y="218" width="148" height="68" rx="10" fill="url(#nfill-active)" stroke="#35d4f1" stroke-width="1.5" class="pb-final"/>
+          <rect x="30" y="218" width="50" height="1.5" rx="1" fill="#35d4f1" opacity="0.9"/>
+          <path d="M15,228 L15,218 L25,218" stroke="#35d4f1" stroke-width="1.8" stroke-opacity="1" fill="none"/>
+          <!-- bottom-right corner accent -->
+          <path d="M153,286 L163,286 L163,278" stroke="#35d4f1" stroke-width="1.5" stroke-opacity="0.7" fill="none"/>
           <rect x="15" y="218" width="3" height="68" rx="2" fill="#35d4f1" opacity="1" filter="url(#ng)"/>
+          <text x="145" y="242" font-size="18" fill="#35d4f1" opacity="0.22" font-family="system-ui,sans-serif" text-anchor="middle">▲</text>
           <text x="27" y="238" font-size="8" font-weight="900" fill="#35d4f1" font-family="system-ui,sans-serif" letter-spacing="1.2">06</text>
           <text x="27" y="256" font-size="12" font-weight="800" fill="#edf5fb" font-family="system-ui,sans-serif">Hypercare</text>
-          <text x="27" y="273" font-size="8" fill="#55789a" font-family="system-ui,sans-serif">Stabilization &amp; support</text>
+          <text x="27" y="273" font-size="8" fill="#557898" font-family="system-ui,sans-serif">Stabilization &amp; support</text>
 
-          <!-- Bottom caption -->
-          <text x="272" y="316" font-size="7" fill="#35d4f1" opacity="0.28" font-family="system-ui,sans-serif" text-anchor="middle" letter-spacing="2">END-TO-END ENTERPRISE DELIVERY LIFECYCLE</text>
+          <!-- ── BOTTOM CAPTION ── -->
+          <text x="272" y="318" font-size="7" fill="#35d4f1" opacity="0.28" font-family="system-ui,sans-serif" text-anchor="middle" letter-spacing="2.2">END-TO-END ENTERPRISE DELIVERY LIFECYCLE</text>
         </svg>
       </div>
     </section>
