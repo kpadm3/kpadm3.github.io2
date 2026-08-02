@@ -9,7 +9,7 @@
   <link rel="stylesheet" href="assets/css/site.css">
 <style>
 .hero-copy h1{font-size:clamp(1.85rem,2.65vw,3.3rem)!important;line-height:1.08!important}
-.hero-diagram-svg{width:100%;max-width:580px;height:auto;display:block;margin:auto;filter:drop-shadow(0 0 28px rgba(53,212,241,.09))}
+.hero-diagram-svg{width:100%;max-width:580px;height:auto;display:block;margin:auto;filter:drop-shadow(0 0 28px rgba(53,212,241,.06))}
 </style>
 </head>
 <body>
@@ -90,57 +90,72 @@
         <svg class="hero-diagram-svg" style="overflow:visible" viewBox="0 0 540 380" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
           <defs>
             <style>
+              /* Tuned animations and reduced visual intensity for a more refined look */
               @keyframes spin-cw{to{transform:rotate(360deg)}}
               @keyframes spin-ccw{to{transform:rotate(-360deg)}}
-              @keyframes hub-pulse{0%,100%{opacity:.12}50%{opacity:.22}}
-              @keyframes flow-dash{to{stroke-dashoffset:-24}}
-              @keyframes glow-beat{0%,100%{opacity:.65}50%{opacity:1}}
-              @keyframes float-a{0%,100%{transform:translateY(0)}50%{transform:translateY(-5px)}}
-              @keyframes float-b{0%,100%{transform:translateY(0)}50%{transform:translateY(-4px)}}
-              .rcw{transform-origin:270px 190px;animation:spin-cw 14s linear infinite}
-              .rccw{transform-origin:270px 190px;animation:spin-ccw 9s linear infinite}
-              .hp{animation:hub-pulse 3.2s ease-in-out infinite}
-              .fd{animation:flow-dash 1.7s linear infinite}
-              .fd2{animation:flow-dash 2.1s linear infinite .35s}
-              .fd3{animation:flow-dash 1.5s linear infinite .7s}
-              .gb{animation:glow-beat 2.6s ease-in-out infinite}
-              .gb2{animation:glow-beat 3s ease-in-out infinite .5s}
-              .fa{animation:float-a 3.2s ease-in-out infinite}
-              .fb{animation:float-a 2.8s ease-in-out infinite .6s}
-              .fc{animation:float-b 3.5s ease-in-out infinite .2s}
-              .fdd{animation:float-a 2.9s ease-in-out infinite .9s}
-              .fe{animation:float-b 3.3s ease-in-out infinite .4s}
-              .ff{animation:float-a 3.0s ease-in-out infinite .7s}
+              @keyframes hub-pulse{0%,100%{opacity:.10}50%{opacity:.16}}
+              @keyframes flow-dash{to{stroke-dashoffset:-20}}
+              @keyframes glow-beat{0%,100%{opacity:.6}50%{opacity:.82}}
+              @keyframes float-a{0%,100%{transform:translateY(0)}50%{transform:translateY(-4px)}}
+              @keyframes float-b{0%,100%{transform:translateY(0)}50%{transform:translateY(-3px)}}
+              @keyframes ring-pulse{0%{r:54;opacity:.10}50%{r:60;opacity:.06}100%{r:54;opacity:.10}}
+
+              /* Slower, staggered, and lower-opacity animations */
+              .rcw{transform-origin:270px 190px;animation:spin-cw 18s linear infinite}
+              .rccw{transform-origin:270px 190px;animation:spin-ccw 12s linear infinite}
+              .hp{animation:hub-pulse 4s ease-in-out infinite}
+              .fd{animation:flow-dash 2.6s cubic-bezier(.22,.9,.28,1) infinite; stroke-opacity:.6}
+              .fd2{animation:flow-dash 3.4s cubic-bezier(.22,.9,.28,1) infinite .35s; stroke-opacity:.6}
+              .fd3{animation:flow-dash 2.9s cubic-bezier(.22,.9,.28,1) infinite .7s; stroke-opacity:.6}
+              .gb{animation:glow-beat 3.4s ease-in-out infinite; opacity:.44}
+              .gb2{animation:glow-beat 3.8s ease-in-out infinite .5s; opacity:.38}
+              .fa{animation:float-a 3.6s ease-in-out infinite}
+              .fb{animation:float-a 3.2s ease-in-out infinite .6s}
+              .fc{animation:float-b 3.8s ease-in-out infinite .2s}
+              .fdd{animation:float-a 3.1s ease-in-out infinite .9s}
+              .fe{animation:float-b 3.5s ease-in-out infinite .4s}
+              .ff{animation:float-a 3.3s ease-in-out infinite .7s}
+
+              /* Accessibility: respect reduced motion preference */
+              @media (prefers-reduced-motion: reduce) {
+                .rcw, .rccw, .hp, .fd, .fd2, .fd3, .gb, .gb2, .fa, .fb, .fc, .fdd, .fe, .ff { animation: none !important; }
+              }
+
+              /* Mobile / low-power fallbacks: hide non-essential animations */
+              @media (max-width:700px) {
+                .fd, .fd2, .fd3, .gb, .gb2, .hp { display:none !important; }
+              }
             </style>
             <marker id="arr" markerWidth="7" markerHeight="7" refX="6" refY="3.5" orient="auto">
-              <path d="M1,1.5 L6,3.5 L1,5.5" stroke="#35d4f1" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+              <path d="M1,1.5 L6,3.5 L1,5.5" stroke="#35d4f1" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round" fill="none" opacity="0.95"/>
             </marker>
+            <!-- single, gentler glow filter reused across elements -->
             <filter id="lg" x="-20%" y="-80%" width="140%" height="260%">
-              <feGaussianBlur stdDeviation="2" result="b"/>
+              <feGaussianBlur stdDeviation="1.6" result="b"/>
               <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
             </filter>
             <filter id="cglw" x="-8%" y="-8%" width="116%" height="116%">
-              <feGaussianBlur stdDeviation="5"/>
+              <feGaussianBlur stdDeviation="3"/>
             </filter>
             <filter id="hg" x="-30%" y="-30%" width="160%" height="160%">
-              <feGaussianBlur stdDeviation="9" result="b"/>
+              <feGaussianBlur stdDeviation="4.5" result="b"/>
               <feMerge><feMergeNode in="b"/><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
             </filter>
             <filter id="bg" x="-200%" y="-10%" width="500%" height="120%">
-              <feGaussianBlur stdDeviation="4" result="b"/>
+              <feGaussianBlur stdDeviation="2.8" result="b"/>
               <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
             </filter>
             <pattern id="dots" width="26" height="26" patternUnits="userSpaceOnUse">
-              <circle cx="0" cy="0" r=".7" fill="#1a3350" opacity=".5"/>
-              <circle cx="13" cy="13" r=".4" fill="#1a3350" opacity=".28"/>
+              <circle cx="0" cy="0" r="0.6" fill="#0f2a42" opacity="0.28"/>
+              <circle cx="13" cy="13" r="0.35" fill="#0f2a42" opacity="0.18"/>
             </pattern>
             <radialGradient id="hub-fill" cx="38%" cy="33%" r="65%">
               <stop offset="0%" stop-color="#103550"/>
               <stop offset="55%" stop-color="#061828"/>
               <stop offset="100%" stop-color="#020b18"/>
             </radialGradient>
-            <radialGradient id="hub-amb" cx="50%" cy="50%" r="50%">
-              <stop offset="0%" stop-color="#35d4f1" stop-opacity=".14"/>
+            <radialGradient id="hub-amb" cx="50%" cy="50" r="50%">
+              <stop offset="0%" stop-color="#35d4f1" stop-opacity="0.10"/>
               <stop offset="100%" stop-color="#35d4f1" stop-opacity="0"/>
             </radialGradient>
             <linearGradient id="nf" x1="0" y1="0" x2="0" y2="1">
@@ -151,16 +166,16 @@
               <stop offset="0%" stop-color="#122e4a"/>
               <stop offset="100%" stop-color="#060f1e"/>
             </linearGradient>
-            <radialGradient id="bg-glow" cx="50%" cy="50%" r="50%">
-              <stop offset="0%" stop-color="#35d4f1" stop-opacity=".09"/>
+            <radialGradient id="bg-glow" cx="50%" cy="50% r="50%">
+              <stop offset="0%" stop-color="#35d4f1" stop-opacity="0.07"/>
               <stop offset="100%" stop-color="#35d4f1" stop-opacity="0"/>
             </radialGradient>
-            <radialGradient id="gb-blue" cx="50%" cy="50%" r="50%">
-              <stop offset="0%" stop-color="#4da3ff" stop-opacity=".10"/>
+            <radialGradient id="gb-blue" cx="50%" cy="50% r="50%">
+              <stop offset="0%" stop-color="#4da3ff" stop-opacity="0.06"/>
               <stop offset="100%" stop-color="#4da3ff" stop-opacity="0"/>
             </radialGradient>
-            <radialGradient id="gb-violet" cx="50%" cy="50%" r="50%">
-              <stop offset="0%" stop-color="#9b7cff" stop-opacity=".08"/>
+            <radialGradient id="gb-violet" cx="50%" cy="50% r="50%">
+              <stop offset="0%" stop-color="#9b7cff" stop-opacity="0.05"/>
               <stop offset="100%" stop-color="#9b7cff" stop-opacity="0"/>
             </radialGradient>
           </defs>
@@ -172,47 +187,47 @@
           <ellipse cx="460" cy="300" rx="110" ry="90" fill="url(#gb-violet)"/>
 
           <!-- SPOKES hub→cards (depth cue, very faint) -->
-          <line x1="270" y1="138" x2="270" y2="68" stroke="#35d4f1" stroke-width=".6" stroke-opacity=".08"/>
-          <line x1="315" y1="164" x2="352" y2="130" stroke="#35d4f1" stroke-width=".6" stroke-opacity=".08"/>
-          <line x1="315" y1="216" x2="352" y2="253" stroke="#35d4f1" stroke-width=".6" stroke-opacity=".08"/>
-          <line x1="270" y1="242" x2="270" y2="312" stroke="#35d4f1" stroke-width=".6" stroke-opacity=".08"/>
-          <line x1="225" y1="216" x2="188" y2="253" stroke="#35d4f1" stroke-width=".6" stroke-opacity=".08"/>
-          <line x1="225" y1="164" x2="188" y2="130" stroke="#35d4f1" stroke-width=".6" stroke-opacity=".08"/>
+          <line x1="270" y1="138" x2="270" y2="68" stroke="#35d4f1" stroke-width=".6" stroke-opacity=".06"/>
+          <line x1="315" y1="164" x2="352" y2="130" stroke="#35d4f1" stroke-width=".6" stroke-opacity=".06"/>
+          <line x1="315" y1="216" x2="352" y2="253" stroke="#35d4f1" stroke-width=".6" stroke-opacity=".06"/>
+          <line x1="270" y1="242" x2="270" y2="312" stroke="#35d4f1" stroke-width=".6" stroke-opacity=".06"/>
+          <line x1="225" y1="216" x2="188" y2="253" stroke="#35d4f1" stroke-width=".6" stroke-opacity=".06"/>
+          <line x1="225" y1="164" x2="188" y2="130" stroke="#35d4f1" stroke-width=".6" stroke-opacity=".06"/>
 
-          <!-- CLOCKWISE FLOW CONNECTORS -->
+          <!-- CLOCKWISE FLOW CONNECTORS (subtle gradient base + gentle dash overlay) -->
           <!-- N1→N2 upper-right -->
-          <line x1="314" y1="45" x2="352" y2="118" stroke="#35d4f1" stroke-width="1.3" stroke-opacity=".22"/>
-          <line x1="314" y1="45" x2="352" y2="118" stroke="#35d4f1" stroke-width="1.3" stroke-dasharray="4,18" class="fd" filter="url(#lg)"/>
-          <line x1="345" y1="108" x2="352" y2="118" stroke="#35d4f1" stroke-width="1.5" marker-end="url(#arr)"/>
+          <line x1="314" y1="45" x2="352" y2="118" stroke="#35d4f1" stroke-width="1.1" stroke-opacity=".18"/>
+          <line x1="314" y1="45" x2="352" y2="118" stroke="#35d4f1" stroke-width="1.1" stroke-dasharray="4,18" class="fd" filter="url(#lg)"/>
+          <line x1="345" y1="108" x2="352" y2="118" stroke="#35d4f1" stroke-width="1.3" marker-end="url(#arr)"/>
           <!-- N2→N3 right vertical -->
-          <line x1="396" y1="141" x2="396" y2="240" stroke="#35d4f1" stroke-width="1.3" stroke-opacity=".22"/>
-          <line x1="396" y1="141" x2="396" y2="240" stroke="#35d4f1" stroke-width="1.3" stroke-dasharray="4,18" class="fd2" filter="url(#lg)"/>
-          <line x1="396" y1="232" x2="396" y2="240" stroke="#35d4f1" stroke-width="1.5" marker-end="url(#arr)"/>
+          <line x1="396" y1="141" x2="396" y2="240" stroke="#35d4f1" stroke-width="1.1" stroke-opacity=".18"/>
+          <line x1="396" y1="141" x2="396" y2="240" stroke="#35d4f1" stroke-width="1.1" stroke-dasharray="4,18" class="fd2" filter="url(#lg)"/>
+          <line x1="396" y1="232" x2="396" y2="240" stroke="#35d4f1" stroke-width="1.3" marker-end="url(#arr)"/>
           <!-- N3→N4 lower-left -->
-          <line x1="352" y1="263" x2="314" y2="335" stroke="#35d4f1" stroke-width="1.3" stroke-opacity=".22"/>
-          <line x1="352" y1="263" x2="314" y2="335" stroke="#35d4f1" stroke-width="1.3" stroke-dasharray="4,18" class="fd3" filter="url(#lg)"/>
-          <line x1="320" y1="326" x2="314" y2="335" stroke="#35d4f1" stroke-width="1.5" marker-end="url(#arr)"/>
+          <line x1="352" y1="263" x2="314" y2="335" stroke="#35d4f1" stroke-width="1.1" stroke-opacity=".18"/>
+          <line x1="352" y1="263" x2="314" y2="335" stroke="#35d4f1" stroke-width="1.1" stroke-dasharray="4,18" class="fd3" filter="url(#lg)"/>
+          <line x1="320" y1="326" x2="314" y2="335" stroke="#35d4f1" stroke-width="1.3" marker-end="url(#arr)"/>
           <!-- N4→N5 lower-left -->
-          <line x1="226" y1="335" x2="188" y2="263" stroke="#35d4f1" stroke-width="1.3" stroke-opacity=".22"/>
-          <line x1="226" y1="335" x2="188" y2="263" stroke="#35d4f1" stroke-width="1.3" stroke-dasharray="4,18" class="fd" filter="url(#lg)"/>
-          <line x1="194" y1="272" x2="188" y2="263" stroke="#35d4f1" stroke-width="1.5" marker-end="url(#arr)"/>
+          <line x1="226" y1="335" x2="188" y2="263" stroke="#35d4f1" stroke-width="1.1" stroke-opacity=".18"/>
+          <line x1="226" y1="335" x2="188" y2="263" stroke="#35d4f1" stroke-width="1.1" stroke-dasharray="4,18" class="fd" filter="url(#lg)"/>
+          <line x1="194" y1="272" x2="188" y2="263" stroke="#35d4f1" stroke-width="1.3" marker-end="url(#arr)"/>
           <!-- N5→N6 left vertical -->
-          <line x1="144" y1="240" x2="144" y2="141" stroke="#35d4f1" stroke-width="1.3" stroke-opacity=".22"/>
-          <line x1="144" y1="240" x2="144" y2="141" stroke="#35d4f1" stroke-width="1.3" stroke-dasharray="4,18" class="fd2" filter="url(#lg)"/>
-          <line x1="144" y1="149" x2="144" y2="141" stroke="#35d4f1" stroke-width="1.5" marker-end="url(#arr)"/>
+          <line x1="144" y1="240" x2="144" y2="141" stroke="#35d4f1" stroke-width="1.1" stroke-opacity=".18"/>
+          <line x1="144" y1="240" x2="144" y2="141" stroke="#35d4f1" stroke-width="1.1" stroke-dasharray="4,18" class="fd2" filter="url(#lg)"/>
+          <line x1="144" y1="149" x2="144" y2="141" stroke="#35d4f1" stroke-width="1.3" marker-end="url(#arr)"/>
           <!-- N6→N1 upper-right -->
-          <line x1="188" y1="118" x2="226" y2="45" stroke="#35d4f1" stroke-width="1.3" stroke-opacity=".22"/>
-          <line x1="188" y1="118" x2="226" y2="45" stroke="#35d4f1" stroke-width="1.3" stroke-dasharray="4,18" class="fd3" filter="url(#lg)"/>
-          <line x1="220" y1="54" x2="226" y2="45" stroke="#35d4f1" stroke-width="1.5" marker-end="url(#arr)"/>
+          <line x1="188" y1="118" x2="226" y2="45" stroke="#35d4f1" stroke-width="1.1" stroke-opacity=".18"/>
+          <line x1="188" y1="118" x2="226" y2="45" stroke="#35d4f1" stroke-width="1.1" stroke-dasharray="4,18" class="fd3" filter="url(#lg)"/>
+          <line x1="220" y1="54" x2="226" y2="45" stroke="#35d4f1" stroke-width="1.3" marker-end="url(#arr)"/>
 
           <!-- NODE CARDS (88×46, centered on hex positions) -->
 
           <!-- N1: Requirements – top (270,45) -->
           <g class="fa">
-            <rect x="223" y="19" width="94" height="52" rx="11" fill="#35d4f1" fill-opacity=".04" filter="url(#cglw)"/>
-            <rect x="226" y="22" width="88" height="46" rx="10" fill="url(#nf)" stroke="#35d4f1" stroke-width="1" stroke-opacity=".48"/>
-            <rect x="226" y="22" width="38" height="1.5" rx="1" fill="#35d4f1" opacity=".7"/>
-            <path d="M226,31 L226,22 L235,22" stroke="#35d4f1" stroke-width="1.5" stroke-opacity=".85" fill="none"/>
+            <rect x="223" y="19" width="94" height="52" rx="11" fill="#35d4f1" fill-opacity=".03" filter="url(#cglw)"/>
+            <rect x="226" y="22" width="88" height="46" rx="10" fill="url(#nf)" stroke="#35d4f1" stroke-width="1" stroke-opacity=".42"/>
+            <rect x="226" y="22" width="38" height="1.5" rx="1" fill="#35d4f1" opacity=".6"/>
+            <path d="M226,31 L226,22 L235,22" stroke="#35d4f1" stroke-width="1.2" stroke-opacity=".8" fill="none"/>
             <rect x="226" y="22" width="2.5" height="46" rx="1.5" fill="#35d4f1" class="gb" filter="url(#bg)"/>
             <text x="234" y="38" font-size="7" font-weight="900" fill="#35d4f1" font-family="system-ui,sans-serif" letter-spacing="1.1">01</text>
             <text x="234" y="52" font-size="10.5" font-weight="800" fill="#edf5fb" font-family="system-ui,sans-serif">Requirements</text>
@@ -221,10 +236,10 @@
 
           <!-- N2: Analysis – upper-right (396,118) -->
           <g class="fb">
-            <rect x="349" y="92" width="94" height="52" rx="11" fill="#35d4f1" fill-opacity=".04" filter="url(#cglw)"/>
-            <rect x="352" y="95" width="88" height="46" rx="10" fill="url(#nf)" stroke="#35d4f1" stroke-width="1" stroke-opacity=".48"/>
-            <rect x="352" y="95" width="38" height="1.5" rx="1" fill="#35d4f1" opacity=".7"/>
-            <path d="M352,104 L352,95 L361,95" stroke="#35d4f1" stroke-width="1.5" stroke-opacity=".85" fill="none"/>
+            <rect x="349" y="92" width="94" height="52" rx="11" fill="#35d4f1" fill-opacity=".03" filter="url(#cglw)"/>
+            <rect x="352" y="95" width="88" height="46" rx="10" fill="url(#nf)" stroke="#35d4f1" stroke-width="1" stroke-opacity=".42"/>
+            <rect x="352" y="95" width="38" height="1.5" rx="1" fill="#35d4f1" opacity=".6"/>
+            <path d="M352,104 L352,95 L361,95" stroke="#35d4f1" stroke-width="1.2" stroke-opacity=".8" fill="none"/>
             <rect x="352" y="95" width="2.5" height="46" rx="1.5" fill="#35d4f1" class="gb2" filter="url(#bg)"/>
             <text x="360" y="111" font-size="7" font-weight="900" fill="#35d4f1" font-family="system-ui,sans-serif" letter-spacing="1.1">02</text>
             <text x="360" y="125" font-size="10.5" font-weight="800" fill="#edf5fb" font-family="system-ui,sans-serif">Analysis</text>
@@ -233,10 +248,10 @@
 
           <!-- N3: Solution Design – lower-right (396,263) -->
           <g class="fc">
-            <rect x="349" y="237" width="94" height="52" rx="11" fill="#35d4f1" fill-opacity=".04" filter="url(#cglw)"/>
-            <rect x="352" y="240" width="88" height="46" rx="10" fill="url(#nf)" stroke="#35d4f1" stroke-width="1" stroke-opacity=".48"/>
-            <rect x="352" y="240" width="38" height="1.5" rx="1" fill="#35d4f1" opacity=".7"/>
-            <path d="M352,249 L352,240 L361,240" stroke="#35d4f1" stroke-width="1.5" stroke-opacity=".85" fill="none"/>
+            <rect x="349" y="237" width="94" height="52" rx="11" fill="#35d4f1" fill-opacity=".03" filter="url(#cglw)"/>
+            <rect x="352" y="240" width="88" height="46" rx="10" fill="url(#nf)" stroke="#35d4f1" stroke-width="1" stroke-opacity=".42"/>
+            <rect x="352" y="240" width="38" height="1.5" rx="1" fill="#35d4f1" opacity=".6"/>
+            <path d="M352,249 L352,240 L361,240" stroke="#35d4f1" stroke-width="1.2" stroke-opacity=".8" fill="none"/>
             <rect x="352" y="240" width="2.5" height="46" rx="1.5" fill="#35d4f1" class="gb" filter="url(#bg)"/>
             <text x="360" y="256" font-size="7" font-weight="900" fill="#35d4f1" font-family="system-ui,sans-serif" letter-spacing="1.1">03</text>
             <text x="360" y="270" font-size="10.5" font-weight="800" fill="#edf5fb" font-family="system-ui,sans-serif">Solution Design</text>
@@ -245,10 +260,10 @@
 
           <!-- N4: Validation – bottom (270,335) -->
           <g class="fdd">
-            <rect x="223" y="309" width="94" height="52" rx="11" fill="#35d4f1" fill-opacity=".04" filter="url(#cglw)"/>
-            <rect x="226" y="312" width="88" height="46" rx="10" fill="url(#nf)" stroke="#35d4f1" stroke-width="1" stroke-opacity=".48"/>
-            <rect x="226" y="312" width="38" height="1.5" rx="1" fill="#35d4f1" opacity=".7"/>
-            <path d="M226,321 L226,312 L235,312" stroke="#35d4f1" stroke-width="1.5" stroke-opacity=".85" fill="none"/>
+            <rect x="223" y="309" width="94" height="52" rx="11" fill="#35d4f1" fill-opacity=".03" filter="url(#cglw)"/>
+            <rect x="226" y="312" width="88" height="46" rx="10" fill="url(#nf)" stroke="#35d4f1" stroke-width="1" stroke-opacity=".42"/>
+            <rect x="226" y="312" width="38" height="1.5" rx="1" fill="#35d4f1" opacity=".6"/>
+            <path d="M226,321 L226,312 L235,312" stroke="#35d4f1" stroke-width="1.2" stroke-opacity=".8" fill="none"/>
             <rect x="226" y="312" width="2.5" height="46" rx="1.5" fill="#35d4f1" class="gb2" filter="url(#bg)"/>
             <text x="234" y="328" font-size="7" font-weight="900" fill="#35d4f1" font-family="system-ui,sans-serif" letter-spacing="1.1">04</text>
             <text x="234" y="342" font-size="10.5" font-weight="800" fill="#edf5fb" font-family="system-ui,sans-serif">Validation</text>
@@ -257,10 +272,10 @@
 
           <!-- N5: Release – lower-left (144,263) -->
           <g class="fe">
-            <rect x="97" y="237" width="94" height="52" rx="11" fill="#35d4f1" fill-opacity=".04" filter="url(#cglw)"/>
-            <rect x="100" y="240" width="88" height="46" rx="10" fill="url(#nf)" stroke="#35d4f1" stroke-width="1" stroke-opacity=".48"/>
-            <rect x="100" y="240" width="38" height="1.5" rx="1" fill="#35d4f1" opacity=".7"/>
-            <path d="M100,249 L100,240 L109,240" stroke="#35d4f1" stroke-width="1.5" stroke-opacity=".85" fill="none"/>
+            <rect x="97" y="237" width="94" height="52" rx="11" fill="#35d4f1" fill-opacity=".03" filter="url(#cglw)"/>
+            <rect x="100" y="240" width="88" height="46" rx="10" fill="url(#nf)" stroke="#35d4f1" stroke-width="1" stroke-opacity=".42"/>
+            <rect x="100" y="240" width="38" height="1.5" rx="1" fill="#35d4f1" opacity=".6"/>
+            <path d="M100,249 L100,240 L109,240" stroke="#35d4f1" stroke-width="1.2" stroke-opacity=".8" fill="none"/>
             <rect x="100" y="240" width="2.5" height="46" rx="1.5" fill="#35d4f1" class="gb" filter="url(#bg)"/>
             <text x="108" y="256" font-size="7" font-weight="900" fill="#35d4f1" font-family="system-ui,sans-serif" letter-spacing="1.1">05</text>
             <text x="108" y="270" font-size="10.5" font-weight="800" fill="#edf5fb" font-family="system-ui,sans-serif">Release</text>
@@ -269,13 +284,13 @@
 
           <!-- N6: Hypercare – upper-left (144,118) — lifecycle endpoint, highlighted -->
           <g class="ff">
-            <circle cx="144" cy="118" r="55" stroke="#35d4f1" stroke-width="1" stroke-opacity=".07" fill="none"/>
-            <rect x="97" y="92" width="94" height="52" rx="11" fill="#35d4f1" fill-opacity=".07" filter="url(#cglw)"/>
-            <rect x="100" y="95" width="88" height="46" rx="10" fill="url(#nfh)" stroke="#35d4f1" stroke-width="1.5" stroke-opacity=".7"/>
-            <rect x="100" y="95" width="38" height="1.5" rx="1" fill="#35d4f1" opacity=".9"/>
-            <path d="M100,104 L100,95 L109,95" stroke="#35d4f1" stroke-width="1.8" stroke-opacity="1" fill="none"/>
-            <path d="M178,128 L188,128 L188,138" stroke="#35d4f1" stroke-width="1.5" stroke-opacity=".6" fill="none"/>
-            <rect x="100" y="95" width="2.5" height="46" rx="1.5" fill="#35d4f1" opacity="1" filter="url(#bg)"/>
+            <circle cx="144" cy="118" r="55" stroke="#35d4f1" stroke-width="1" stroke-opacity=".06" fill="none"/>
+            <rect x="97" y="92" width="94" height="52" rx="11" fill="#35d4f1" fill-opacity=".05" filter="url(#cglw)"/>
+            <rect x="100" y="95" width="88" height="46" rx="10" fill="url(#nfh)" stroke="#35d4f1" stroke-width="1.2" stroke-opacity=".6"/>
+            <rect x="100" y="95" width="38" height="1.5" rx="1" fill="#35d4f1" opacity=".8"/>
+            <path d="M100,104 L100,95 L109,95" stroke="#35d4f1" stroke-width="1.4" stroke-opacity=".9" fill="none"/>
+            <path d="M178,128 L188,128 L188,138" stroke="#35d4f1" stroke-width="1.2" stroke-opacity=".5" fill="none"/>
+            <rect x="100" y="95" width="2.5" height="46" rx="1.5" fill="#35d4f1" opacity=".98" filter="url(#bg)"/>
             <text x="108" y="111" font-size="7" font-weight="900" fill="#35d4f1" font-family="system-ui,sans-serif" letter-spacing="1.1">06</text>
             <text x="108" y="125" font-size="10.5" font-weight="800" fill="#edf5fb" font-family="system-ui,sans-serif">Hypercare</text>
             <text x="108" y="136" font-size="7" fill="#4d7494" font-family="system-ui,sans-serif">Stabilization</text>
@@ -283,17 +298,17 @@
 
           <!-- CENTER HUB (270,190) -->
           <circle cx="270" cy="190" r="88" fill="url(#hub-amb)" class="hp"/>
-          <circle cx="270" cy="190" r="74" stroke="#35d4f1" stroke-width="1" stroke-opacity=".16" fill="none" stroke-dasharray="3,9" class="rcw"/>
-          <circle cx="270" cy="190" r="66" stroke="#35d4f1" stroke-width=".8" stroke-opacity=".10" fill="none" stroke-dasharray="2,14" class="rccw"/>
-          <circle cx="270" cy="190" r="53" fill="#35d4f1" fill-opacity=".05" filter="url(#hg)"/>
+          <circle cx="270" cy="190" r="74" stroke="#35d4f1" stroke-width="1" stroke-opacity=".12" fill="none" stroke-dasharray="3,9" class="rcw"/>
+          <circle cx="270" cy="190" r="66" stroke="#35d4f1" stroke-width=".8" stroke-opacity=".08" fill="none" stroke-dasharray="2,14" class="rccw"/>
+          <circle cx="270" cy="190" r="53" fill="#35d4f1" fill-opacity=".04" filter="url(#hg)"/>
           <circle cx="270" cy="190" r="52" fill="url(#hub-fill)"/>
-          <circle cx="270" cy="190" r="52" stroke="#35d4f1" stroke-width="1.5" stroke-opacity=".65"/>
-          <circle cx="270" cy="190" r="42" stroke="#35d4f1" stroke-width=".8" stroke-opacity=".18" fill="none"/>
-          <ellipse cx="255" cy="174" rx="15" ry="9" fill="white" fill-opacity=".04"/>
-          <text x="270" y="185" font-size="7.5" font-weight="900" fill="#35d4f1" font-family="system-ui,sans-serif" text-anchor="middle" letter-spacing="1" opacity=".8">ENTERPRISE</text>
+          <circle cx="270" cy="190" r="52" stroke="#35d4f1" stroke-width="1" stroke-opacity=".5"/>
+          <circle cx="270" cy="190" r="42" stroke="#35d4f1" stroke-width=".6" stroke-opacity=".12" fill="none"/>
+          <ellipse cx="255" cy="174" rx="15" ry="9" fill="white" fill-opacity=".03"/>
+          <text x="270" y="185" font-size="7.5" font-weight="900" fill="#35d4f1" font-family="system-ui,sans-serif" text-anchor="middle" letter-spacing="1" opacity=".75">ENTERPRISE</text>
           <text x="270" y="199" font-size="10" font-weight="900" fill="#edf5fb" font-family="system-ui,sans-serif" text-anchor="middle">DELIVERY</text>
 
-          <text x="270" y="368" font-size="6.5" fill="#35d4f1" opacity=".22" font-family="system-ui,sans-serif" text-anchor="middle" letter-spacing="2.2">END-TO-END DELIVERY LIFECYCLE</text>
+          <text x="270" y="368" font-size="6.5" fill="#35d4f1" opacity=".18" font-family="system-ui,sans-serif" text-anchor="middle" letter-spacing="2.2">END-TO-END DELIVERY LIFECYCLE</text>
         </svg>
       </div>
     </section>
@@ -330,96 +345,4 @@
       <div class="solution-meta-v3"><span>01</span><span>Configuration</span></div>
       <h3>Enterprise Product Configuration</h3>
       <div class="solution-flow-v3">
-        <div><small>01</small><strong>Business need</strong></div><div><small>02</small><strong>Rules</strong></div><div><small>03</small><strong>Catalog</strong></div><div><small>04</small><strong>Validation</strong></div>
-      </div>
-      <div class="solution-outcome-v3"><span>Business outcome</span><strong>Governed product rules, stronger validation, and more consistent configuration output.</strong></div>
-      <a href="solutions/enterprise-product-configuration.html">View case study →</a>
-    </article><article class="solution-card-v3" style="--project:#7c8cff" tabindex="0">
-      <div class="solution-icon-v3" aria-hidden="true">⇄</div>
-      <div class="solution-meta-v3"><span>02</span><span>Integration</span></div>
-      <h3>Enterprise Data Integration</h3>
-      <div class="solution-flow-v3">
-        <div><small>01</small><strong>Source</strong></div><div><small>02</small><strong>Transform</strong></div><div><small>03</small><strong>Interface</strong></div><div><small>04</small><strong>Target</strong></div>
-      </div>
-      <div class="solution-outcome-v3"><span>Business outcome</span><strong>Clear mappings, validation controls, and traceable data movement across enterprise systems.</strong></div>
-      <a href="solutions/product-data-integration.html">View case study →</a>
-    </article><article class="solution-card-v3" style="--project:#ff8a5b" tabindex="0">
-      <div class="solution-icon-v3" aria-hidden="true">→</div>
-      <div class="solution-meta-v3"><span>03</span><span>Delivery</span></div>
-      <h3>Requirements-to-Release Delivery</h3>
-      <div class="solution-flow-v3">
-        <div><small>01</small><strong>Need</strong></div><div><small>02</small><strong>Backlog</strong></div><div><small>03</small><strong>Build</strong></div><div><small>04</small><strong>Release</strong></div>
-      </div>
-      <div class="solution-outcome-v3"><span>Business outcome</span><strong>Connected business decisions, backlog items, test evidence, and release readiness.</strong></div>
-      <a href="solutions/requirements-to-release.html">View case study →</a>
-    </article><article class="solution-card-v3" style="--project:#46d39a" tabindex="0">
-      <div class="solution-icon-v3" aria-hidden="true">▤</div>
-      <div class="solution-meta-v3"><span>04</span><span>Automation</span></div>
-      <h3>Business Reporting Automation</h3>
-      <div class="solution-flow-v3">
-        <div><small>01</small><strong>Extract</strong></div><div><small>02</small><strong>Validate</strong></div><div><small>03</small><strong>Transform</strong></div><div><small>04</small><strong>Report</strong></div>
-      </div>
-      <div class="solution-outcome-v3"><span>Business outcome</span><strong>Less manual reporting effort with repeatable extraction, validation, and output controls.</strong></div>
-      <a href="solutions/automated-business-reporting.html">View case study →</a>
-    </article><article class="solution-card-v3" style="--project:#f4c95d" tabindex="0">
-      <div class="solution-icon-v3" aria-hidden="true">◎</div>
-      <div class="solution-meta-v3"><span>05</span><span>Validation</span></div>
-      <h3>Technical Issue & Root-Cause Analysis</h3>
-      <div class="solution-flow-v3">
-        <div><small>01</small><strong>Observe</strong></div><div><small>02</small><strong>Evidence</strong></div><div><small>03</small><strong>Cause</strong></div><div><small>04</small><strong>Resolve</strong></div>
-      </div>
-      <div class="solution-outcome-v3"><span>Business outcome</span><strong>Faster issue isolation through structured evidence, root-cause analysis, and decision ownership.</strong></div>
-      <a href="solutions/technical-issue-analysis.html">View case study →</a>
-    </article><article class="solution-card-v3" style="--project:#ef6da8" tabindex="0">
-      <div class="solution-icon-v3" aria-hidden="true">▦</div>
-      <div class="solution-meta-v3"><span>06</span><span>Migration</span></div>
-      <h3>Enterprise Data Migration</h3>
-      <div class="solution-flow-v3">
-        <div><small>01</small><strong>Assess</strong></div><div><small>02</small><strong>Map</strong></div><div><small>03</small><strong>Load</strong></div><div><small>04</small><strong>Reconcile</strong></div>
-      </div>
-      <div class="solution-outcome-v3"><span>Business outcome</span><strong>Controlled migration through source assessment, mapping, validation, reconciliation, and sign-off.</strong></div>
-      <a href="solutions/enterprise-data-migration.html">View case study →</a>
-    </article>
-      </div>
-    </section>
-
-    <section class="section container" id="approach-preview">
-      <header class="section-heading reveal"><div><div class="eyebrow">How I work</div><h2>Clear thinking, structured delivery, and visible outcomes.</h2></div><p>My approach combines discovery, analysis, functional design, stakeholder alignment, validation, and release readiness—without losing traceability between the original need and the delivered result.</p></header>
-      <div class="effects-grid">
-        <article class="effect-card interactive reveal" data-tilt><span>Discovery</span><h3>Clarify the real business need</h3><p>Facilitate workshops, surface assumptions, define outcomes, and identify the decisions that shape scope.</p></article>
-        <article class="effect-card interactive reveal" data-tilt><span>Analysis</span><h3>Turn complexity into structured logic</h3><p>Model processes, rules, data, exceptions, dependencies, interfaces, and measurable acceptance conditions.</p></article>
-        <article class="effect-card interactive reveal" data-tilt><span>Delivery</span><h3>Connect requirements to implementation</h3><p>Build traceable backlogs, align cross-functional teams, support design decisions, and resolve delivery ambiguity.</p></article>
-        <article class="effect-card interactive reveal" data-tilt><span>Assurance</span><h3>Protect release readiness</h3><p>Support testing, defect triage, stakeholder sign-off, operational handoff, and post-release stabilization.</p></article>
-      </div>
-    </section>
-
-    <section class="section container">
-      <div class="recruiter-cta reveal">
-        <div>
-          <div class="eyebrow">Open to the right opportunity</div>
-          <h2>Looking for a senior analyst who can bridge business and technology?</h2>
-          <p>I bring enterprise systems experience, structured analysis, technical delivery fluency, and a practical focus on outcomes.</p>
-        </div>
-        <div class="hero-actions">
-          <a class="button magnetic" href="contact.html">Start a conversation</a>
-          <a class="button secondary magnetic" href="experience.html">Review experience</a>
-        </div>
-      </div>
-    </section>
-  </main>
-
-  <footer class="site-footer">
-    <div class="container footer-final">
-      <div>
-        <strong>Krishna Padmanabhan</strong>
-        <span>Enterprise Business Analysis · Technical Product Management</span>
-      </div>
-      <div>
-        <span>Edmonton, Alberta, Canada</span>
-        <span>© <span data-year></span> Krishna Padmanabhan</span>
-      </div>
-    </div>
-  </footer>
-  <script src="assets/js/site.js"></script>
-</body>
-</html>
+        <div><small>01</small><strong>Business need</strong></div><div><small>02</small><strong>Rules</strong></div><div><small>03</small><strong>Catalog</strong></div><div><small>04</small><stro...
