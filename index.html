@@ -7,6 +7,7 @@
   <meta name="theme-color" content="#050b14">
   <title>Krishna Padmanabhan | Enterprise Solutions Portfolio</title>
   <link rel="stylesheet" href="assets/css/site.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@3/dist/tabler-icons.min.css">
 <style>
 .hero-copy h1{font-size:clamp(1.85rem,2.65vw,3.3rem)!important;line-height:1.08!important}
 .hero-delivery{display:flex;flex-direction:column;justify-content:center;gap:1.4rem;padding:2rem 0 2rem 2.8rem;border-left:1px solid rgba(53,212,241,.14)}
@@ -19,6 +20,10 @@
 .lc-end{width:14px;height:14px;border-radius:50%;flex-shrink:0;border-width:1px;border-style:solid}
 @media(max-width:900px){.hero-delivery{border-left:none;border-top:1px solid rgba(53,212,241,.14);padding:2rem 0 0}}
 .hero-stage::before,.hero-stage::after{content:none}
+.solution-icon-wrap{position:relative;display:inline-flex}
+.solution-icon-ring{position:absolute;inset:-8px;border-radius:50%;border:1px solid var(--project);opacity:0;pointer-events:none}
+@keyframes icon-ring-out{0%{transform:scale(.8);opacity:.7}100%{transform:scale(2.2);opacity:0}}
+.i-ring{animation:icon-ring-out .55s ease-out forwards}
 </style>
 </head>
 <body>
@@ -344,56 +349,56 @@
 
       <div class="solution-grid-v3">
         <article class="solution-card-v3" style="--project:#35d4f1" tabindex="0">
-      <div class="solution-icon-v3" aria-hidden="true">◇</div>
+      <div class="solution-icon-wrap"><div class="solution-icon-ring" aria-hidden="true"></div><div class="solution-icon-v3" aria-hidden="true"><i class="ti ti-adjustments"></i></div></div>
       <div class="solution-meta-v3"><span>01</span><span>Configuration</span></div>
       <h3>Enterprise Product Configuration</h3>
       <div class="solution-flow-v3">
-        <div><small>01</small><strong>Business need</strong></div><div><small>02</small><strong>Rules</strong></div><div><small>03</small><strong>Catalog</strong></div><div><small>04</small><strong>Validation</strong></div>
+        <div><small>01</small><strong>Stakeholder need</strong></div><div><small>02</small><strong>Business rules</strong></div><div><small>03</small><strong>Product catalog</strong></div><div><small>04</small><strong>Output QA</strong></div>
       </div>
       <div class="solution-outcome-v3"><span>Business outcome</span><strong>Governed product rules, stronger validation, and more consistent configuration output.</strong></div>
       <a href="solutions/enterprise-product-configuration.html">View the work →</a>
     </article><article class="solution-card-v3" style="--project:#7c8cff" tabindex="0">
-      <div class="solution-icon-v3" aria-hidden="true">⇄</div>
+      <div class="solution-icon-wrap"><div class="solution-icon-ring" aria-hidden="true"></div><div class="solution-icon-v3" aria-hidden="true"><i class="ti ti-arrows-exchange"></i></div></div>
       <div class="solution-meta-v3"><span>02</span><span>Integration</span></div>
       <h3>Enterprise Data Integration</h3>
       <div class="solution-flow-v3">
-        <div><small>01</small><strong>Source</strong></div><div><small>02</small><strong>Transform</strong></div><div><small>03</small><strong>Interface</strong></div><div><small>04</small><strong>Target</strong></div>
+        <div><small>01</small><strong>Source audit</strong></div><div><small>02</small><strong>Transformation</strong></div><div><small>03</small><strong>API design</strong></div><div><small>04</small><strong>Target load</strong></div>
       </div>
       <div class="solution-outcome-v3"><span>Business outcome</span><strong>Clear mappings, validation controls, and traceable data movement across enterprise systems.</strong></div>
       <a href="solutions/product-data-integration.html">View the work →</a>
     </article><article class="solution-card-v3" style="--project:#ff8a5b" tabindex="0">
-      <div class="solution-icon-v3" aria-hidden="true">→</div>
+      <div class="solution-icon-wrap"><div class="solution-icon-ring" aria-hidden="true"></div><div class="solution-icon-v3" aria-hidden="true"><i class="ti ti-send"></i></div></div>
       <div class="solution-meta-v3"><span>03</span><span>Delivery</span></div>
       <h3>Requirements-to-Release Delivery</h3>
       <div class="solution-flow-v3">
-        <div><small>01</small><strong>Need</strong></div><div><small>02</small><strong>Backlog</strong></div><div><small>03</small><strong>Build</strong></div><div><small>04</small><strong>Release</strong></div>
+        <div><small>01</small><strong>Requirements</strong></div><div><small>02</small><strong>Sprint design</strong></div><div><small>03</small><strong>Build support</strong></div><div><small>04</small><strong>Go-live</strong></div>
       </div>
       <div class="solution-outcome-v3"><span>Business outcome</span><strong>Connected business decisions, backlog items, test evidence, and release readiness.</strong></div>
       <a href="solutions/requirements-to-release.html">View the work →</a>
     </article><article class="solution-card-v3" style="--project:#46d39a" tabindex="0">
-      <div class="solution-icon-v3" aria-hidden="true">▤</div>
+      <div class="solution-icon-wrap"><div class="solution-icon-ring" aria-hidden="true"></div><div class="solution-icon-v3" aria-hidden="true"><i class="ti ti-bolt"></i></div></div>
       <div class="solution-meta-v3"><span>04</span><span>Automation</span></div>
       <h3>Business Reporting Automation</h3>
       <div class="solution-flow-v3">
-        <div><small>01</small><strong>Extract</strong></div><div><small>02</small><strong>Validate</strong></div><div><small>03</small><strong>Transform</strong></div><div><small>04</small><strong>Report</strong></div>
+        <div><small>01</small><strong>Data extract</strong></div><div><small>02</small><strong>Data QA</strong></div><div><small>03</small><strong>Transformation</strong></div><div><small>04</small><strong>Report output</strong></div>
       </div>
       <div class="solution-outcome-v3"><span>Business outcome</span><strong>Less manual reporting effort with repeatable extraction, validation, and output controls.</strong></div>
       <a href="solutions/automated-business-reporting.html">View the work →</a>
     </article><article class="solution-card-v3" style="--project:#f4c95d" tabindex="0">
-      <div class="solution-icon-v3" aria-hidden="true">◎</div>
+      <div class="solution-icon-wrap"><div class="solution-icon-ring" aria-hidden="true"></div><div class="solution-icon-v3" aria-hidden="true"><i class="ti ti-shield-check"></i></div></div>
       <div class="solution-meta-v3"><span>05</span><span>Validation</span></div>
       <h3>Technical Issue & Root-Cause Analysis</h3>
       <div class="solution-flow-v3">
-        <div><small>01</small><strong>Observe</strong></div><div><small>02</small><strong>Evidence</strong></div><div><small>03</small><strong>Cause</strong></div><div><small>04</small><strong>Resolve</strong></div>
+        <div><small>01</small><strong>Issue triage</strong></div><div><small>02</small><strong>Evidence log</strong></div><div><small>03</small><strong>Root cause</strong></div><div><small>04</small><strong>Resolution</strong></div>
       </div>
       <div class="solution-outcome-v3"><span>Business outcome</span><strong>Faster issue isolation through structured evidence, root-cause analysis, and decision ownership.</strong></div>
       <a href="solutions/technical-issue-analysis.html">View the work →</a>
     </article><article class="solution-card-v3" style="--project:#ef6da8" tabindex="0">
-      <div class="solution-icon-v3" aria-hidden="true">▦</div>
+      <div class="solution-icon-wrap"><div class="solution-icon-ring" aria-hidden="true"></div><div class="solution-icon-v3" aria-hidden="true"><i class="ti ti-database-export"></i></div></div>
       <div class="solution-meta-v3"><span>06</span><span>Migration</span></div>
       <h3>Enterprise Data Migration</h3>
       <div class="solution-flow-v3">
-        <div><small>01</small><strong>Assess</strong></div><div><small>02</small><strong>Map</strong></div><div><small>03</small><strong>Load</strong></div><div><small>04</small><strong>Reconcile</strong></div>
+        <div><small>01</small><strong>Source review</strong></div><div><small>02</small><strong>Field mapping</strong></div><div><small>03</small><strong>Data load</strong></div><div><small>04</small><strong>Sign-off</strong></div>
       </div>
       <div class="solution-outcome-v3"><span>Business outcome</span><strong>Controlled migration through source assessment, mapping, validation, reconciliation, and sign-off.</strong></div>
       <a href="solutions/enterprise-data-migration.html">View the work →</a>
@@ -439,5 +444,42 @@
     </div>
   </footer>
   <script src="assets/js/site.js"></script>
+  <script>
+  (function(){
+    var tm={};
+    function activate(card){
+      var color=card.style.getPropertyValue('--project');
+      var ring=card.querySelector('.solution-icon-ring');
+      var steps=Array.from(card.querySelectorAll('.solution-flow-v3>div'));
+      if(ring){ring.classList.remove('i-ring');void ring.offsetWidth;ring.classList.add('i-ring');}
+      steps.forEach(function(step,i){
+        var key=card.dataset.pid+'_'+i;
+        tm[key]=setTimeout(function(){
+          step.style.borderColor=color;
+          step.style.background=color+'1a';
+          var sm=step.querySelector('small');if(sm)sm.style.color='#fff';
+          var st=step.querySelector('strong');if(st)st.style.color=color;
+        },i*180);
+      });
+    }
+    function deactivate(card){
+      var steps=Array.from(card.querySelectorAll('.solution-flow-v3>div'));
+      var ring=card.querySelector('.solution-icon-ring');
+      var pid=card.dataset.pid;
+      for(var i=0;i<4;i++){clearTimeout(tm[pid+'_'+i]);}
+      if(ring)ring.classList.remove('i-ring');
+      steps.forEach(function(step){
+        step.style.borderColor='';step.style.background='';
+        var sm=step.querySelector('small');if(sm)sm.style.color='';
+        var st=step.querySelector('strong');if(st)st.style.color='';
+      });
+    }
+    document.querySelectorAll('.solution-card-v3').forEach(function(card,i){
+      card.dataset.pid='sf'+i;
+      card.addEventListener('mouseenter',function(){activate(card);});
+      card.addEventListener('mouseleave',function(){deactivate(card);});
+    });
+  })();
+  </script>
 </body>
 </html>
