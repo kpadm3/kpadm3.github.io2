@@ -62,7 +62,7 @@
 
     const target = Number(counter.dataset.counter || 0);
     const suffix = counter.dataset.suffix || "";
-    const duration = 1200;
+    const duration = 2400;
     const startTime = performance.now();
 
     counter.textContent = `0${suffix}`;
