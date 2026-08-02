@@ -1102,3 +1102,174 @@ a{color:inherit;text-decoration:none}a:hover{color:var(--accent)}button{font:inh
   .hero-stage{min-height:390px}
 }
 
+/* =========================================================
+   V3 BUILD 02 — HOMEPAGE POLISH
+========================================================= */
+.hero{
+  grid-template-columns:minmax(0,1.08fr) minmax(420px,.92fr);
+  gap:clamp(34px,5vw,72px);
+}
+.hero-copy{max-width:790px}
+.hero-lead{max-width:760px}
+.hero-stage{
+  min-height:520px;
+  transform-origin:center;
+}
+.hero-stage::after{
+  content:"";
+  position:absolute;
+  inset:12% 8%;
+  z-index:-4;
+  border-radius:50%;
+  background:
+    radial-gradient(circle at 35% 36%,rgba(53,212,241,.18),transparent 27%),
+    radial-gradient(circle at 68% 62%,rgba(140,112,255,.15),transparent 30%);
+  filter:blur(34px);
+  animation:hero-aura 8s ease-in-out infinite alternate;
+}
+@keyframes hero-aura{
+  to{transform:scale(1.08) rotate(3deg);opacity:.78}
+}
+
+.value-strip{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:14px;
+  margin-top:8px;
+  margin-bottom:16px;
+}
+.value-strip article{
+  position:relative;
+  overflow:hidden;
+  padding:20px;
+  border:1px solid var(--line);
+  border-radius:16px;
+  background:linear-gradient(145deg,rgba(15,29,49,.94),rgba(8,19,33,.94));
+  box-shadow:0 14px 34px rgba(0,0,0,.18);
+}
+.value-strip article::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:linear-gradient(110deg,transparent 20%,rgba(53,212,241,.08),transparent 70%);
+  transform:translateX(-130%);
+  transition:transform .65s ease;
+}
+.value-strip article:hover::before{transform:translateX(130%)}
+.value-strip span{
+  display:block;
+  color:var(--accent);
+  font-size:.64rem;
+  font-weight:900;
+  letter-spacing:.08em;
+  text-transform:uppercase;
+}
+.value-strip strong{
+  display:block;
+  margin-top:8px;
+  color:var(--soft);
+  font-size:.79rem;
+  line-height:1.45;
+}
+
+.technology-card-v3{
+  min-height:186px;
+}
+.technology-card-v3::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  pointer-events:none;
+  background:linear-gradient(112deg,transparent 18%,rgba(255,255,255,.06) 42%,transparent 65%);
+  transform:translateX(-130%);
+  transition:transform .7s ease;
+}
+.technology-card-v3:hover::after{transform:translateX(130%)}
+
+.solution-card-v3{
+  min-height:410px;
+  transition:
+    transform .28s cubic-bezier(.22,1,.36,1),
+    border-color .24s ease,
+    box-shadow .24s ease;
+}
+.solution-icon-v3{
+  width:54px;
+  height:54px;
+  display:grid;
+  place-items:center;
+  margin-top:18px;
+  border:1px solid color-mix(in srgb,var(--project) 55%,var(--line));
+  border-radius:15px;
+  background:color-mix(in srgb,var(--project) 7%,#081321);
+  color:var(--project);
+  font-size:1.55rem;
+  font-weight:900;
+  transition:transform .28s ease,box-shadow .28s ease;
+}
+.solution-card-v3:hover .solution-icon-v3{
+  transform:translateY(-4px) rotate(-3deg) scale(1.07);
+  box-shadow:0 0 24px color-mix(in srgb,var(--project) 18%,transparent);
+}
+.solution-card-v3 h3{
+  min-height:58px;
+  margin-top:16px;
+}
+.solution-card-v3>a{
+  position:relative;
+}
+.solution-card-v3>a::after{
+  content:"";
+  position:absolute;
+  left:0;
+  bottom:-4px;
+  width:100%;
+  height:1px;
+  background:var(--project);
+  transform:scaleX(0);
+  transform-origin:left;
+  transition:transform .22s ease;
+}
+.solution-card-v3:hover>a::after{transform:scaleX(1)}
+
+.recruiter-cta{
+  display:grid;
+  grid-template-columns:1.25fr .75fr;
+  gap:30px;
+  align-items:center;
+  padding:30px;
+  border:1px solid var(--line);
+  border-radius:22px;
+  background:
+    radial-gradient(circle at 90% 10%,rgba(53,212,241,.12),transparent 34%),
+    linear-gradient(145deg,rgba(15,29,49,.98),rgba(8,19,33,.98));
+  box-shadow:0 24px 54px rgba(0,0,0,.24);
+}
+.recruiter-cta h2{
+  max-width:760px;
+  margin:10px 0 10px;
+  font-size:clamp(2rem,3.7vw,3rem);
+  line-height:1;
+  letter-spacing:-.045em;
+}
+.recruiter-cta p{
+  max-width:760px;
+  margin:0;
+  color:var(--muted);
+}
+.recruiter-cta .hero-actions{
+  justify-content:flex-end;
+  margin-top:0;
+}
+
+@media(max-width:1000px){
+  .hero{grid-template-columns:1fr}
+  .value-strip{grid-template-columns:1fr}
+  .recruiter-cta{grid-template-columns:1fr}
+  .recruiter-cta .hero-actions{justify-content:flex-start}
+}
+@media(max-width:650px){
+  .hero-stage{min-height:400px}
+  .recruiter-cta{padding:22px}
+}
+

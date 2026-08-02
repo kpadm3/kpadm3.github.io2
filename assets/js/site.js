@@ -261,3 +261,25 @@
     card.classList.add("visible");
   });
 })();
+
+// V3 Build 02 — subtle section depth and active solution feedback
+(() => {
+  "use strict";
+
+  const solutionCards = [...document.querySelectorAll(".solution-card-v3")];
+
+  solutionCards.forEach((card) => {
+    card.addEventListener("pointerenter", () => {
+      solutionCards.forEach((item) => {
+        if (item !== card) item.style.opacity = "0.76";
+      });
+    });
+
+    card.addEventListener("pointerleave", () => {
+      solutionCards.forEach((item) => {
+        item.style.opacity = "";
+      });
+    });
+  });
+})();
+
