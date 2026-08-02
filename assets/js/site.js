@@ -126,3 +126,60 @@
   });
 })();
 
+// Phase 2 — Technology and solution interactions
+(() => {
+  "use strict";
+
+  const cards = Array.from(
+    document.querySelectorAll(".technology-card, .solution-card-v2")
+  );
+  const coarse = window.matchMedia("(pointer: coarse)").matches;
+  const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  cards.forEach((card) => {
+    if (!coarse && !reduced) {
+      card.addEventListener("pointermove", (event) => {
+        const rect = card.getBoundingClientRect();
+        card.style.setProperty("--mouse-x", `${event.clientX - rect.left}px`);
+        card.style.setProperty("--mouse-y", `${event.clientY - rect.top}px`);
+      });
+    }
+
+    card.addEventListener("click", (event) => {
+      if (event.target.closest("a, button")) return;
+      card.classList.toggle("is-active");
+    });
+  });
+
+  const filterButtons = Array.from(
+    document.querySelectorAll("[data-tech-filter]")
+  );
+  const technologyCards = Array.from(
+    document.querySelectorAll(".technology-card")
+  );
+
+  const categories = [
+    "enterprise", "enterprise", "delivery", "enterprise", "delivery", "enterprise",
+    "analysis", "analysis", "analysis", "integration", "integration", "integration",
+    "delivery", "delivery", "delivery", "ai", "ai", "ai"
+  ];
+
+  technologyCards.forEach((card, index) => {
+    card.dataset.group = categories[index] || "all";
+  });
+
+  filterButtons.forEach((button) => {
+    button.addEventListener("click", () => {
+      const group = button.dataset.techFilter;
+
+      filterButtons.forEach((item) => item.classList.remove("active"));
+      button.classList.add("active");
+
+      technologyCards.forEach((card) => {
+        const visible = group === "all" || card.dataset.group === group;
+        card.hidden = !visible;
+      });
+    });
+  });
+})();
+
