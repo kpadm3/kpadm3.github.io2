@@ -82,3 +82,47 @@
     stage.addEventListener('pointerleave',()=>stage.style.transform='');
   }
 })();
+
+// Phase 1 — Hero Sprint interactions
+(() => {
+  "use strict";
+
+  const hero = document.querySelector("[data-hero]");
+  const stage = document.querySelector("[data-parallax]");
+  const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const coarse = window.matchMedia("(pointer: coarse)").matches;
+
+  if (hero && stage && !reduced && !coarse) {
+    hero.addEventListener("pointermove", (event) => {
+      const rect = hero.getBoundingClientRect();
+      const x = (event.clientX - rect.left) / rect.width - 0.5;
+      const y = (event.clientY - rect.top) / rect.height - 0.5;
+
+      stage.style.setProperty("--hero-x", x.toFixed(3));
+      stage.style.setProperty("--hero-y", y.toFixed(3));
+      stage.style.transform =
+        `translate3d(${x * 14}px, ${y * 10}px, 0) rotateX(${y * -1.8}deg) rotateY(${x * 2.2}deg)`;
+    });
+
+    hero.addEventListener("pointerleave", () => {
+      stage.style.transform = "";
+    });
+  }
+
+  document.querySelectorAll(".magnetic").forEach((button) => {
+    if (coarse || reduced) return;
+
+    button.addEventListener("pointermove", (event) => {
+      const rect = button.getBoundingClientRect();
+      const x = event.clientX - rect.left - rect.width / 2;
+      const y = event.clientY - rect.top - rect.height / 2;
+      button.style.transform =
+        `translate3d(${x * 0.05}px, ${y * 0.07}px, 0) translateY(-2px)`;
+    });
+
+    button.addEventListener("pointerleave", () => {
+      button.style.transform = "";
+    });
+  });
+})();
+
