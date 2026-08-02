@@ -117,21 +117,15 @@ a{color:inherit;text-decoration:none}a:hover{color:var(--accent)}button{font:inh
   text-wrap: balance;
 }
 
+/* Plain solid-color text. Previously used background-clip: text with
+   color: transparent for an animated gradient fill, but that combination
+   rendered as fully invisible text in at least one real-world browser
+   with no error and no way to detect the failure from code — replaced
+   with a guaranteed-to-render solid color instead of chasing that bug
+   further. */
 .gradient-text {
   display: block;
-  color: transparent;
-  background:
-    linear-gradient(
-      92deg,
-      #f5f8fc 0%,
-      #70e8ff 38%,
-      #8c70ff 73%,
-      #f5f8fc 100%
-    );
-  background-size: 220% auto;
-  background-clip: text;
-  -webkit-background-clip: text;
-  animation: headline-shift 8s ease-in-out infinite;
+  color: var(--accent);
 }
 
 /* Pure CSS keyframe reveal — no JS-toggled class, so there is no
@@ -147,11 +141,6 @@ a{color:inherit;text-decoration:none}a:hover{color:var(--accent)}button{font:inh
 .word-reveal {
   display: inline-block;
   animation: word-reveal-in 0.62s cubic-bezier(.22,1,.36,1) both;
-}
-
-@keyframes headline-shift {
-  0%, 100% { background-position: 0% center; }
-  50% { background-position: 100% center; }
 }
 
 .hero-lead {
