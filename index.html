@@ -25,6 +25,24 @@
 .solution-icon-ring{position:absolute;inset:-8px;border-radius:50%;border:1px solid var(--project);opacity:0;pointer-events:none}
 @keyframes icon-ring-out{0%{transform:scale(.8);opacity:.7}100%{transform:scale(2.2);opacity:0}}
 .i-ring{animation:icon-ring-out .55s ease-out forwards}
+.effects-grid .effect-card{position:relative;overflow:hidden}
+.hw-bar{position:absolute;top:0;left:0;right:0;height:2px;background:#35d4f1;transform:scaleX(0);transform-origin:left;transition:transform .42s cubic-bezier(.22,1,.36,1);pointer-events:none}
+.effect-card:hover .hw-bar,.effect-card:focus .hw-bar{transform:scaleX(1)}
+.hw-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:14px}
+.hw-num{font-size:10px;font-weight:900;color:#35d4f1;opacity:.35;letter-spacing:.04em;transition:opacity .2s}
+.hw-ico{font-size:20px;color:#35d4f1;opacity:.3;transition:opacity .2s,font-size .15s}
+.effect-card:hover .hw-num,.effect-card:focus .hw-num{opacity:1}
+.effect-card:hover .hw-ico,.effect-card:focus .hw-ico{opacity:.9;font-size:22px}
+.effects-grid .effect-card h3{margin-top:10px}
+@property --cta-angle{syntax:'<angle>';initial-value:0deg;inherits:false}
+@keyframes cta-spin{to{--cta-angle:360deg}}
+.recruiter-cta{position:relative}
+.recruiter-cta::before{content:'';position:absolute;inset:0;border-radius:inherit;padding:1.5px;background:conic-gradient(from var(--cta-angle),transparent 0%,#35d4f144 7%,#35d4f1 10%,#35d4f144 13%,transparent 20%);-webkit-mask:linear-gradient(#fff 0 0) content-box,linear-gradient(#fff 0 0);mask:linear-gradient(#fff 0 0) content-box,linear-gradient(#fff 0 0);-webkit-mask-composite:xor;mask-composite:exclude;animation:cta-spin 4s linear infinite;pointer-events:none}
+.site-footer{position:relative;border-top:none!important}
+.site-footer::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,#35d4f166 40%,#35d4f166 60%,transparent)}
+.footer-social{display:flex;gap:8px;margin-top:10px}
+.footer-soc-btn{display:flex;align-items:center;justify-content:center;width:30px;height:30px;border:1px solid #1e3248;border-radius:6px;color:#5a7a94;font-size:15px;text-decoration:none;transition:border-color .18s,color .18s}
+.footer-soc-btn:hover{border-color:#35d4f166;color:#35d4f1}
 </style>
 </head>
 <body>
@@ -408,12 +426,12 @@
     </section>
 
     <section class="section container" id="approach-preview">
-      <header class="section-heading reveal"><div><div class="eyebrow">How I work</div><h2>Clear thinking, structured delivery, and visible outcomes.</h2></div><p>My approach combines discovery, analysis, functional design, stakeholder alignment, validation, and release readiness, without losing traceability between the original need and the delivered result.</p></header>
+      <header class="section-heading reveal"><div><div class="eyebrow">How I work</div><h2>Discovery to delivery, without losing the thread.</h2></div><p>My approach combines discovery, analysis, functional design, stakeholder alignment, validation, and release readiness, without losing traceability between the original need and the delivered result.</p></header>
       <div class="effects-grid">
-        <article class="effect-card interactive reveal" data-tilt><span>Discovery</span><h3>Clarify the real business need</h3><p>Facilitate workshops, surface assumptions, define outcomes, and identify the decisions that shape scope.</p></article>
-        <article class="effect-card interactive reveal" data-tilt><span>Analysis</span><h3>Turn complexity into structured logic</h3><p>Model processes, rules, data, exceptions, dependencies, interfaces, and measurable acceptance conditions.</p></article>
-        <article class="effect-card interactive reveal" data-tilt><span>Delivery</span><h3>Connect requirements to implementation</h3><p>Build traceable backlogs, align cross-functional teams, support design decisions, and resolve delivery ambiguity.</p></article>
-        <article class="effect-card interactive reveal" data-tilt><span>Assurance</span><h3>Protect release readiness</h3><p>Support testing, defect triage, stakeholder sign-off, operational handoff, and post-release stabilization.</p></article>
+        <article class="effect-card interactive reveal" data-tilt><div class="hw-bar" aria-hidden="true"></div><div class="hw-top"><span class="hw-num">01</span><i class="ti ti-zoom-question hw-ico" aria-hidden="true"></i></div><span>Discovery</span><h3>Define the problem before designing the solution</h3><p>Capture business context, surface conflicting assumptions, and identify the decisions that need to be made before design begins.</p></article>
+        <article class="effect-card interactive reveal" data-tilt><div class="hw-bar" aria-hidden="true"></div><div class="hw-top"><span class="hw-num">02</span><i class="ti ti-chart-bar hw-ico" aria-hidden="true"></i></div><span>Analysis</span><h3>Structure complexity into workable logic</h3><p>Break down processes, data flows, rules, and exceptions. Produce specs, maps, and acceptance criteria that build teams can actually use.</p></article>
+        <article class="effect-card interactive reveal" data-tilt><div class="hw-bar" aria-hidden="true"></div><div class="hw-top"><span class="hw-num">03</span><i class="ti ti-rocket hw-ico" aria-hidden="true"></i></div><span>Delivery</span><h3>Keep business intent intact through build</h3><p>Translate requirements into sprint-ready items. Support design decisions and keep cross-functional teams aligned through code complete.</p></article>
+        <article class="effect-card interactive reveal" data-tilt><div class="hw-bar" aria-hidden="true"></div><div class="hw-top"><span class="hw-num">04</span><i class="ti ti-shield-check hw-ico" aria-hidden="true"></i></div><span>Assurance</span><h3>Verify readiness before the release window</h3><p>Coordinate testing, defect resolution, and stakeholder sign-off. Make sure the release is clean before the handoff window opens.</p></article>
       </div>
     </section>
 
@@ -437,6 +455,11 @@
       <div>
         <strong>Krishna Padmanabhan</strong>
         <span>Enterprise Business Analysis · Technical Product Management</span>
+        <div class="footer-social">
+          <a href="https://www.linkedin.com/in/krishna-padmanabhan" class="footer-soc-btn" aria-label="LinkedIn" target="_blank" rel="noopener noreferrer"><i class="ti ti-brand-linkedin" aria-hidden="true"></i></a>
+          <a href="mailto:pskrishna204@gmail.com" class="footer-soc-btn" aria-label="Email"><i class="ti ti-mail" aria-hidden="true"></i></a>
+          <a href="https://github.com/kpadm3" class="footer-soc-btn" aria-label="GitHub" target="_blank" rel="noopener noreferrer"><i class="ti ti-brand-github" aria-hidden="true"></i></a>
+        </div>
       </div>
       <div>
         <span>Edmonton, Alberta, Canada</span>
