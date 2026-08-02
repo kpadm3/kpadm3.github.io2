@@ -3,78 +3,225 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Product Data Integration | Krishna</title>
-<meta name="description" content="Structured product data movement across transformation, API, lifecycle, and ERP layers.">
+<title>Enterprise Data Integration | Krishna</title>
+<meta name="description" content="Senior-level enterprise data integration case study covering source analysis, field mapping, API interface design, transformation logic, validation, and ERP handoff.">
 <meta name="theme-color" content="#050b14">
-<link rel="icon" href="../assets/logos/rest-api.svg" type="image/svg+xml">
-<link rel="stylesheet" href="../assets/css/site.css?v=1785652665">
+<link rel="stylesheet" href="../assets/css/site.css">
+<style>
+:root{
+  --case-cyan:#6aa9ff;
+  --case-blue:#4da3ff;
+  --case-teal:#30d5c8;
+  --case-gold:#f3bd68;
+  --case-violet:#a278ff;
+  --case-pink:#e168c2;
+  --case-panel:rgba(7,18,31,.90);
+  --case-border:rgba(93,135,179,.52);
+}
+body{background:radial-gradient(circle at 15% -8%,rgba(26,74,154,.24),transparent 26%),radial-gradient(circle at 88% 8%,rgba(106,169,255,.08),transparent 24%),linear-gradient(180deg,#04101d 0%,#06111e 56%,#030914 100%)}
+.case-wrap{width:min(1480px,100%);margin:auto;padding:24px}
+.case-header{display:flex;align-items:center;justify-content:space-between;gap:20px;margin-bottom:24px}
+.case-nav{display:flex;gap:22px;color:var(--soft);font-size:.82rem;font-weight:750}
+.case-nav a:hover{color:var(--case-cyan)}
+.case-hero{display:grid;grid-template-columns:minmax(0,1.65fr) minmax(330px,.75fr);gap:28px;align-items:stretch}
+.case-kicker{color:var(--case-cyan);font-size:.78rem;font-weight:900;letter-spacing:.09em;text-transform:uppercase}
+.case-title{max-width:960px;margin:15px 0 12px;font-size:clamp(3rem,5.15vw,5.2rem);line-height:.98;letter-spacing:-.055em}
+.case-lead{max-width:820px;margin:0;color:#bac8d8;font-size:clamp(1rem,1.4vw,1.16rem);line-height:1.58}
+.case-tags{display:flex;flex-wrap:wrap;gap:10px;margin-top:24px}
+.case-tags span,.skill-row span{padding:9px 12px;border:1px solid rgba(106,169,255,.42);border-radius:8px;background:rgba(6,20,34,.72);font-size:.74rem;font-weight:750}
+.glass-panel{border:1px solid var(--case-border);border-radius:17px;background:linear-gradient(145deg,rgba(8,24,40,.95),rgba(3,12,23,.93));box-shadow:0 20px 48px rgba(0,0,0,.28),inset 0 1px 0 rgba(255,255,255,.025)}
+.glass-panel:hover{border-color:rgba(106,169,255,.70)}
+.glance{padding:18px 22px}
+.glance h2,.section-title{margin:0;color:var(--case-cyan);font-size:1rem;letter-spacing:.04em;text-transform:uppercase}
+.glance h2{text-align:center;margin-bottom:16px}
+.glance-list{display:grid;gap:14px}
+.glance-item{display:grid;grid-template-columns:34px 1fr;gap:12px;align-items:start}
+.glance-icon{width:30px;height:30px;display:grid;place-items:center;border:1px solid rgba(106,169,255,.35);border-radius:9px;color:var(--case-cyan);font-size:.76rem;font-weight:900}
+.glance-item span{display:block;color:var(--case-cyan);font-size:.68rem}
+.glance-item strong{display:block;margin-top:2px;color:#f5f8fc;font-size:.78rem;line-height:1.35}
+.section-block{margin-top:16px;padding:20px}
+.section-intro{display:flex;align-items:end;justify-content:space-between;gap:24px;margin-bottom:18px}
+.section-intro p{max-width:620px;margin:0;color:#9fb0c3;font-size:.74rem;line-height:1.55}
+.executive-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+.executive-card{padding:17px;border:1px solid rgba(93,135,179,.36);border-radius:13px;background:rgba(5,17,29,.72)}
+.executive-card span{display:block;color:var(--case-cyan);font-size:.64rem;font-weight:900;text-transform:uppercase;letter-spacing:.08em}
+.executive-card p{margin:10px 0 0;color:#d5e0ea;font-size:.76rem;line-height:1.55}
+.workflow-grid{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:10px;margin-top:24px}
+.workflow-card{--step:var(--case-cyan);position:relative;min-height:370px;display:flex;flex-direction:column;padding:17px 13px;border:1px solid color-mix(in srgb,var(--step) 62%,#243c5a);border-radius:12px;background:radial-gradient(circle at 50% 0,color-mix(in srgb,var(--step) 12%,transparent),transparent 32%),linear-gradient(180deg,rgba(5,18,31,.98),rgba(3,12,23,.98));transition:transform .22s ease,border-color .22s ease,box-shadow .22s ease}
+.workflow-card:hover{transform:translateY(-7px);border-color:var(--step);box-shadow:0 20px 42px rgba(0,0,0,.35),0 0 28px color-mix(in srgb,var(--step) 14%,transparent)}
+.workflow-card:not(:last-child)::after{content:"➜";position:absolute;right:-13px;top:48%;z-index:5;color:#eef5fb;font-size:1.2rem}
+.step-number{position:absolute;top:-17px;left:50%;width:35px;height:35px;display:grid;place-items:center;transform:translateX(-50%);border-radius:50%;background:var(--step);color:#041019;font-weight:900}
+.step-title{min-height:58px;margin:16px 0 8px;color:color-mix(in srgb,var(--step) 76%,white);text-align:center;font-size:.76rem;text-transform:uppercase}
+.step-symbol{height:68px;display:grid;place-items:center;color:var(--step);font-size:2.05rem}
+.workflow-card ul{margin:4px 0 16px;padding-left:16px;color:#edf4fb;font-size:.69rem;line-height:1.55}
+.workflow-card .step-tools{margin-top:auto;padding-top:10px;border-top:1px solid color-mix(in srgb,var(--step) 34%,transparent);color:color-mix(in srgb,var(--step) 72%,white);font-size:.62rem;line-height:1.55}
+.dual-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:16px}
+.content-card{padding:20px}
+.content-card h2{margin:0;color:var(--case-cyan);font-size:.98rem;text-transform:uppercase;letter-spacing:.04em}
+.content-card p,.content-card li{color:#b9c7d7;font-size:.74rem;line-height:1.62}
+.content-card p{margin:10px 0 0}
+.content-card ul{margin:10px 0 0;padding-left:18px}
+.content-card li::marker{color:var(--case-cyan)}
+.outcome-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:14px}
+.outcome-card{padding:16px;border:1px solid rgba(106,169,255,.30);border-radius:12px;background:linear-gradient(180deg,rgba(9,28,45,.78),rgba(5,16,28,.72))}
+.outcome-card strong{display:block;color:#eef5fb;font-size:.76rem}
+.outcome-card span{display:block;margin-top:7px;color:#9fb0c3;font-size:.66rem;line-height:1.48}
+.skill-row{display:flex;flex-wrap:wrap;gap:9px;margin-top:14px}
+.case-cta{display:grid;grid-template-columns:1.35fr .65fr;gap:22px;align-items:center;margin:16px 0 28px;padding:20px 24px}
+.cta-copy h2{margin:0;color:var(--case-cyan);font-size:1rem;text-transform:uppercase}
+.cta-copy p{margin:6px 0 0;color:#b8c6d5;font-size:.78rem}
+.cta-actions{display:flex;gap:14px;justify-content:flex-end}
+.case-note{margin:14px 0;color:#7890a7;font-size:.62rem;text-align:center}
+.reveal-case{opacity:0;transform:translateY(14px);transition:opacity .55s ease,transform .55s cubic-bezier(.22,1,.36,1)}
+.reveal-case.visible{opacity:1;transform:none}
+@media(max-width:1200px){.workflow-grid{grid-template-columns:repeat(3,1fr)}.workflow-card:not(:last-child)::after{display:none}}
+@media(max-width:980px){.case-hero,.dual-grid,.case-cta{grid-template-columns:1fr}.executive-grid,.outcome-grid{grid-template-columns:repeat(2,1fr)}.cta-actions{justify-content:flex-start}}
+@media(max-width:700px){.case-wrap{padding:16px}.case-header{align-items:flex-start;flex-direction:column}.case-nav{gap:14px;flex-wrap:wrap}.workflow-grid,.executive-grid,.outcome-grid{grid-template-columns:1fr}.case-title{font-size:clamp(2.5rem,13vw,4rem)}.cta-actions{flex-direction:column}.section-intro{align-items:flex-start;flex-direction:column}}
+@media(prefers-reduced-motion:reduce){.reveal-case{opacity:1;transform:none}.workflow-card{transition:none}}
+</style>
 </head>
 <body>
-<header class="site-header">
-<div class="container nav-row">
-<a class="brand" href="../index.html">Krishna</a>
-<nav class="nav-links" aria-label="Primary navigation"><a href="../index.html#solutions" aria-current="page">Solutions</a><a href="../experience.html">Experience</a><a href="../approach.html">Approach</a><a href="../contact.html">Contact</a></nav>
+<div class="page-progress" data-progress></div>
+<div class="ambient ambient-a" aria-hidden="true"></div>
+<div class="ambient ambient-b" aria-hidden="true"></div>
+
+<div class="case-wrap">
+  <header class="case-header">
+    <a class="brand" href="../index.html">Krishna</a>
+    <nav class="case-nav" aria-label="Primary navigation">
+      <a href="../index.html#components">Solutions</a>
+      <a href="../experience.html">Experience</a>
+      <a href="../approach.html">Approach</a>
+      <a href="../contact.html">Contact</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="case-hero reveal-case">
+      <div>
+        <div class="case-kicker">Senior Enterprise Case Study • Sanitized Public Edition</div>
+        <h1 class="case-title">Enterprise Data Integration</h1>
+        <p class="case-lead">A governed approach to connecting enterprise systems through structured source analysis, field-level mapping, API interface design, transformation logic, and end-to-end validation — giving implementation and QA teams a clear interface contract to build and test against.</p>
+        <div class="case-tags">
+          <span>Business Analysis</span>
+          <span>Systems Integration</span>
+          <span>API Requirements</span>
+          <span>Data Mapping</span>
+          <span>Interface Design</span>
+          <span>Integration Testing</span>
+        </div>
+      </div>
+      <aside class="glance glass-panel">
+        <h2>At a Glance</h2>
+        <div class="glance-list">
+          <div class="glance-item"><div class="glance-icon">01</div><div><span>Domain</span><strong>Enterprise product data and systems integration</strong></div></div>
+          <div class="glance-item"><div class="glance-icon">02</div><div><span>Role</span><strong>Senior Business Analyst / Integration Lead</strong></div></div>
+          <div class="glance-item"><div class="glance-icon">03</div><div><span>Scope</span><strong>Interface requirements through integration validation</strong></div></div>
+          <div class="glance-item"><div class="glance-icon">04</div><div><span>Delivery Model</span><strong>Phased, cross-functional releases</strong></div></div>
+          <div class="glance-item"><div class="glance-icon">05</div><div><span>Focus</span><strong>Source-to-target mapping, API behaviour, and data controls</strong></div></div>
+        </div>
+      </aside>
+    </section>
+
+    <section class="section-block glass-panel reveal-case">
+      <div class="section-intro">
+        <h2 class="section-title">Executive Summary</h2>
+        <p>A concise view of the integration challenge, my ownership, and the value delivered.</p>
+      </div>
+      <div class="executive-grid">
+        <article class="executive-card"><span>Business Challenge</span><p>Multiple source formats, undocumented interface behaviour, and unclear data ownership created integration risk and downstream inconsistency across enterprise systems.</p></article>
+        <article class="executive-card"><span>My Role</span><p>Defined source-to-target mappings, API interface requirements, transformation rules, validation controls, and end-to-end integration test evidence.</p></article>
+        <article class="executive-card"><span>Solution</span><p>Structured a governed integration flow covering data extraction, field mapping, transformation logic, API interface design, validation controls, and ERP handoff.</p></article>
+        <article class="executive-card"><span>Business Value</span><p>Reduced integration ambiguity, improved data traceability, and gave teams a clear contract to build, test, and validate against before go-live.</p></article>
+      </div>
+    </section>
+
+    <section class="section-block glass-panel reveal-case">
+      <div class="section-intro">
+        <h2 class="section-title">End-to-End Integration Workflow</h2>
+        <p>The core delivery flow from source analysis to validated downstream handoff.</p>
+      </div>
+      <div class="workflow-grid">
+        <article class="workflow-card" style="--step:#6aa9ff"><div class="step-number">1</div><h3 class="step-title">Source Analysis</h3><div class="step-symbol">⇄</div><ul><li>Source system structure</li><li>Data ownership mapping</li><li>Volume and quality profiling</li><li>Interface constraints</li></ul><div class="step-tools">Data Profiling · System Interviews</div></article>
+        <article class="workflow-card" style="--step:#4da3ff"><div class="step-number">2</div><h3 class="step-title">Target Mapping</h3><div class="step-symbol">◇</div><ul><li>Source-to-target field mapping</li><li>Transformation rules</li><li>Default and null handling</li><li>Data contract definition</li></ul><div class="step-tools">Mapping Specification · Excel</div></article>
+        <article class="workflow-card" style="--step:#30d5c8"><div class="step-number">3</div><h3 class="step-title">API Interface Design</h3><div class="step-symbol">✣</div><ul><li>REST endpoint requirements</li><li>Request and response payloads</li><li>Error codes and retry logic</li><li>Interface agreement sign-off</li></ul><div class="step-tools">Swagger · Postman · REST APIs</div></article>
+        <article class="workflow-card" style="--step:#a278ff"><div class="step-number">4</div><h3 class="step-title">Transformation Logic</h3><div class="step-symbol">⚙</div><ul><li>Format conversion rules</li><li>Field enrichment logic</li><li>Aggregation and lookups</li><li>Exception and edge cases</li></ul><div class="step-tools">Transformation Rules · JSON · XML</div></article>
+        <article class="workflow-card" style="--step:#f3bd68"><div class="step-number">5</div><h3 class="step-title">Validation & Testing</h3><div class="step-symbol">✓</div><ul><li>Integration test scenarios</li><li>Error and boundary cases</li><li>End-to-end reconciliation</li><li>Defect triage and evidence</li></ul><div class="step-tools">Azure DevOps · Integration Tests</div></article>
+        <article class="workflow-card" style="--step:#e168c2"><div class="step-number">6</div><h3 class="step-title">ERP Handoff</h3><div class="step-symbol">▤</div><ul><li>Validated data in target system</li><li>Downstream verification</li><li>Business sign-off</li><li>Post-release stabilization</li></ul><div class="step-tools">SAP ERP · Release Checklist</div></article>
+      </div>
+    </section>
+
+    <section class="dual-grid">
+      <article class="content-card glass-panel reveal-case">
+        <h2>My Contributions</h2>
+        <ul>
+          <li>Structured source data understanding through stakeholder interviews, system exports, and data profiling sessions.</li>
+          <li>Defined field-level mapping specifications including transformation rules, default values, null handling, and exception scenarios.</li>
+          <li>Authored API interface requirements covering endpoint descriptions, request and response structures, error codes, and retry behaviour.</li>
+          <li>Validated interface contracts with integration developers and tested end-to-end scenarios using Postman.</li>
+          <li>Supported defect triage, data reconciliation, and integration sign-off through to release.</li>
+        </ul>
+      </article>
+      <article class="content-card glass-panel reveal-case">
+        <h2>Key Deliverables</h2>
+        <ul>
+          <li>Source-to-target field mapping specification</li>
+          <li>API interface requirements documentation</li>
+          <li>Transformation and enrichment rule definitions</li>
+          <li>Integration test scenarios and execution evidence</li>
+          <li>Data reconciliation and validation controls</li>
+          <li>Integration sign-off and release readiness inputs</li>
+        </ul>
+      </article>
+    </section>
+
+    <section class="section-block glass-panel reveal-case">
+      <div class="section-intro">
+        <h2 class="section-title">Technology in Context</h2>
+        <p>Technology enabled the integration, but the case study remains focused on interface requirements, mapping logic, validation controls, and delivery outcomes.</p>
+      </div>
+      <div class="skill-row">
+        <span>REST APIs</span><span>XML</span><span>JSON</span><span>SAP ERP</span><span>Azure DevOps</span><span>Postman</span><span>Swagger</span><span>Excel</span><span>SharePoint</span>
+      </div>
+    </section>
+
+    <section class="section-block glass-panel reveal-case">
+      <h2 class="section-title">Business Outcomes</h2>
+      <div class="outcome-grid">
+        <article class="outcome-card"><strong>Clearer Interface Contracts</strong><span>Removed ambiguity from API and data mapping expectations before implementation teams began build.</span></article>
+        <article class="outcome-card"><strong>Traceable Data Movement</strong><span>Connected source fields to target records with documented transformation logic and validation evidence.</span></article>
+        <article class="outcome-card"><strong>Better Integration Quality</strong><span>Structured test scenarios and acceptance criteria identified issues before they reached production.</span></article>
+        <article class="outcome-card"><strong>Faster Defect Resolution</strong><span>Documented contracts gave teams a clear reference for root-cause analysis and fix verification.</span></article>
+      </div>
+    </section>
+
+    <section class="section-block glass-panel reveal-case">
+      <h2 class="section-title">Skills Demonstrated</h2>
+      <div class="skill-row">
+        <span>Systems Integration Analysis</span><span>Data Mapping</span><span>API Requirements</span><span>Interface Design</span><span>Transformation Logic</span><span>Validation Strategy</span><span>Integration Testing</span><span>Technical Documentation</span><span>Stakeholder Communication</span><span>Requirements Engineering</span><span>Defect Triage</span><span>Release Readiness</span>
+      </div>
+    </section>
+
+    <section class="case-cta glass-panel reveal-case">
+      <div class="cta-copy"><h2>Discuss Similar Enterprise Work</h2><p>This public case study is intentionally sanitized. Additional context can be discussed while respecting employer and customer confidentiality.</p></div>
+      <div class="cta-actions"><a class="button" href="../contact.html">Contact Krishna</a><a class="button secondary" href="requirements-to-release.html">Next Case Study</a></div>
+    </section>
+
+    <p class="case-note">Sanitized public portfolio representation. Employer, customer, proprietary product, internal architecture, and confidential implementation details are excluded.</p>
+  </main>
 </div>
-</header>
-<main>
-<section class="page-shell container">
-<section class="project-hero reveal" style="--project:#6aa9ff">
-<div class="project-copy">
-<div class="eyebrow">Enterprise Solutions Portfolio</div>
-<h1>Product Data Integration</h1>
-<p>Structured product data movement across transformation, API, lifecycle, and ERP layers.</p>
-<div class="project-facts"><div><span>domain</span><strong>Enterprise product data</strong></div><div><span>role</span><strong>Business Analyst / Integration Lead</strong></div><div><span>delivery</span><strong>Phased releases</strong></div><div><span>team</span><strong>Business and technology</strong></div></div>
-</div>
-<div class="project-visual" aria-hidden="true"><div class="isometric-stack compact"><i></i><i></i><i></i></div></div>
-</section>
 
-<section class="executive-summary">
-<article class="reveal"><span>Business challenge</span><p>Multiple systems and formats created ambiguity around ownership, mapping, validation, and error handling.</p></article>
-<article class="reveal"><span>Approach</span><p>Defined source-to-target mappings, transformation rules, API behaviour, validation, and end-to-end test evidence.</p></article>
-<article class="reveal"><span>Business outcome</span><p>Improved data traceability and reduced integration ambiguity before implementation.</p></article>
-</section>
-
-<section class="diagram-panel reveal">
-<div class="section-label">Solution architecture</div>
-<div class="architecture-line"><article class="architecture-node"><span>01</span><strong>Source Data</strong></article><article class="architecture-node"><span>02</span><strong>Mapping</strong></article><article class="architecture-node"><span>03</span><strong>Transform</strong></article><article class="architecture-node"><span>04</span><strong>API</strong></article><article class="architecture-node"><span>05</span><strong>Lifecycle</strong></article><article class="architecture-node"><span>06</span><strong>ERP</strong></article></div>
-</section>
-
-<section class="three-column-grid">
-<article class="info-panel reveal">
-<div class="section-label">Inputs</div>
-<ul><li>Source structures</li><li>Target requirements</li><li>Interface constraints</li><li>Error scenarios</li></ul>
-</article>
-<article class="info-panel reveal">
-<div class="section-label">Tools &amp; techniques</div>
-<ul><li>Data mapping</li><li>Interface analysis</li><li>Root-cause analysis</li><li>Requirements reviews</li></ul>
-</article>
-<article class="info-panel reveal">
-<div class="section-label">Outputs</div>
-<ul><li>Data contracts</li><li>Mapping rules</li><li>API requirements</li><li>Integration tests</li></ul>
-</article>
-</section>
-
-<section class="three-column-grid">
-<article class="info-panel reveal">
-<div class="section-label">Capabilities demonstrated</div>
-<ul><li>Systems integration</li><li>Data mapping</li><li>Interface analysis</li><li>Technical validation</li></ul>
-</article>
-<article class="info-panel reveal"><div class="section-label">Platforms and tools</div><div class="tags"><span>REST APIs</span><span>XML</span><span>JSON</span><span>SAP ERP</span><span>Azure DevOps</span><span>Integration Testing</span></div></article>
-<article class="info-panel reveal"><div class="section-label">Confidentiality</div><p>Sanitized representation. Employer, customer, internal product, and proprietary operational details are excluded.</p></article>
-</section>
-
-<section class="closing-panel reveal">
-<div><div class="eyebrow">Next solution</div><h2>Requirements-to-Release Delivery</h2></div>
-<div class="hero-actions"><a class="button" href="requirements-to-release.html">Continue</a><a class="button secondary" href="../solutions.html">All solutions</a></div>
-</section>
-</section>
-</main>
-<footer class="site-footer">
-<div class="container footer-row">
-<span>© <span data-year></span> Krishna</span>
-<span>Enterprise Solutions Portfolio</span>
-</div>
-</footer>
-<script src="../assets/js/site.js?v=1785652665"></script>
+<script src="../assets/js/site.js"></script>
+<script>
+(() => {
+  const items = document.querySelectorAll(".reveal-case");
+  if (!("IntersectionObserver" in window)) { items.forEach(i => i.classList.add("visible")); return; }
+  const obs = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (!e.isIntersecting) return; e.target.classList.add("visible"); obs.unobserve(e.target); });
+  }, { threshold: 0.08, rootMargin: "0px 0px -20px 0px" });
+  items.forEach(i => obs.observe(i));
+  setTimeout(() => items.forEach(i => i.classList.add("visible")), 1200);
+})();
+</script>
 </body>
 </html>
