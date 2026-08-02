@@ -51,25 +51,67 @@
     });
   });
 
-  all('[data-counter]').forEach(counter=>{
-    const target=Number(counter.dataset.counter||0);
-    const suffix=counter.dataset.suffix||'';
-    if(reduced){counter.textContent=`${target}${suffix}`;return}
-    const observer=new IntersectionObserver(entries=>{
-      if(!entries[0].isIntersecting)return;
-      const start=performance.now();
-      const duration=900;
-      const tick=now=>{
-        const p=Math.min(1,(now-start)/duration);
-        const eased=1-Math.pow(1-p,3);
-        counter.textContent=`${Math.round(target*eased)}${suffix}`;
-        if(p<1)requestAnimationFrame(tick);
-      };
-      requestAnimationFrame(tick);
-      observer.disconnect();
-    },{threshold:.65});
-    observer.observe(counter);
-  });
+  // Reliable animated counters.
+  // Starts once when the metric area enters the viewport and has a timed fallback.
+  const counters = all("[data-counter]");
+  let countersStarted = false;
+
+  const animateCounter = (counter) => {
+    if (counter.dataset.animated === "true") return;
+    counter.dataset.animated = "true";
+
+    const target = Number(counter.dataset.counter || 0);
+    const suffix = counter.dataset.suffix || "";
+    const duration = 1200;
+    const startTime = performance.now();
+
+    counter.textContent = `0${suffix}`;
+
+    const update = (now) => {
+      const elapsed = now - startTime;
+      const progress = Math.min(1, elapsed / duration);
+      const eased = 1 - Math.pow(1 - progress, 4);
+      const current = Math.round(target * eased);
+
+      counter.textContent = `${current}${suffix}`;
+
+      if (progress < 1) {
+        requestAnimationFrame(update);
+      } else {
+        counter.textContent = `${target}${suffix}`;
+      }
+    };
+
+    requestAnimationFrame(update);
+  };
+
+  const startCounters = () => {
+    if (countersStarted || counters.length === 0) return;
+    countersStarted = true;
+    counters.forEach(animateCounter);
+  };
+
+  const metricSection =
+    document.querySelector(".metric-strip") ||
+    counters[0]?.closest("section");
+
+  if (metricSection && "IntersectionObserver" in window) {
+    const counterObserver = new IntersectionObserver((entries) => {
+      if (!entries.some((entry) => entry.isIntersecting)) return;
+      startCounters();
+      counterObserver.disconnect();
+    }, {
+      threshold: 0.15,
+      rootMargin: "0px 0px -5% 0px"
+    });
+
+    counterObserver.observe(metricSection);
+  } else {
+    startCounters();
+  }
+
+  // Fallback for browser caching, unusual viewport sizes, or observer delays.
+  window.setTimeout(startCounters, 900);
 
   const stage=document.querySelector('[data-parallax]');
   if(stage && !coarse && !reduced){
