@@ -91,9 +91,7 @@
     counters.forEach(animateCounter);
   };
 
-  const metricSection =
-    document.querySelector(".metric-strip") ||
-    counters[0]?.closest("section");
+  const metricSection = counters[0]?.closest("section") || document.querySelector(".hero");
 
   if (metricSection && "IntersectionObserver" in window) {
     const counterObserver = new IntersectionObserver((entries) => {
@@ -151,63 +149,19 @@
     });
   }
 
-  // Spring-driven magnetic pull: a critically-damped spring chases the
-  // pointer target every frame, so the button overshoots slightly and
-  // settles instead of snapping linearly to the cursor offset.
   document.querySelectorAll(".magnetic").forEach((button) => {
     if (coarse || reduced) return;
 
-    const spring = { x: 0, y: 0, vx: 0, vy: 0, tx: 0, ty: 0 };
-    const stiffness = 0.18;
-    const damping = 0.72;
-    let raf = null;
-    let settled = true;
-
-    const tick = () => {
-      const ax = (spring.tx - spring.x) * stiffness;
-      const ay = (spring.ty - spring.y) * stiffness;
-      spring.vx = (spring.vx + ax) * damping;
-      spring.vy = (spring.vy + ay) * damping;
-      spring.x += spring.vx;
-      spring.y += spring.vy;
-
-      button.style.transform =
-        `translate3d(${spring.x.toFixed(2)}px, ${spring.y.toFixed(2)}px, 0) translateY(-2px)`;
-
-      const atRest =
-        Math.abs(spring.tx - spring.x) < 0.05 &&
-        Math.abs(spring.ty - spring.y) < 0.05 &&
-        Math.abs(spring.vx) < 0.02 &&
-        Math.abs(spring.vy) < 0.02;
-
-      if (atRest && spring.tx === 0 && spring.ty === 0) {
-        settled = true;
-        button.style.transform = "";
-        raf = null;
-        return;
-      }
-
-      raf = requestAnimationFrame(tick);
-    };
-
-    const ensureRunning = () => {
-      if (raf === null) {
-        settled = false;
-        raf = requestAnimationFrame(tick);
-      }
-    };
-
     button.addEventListener("pointermove", (event) => {
       const rect = button.getBoundingClientRect();
-      spring.tx = (event.clientX - rect.left - rect.width / 2) * 0.35;
-      spring.ty = (event.clientY - rect.top - rect.height / 2) * 0.4;
-      ensureRunning();
+      const x = event.clientX - rect.left - rect.width / 2;
+      const y = event.clientY - rect.top - rect.height / 2;
+      button.style.transform =
+        `translate3d(${x * 0.05}px, ${y * 0.07}px, 0) translateY(-2px)`;
     });
 
     button.addEventListener("pointerleave", () => {
-      spring.tx = 0;
-      spring.ty = 0;
-      ensureRunning();
+      button.style.transform = "";
     });
   });
 })();
@@ -292,90 +246,18 @@
 
   const filterButtons = Array.from(document.querySelectorAll("[data-logo-filter]"));
   const technologyCards = Array.from(document.querySelectorAll(".technology-card-v3"));
-
-  const applyFilter = (group) => {
-    technologyCards.forEach(card => {
-      card.hidden = group !== "all" && card.dataset.group !== group;
-    });
-  };
-
   filterButtons.forEach(button => {
     button.addEventListener("click", () => {
       const group = button.dataset.logoFilter;
       filterButtons.forEach(item => item.classList.remove("active"));
       button.classList.add("active");
-
-      // View Transitions morph the grid (cards resize/reflow/fade) instead
-      // of an instant show/hide, so switching categories reads as one
-      // continuous layout change rather than a jump cut.
-      if (document.startViewTransition && !matchMedia("(prefers-reduced-motion: reduce)").matches) {
-        document.startViewTransition(() => applyFilter(group));
-      } else {
-        applyFilter(group);
-      }
+      technologyCards.forEach(card => {
+        card.hidden = group !== "all" && card.dataset.group !== group;
+      });
     });
   });
 
   document.querySelectorAll(".solution-card-v3,.technology-card-v3").forEach(card => {
     card.classList.add("visible");
   });
-})();
-
-// Headline word reveal: the emphasized line splits into words that rise
-// from a soft blur into sharp focus, staggered left to right. Pure CSS
-// animation with no JS-driven trigger (no IntersectionObserver, no
-// requestAnimationFrame, nothing that can silently fail to fire) — the
-// browser runs the keyframe animation unconditionally as soon as each
-// span exists, so there is no failure mode that leaves it stuck invisible.
-(() => {
-  "use strict";
-
-  const target = document.querySelector(".gradient-text");
-  const reduced = matchMedia("(prefers-reduced-motion: reduce)").matches;
-  if (!target || reduced) return;
-
-  const words = target.textContent.trim().split(/\s+/);
-  target.textContent = "";
-  target.setAttribute("aria-label", words.join(" "));
-
-  words.forEach((word, index) => {
-    const span = document.createElement("span");
-    span.className = "word-reveal";
-    span.style.animationDelay = `${index * 80}ms`;
-    span.textContent = word;
-    target.appendChild(span);
-    target.appendChild(document.createTextNode(index < words.length - 1 ? " " : ""));
-  });
-})();
-
-// Scroll-linked parallax depth: the two ambient glow layers drift at
-// different fractions of scroll speed, so the page reads as several
-// planes moving at different rates instead of one flat sheet. Uses the
-// standalone `translate` CSS property so it composes with (rather than
-// overwrites) each layer's existing drift/breathe keyframe animation.
-(() => {
-  "use strict";
-
-  const reduced = matchMedia("(prefers-reduced-motion: reduce)").matches;
-  const layers = [
-    { el: document.querySelector(".ambient-a"), factor: 0.10 },
-    { el: document.querySelector(".ambient-b"), factor: -0.06 }
-  ].filter((layer) => layer.el);
-
-  if (!layers.length || reduced) return;
-
-  let ticking = false;
-
-  const apply = () => {
-    ticking = false;
-    layers.forEach(({ el, factor }) => {
-      el.style.translate = `0 ${(scrollY * factor).toFixed(1)}px`;
-    });
-  };
-
-  addEventListener("scroll", () => {
-    if (ticking) return;
-    ticking = true;
-    requestAnimationFrame(apply);
-  }, { passive: true });
 })();
