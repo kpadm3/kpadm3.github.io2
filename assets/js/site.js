@@ -321,8 +321,9 @@
   });
 })();
 
-// Headline text scramble: the emphasized line decodes from random
-// characters into the real words, staggered left to right, once on load.
+// Headline word reveal: the emphasized line splits into words that rise
+// from a soft blur into sharp focus, staggered left to right. Reads as a
+// confident, polished entrance rather than a decoding/glitch effect.
 (() => {
   "use strict";
 
@@ -330,48 +331,25 @@
   const reduced = matchMedia("(prefers-reduced-motion: reduce)").matches;
   if (!target || reduced) return;
 
-  const finalText = target.textContent;
-  const glyphs = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
-  const perCharTicks = 7;
-  const tickMs = 32;
-  const staggerMs = 22;
+  const words = target.textContent.trim().split(/\s+/);
+  target.textContent = "";
+  target.setAttribute("aria-label", words.join(" "));
 
-  let frame = 0;
-  let timer = null;
-
-  const render = () => {
-    frame += 1;
-
-    let output = "";
-    for (let i = 0; i < finalText.length; i += 1) {
-      const char = finalText[i];
-      if (char === " ") {
-        output += " ";
-        continue;
-      }
-
-      const revealFrame = perCharTicks + Math.floor(i * (staggerMs / tickMs));
-
-      if (frame >= revealFrame) {
-        output += char;
-      } else {
-        output += glyphs[Math.floor(Math.random() * glyphs.length)];
-      }
-    }
-
-    target.textContent = output;
-
-    const totalFrames = perCharTicks + Math.ceil((finalText.length * staggerMs) / tickMs);
-    if (frame < totalFrames) {
-      timer = setTimeout(render, tickMs);
-    } else {
-      target.textContent = finalText;
-    }
-  };
+  words.forEach((word, index) => {
+    const span = document.createElement("span");
+    span.className = "word-reveal";
+    span.style.transitionDelay = `${index * 80}ms`;
+    span.textContent = word;
+    target.appendChild(span);
+    target.appendChild(document.createTextNode(index < words.length - 1 ? " " : ""));
+  });
 
   const start = () => {
-    if (timer) return;
-    render();
+    requestAnimationFrame(() => {
+      target.querySelectorAll(".word-reveal").forEach((span) => {
+        span.classList.add("is-visible");
+      });
+    });
   };
 
   if ("IntersectionObserver" in window) {
@@ -384,4 +362,36 @@
   } else {
     start();
   }
+})();
+
+// Scroll-linked parallax depth: the two ambient glow layers drift at
+// different fractions of scroll speed, so the page reads as several
+// planes moving at different rates instead of one flat sheet. Uses the
+// standalone `translate` CSS property so it composes with (rather than
+// overwrites) each layer's existing drift/breathe keyframe animation.
+(() => {
+  "use strict";
+
+  const reduced = matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const layers = [
+    { el: document.querySelector(".ambient-a"), factor: 0.10 },
+    { el: document.querySelector(".ambient-b"), factor: -0.06 }
+  ].filter((layer) => layer.el);
+
+  if (!layers.length || reduced) return;
+
+  let ticking = false;
+
+  const apply = () => {
+    ticking = false;
+    layers.forEach(({ el, factor }) => {
+      el.style.translate = `0 ${(scrollY * factor).toFixed(1)}px`;
+    });
+  };
+
+  addEventListener("scroll", () => {
+    if (ticking) return;
+    ticking = true;
+    requestAnimationFrame(apply);
+  }, { passive: true });
 })();
