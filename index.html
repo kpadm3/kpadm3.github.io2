@@ -9,6 +9,15 @@
   <link rel="stylesheet" href="assets/css/site.css">
 <style>
 .hero-copy h1{font-size:clamp(1.85rem,2.65vw,3.3rem)!important;line-height:1.08!important}
+.hero-delivery{display:flex;flex-direction:column;justify-content:center;gap:1.4rem;padding:2rem 0 2rem 2.8rem;border-left:1px solid rgba(53,212,241,.14)}
+.delivery-kicker{font-size:.72rem;font-weight:900;letter-spacing:.1em;text-transform:uppercase;color:#35d4f1;margin:0}
+.delivery-statement{font-size:clamp(1rem,1.5vw,1.35rem);font-weight:700;color:#edf5fb;line-height:1.4;margin:0}
+.lifecycle-stack{display:flex;flex-direction:column;gap:9px}
+.lifecycle-item{display:flex;align-items:center;gap:10px}
+.lc-pill{padding:5px 16px;border-radius:20px;font-size:.82rem;font-weight:700;border-width:1px;border-style:solid;white-space:nowrap;flex-shrink:0;min-width:148px;background:transparent}
+.lc-line{flex:1;height:1px;opacity:.22}
+.lc-end{width:14px;height:14px;border-radius:50%;flex-shrink:0;border-width:1px;border-style:solid}
+@media(max-width:900px){.hero-delivery{border-left:none;border-top:1px solid rgba(53,212,241,.14);padding:2rem 0 0}}
 </style>
 </head>
 <body>
@@ -84,9 +93,46 @@
         </div>
       </div>
 
-      <div class="hero-stage" data-parallax aria-label="Enterprise delivery lifecycle diagram" style="display:none">
-        <div class="hero-spotlight" aria-hidden="true"></div>
-        <svg class="hero-diagram-svg" viewBox="0 0 545 336" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <div class="hero-stage" aria-label="Enterprise delivery lifecycle">
+        <div class="hero-delivery">
+          <p class="delivery-kicker">Enterprise Delivery</p>
+          <p class="delivery-statement">Delivering enterprise initiatives from business discovery through production support.</p>
+          <div class="lifecycle-stack">
+            <div class="lifecycle-item">
+              <span class="lc-pill" style="border-color:#35d4f1;color:#35d4f1">Requirements</span>
+              <div class="lc-line" style="background:linear-gradient(to right,#35d4f1,#4da3ff)"></div>
+            </div>
+            <div class="lifecycle-item">
+              <span class="lc-pill" style="border-color:#4da3ff;color:#4da3ff">Analysis</span>
+              <div class="lc-line" style="background:linear-gradient(to right,#4da3ff,#7c8cff)"></div>
+            </div>
+            <div class="lifecycle-item">
+              <span class="lc-pill" style="border-color:#7c8cff;color:#7c8cff">Solution Design</span>
+              <div class="lc-line" style="background:linear-gradient(to right,#7c8cff,#9b7cff)"></div>
+            </div>
+            <div class="lifecycle-item">
+              <span class="lc-pill" style="border-color:#9b7cff;color:#9b7cff">Integrations</span>
+              <div class="lc-line" style="background:linear-gradient(to right,#9b7cff,#c06bd0)"></div>
+            </div>
+            <div class="lifecycle-item">
+              <span class="lc-pill" style="border-color:#c06bd0;color:#c06bd0">Data Migration</span>
+              <div class="lc-line" style="background:linear-gradient(to right,#c06bd0,#e05a8a)"></div>
+            </div>
+            <div class="lifecycle-item">
+              <span class="lc-pill" style="border-color:#e05a8a;color:#e05a8a">Validation</span>
+              <div class="lc-line" style="background:linear-gradient(to right,#e05a8a,#ef6d5a)"></div>
+            </div>
+            <div class="lifecycle-item">
+              <span class="lc-pill" style="border-color:#ef6d5a;color:#ef6d5a">Release</span>
+              <div class="lc-line" style="background:linear-gradient(to right,#ef6d5a,#ff8a5b)"></div>
+            </div>
+            <div class="lifecycle-item">
+              <span class="lc-pill" style="border-color:#ff8a5b;color:#ff8a5b">Hypercare</span>
+              <div class="lc-end" style="border-color:#ff8a5b;background:rgba(255,138,91,.18)"></div>
+            </div>
+          </div>
+        </div>
+        <div style="display:none" aria-hidden="true"><svg viewBox="0 0 545 336" fill="none" xmlns="http://www.w3.org/2000/svg">
           <defs>
             <style>
               @keyframes flow{to{stroke-dashoffset:-22}}
@@ -284,22 +330,6 @@
           <text x="272" y="318" font-size="7" fill="#35d4f1" opacity="0.28" font-family="system-ui,sans-serif" text-anchor="middle" letter-spacing="2.2">END-TO-END ENTERPRISE DELIVERY LIFECYCLE</text>
         </svg>
       </div>
-    </section>
-
-    <section class="container delivery-statement reveal" aria-label="Enterprise delivery">
-      <div class="delivery-statement-copy">
-        <div class="eyebrow">Enterprise Delivery</div>
-        <h2>Delivering enterprise initiatives from business discovery through production support.</h2>
-      </div>
-      <div class="delivery-lifecycle" aria-label="Delivery lifecycle">
-        <span>Requirements</span>
-        <span>Analysis</span>
-        <span>Solution Design</span>
-        <span>Integrations</span>
-        <span>Data Migration</span>
-        <span>Validation</span>
-        <span>Release</span>
-        <span>Hypercare</span>
       </div>
     </section>
 
