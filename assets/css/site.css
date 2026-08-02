@@ -267,3 +267,411 @@ button{font:inherit}
   *{animation:none!important;transition:none!important}
   .reveal{opacity:1;transform:none}
 }
+
+/* =========================================================
+   V1.1 INTERACTION LAYER
+   Locked layout preserved. Effects only.
+========================================================= */
+
+:root {
+  --spotlight-size: 360px;
+  --spotlight-opacity: 0.16;
+  --smoke-opacity: 0.18;
+}
+
+body::before,
+body::after {
+  content: "";
+  position: fixed;
+  z-index: -2;
+  width: 42vw;
+  height: 42vw;
+  min-width: 360px;
+  min-height: 360px;
+  border-radius: 50%;
+  filter: blur(95px);
+  opacity: var(--smoke-opacity);
+  pointer-events: none;
+  will-change: transform;
+}
+
+body::before {
+  top: 4vh;
+  right: -10vw;
+  background: radial-gradient(circle, rgba(53, 212, 241, 0.75), transparent 68%);
+  animation: ambient-drift-a 18s ease-in-out infinite alternate;
+}
+
+body::after {
+  bottom: -18vh;
+  left: -12vw;
+  background: radial-gradient(circle, rgba(140, 112, 255, 0.65), transparent 68%);
+  animation: ambient-drift-b 22s ease-in-out infinite alternate;
+}
+
+@keyframes ambient-drift-a {
+  from { transform: translate3d(0, 0, 0) scale(1); }
+  to { transform: translate3d(-5vw, 7vh, 0) scale(1.12); }
+}
+
+@keyframes ambient-drift-b {
+  from { transform: translate3d(0, 0, 0) scale(1.05); }
+  to { transform: translate3d(7vw, -5vh, 0) scale(0.94); }
+}
+
+.hero,
+.section,
+.page-shell,
+.project-hero {
+  position: relative;
+  isolation: isolate;
+}
+
+.hero::before,
+.project-hero::before {
+  content: "";
+  position: absolute;
+  inset: 4% 0 auto 35%;
+  height: 70%;
+  z-index: -1;
+  background:
+    radial-gradient(circle at 40% 50%, rgba(53, 212, 241, 0.11), transparent 40%),
+    radial-gradient(circle at 70% 35%, rgba(140, 112, 255, 0.10), transparent 42%);
+  filter: blur(36px);
+  pointer-events: none;
+}
+
+.technology-tile,
+.solution-card,
+.capability-grid article,
+.metrics article,
+.info-panel,
+.diagram-panel,
+.career-entry,
+.contact-grid article,
+.approach-flow article,
+.capability-map article,
+.executive-summary article {
+  --mouse-x: 50%;
+  --mouse-y: 50%;
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+}
+
+.technology-tile::before,
+.solution-card::before,
+.capability-grid article::before,
+.metrics article::before,
+.info-panel::before,
+.diagram-panel::before,
+.career-entry::before,
+.contact-grid article::before,
+.approach-flow article::before,
+.capability-map article::before,
+.executive-summary article::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background:
+    radial-gradient(
+      var(--spotlight-size) circle at var(--mouse-x) var(--mouse-y),
+      rgba(53, 212, 241, var(--spotlight-opacity)),
+      transparent 65%
+    );
+  opacity: 0;
+  transition: opacity 0.24s ease;
+}
+
+.technology-tile:hover::before,
+.solution-card:hover::before,
+.capability-grid article:hover::before,
+.metrics article:hover::before,
+.info-panel:hover::before,
+.diagram-panel:hover::before,
+.career-entry:hover::before,
+.contact-grid article:hover::before,
+.approach-flow article:hover::before,
+.capability-map article:hover::before,
+.executive-summary article:hover::before,
+.technology-tile.is-active::before,
+.solution-card.is-active::before,
+.capability-grid article.is-active::before,
+.metrics article.is-active::before,
+.info-panel.is-active::before,
+.diagram-panel.is-active::before,
+.career-entry.is-active::before,
+.contact-grid article.is-active::before,
+.approach-flow article.is-active::before,
+.capability-map article.is-active::before,
+.executive-summary article.is-active::before {
+  opacity: 1;
+}
+
+.technology-tile,
+.solution-card,
+.capability-grid article,
+.metrics article,
+.info-panel,
+.diagram-panel,
+.career-entry,
+.contact-grid article,
+.approach-flow article,
+.capability-map article,
+.executive-summary article {
+  transition:
+    transform 0.26s cubic-bezier(.22, 1, .36, 1),
+    border-color 0.22s ease,
+    box-shadow 0.22s ease,
+    background 0.22s ease;
+}
+
+.technology-tile:hover,
+.solution-card:hover,
+.capability-grid article:hover,
+.metrics article:hover,
+.info-panel:hover,
+.diagram-panel:hover,
+.career-entry:hover,
+.contact-grid article:hover,
+.approach-flow article:hover,
+.capability-map article:hover,
+.executive-summary article:hover,
+.technology-tile.is-active,
+.solution-card.is-active,
+.capability-grid article.is-active,
+.metrics article.is-active,
+.info-panel.is-active,
+.diagram-panel.is-active,
+.career-entry.is-active,
+.contact-grid article.is-active,
+.approach-flow article.is-active,
+.capability-map article.is-active,
+.executive-summary article.is-active {
+  transform: translateY(-6px);
+  border-color: color-mix(in srgb, var(--project, var(--accent)) 68%, var(--line));
+  box-shadow:
+    0 26px 58px rgba(0, 0, 0, 0.34),
+    0 0 0 1px color-mix(in srgb, var(--project, var(--accent)) 16%, transparent),
+    0 0 28px color-mix(in srgb, var(--project, var(--accent)) 9%, transparent);
+}
+
+.technology-logo {
+  transition:
+    transform 0.26s cubic-bezier(.22, 1, .36, 1),
+    filter 0.26s ease;
+}
+
+.technology-tile:hover .technology-logo,
+.technology-tile.is-active .technology-logo {
+  transform: translateY(-4px) scale(1.06);
+  filter: drop-shadow(0 12px 22px rgba(0, 0, 0, 0.36));
+}
+
+.solution-card .mini-node {
+  position: relative;
+  overflow: hidden;
+}
+
+.solution-card .mini-node::after {
+  content: "";
+  position: absolute;
+  inset: auto 10% 0 10%;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--project), transparent);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.30s ease;
+}
+
+.solution-card:hover .mini-node::after,
+.solution-card.is-active .mini-node::after {
+  transform: scaleX(1);
+}
+
+.solution-card:hover .mini-node:nth-child(1),
+.solution-card.is-active .mini-node:nth-child(1) {
+  transform: translateY(-2px);
+}
+
+.solution-card:hover .mini-node:nth-child(2),
+.solution-card.is-active .mini-node:nth-child(2) {
+  transform: translateY(-4px);
+}
+
+.solution-card:hover .mini-node:nth-child(3),
+.solution-card.is-active .mini-node:nth-child(3) {
+  transform: translateY(-6px);
+}
+
+.solution-card:hover .mini-node:nth-child(4),
+.solution-card.is-active .mini-node:nth-child(4) {
+  transform: translateY(-8px);
+}
+
+.mini-node {
+  transition:
+    transform 0.24s ease,
+    border-color 0.24s ease,
+    background 0.24s ease;
+}
+
+.architecture-node {
+  position: relative;
+  overflow: hidden;
+  transition:
+    transform 0.22s ease,
+    border-color 0.22s ease,
+    box-shadow 0.22s ease,
+    opacity 0.22s ease;
+}
+
+.architecture-node::after {
+  content: "";
+  position: absolute;
+  left: 12%;
+  right: 12%;
+  bottom: 8px;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--accent), transparent);
+  transform: scaleX(0);
+  transition: transform 0.28s ease;
+}
+
+.architecture-node:hover,
+.architecture-node.is-active {
+  transform: translateY(-5px);
+  border-color: var(--accent);
+  box-shadow: 0 18px 38px rgba(0, 0, 0, 0.28);
+}
+
+.architecture-node:hover::after,
+.architecture-node.is-active::after {
+  transform: scaleX(1);
+}
+
+.architecture-line:has(.architecture-node.is-active)
+  .architecture-node:not(.is-active) {
+  opacity: 0.34;
+}
+
+.button {
+  position: relative;
+  overflow: hidden;
+  will-change: transform;
+}
+
+.button::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    110deg,
+    transparent 20%,
+    rgba(255, 255, 255, 0.34) 45%,
+    transparent 70%
+  );
+  transform: translateX(-120%);
+  transition: transform 0.55s ease;
+}
+
+.button:hover::after {
+  transform: translateX(120%);
+}
+
+.hero-visual::after,
+.project-visual::after {
+  content: "";
+  position: absolute;
+  width: 260px;
+  height: 90px;
+  bottom: 6%;
+  border-radius: 50%;
+  background: rgba(53, 212, 241, 0.12);
+  filter: blur(28px);
+  transform: rotate(-8deg);
+  animation: pulse-shadow 5s ease-in-out infinite;
+}
+
+@keyframes pulse-shadow {
+  0%, 100% { opacity: 0.45; transform: scale(0.94) rotate(-8deg); }
+  50% { opacity: 0.85; transform: scale(1.08) rotate(-8deg); }
+}
+
+.scroll-cue {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 18px;
+  color: var(--muted);
+  font-size: 0.72rem;
+}
+
+.scroll-cue::before {
+  content: "";
+  width: 18px;
+  height: 30px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background:
+    radial-gradient(circle at 50% 28%, var(--accent) 0 2px, transparent 3px);
+  animation: scroll-dot 1.7s ease-in-out infinite;
+}
+
+@keyframes scroll-dot {
+  0% { background-position: 50% 22%; }
+  50% { background-position: 50% 62%; }
+  100% { background-position: 50% 22%; }
+}
+
+@media (pointer: coarse) {
+  .technology-tile:hover,
+  .solution-card:hover,
+  .capability-grid article:hover,
+  .metrics article:hover,
+  .info-panel:hover,
+  .diagram-panel:hover,
+  .career-entry:hover,
+  .contact-grid article:hover,
+  .approach-flow article:hover,
+  .capability-map article:hover,
+  .executive-summary article:hover {
+    transform: none;
+  }
+
+  .technology-tile.is-active,
+  .solution-card.is-active,
+  .capability-grid article.is-active,
+  .metrics article.is-active,
+  .info-panel.is-active,
+  .diagram-panel.is-active,
+  .career-entry.is-active,
+  .contact-grid article.is-active,
+  .approach-flow article.is-active,
+  .capability-map article.is-active,
+  .executive-summary article.is-active {
+    transform: translateY(-3px);
+  }
+
+  body::before,
+  body::after {
+    opacity: 0.10;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  body::before,
+  body::after,
+  .hero-visual::after,
+  .project-visual::after,
+  .scroll-cue::before {
+    animation: none !important;
+  }
+
+  .button::after {
+    display: none;
+  }
+}
+
