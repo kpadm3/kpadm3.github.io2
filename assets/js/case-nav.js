@@ -97,12 +97,9 @@
     if (e.key === 'Escape') window.location.href = '../index.html';
   });
 
-  // First-visit hint: ripple then pill expand
-  if (!sessionStorage.getItem('cpn-hint-v2')) {
-    sessionStorage.setItem('cpn-hint-v2', '1');
-
-    const reduced = matchMedia('(prefers-reduced-motion:reduce)').matches;
-    if (!reduced) {
+  // Hint: ripple then pill expand — plays on every page load
+  const reduced = matchMedia('(prefers-reduced-motion:reduce)').matches;
+  if (!reduced) {
       setTimeout(() => {
         // Phase 1: ripple pulse on both circles
         prevBtn.classList.add('cpn-pulsing');
@@ -156,6 +153,5 @@
         }, 900);
 
       }, 600);
-    }
   }
 })();
