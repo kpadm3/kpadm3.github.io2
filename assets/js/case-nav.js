@@ -26,30 +26,30 @@
   const prevLabel = labels[(idx - 1 + pages.length) % pages.length];
   const nextLabel = labels[(idx + 1) % pages.length];
 
-  const nav = document.createElement('div');
-  nav.className = 'case-prog-nav';
-  nav.innerHTML =
-    '<a href="' + prev + '" class="cpn-side cpn-prev" aria-label="Previous: ' + prevLabel + '">' +
-      '<span class="cpn-arr"><i class="ti ti-chevron-left" aria-hidden="true"></i></span>' +
-      '<span class="cpn-meta">' +
-        '<span class="cpn-dir">Previous</span>' +
-        '<span class="cpn-name">' + prevLabel + '</span>' +
-      '</span>' +
-    '</a>' +
-    '<div class="cpn-gap">' +
-      '<a href="../index.html" class="cpn-close" aria-label="Back to home">' +
-        '<i class="ti ti-x" aria-hidden="true"></i>' +
-      '</a>' +
-    '</div>' +
-    '<a href="' + next + '" class="cpn-side cpn-next" aria-label="Next: ' + nextLabel + '">' +
-      '<span class="cpn-meta">' +
-        '<span class="cpn-dir">Next</span>' +
-        '<span class="cpn-name">' + nextLabel + '</span>' +
-      '</span>' +
-      '<span class="cpn-arr"><i class="ti ti-chevron-right" aria-hidden="true"></i></span>' +
-    '</a>';
+  const prevBtn = document.createElement('a');
+  prevBtn.href = prev;
+  prevBtn.className = 'cpn-prev-btn';
+  prevBtn.setAttribute('aria-label', 'Previous: ' + prevLabel);
+  prevBtn.setAttribute('title', prevLabel);
+  prevBtn.innerHTML = '<i class="ti ti-chevron-left" aria-hidden="true"></i>';
 
-  document.body.appendChild(nav);
+  const nextBtn = document.createElement('a');
+  nextBtn.href = next;
+  nextBtn.className = 'cpn-next-btn';
+  nextBtn.setAttribute('aria-label', 'Next: ' + nextLabel);
+  nextBtn.setAttribute('title', nextLabel);
+  nextBtn.innerHTML = '<i class="ti ti-chevron-right" aria-hidden="true"></i>';
+
+  const closeBtn = document.createElement('a');
+  closeBtn.href = '../index.html';
+  closeBtn.className = 'cpn-close-btn';
+  closeBtn.setAttribute('aria-label', 'Back to home');
+  closeBtn.setAttribute('title', 'Back to home');
+  closeBtn.innerHTML = '<i class="ti ti-x" aria-hidden="true"></i>';
+
+  document.body.appendChild(prevBtn);
+  document.body.appendChild(nextBtn);
+  document.body.appendChild(closeBtn);
 
   document.addEventListener('keydown', e => {
     if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA') return;
