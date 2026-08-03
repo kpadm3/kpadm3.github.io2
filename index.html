@@ -82,35 +82,6 @@
 .nav-social{display:flex;align-items:center;gap:7px}
 .nav-soc-btn{width:28px;height:28px;border:1px solid #1e3248;border-radius:6px;display:flex;align-items:center;justify-content:center;color:#5a7a94;font-size:15px;text-decoration:none;transition:border-color .18s,color .18s}
 .nav-soc-btn:hover{border-color:#35d4f166;color:#35d4f1}
-.cm-overlay{position:fixed;inset:0;background:rgba(3,9,20,.88);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);z-index:9000;display:flex;align-items:center;justify-content:center;gap:16px;padding:24px 16px;opacity:0;visibility:hidden;transition:opacity .22s ease,visibility .22s;pointer-events:none}
-.cm-overlay.open{opacity:1;visibility:visible;pointer-events:all}
-.cm-panel{width:100%;max-width:700px;background:#060f1c;border:1px solid var(--mc,#35d4f1);border-radius:16px;overflow:hidden;transform:translateY(18px) scale(.97);transition:transform .28s cubic-bezier(.22,1,.36,1)}
-.cm-overlay.open .cm-panel{transform:translateY(0) scale(1)}
-.cm-header{display:flex;align-items:flex-start;justify-content:space-between;padding:14px 18px;border-bottom:1px solid rgba(255,255,255,.07)}
-.cm-counter{font-size:.6rem;font-weight:900;letter-spacing:.1em;text-transform:uppercase;color:var(--mc,#35d4f1)}
-.cm-dots{display:flex;gap:4px;margin-top:7px}
-.cm-dot{width:22px;height:2.5px;border-radius:2px;background:rgba(255,255,255,.12);cursor:pointer;transition:background .2s}
-.cm-dot.on{background:var(--mc,#35d4f1)}
-.cm-header-right{display:flex;align-items:center;gap:10px}
-.cm-hint{font-size:.58rem;color:rgba(255,255,255,.2);letter-spacing:.04em}
-.cm-close{width:30px;height:30px;border-radius:50%;border:1px solid rgba(255,255,255,.12);background:transparent;color:rgba(255,255,255,.4);font-size:15px;display:flex;align-items:center;justify-content:center;cursor:pointer;transition:border-color .18s,color .18s}
-.cm-close:hover{border-color:rgba(255,255,255,.35);color:#fff}
-.cm-body{padding:22px 24px 24px;transition:opacity .12s ease,transform .12s ease}
-.cm-meta{display:flex;align-items:center;gap:8px;margin-bottom:10px}
-.cm-num{font-size:.58rem;font-weight:900;opacity:.55;letter-spacing:.06em;color:var(--mc,#35d4f1)}
-.cm-cat{font-size:.58rem;font-weight:900;text-transform:uppercase;letter-spacing:.09em;color:var(--mc,#35d4f1);padding-left:8px;border-left:1px solid rgba(255,255,255,.14)}
-.cm-title{font-size:clamp(1.1rem,2vw,1.5rem);font-weight:800;letter-spacing:-.025em;color:#fff;margin:0 0 18px;line-height:1.2}
-.cm-flow{display:grid;grid-template-columns:repeat(4,1fr);gap:7px;margin-bottom:18px}
-.cm-step{min-height:66px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;padding:8px 6px;border:1px solid rgba(255,255,255,.06);border-radius:8px;background:rgba(8,19,33,.8);text-align:center;transition:border-color .22s,background .22s}
-.cm-step.lit{border-color:color-mix(in srgb,var(--mc,#35d4f1) 55%,transparent);background:color-mix(in srgb,var(--mc,#35d4f1) 8%,#081321)}
-.cm-step small{font-size:.58rem;font-weight:850;color:var(--mc,#35d4f1)}
-.cm-step strong{font-size:.68rem;color:rgba(255,255,255,.78);line-height:1.2}
-.cm-outcome{padding:13px 15px;border-left:2px solid var(--mc,#35d4f1);background:rgba(8,19,33,.72)}
-.cm-out-label{display:block;font-size:.6rem;font-weight:850;text-transform:uppercase;letter-spacing:.09em;color:var(--mc,#35d4f1);margin-bottom:5px}
-.cm-out-text{margin:0;font-size:.82rem;color:rgba(255,255,255,.8);line-height:1.5}
-.cm-nav{width:40px;height:40px;border-radius:50%;border:1px solid rgba(255,255,255,.14);background:rgba(6,15,28,.9);color:rgba(255,255,255,.45);font-size:18px;display:flex;align-items:center;justify-content:center;cursor:pointer;transition:border-color .18s,color .18s;flex-shrink:0}
-.cm-nav:hover{border-color:var(--mc,#35d4f1);color:var(--mc,#35d4f1)}
-@media(max-width:760px){.cm-nav{display:none}.cm-hint{display:none}}
 </style>
 </head>
 <body>
@@ -252,23 +223,6 @@
     </section>
   </main>
 
-  <div class="cm-overlay" id="cm-overlay" role="dialog" aria-modal="true">
-    <button class="cm-nav" id="cm-prev" aria-label="Previous program"><i class="ti ti-chevron-left" aria-hidden="true"></i></button>
-    <div class="cm-panel">
-      <div class="cm-header">
-        <div>
-          <div class="cm-counter" id="cm-counter">01 / 06</div>
-          <div class="cm-dots" id="cm-dots"></div>
-        </div>
-        <div class="cm-header-right">
-          <span class="cm-hint">&#8592; &#8594; &nbsp;&middot;&nbsp; Esc to close</span>
-          <button class="cm-close" id="cm-close" aria-label="Close"><i class="ti ti-x" aria-hidden="true"></i></button>
-        </div>
-      </div>
-      <div class="cm-body" id="cm-body"></div>
-    </div>
-    <button class="cm-nav" id="cm-next" aria-label="Next program"><i class="ti ti-chevron-right" aria-hidden="true"></i></button>
-  </div>
   <script src="assets/js/site.js"></script>
   <script>
   (function(){
@@ -361,7 +315,7 @@
 <script>
 (function(){
   function initCards(){
-    document.querySelectorAll('.solution-card-v3').forEach(function(card,i){
+    document.querySelectorAll('.solution-card-v3').forEach(function(card){
       var scan=document.createElement('div');
       scan.className='card-scan';
       card.insertBefore(scan,card.firstChild);
@@ -369,6 +323,7 @@
       cta.className='card-cta';
       cta.innerHTML='<span>Read the program</span><i class="ti ti-arrow-right" aria-hidden="true"></i>';
       card.appendChild(cta);
+      var link=card.querySelector('a');
       var busy=false;
       card.addEventListener('mouseenter',function(){
         if(busy)return;busy=true;
@@ -387,91 +342,12 @@
         scan.style.top='-4px';
       });
       card.addEventListener('click',function(e){
-        if(!e.target.closest('a'))openCardModal(i);
+        if(!e.target.closest('a')&&link)window.location.href=link.href;
       });
     });
   }
   if(document.readyState==='loading'){document.addEventListener('DOMContentLoaded',initCards);}
   else{initCards();}
-})();
-</script>
-<script>
-window.openCardModal=(function(){
-  var data=[];
-  var cur=0;
-  var ov,body,counter,dots,prev,next;
-  function init(){
-    document.querySelectorAll('.solution-card-v3').forEach(function(card){
-      var meta=card.querySelectorAll('.solution-meta-v3 span');
-      var flow=Array.from(card.querySelectorAll('.solution-flow-v3>div')).map(function(d){
-        return{n:d.querySelector('small')?d.querySelector('small').textContent:'',l:d.querySelector('strong')?d.querySelector('strong').textContent:''};
-      });
-      data.push({
-        color:card.style.getPropertyValue('--project'),
-        num:meta[0]?meta[0].textContent:'',
-        cat:meta[1]?meta[1].textContent:'',
-        title:card.querySelector('h3')?card.querySelector('h3').textContent:'',
-        flow:flow,
-        outLabel:card.querySelector('.solution-outcome-v3 span')?card.querySelector('.solution-outcome-v3 span').textContent:'Business outcome',
-        out:card.querySelector('.solution-outcome-v3 strong')?card.querySelector('.solution-outcome-v3 strong').textContent:''
-      });
-    });
-    ov=document.getElementById('cm-overlay');
-    body=document.getElementById('cm-body');
-    counter=document.getElementById('cm-counter');
-    dots=document.getElementById('cm-dots');
-    prev=document.getElementById('cm-prev');
-    next=document.getElementById('cm-next');
-    document.getElementById('cm-close').addEventListener('click',closeModal);
-    prev.addEventListener('click',function(){goTo((cur-1+data.length)%data.length);});
-    next.addEventListener('click',function(){goTo((cur+1)%data.length);});
-    ov.addEventListener('click',function(e){if(e.target===ov)closeModal();});
-    document.addEventListener('keydown',function(e){
-      if(!ov.classList.contains('open'))return;
-      if(e.key==='Escape')closeModal();
-      if(e.key==='ArrowLeft')goTo((cur-1+data.length)%data.length);
-      if(e.key==='ArrowRight')goTo((cur+1)%data.length);
-    });
-  }
-  function render(){
-    var d=data[cur];
-    ov.style.setProperty('--mc',d.color);
-    counter.textContent='0'+(cur+1)+' / 0'+data.length;
-    dots.innerHTML='';
-    data.forEach(function(_,i){
-      var dot=document.createElement('span');
-      dot.className='cm-dot'+(i===cur?' on':'');
-      dot.addEventListener('click',function(){goTo(i);});
-      dots.appendChild(dot);
-    });
-    body.innerHTML=
-      '<div class="cm-meta"><span class="cm-num">'+d.num+'</span><span class="cm-cat">'+d.cat+'</span></div>'+
-      '<h2 class="cm-title">'+d.title+'</h2>'+
-      '<div class="cm-flow">'+
-      d.flow.map(function(s){return'<div class="cm-step"><small>'+s.n+'</small><strong>'+s.l+'</strong></div>';}).join('')+
-      '</div>'+
-      '<div class="cm-outcome"><span class="cm-out-label">'+d.outLabel+'</span><p class="cm-out-text">'+d.out+'</p></div>';
-    body.querySelectorAll('.cm-step').forEach(function(s,i){setTimeout(function(){s.classList.add('lit');},i*100+80);});
-  }
-  function goTo(idx){
-    cur=idx;
-    body.style.opacity='0';
-    body.style.transform='translateY(8px)';
-    setTimeout(function(){render();body.style.opacity='1';body.style.transform='translateY(0)';},110);
-  }
-  function closeModal(){
-    ov.classList.remove('open');
-    document.body.style.overflow='';
-  }
-  function open(idx){
-    cur=idx;
-    render();
-    ov.classList.add('open');
-    document.body.style.overflow='hidden';
-  }
-  if(document.readyState==='loading'){document.addEventListener('DOMContentLoaded',init);}
-  else{init();}
-  return open;
 })();
 </script>
 </body>
