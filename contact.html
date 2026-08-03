@@ -7,6 +7,7 @@
 <meta name="description" content="Connect with Krishna Padmanabhan. Open to enterprise product delivery, business analysis, and transformation initiatives. Edmonton, Alberta, Canada.">
 <meta name="theme-color" content="#050b14">
 <link rel="stylesheet" href="assets/css/site.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@3/dist/tabler-icons.min.css">
 <style>
 :root{
   --case-cyan:#4da3ff;
@@ -146,6 +147,12 @@ a.contact-item:hover{border-color:rgba(77,163,255,.56);transform:translateX(3px)
   .footer-inner{grid-template-columns:1fr}
 }
 @media(prefers-reduced-motion:reduce){.reveal-case{opacity:1;transform:none}}
+.nav-brand-kp{display:flex;align-items:center;gap:9px;text-decoration:none}
+.kp-mark{width:28px;height:28px;border-radius:6px;border:1.5px solid #35d4f1;background:#060f1c;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:800;color:#35d4f1;letter-spacing:.03em;flex-shrink:0;font-family:system-ui,-apple-system,sans-serif}
+.nav-social{display:flex;align-items:center;gap:7px}
+.nav-soc-btn{width:28px;height:28px;border:1px solid #1e3248;border-radius:6px;display:flex;align-items:center;justify-content:center;color:#5a7a94;font-size:15px;text-decoration:none;transition:border-color .18s,color .18s}
+.nav-soc-btn:hover{border-color:rgba(77,163,255,.4);color:#4da3ff}
+.contact-icon i{font-size:1.05rem}
 </style>
 </head>
 <body>
@@ -155,13 +162,21 @@ a.contact-item:hover{border-color:rgba(77,163,255,.56);transform:translateX(3px)
 
 <div class="case-wrap">
   <header class="case-header">
-    <a class="brand" href="index.html">Krishna</a>
+    <a class="brand nav-brand-kp" href="index.html">
+      <span class="kp-mark">KP</span>
+      <span>Krishna</span>
+    </a>
     <nav class="case-nav" aria-label="Primary navigation">
       <a href="index.html#foundation">Solutions</a>
       <a href="experience.html">Experience</a>
       <a href="framework.html">Framework</a>
       <a href="contact.html" aria-current="page">Contact</a>
     </nav>
+    <div class="nav-social">
+      <a href="https://www.linkedin.com/in/krishna-s-a046a9176/" class="nav-soc-btn" aria-label="LinkedIn" target="_blank" rel="noopener noreferrer"><i class="ti ti-brand-linkedin" aria-hidden="true"></i></a>
+      <a href="https://github.com/kpadm3" class="nav-soc-btn" aria-label="GitHub" target="_blank" rel="noopener noreferrer"><i class="ti ti-brand-github" aria-hidden="true"></i></a>
+      <a href="mailto:pskrishna204@gmail.com" class="nav-soc-btn" aria-label="Email"><i class="ti ti-mail" aria-hidden="true"></i></a>
+    </div>
   </header>
 
   <main>
@@ -176,7 +191,7 @@ a.contact-item:hover{border-color:rgba(77,163,255,.56);transform:translateX(3px)
         <h2 class="panel-heading">Contact Details</h2>
 
         <a class="contact-item" href="mailto:pskrishna204@gmail.com">
-          <div class="contact-icon">✉</div>
+          <div class="contact-icon"><i class="ti ti-mail" aria-hidden="true"></i></div>
           <div class="contact-item-body">
             <span class="contact-item-label">Email</span>
             <span class="contact-item-value">pskrishna204@gmail.com</span>
@@ -185,7 +200,7 @@ a.contact-item:hover{border-color:rgba(77,163,255,.56);transform:translateX(3px)
         </a>
 
         <div class="contact-item">
-          <div class="contact-icon">◎</div>
+          <div class="contact-icon"><i class="ti ti-map-pin" aria-hidden="true"></i></div>
           <div class="contact-item-body">
             <span class="contact-item-label">Location</span>
             <span class="contact-item-value">Edmonton, Alberta, Canada</span>
@@ -194,7 +209,7 @@ a.contact-item:hover{border-color:rgba(77,163,255,.56);transform:translateX(3px)
         </div>
 
         <a class="contact-item" href="https://www.linkedin.com/in/krishna-s-a046a9176/" target="_blank" rel="noopener">
-          <div class="contact-icon">▣</div>
+          <div class="contact-icon"><i class="ti ti-brand-linkedin" aria-hidden="true"></i></div>
           <div class="contact-item-body">
             <span class="contact-item-label">LinkedIn</span>
             <span class="contact-item-value">linkedin.com/in/krishna-s-a046a9176</span>
@@ -203,7 +218,7 @@ a.contact-item:hover{border-color:rgba(77,163,255,.56);transform:translateX(3px)
         </a>
 
         <a class="contact-item" href="https://kpadm3.github.io/kpadm3.github.io2/" target="_blank" rel="noopener">
-          <div class="contact-icon">◈</div>
+          <div class="contact-icon"><i class="ti ti-globe" aria-hidden="true"></i></div>
           <div class="contact-item-body">
             <span class="contact-item-label">Portfolio</span>
             <span class="contact-item-value">kpadm3.github.io</span>
@@ -250,7 +265,7 @@ a.contact-item:hover{border-color:rgba(77,163,255,.56);transform:translateX(3px)
       <div class="footer-inner">
         <div class="footer-brand">
           <strong>Krishna Padmanabhan</strong>
-          <span>Senior Business Analyst<br>Technical Product Manager</span>
+          <span>Enterprise Delivery Lead<br>Business Analysis and Product Management</span>
         </div>
         <div class="footer-col">
           <h4>Navigation</h4>

@@ -7,6 +7,7 @@
 <meta name="description" content="A structured, outcome-focused delivery framework applied across enterprise business analysis, product, and systems delivery: Understand, Analyze & Design, Validate, Deliver.">
 <meta name="theme-color" content="#050b14">
 <link rel="stylesheet" href="assets/css/site.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@3/dist/tabler-icons.min.css">
 <style>
 :root{
   --case-cyan:#9b7cff;
@@ -149,6 +150,14 @@ body{
   .section-intro{flex-direction:column}
 }
 @media(prefers-reduced-motion:reduce){.reveal-case{opacity:1;transform:none}.framework-step{transition:none}}
+.nav-brand-kp{display:flex;align-items:center;gap:9px;text-decoration:none}
+.kp-mark{width:28px;height:28px;border-radius:6px;border:1.5px solid #35d4f1;background:#060f1c;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:800;color:#35d4f1;letter-spacing:.03em;flex-shrink:0;font-family:system-ui,-apple-system,sans-serif}
+.nav-social{display:flex;align-items:center;gap:7px}
+.nav-soc-btn{width:28px;height:28px;border:1px solid #1e3248;border-radius:6px;display:flex;align-items:center;justify-content:center;color:#5a7a94;font-size:15px;text-decoration:none;transition:border-color .18s,color .18s}
+.nav-soc-btn:hover{border-color:rgba(155,124,255,.4);color:#9b7cff}
+.step-icon i{font-size:2rem}
+.how-icon i{font-size:1.1rem}
+.practice-sym i{font-size:.9rem}
 </style>
 </head>
 <body>
@@ -158,13 +167,21 @@ body{
 
 <div class="case-wrap">
   <header class="case-header">
-    <a class="brand" href="index.html">Krishna</a>
+    <a class="brand nav-brand-kp" href="index.html">
+      <span class="kp-mark">KP</span>
+      <span>Krishna</span>
+    </a>
     <nav class="case-nav" aria-label="Primary navigation">
       <a href="index.html#foundation">Solutions</a>
       <a href="experience.html">Experience</a>
       <a href="framework.html" aria-current="page">Framework</a>
       <a href="contact.html">Contact</a>
     </nav>
+    <div class="nav-social">
+      <a href="https://www.linkedin.com/in/krishna-s-a046a9176/" class="nav-soc-btn" aria-label="LinkedIn" target="_blank" rel="noopener noreferrer"><i class="ti ti-brand-linkedin" aria-hidden="true"></i></a>
+      <a href="https://github.com/kpadm3" class="nav-soc-btn" aria-label="GitHub" target="_blank" rel="noopener noreferrer"><i class="ti ti-brand-github" aria-hidden="true"></i></a>
+      <a href="mailto:pskrishna204@gmail.com" class="nav-soc-btn" aria-label="Email"><i class="ti ti-mail" aria-hidden="true"></i></a>
+    </div>
   </header>
 
   <main>
@@ -182,25 +199,25 @@ body{
       <div class="framework-steps">
         <div class="framework-step">
           <div class="step-badge">1</div>
-          <div class="step-icon">◎</div>
+          <div class="step-icon"><i class="ti ti-eye" aria-hidden="true"></i></div>
           <div class="step-name">Understand</div>
           <p>Engage stakeholders, elicit business needs, analyze current state, surface constraints, and define the problem worth solving.</p>
         </div>
         <div class="framework-step">
           <div class="step-badge">2</div>
-          <div class="step-icon">⬡</div>
+          <div class="step-icon"><i class="ti ti-chart-dots-3" aria-hidden="true"></i></div>
           <div class="step-name">Analyze & Design</div>
           <p>Model processes, define business rules, structure data, and design functional solutions with traceable acceptance criteria.</p>
         </div>
         <div class="framework-step">
           <div class="step-badge">3</div>
-          <div class="step-icon">◈</div>
+          <div class="step-icon"><i class="ti ti-list-check" aria-hidden="true"></i></div>
           <div class="step-name">Validate</div>
           <p>Validate designs with stakeholders, refine assumptions, surface gaps, and confirm the solution fits the real business need.</p>
         </div>
         <div class="framework-step">
           <div class="step-badge">4</div>
-          <div class="step-icon">▲</div>
+          <div class="step-icon"><i class="ti ti-rocket" aria-hidden="true"></i></div>
           <div class="step-name">Deliver</div>
           <p>Support implementation, UAT coordination, release readiness, and post-production stabilization through hypercare.</p>
         </div>
@@ -214,22 +231,22 @@ body{
       </div>
       <div class="how-grid">
         <article class="how-card">
-          <div class="how-icon">⇄</div>
+          <div class="how-icon"><i class="ti ti-users" aria-hidden="true"></i></div>
           <h3>Stakeholder Collaboration</h3>
           <p>Work closely with business, product, and technology teams to surface real needs, resolve ambiguity, and align decisions at the right level.</p>
         </article>
         <article class="how-card">
-          <div class="how-icon">▤</div>
+          <div class="how-icon"><i class="ti ti-chart-bar" aria-hidden="true"></i></div>
           <h3>Structured Analysis</h3>
           <p>Use proven analysis techniques, including models, matrices, rule tables, and data flows, to turn complexity into structured, traceable logic.</p>
         </article>
         <article class="how-card">
-          <div class="how-icon">◎</div>
+          <div class="how-icon"><i class="ti ti-circle-check" aria-hidden="true"></i></div>
           <h3>Quality & Validation</h3>
           <p>Ensure quality through structured reviews, stakeholder walkthroughs, test coverage, and evidence-based acceptance and sign-off.</p>
         </article>
         <article class="how-card">
-          <div class="how-icon">◇</div>
+          <div class="how-icon"><i class="ti ti-target" aria-hidden="true"></i></div>
           <h3>Outcome Focused</h3>
           <p>Drive measurable business outcomes, traceable from the original need through to delivered result and sustained operational value.</p>
         </article>
@@ -242,14 +259,14 @@ body{
         <p>Core techniques and practices applied throughout the delivery lifecycle to produce traceable, quality outcomes.</p>
       </div>
       <div class="practice-grid">
-        <div class="practice-item"><div class="practice-sym">◇</div><span>Stakeholder Engagement</span></div>
-        <div class="practice-item"><div class="practice-sym">◇</div><span>Requirements Elicitation</span></div>
-        <div class="practice-item"><div class="practice-sym">◇</div><span>Process Modeling</span></div>
-        <div class="practice-item"><div class="practice-sym">◇</div><span>Data Analysis</span></div>
-        <div class="practice-item"><div class="practice-sym">◇</div><span>Business Rules Design</span></div>
-        <div class="practice-item"><div class="practice-sym">◇</div><span>Validation & Testing</span></div>
-        <div class="practice-item"><div class="practice-sym">◇</div><span>Implementation Support</span></div>
-        <div class="practice-item"><div class="practice-sym">◇</div><span>Measurement & Improvement</span></div>
+        <div class="practice-item"><div class="practice-sym"><i class="ti ti-arrow-right" aria-hidden="true"></i></div><span>Stakeholder Engagement</span></div>
+        <div class="practice-item"><div class="practice-sym"><i class="ti ti-arrow-right" aria-hidden="true"></i></div><span>Requirements Elicitation</span></div>
+        <div class="practice-item"><div class="practice-sym"><i class="ti ti-arrow-right" aria-hidden="true"></i></div><span>Process Modeling</span></div>
+        <div class="practice-item"><div class="practice-sym"><i class="ti ti-arrow-right" aria-hidden="true"></i></div><span>Data Analysis</span></div>
+        <div class="practice-item"><div class="practice-sym"><i class="ti ti-arrow-right" aria-hidden="true"></i></div><span>Business Rules Design</span></div>
+        <div class="practice-item"><div class="practice-sym"><i class="ti ti-arrow-right" aria-hidden="true"></i></div><span>Validation & Testing</span></div>
+        <div class="practice-item"><div class="practice-sym"><i class="ti ti-arrow-right" aria-hidden="true"></i></div><span>Implementation Support</span></div>
+        <div class="practice-item"><div class="practice-sym"><i class="ti ti-arrow-right" aria-hidden="true"></i></div><span>Measurement & Improvement</span></div>
       </div>
     </section>
 
