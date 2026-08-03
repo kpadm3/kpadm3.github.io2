@@ -108,31 +108,36 @@
         if (prevBtn) prevBtn.classList.remove('cpn-pulsing');
         if (nextBtn) nextBtn.classList.remove('cpn-pulsing');
 
+        const isLight = document.documentElement.getAttribute('data-theme') === 'light';
+        const hintColor = isLight ? '#0891b2' : '#35d4f1';
+        const hintBorder = isLight ? 'rgba(8,145,178,.5)' : 'rgba(53,212,241,.5)';
+
         if (prevBtn) {
           prevBtn.style.width = '152px';
           prevBtn.style.borderRadius = '26px';
-          prevBtn.style.borderColor = 'rgba(53,212,241,.5)';
-          prevBtn.style.color = '#35d4f1';
+          prevBtn.style.borderColor = hintBorder;
+          prevBtn.style.color = hintColor;
           prevBtn.style.justifyContent = 'flex-start';
           prevBtn.style.paddingLeft = '13px';
         }
         if (nextBtn) {
           nextBtn.style.width = '152px';
           nextBtn.style.borderRadius = '26px';
-          nextBtn.style.borderColor = 'rgba(53,212,241,.5)';
-          nextBtn.style.color = '#35d4f1';
+          nextBtn.style.borderColor = hintBorder;
+          nextBtn.style.color = hintColor;
           nextBtn.style.justifyContent = 'flex-end';
           nextBtn.style.paddingRight = '13px';
         }
 
         setTimeout(() => {
-          if (prevLbl) prevLbl.style.opacity = '1';
-          if (nextLbl) nextLbl.style.opacity = '1';
+          if (prevLbl) { prevLbl.style.maxWidth = '140px'; prevLbl.style.opacity = '1'; }
+          if (nextLbl) { nextLbl.style.maxWidth = '140px'; nextLbl.style.opacity = '1'; }
         }, 360);
 
         setTimeout(() => {
-          if (prevLbl) prevLbl.style.opacity = '0';
-          if (nextLbl) nextLbl.style.opacity = '0';
+          // Collapse labels first (they still take layout space even at opacity 0)
+          if (prevLbl) { prevLbl.style.opacity = '0'; prevLbl.style.maxWidth = '0'; }
+          if (nextLbl) { nextLbl.style.opacity = '0'; nextLbl.style.maxWidth = '0'; }
 
           if (prevBtn) {
             prevBtn.style.width = '52px';
