@@ -342,7 +342,7 @@
         scan.style.top='-4px';
       });
       card.addEventListener('click',function(e){
-        if(!e.target.closest('a')&&link)window.location.href=link.href;
+        if(!e.target.closest('a')&&link)link.click();
       });
     });
   }
