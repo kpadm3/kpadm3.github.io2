@@ -283,3 +283,59 @@
   });
 })();
 
+// Custom cursor with lagging ring
+(() => {
+  if (matchMedia('(pointer:coarse)').matches || matchMedia('(prefers-reduced-motion:reduce)').matches) return;
+  const dot = document.createElement('div');
+  dot.className = 'cr-dot';
+  const ring = document.createElement('div');
+  ring.className = 'cr-ring';
+  document.body.append(dot, ring);
+
+  let mx = -100, my = -100, rx = -100, ry = -100;
+
+  document.addEventListener('pointermove', e => {
+    mx = e.clientX; my = e.clientY;
+    dot.style.left = mx + 'px';
+    dot.style.top = my + 'px';
+    document.body.classList.add('cr-active');
+  });
+
+  document.addEventListener('pointerleave', () => document.body.classList.remove('cr-active'));
+
+  (function loop() {
+    rx += (mx - rx) * 0.11;
+    ry += (my - ry) * 0.11;
+    ring.style.left = rx + 'px';
+    ring.style.top = ry + 'px';
+    requestAnimationFrame(loop);
+  })();
+
+  document.addEventListener('pointerover', e => {
+    ring.classList.toggle('cr-hover', !!e.target.closest('a,button,.solution-card-v3,.effect-card,.interactive'));
+  });
+})();
+
+// Page fade transitions
+(() => {
+  if (matchMedia('(prefers-reduced-motion:reduce)').matches) return;
+  const ov = document.createElement('div');
+  ov.className = 'pt-overlay';
+  document.body.prepend(ov);
+
+  const reveal = () => { ov.style.transition = 'opacity .38s ease'; ov.classList.remove('pt-show'); };
+  requestAnimationFrame(() => requestAnimationFrame(reveal));
+  window.addEventListener('pageshow', reveal);
+
+  document.addEventListener('click', e => {
+    const a = e.target.closest('a[href]');
+    if (!a) return;
+    const href = a.getAttribute('href');
+    if (!href || href.startsWith('#') || href.startsWith('mailto:') || href.startsWith('tel:') || a.target === '_blank') return;
+    e.preventDefault();
+    ov.style.transition = 'opacity .28s ease';
+    ov.classList.add('pt-show');
+    setTimeout(() => { window.location.href = href; }, 300);
+  });
+})();
+
