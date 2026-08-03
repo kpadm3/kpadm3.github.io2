@@ -30,12 +30,8 @@
   const idx = pages.indexOf(current);
   if (idx === -1) return;
 
-  const prev = pages[(idx - 1 + pages.length) % pages.length];
-  const next = pages[(idx + 1) % pages.length];
-  const prevLabel = labels[(idx - 1 + pages.length) % pages.length];
-  const nextLabel = labels[(idx + 1) % pages.length];
-  const prevShort = shortLabels[(idx - 1 + pages.length) % pages.length];
-  const nextShort = shortLabels[(idx + 1) % pages.length];
+  const isFirst = idx === 0;
+  const isLast  = idx === pages.length - 1;
 
   function makeIcon(cls) {
     const i = document.createElement('i');
@@ -44,7 +40,6 @@
     i.style.flexShrink = '0';
     return i;
   }
-
   function makeLabel(text) {
     const s = document.createElement('span');
     s.className = 'cpn-hint-lbl';
@@ -52,23 +47,33 @@
     return s;
   }
 
-  const prevBtn = document.createElement('a');
-  prevBtn.href = prev;
-  prevBtn.className = 'cpn-prev-btn';
-  prevBtn.setAttribute('aria-label', 'Previous: ' + prevLabel);
-  prevBtn.setAttribute('title', prevLabel);
-  const prevLbl = makeLabel(prevShort);
-  prevBtn.appendChild(makeIcon('ti-chevron-left'));
-  prevBtn.appendChild(prevLbl);
+  let prevBtn = null, prevLbl = null;
+  if (!isFirst) {
+    const prev = pages[idx - 1];
+    prevBtn = document.createElement('a');
+    prevBtn.href = prev;
+    prevBtn.className = 'cpn-prev-btn';
+    prevBtn.setAttribute('aria-label', 'Previous: ' + labels[idx - 1]);
+    prevBtn.setAttribute('title', labels[idx - 1]);
+    prevLbl = makeLabel(shortLabels[idx - 1]);
+    prevBtn.appendChild(makeIcon('ti-chevron-left'));
+    prevBtn.appendChild(prevLbl);
+    document.body.appendChild(prevBtn);
+  }
 
-  const nextBtn = document.createElement('a');
-  nextBtn.href = next;
-  nextBtn.className = 'cpn-next-btn';
-  nextBtn.setAttribute('aria-label', 'Next: ' + nextLabel);
-  nextBtn.setAttribute('title', nextLabel);
-  const nextLbl = makeLabel(nextShort);
-  nextBtn.appendChild(nextLbl);
-  nextBtn.appendChild(makeIcon('ti-chevron-right'));
+  let nextBtn = null, nextLbl = null;
+  if (!isLast) {
+    const next = pages[idx + 1];
+    nextBtn = document.createElement('a');
+    nextBtn.href = next;
+    nextBtn.className = 'cpn-next-btn';
+    nextBtn.setAttribute('aria-label', 'Next: ' + labels[idx + 1]);
+    nextBtn.setAttribute('title', labels[idx + 1]);
+    nextLbl = makeLabel(shortLabels[idx + 1]);
+    nextBtn.appendChild(nextLbl);
+    nextBtn.appendChild(makeIcon('ti-chevron-right'));
+    document.body.appendChild(nextBtn);
+  }
 
   const closeBtn = document.createElement('a');
   closeBtn.href = '../index.html';
@@ -76,82 +81,78 @@
   closeBtn.setAttribute('aria-label', 'Back to home');
   closeBtn.setAttribute('title', 'Back to home');
   closeBtn.appendChild(makeIcon('ti-x'));
-
-  document.body.appendChild(prevBtn);
-  document.body.appendChild(nextBtn);
   document.body.appendChild(closeBtn);
 
-  // Smooth page fade-in: site.js creates .pt-overlay transparent and never starts black,
-  // so incoming pages flash in with no transition. Snap overlay to black here (no animation),
-  // then site.js's own rAF-queued reveal() removes pt-show and fades it out correctly.
+  // Smooth page fade-in
   const ptOv = document.querySelector('.pt-overlay');
   if (ptOv && !matchMedia('(prefers-reduced-motion:reduce)').matches) {
-    ptOv.style.transition = 'none'; // instant — no visible animation during snap
-    ptOv.classList.add('pt-show'); // overlay is now black; reveal() will fade it out
+    ptOv.style.transition = 'none';
+    ptOv.classList.add('pt-show');
   }
 
   document.addEventListener('keydown', e => {
     if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA') return;
-    if (e.key === 'ArrowLeft') window.location.href = prev;
-    if (e.key === 'ArrowRight') window.location.href = next;
+    if (e.key === 'ArrowLeft'  && prevBtn) window.location.href = prevBtn.href;
+    if (e.key === 'ArrowRight' && nextBtn) window.location.href = nextBtn.href;
     if (e.key === 'Escape') window.location.href = '../index.html';
   });
 
-  // Hint: ripple then pill expand — plays on every page load
+  // Hint: ripple + pill expand — plays on every page load
   const reduced = matchMedia('(prefers-reduced-motion:reduce)').matches;
-  if (!reduced) {
+  if (!reduced && (prevBtn || nextBtn)) {
+    setTimeout(() => {
+      if (prevBtn) prevBtn.classList.add('cpn-pulsing');
+      if (nextBtn) nextBtn.classList.add('cpn-pulsing');
+
       setTimeout(() => {
-        // Phase 1: ripple pulse on both circles
-        prevBtn.classList.add('cpn-pulsing');
-        nextBtn.classList.add('cpn-pulsing');
+        if (prevBtn) prevBtn.classList.remove('cpn-pulsing');
+        if (nextBtn) nextBtn.classList.remove('cpn-pulsing');
 
-        setTimeout(() => {
-          // Phase 2: stop ripple, expand into pills
-          prevBtn.classList.remove('cpn-pulsing');
-          nextBtn.classList.remove('cpn-pulsing');
-
+        if (prevBtn) {
           prevBtn.style.width = '152px';
           prevBtn.style.borderRadius = '26px';
           prevBtn.style.borderColor = 'rgba(53,212,241,.5)';
           prevBtn.style.color = '#35d4f1';
           prevBtn.style.justifyContent = 'flex-start';
           prevBtn.style.paddingLeft = '13px';
-
+        }
+        if (nextBtn) {
           nextBtn.style.width = '152px';
           nextBtn.style.borderRadius = '26px';
           nextBtn.style.borderColor = 'rgba(53,212,241,.5)';
           nextBtn.style.color = '#35d4f1';
           nextBtn.style.justifyContent = 'flex-end';
           nextBtn.style.paddingRight = '13px';
+        }
 
-          // Fade labels in once pill has expanded
-          setTimeout(() => {
-            prevLbl.style.opacity = '1';
-            nextLbl.style.opacity = '1';
-          }, 360);
+        setTimeout(() => {
+          if (prevLbl) prevLbl.style.opacity = '1';
+          if (nextLbl) nextLbl.style.opacity = '1';
+        }, 360);
 
-          // Phase 3: retract back to circles
-          setTimeout(() => {
-            prevLbl.style.opacity = '0';
-            nextLbl.style.opacity = '0';
+        setTimeout(() => {
+          if (prevLbl) prevLbl.style.opacity = '0';
+          if (nextLbl) nextLbl.style.opacity = '0';
 
+          if (prevBtn) {
             prevBtn.style.width = '52px';
             prevBtn.style.borderRadius = '50%';
             prevBtn.style.borderColor = '';
             prevBtn.style.color = '';
             prevBtn.style.justifyContent = '';
             prevBtn.style.paddingLeft = '';
-
+          }
+          if (nextBtn) {
             nextBtn.style.width = '52px';
             nextBtn.style.borderRadius = '50%';
             nextBtn.style.borderColor = '';
             nextBtn.style.color = '';
             nextBtn.style.justifyContent = '';
             nextBtn.style.paddingRight = '';
-          }, 2900);
+          }
+        }, 2900);
 
-        }, 900);
-
-      }, 600);
+      }, 900);
+    }, 600);
   }
 })();

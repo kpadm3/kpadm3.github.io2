@@ -152,3 +152,51 @@
     setTimeout(() => { window.location.href = href; }, 300);
   });
 })();
+
+// Theme toggle
+(() => {
+  const THEME_KEY = 'kp-theme';
+  const root = document.documentElement;
+
+  // Floating pill button
+  const fab = document.createElement('button');
+  fab.className = 'theme-fab';
+  fab.setAttribute('aria-label', 'Toggle light/dark theme');
+  fab.innerHTML = '<i class="ti ti-sun" aria-hidden="true"></i><span class="theme-fab-lbl">Light</span><span class="theme-fab-tip"></span>';
+  document.body.appendChild(fab);
+
+  const tip = fab.querySelector('.theme-fab-tip');
+
+  function updateFab() {
+    const isLight = root.getAttribute('data-theme') === 'light';
+    fab.querySelector('i').className = isLight ? 'ti ti-moon-stars' : 'ti ti-sun';
+    fab.querySelector('.theme-fab-lbl').textContent = isLight ? 'Dark' : 'Light';
+    tip.textContent = isLight ? 'Switch to dark mode' : 'Switch to light mode';
+    const meta = document.querySelector('meta[name="theme-color"]');
+    if (meta) meta.content = isLight ? '#f0f5fb' : '#050b14';
+  }
+
+  fab.addEventListener('click', () => {
+    const isLight = root.getAttribute('data-theme') === 'light';
+    tip.classList.remove('vis');
+    if (isLight) {
+      root.removeAttribute('data-theme');
+      localStorage.removeItem(THEME_KEY);
+    } else {
+      root.setAttribute('data-theme', 'light');
+      localStorage.setItem(THEME_KEY, 'light');
+    }
+    updateFab();
+  });
+
+  // Show tooltip on first visit per session
+  if (!sessionStorage.getItem('kp-theme-tip')) {
+    sessionStorage.setItem('kp-theme-tip', '1');
+    setTimeout(() => {
+      tip.classList.add('vis');
+      setTimeout(() => tip.classList.remove('vis'), 3800);
+    }, 1800);
+  }
+
+  updateFab();
+})();
