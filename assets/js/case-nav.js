@@ -81,6 +81,15 @@
   document.body.appendChild(nextBtn);
   document.body.appendChild(closeBtn);
 
+  // Smooth page fade-in: site.js creates .pt-overlay transparent and never starts black,
+  // so incoming pages flash in with no transition. Snap overlay to black here (no animation),
+  // then site.js's own rAF-queued reveal() removes pt-show and fades it out correctly.
+  const ptOv = document.querySelector('.pt-overlay');
+  if (ptOv && !matchMedia('(prefers-reduced-motion:reduce)').matches) {
+    ptOv.style.transition = 'none'; // instant — no visible animation during snap
+    ptOv.classList.add('pt-show'); // overlay is now black; reveal() will fade it out
+  }
+
   document.addEventListener('keydown', e => {
     if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA') return;
     if (e.key === 'ArrowLeft') window.location.href = prev;
@@ -88,61 +97,65 @@
     if (e.key === 'Escape') window.location.href = '../index.html';
   });
 
-  if (!sessionStorage.getItem('cpn-hint')) {
-    sessionStorage.setItem('cpn-hint', '1');
+  // First-visit hint: ripple then pill expand
+  if (!sessionStorage.getItem('cpn-hint-v2')) {
+    sessionStorage.setItem('cpn-hint-v2', '1');
 
-    setTimeout(() => {
-      // Phase 1: ripple pulse on both circles
-      prevBtn.classList.add('cpn-pulsing');
-      nextBtn.classList.add('cpn-pulsing');
-
+    const reduced = matchMedia('(prefers-reduced-motion:reduce)').matches;
+    if (!reduced) {
       setTimeout(() => {
-        // Phase 2: stop ripple, expand into pills
-        prevBtn.classList.remove('cpn-pulsing');
-        nextBtn.classList.remove('cpn-pulsing');
+        // Phase 1: ripple pulse on both circles
+        prevBtn.classList.add('cpn-pulsing');
+        nextBtn.classList.add('cpn-pulsing');
 
-        prevBtn.style.width = '152px';
-        prevBtn.style.borderRadius = '26px';
-        prevBtn.style.borderColor = 'rgba(53,212,241,.5)';
-        prevBtn.style.color = '#35d4f1';
-        prevBtn.style.justifyContent = 'flex-start';
-        prevBtn.style.paddingLeft = '13px';
-
-        nextBtn.style.width = '152px';
-        nextBtn.style.borderRadius = '26px';
-        nextBtn.style.borderColor = 'rgba(53,212,241,.5)';
-        nextBtn.style.color = '#35d4f1';
-        nextBtn.style.justifyContent = 'flex-end';
-        nextBtn.style.paddingRight = '13px';
-
-        // Fade labels in after the pill has expanded
         setTimeout(() => {
-          prevLbl.style.opacity = '1';
-          nextLbl.style.opacity = '1';
-        }, 360);
+          // Phase 2: stop ripple, expand into pills
+          prevBtn.classList.remove('cpn-pulsing');
+          nextBtn.classList.remove('cpn-pulsing');
 
-        // Phase 3: retract back to circles
-        setTimeout(() => {
-          prevLbl.style.opacity = '0';
-          nextLbl.style.opacity = '0';
+          prevBtn.style.width = '152px';
+          prevBtn.style.borderRadius = '26px';
+          prevBtn.style.borderColor = 'rgba(53,212,241,.5)';
+          prevBtn.style.color = '#35d4f1';
+          prevBtn.style.justifyContent = 'flex-start';
+          prevBtn.style.paddingLeft = '13px';
 
-          prevBtn.style.width = '52px';
-          prevBtn.style.borderRadius = '50%';
-          prevBtn.style.borderColor = '';
-          prevBtn.style.color = '';
-          prevBtn.style.justifyContent = '';
-          prevBtn.style.paddingLeft = '';
+          nextBtn.style.width = '152px';
+          nextBtn.style.borderRadius = '26px';
+          nextBtn.style.borderColor = 'rgba(53,212,241,.5)';
+          nextBtn.style.color = '#35d4f1';
+          nextBtn.style.justifyContent = 'flex-end';
+          nextBtn.style.paddingRight = '13px';
 
-          nextBtn.style.width = '52px';
-          nextBtn.style.borderRadius = '50%';
-          nextBtn.style.borderColor = '';
-          nextBtn.style.color = '';
-          nextBtn.style.justifyContent = '';
-          nextBtn.style.paddingRight = '';
-        }, 2900);
+          // Fade labels in once pill has expanded
+          setTimeout(() => {
+            prevLbl.style.opacity = '1';
+            nextLbl.style.opacity = '1';
+          }, 360);
 
-      }, 900);
+          // Phase 3: retract back to circles
+          setTimeout(() => {
+            prevLbl.style.opacity = '0';
+            nextLbl.style.opacity = '0';
 
-    }, 500);
+            prevBtn.style.width = '52px';
+            prevBtn.style.borderRadius = '50%';
+            prevBtn.style.borderColor = '';
+            prevBtn.style.color = '';
+            prevBtn.style.justifyContent = '';
+            prevBtn.style.paddingLeft = '';
+
+            nextBtn.style.width = '52px';
+            nextBtn.style.borderRadius = '50%';
+            nextBtn.style.borderColor = '';
+            nextBtn.style.color = '';
+            nextBtn.style.justifyContent = '';
+            nextBtn.style.paddingRight = '';
+          }, 2900);
+
+        }, 900);
+
+      }, 600);
+    }
   }
 })();
