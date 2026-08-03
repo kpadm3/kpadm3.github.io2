@@ -26,10 +26,6 @@
   const prevLabel = labels[(idx - 1 + pages.length) % pages.length];
   const nextLabel = labels[(idx + 1) % pages.length];
 
-  const dots = pages.map((_, i) =>
-    '<span class="cpn-dot' + (i === idx ? ' active' : '') + '"></span>'
-  ).join('');
-
   const nav = document.createElement('div');
   nav.className = 'case-prog-nav';
   nav.innerHTML =
@@ -40,10 +36,10 @@
         '<span class="cpn-name">' + prevLabel + '</span>' +
       '</span>' +
     '</a>' +
-    '<div class="cpn-center">' +
-      '<span class="cpn-counter">' + (idx + 1) + ' of ' + pages.length + '</span>' +
-      '<div class="cpn-dots">' + dots + '</div>' +
-      '<a href="../index.html" class="cpn-home">Back to home</a>' +
+    '<div class="cpn-gap">' +
+      '<a href="../index.html" class="cpn-close" aria-label="Back to home">' +
+        '<i class="ti ti-x" aria-hidden="true"></i>' +
+      '</a>' +
     '</div>' +
     '<a href="' + next + '" class="cpn-side cpn-next" aria-label="Next: ' + nextLabel + '">' +
       '<span class="cpn-meta">' +
