@@ -14,16 +14,23 @@
 .hn-tagline{font-size:.72rem;font-weight:700;color:#6a8499;margin-top:10px;letter-spacing:.01em}
 .hn-tagline span{color:rgba(53,212,241,.38)}
 .hn-lead{font-size:.78rem;color:#5a7a94;line-height:1.65;margin-top:10px}
-.hn-spec{background:#060f1c;border:1px solid #1a2d42;border-radius:10px;padding:18px;font-family:'Courier New',monospace;position:relative;overflow:hidden}
-.spec-scan{position:absolute;left:0;right:0;height:1.5px;background:#35d4f1;opacity:0;top:30px;pointer-events:none;z-index:1}
-.spec-hdr{font-size:8.5px;font-weight:900;letter-spacing:.12em;text-transform:uppercase;color:#35d4f1;margin:0 0 10px;padding-bottom:8px;border-bottom:1px solid #1a2d42;font-family:system-ui,-apple-system,sans-serif}
-.spec-row{display:flex;gap:10px;padding:5px 0;border-bottom:1px solid #0a1826}
-.spec-key{font-size:9px;color:#415a72;width:78px;flex-shrink:0}
-.spec-val{font-size:9px;color:#c8dae8;font-weight:700;line-height:1.4}
-.spec-val.cy{color:#35d4f1;font-size:8.5px}
-.spec-tags{display:flex;gap:5px;flex-wrap:wrap;padding-top:10px;margin-top:8px;border-top:1px solid #1a2d42}
-.spec-tags-lbl{font-size:8px;color:#415a72;font-family:system-ui,-apple-system,sans-serif;font-weight:700;letter-spacing:.08em;text-transform:uppercase;margin-bottom:6px;width:100%}
-.hn-stag{font-size:9px;font-weight:700;color:#7c8cff;border:1px solid rgba(124,140,255,.24);border-radius:3px;padding:2px 7px}
+.hn-spec{background:#060f1c;border:1px solid #1a2d42;border-radius:10px;padding:18px;position:relative;overflow:hidden}
+.vp-hdr{font-size:8.5px;font-weight:900;letter-spacing:.12em;text-transform:uppercase;color:#35d4f1;margin:0 0 14px;padding-bottom:8px;border-bottom:1px solid #1a2d42;font-family:system-ui,-apple-system,sans-serif}
+.vp-wrap{display:flex;flex-direction:column}
+.vp-item{display:flex;gap:12px}
+.vp-left{display:flex;flex-direction:column;align-items:center;flex-shrink:0;width:30px}
+.vp-dot{width:30px;height:30px;border-radius:50%;border:1.5px solid #1a3a52;background:#060f1c;display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:border-color .3s,box-shadow .3s}
+.vp-dot i{font-size:13px;color:#2a4a62;transition:color .3s}
+.vp-dot.lit{border-color:#35d4f1;box-shadow:0 0 0 3px rgba(53,212,241,.12)}
+.vp-dot.lit i{color:#35d4f1}
+.vp-seg{width:1.5px;flex:1;min-height:18px;background:#1a3a52;margin-top:3px;position:relative;overflow:hidden}
+.vp-fill{position:absolute;top:0;left:0;width:100%;height:0;background:#35d4f1}
+.vp-right{padding-top:5px;padding-bottom:14px}
+.vp-last .vp-right{padding-bottom:0}
+.vp-name{font-size:10px;font-weight:800;color:#2a4a62;letter-spacing:.04em;text-transform:uppercase;font-family:system-ui,-apple-system,sans-serif;transition:color .3s}
+.vp-sub{font-size:8.5px;color:#1a3a52;margin-top:2px;font-family:system-ui,-apple-system,sans-serif;transition:color .3s}
+.vp-item.lit .vp-name{color:#35d4f1}
+.vp-item.lit .vp-sub{color:#4a7a9a}
 .fade-el{opacity:0;transform:translateY(10px);transition:opacity .45s ease,transform .45s ease}
 .fade-el.in{opacity:1;transform:translateY(0)}
 .row-el{opacity:0;transform:translateX(-5px);transition:opacity .3s ease,transform .3s ease}
@@ -89,19 +96,14 @@
         <p class="hn-lead fade-el" id="hero-ld">10 years across business analysis, product management, data integration, migration, and release. I own the full delivery thread from requirements definition to production sign-off.</p>
       </div>
       <div class="hn-spec fade-el" id="hero-spec">
-        <div class="spec-scan" id="hero-scan"></div>
-        <div class="spec-hdr">Current profile</div>
-        <div class="spec-row row-el"><span class="spec-key">Role</span><span class="spec-val cy">Enterprise Delivery Lead &middot; Analysis, Integration, and Release</span></div>
-        <div class="spec-row row-el"><span class="spec-key">Experience</span><span class="spec-val">10+ years</span></div>
-        <div class="spec-row row-el"><span class="spec-key">Initiated</span><span class="spec-val">25+ enterprise programs</span></div>
-        <div class="spec-tags">
-          <div class="spec-tags-lbl">Delivery domains</div>
-          <span class="hn-stag tag-el">Configuration</span>
-          <span class="hn-stag tag-el">Integration</span>
-          <span class="hn-stag tag-el">Delivery</span>
-          <span class="hn-stag tag-el">Automation</span>
-          <span class="hn-stag tag-el">Validation</span>
-          <span class="hn-stag tag-el">Migration</span>
+        <div class="vp-hdr">Delivery lifecycle</div>
+        <div class="vp-wrap">
+          <div class="vp-item" id="vpi0"><div class="vp-left"><div class="vp-dot" id="vpd0"><i class="ti ti-file-description" aria-hidden="true"></i></div><div class="vp-seg"><div class="vp-fill" id="vpf0"></div></div></div><div class="vp-right"><div class="vp-name">Requirements</div><div class="vp-sub">Elicitation and baseline</div></div></div>
+          <div class="vp-item" id="vpi1"><div class="vp-left"><div class="vp-dot" id="vpd1"><i class="ti ti-search" aria-hidden="true"></i></div><div class="vp-seg"><div class="vp-fill" id="vpf1"></div></div></div><div class="vp-right"><div class="vp-name">Analysis</div><div class="vp-sub">Mapping and traceability</div></div></div>
+          <div class="vp-item" id="vpi2"><div class="vp-left"><div class="vp-dot" id="vpd2"><i class="ti ti-layout" aria-hidden="true"></i></div><div class="vp-seg"><div class="vp-fill" id="vpf2"></div></div></div><div class="vp-right"><div class="vp-name">Design</div><div class="vp-sub">Functional specifications</div></div></div>
+          <div class="vp-item" id="vpi3"><div class="vp-left"><div class="vp-dot" id="vpd3"><i class="ti ti-arrows-exchange" aria-hidden="true"></i></div><div class="vp-seg"><div class="vp-fill" id="vpf3"></div></div></div><div class="vp-right"><div class="vp-name">Integration</div><div class="vp-sub">Systems and data</div></div></div>
+          <div class="vp-item" id="vpi4"><div class="vp-left"><div class="vp-dot" id="vpd4"><i class="ti ti-checkbox" aria-hidden="true"></i></div><div class="vp-seg"><div class="vp-fill" id="vpf4"></div></div></div><div class="vp-right"><div class="vp-name">Validation</div><div class="vp-sub">UAT and sign-off</div></div></div>
+          <div class="vp-item vp-last" id="vpi5"><div class="vp-left"><div class="vp-dot" id="vpd5"><i class="ti ti-rocket" aria-hidden="true"></i></div></div><div class="vp-right"><div class="vp-name">Release</div><div class="vp-sub">Go-live and hypercare</div></div></div>
         </div>
       </div>
     </section>
@@ -266,35 +268,40 @@
     });
     setTimeout(function(){
       var spec=document.getElementById('hero-spec');
-      var scan=document.getElementById('hero-scan');
-      if(!spec||!scan)return;
+      if(!spec)return;
       spec.classList.add('in');
-      var specH=spec.offsetHeight;
-      var startY=30;
-      scan.style.transition='none';
-      scan.style.opacity='.85';
-      scan.style.top=startY+'px';
-      var rows=Array.from(spec.querySelectorAll('.row-el'));
-      var tags=Array.from(spec.querySelectorAll('.tag-el'));
-      var rowTops=rows.map(function(r){return r.offsetTop;});
-      var done=rows.map(function(){return false;});
-      var dur=860;var t0=Date.now();
-      function sweep(){
-        var p=Math.min((Date.now()-t0)/dur,1);
-        var pos=startY+p*(specH-startY);
-        scan.style.top=pos+'px';
-        rows.forEach(function(r,i){
-          if(!done[i]&&pos>=rowTops[i]){done[i]=true;r.classList.add('in');}
-        });
-        if(p<1){requestAnimationFrame(sweep);}
-        else{
-          scan.style.transition='opacity .3s';
-          scan.style.opacity='0';
-          tags.forEach(function(tg,i){setTimeout(function(){tg.classList.add('in');},i*65+80);});
-        }
-      }
-      requestAnimationFrame(sweep);
+      setTimeout(runPipeline,450);
     },700);
+  }
+  function runPipeline(){
+    var count=6;var delay=460;
+    function reset(){
+      for(var i=0;i<count;i++){
+        var dot=document.getElementById('vpd'+i);
+        var fill=document.getElementById('vpf'+i);
+        var item=document.getElementById('vpi'+i);
+        if(dot)dot.classList.remove('lit');
+        if(item)item.classList.remove('lit');
+        if(fill){fill.style.transition='none';fill.style.height='0';}
+      }
+    }
+    function run(){
+      reset();
+      for(var i=0;i<count;i++){
+        (function(idx){
+          setTimeout(function(){
+            var dot=document.getElementById('vpd'+idx);
+            var fill=document.getElementById('vpf'+idx);
+            var item=document.getElementById('vpi'+idx);
+            if(dot)dot.classList.add('lit');
+            if(item)item.classList.add('lit');
+            if(fill&&idx<count-1){fill.style.transition='height .42s ease';fill.style.height='100%';}
+            if(idx===count-1){setTimeout(run,2400);}
+          },idx*delay);
+        })(i);
+      }
+    }
+    run();
   }
   if(document.readyState==='loading'){document.addEventListener('DOMContentLoaded',runHero);}
   else{setTimeout(runHero,120);}
