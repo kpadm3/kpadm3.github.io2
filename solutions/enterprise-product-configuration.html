@@ -137,6 +137,11 @@ body{
   .reveal-case{opacity:1;transform:none}
   .workflow-card{transition:none}
 }
+.nav-brand-kp{display:flex;align-items:center;gap:9px;text-decoration:none}
+.kp-mark{width:28px;height:28px;border-radius:6px;border:1.5px solid var(--case-cyan);background:#060f1c;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:800;color:var(--case-cyan);letter-spacing:.03em;flex-shrink:0;font-family:system-ui,-apple-system,sans-serif}
+.nav-social{display:flex;align-items:center;gap:7px}
+.nav-soc-btn{width:28px;height:28px;border:1px solid #1e3248;border-radius:6px;display:flex;align-items:center;justify-content:center;color:#5a7a94;font-size:15px;text-decoration:none;transition:border-color .18s,color .18s}
+.nav-soc-btn:hover{border-color:color-mix(in srgb,var(--case-cyan) 55%,transparent);color:var(--case-cyan)}
 </style>
 </head>
 <body>
@@ -146,19 +151,27 @@ body{
 
 <div class="case-wrap">
   <header class="case-header">
-    <a class="brand" href="../index.html">Krishna</a>
+    <a class="brand nav-brand-kp" href="../index.html">
+      <span class="kp-mark">KP</span>
+      <span>Krishna</span>
+    </a>
     <nav class="case-nav" aria-label="Primary navigation">
-      <a href="../index.html#components">Solutions</a>
+      <a href="../index.html#foundation">Solutions</a>
       <a href="../experience.html">Experience</a>
       <a href="../framework.html">Framework</a>
       <a href="../contact.html">Contact</a>
     </nav>
+    <div class="nav-social">
+      <a href="https://www.linkedin.com/in/krishna-s-a046a9176/" class="nav-soc-btn" aria-label="LinkedIn" target="_blank" rel="noopener noreferrer"><i class="ti ti-brand-linkedin" aria-hidden="true"></i></a>
+      <a href="https://github.com/kpadm3" class="nav-soc-btn" aria-label="GitHub" target="_blank" rel="noopener noreferrer"><i class="ti ti-brand-github" aria-hidden="true"></i></a>
+      <a href="mailto:pskrishna204@gmail.com" class="nav-soc-btn" aria-label="Email"><i class="ti ti-mail" aria-hidden="true"></i></a>
+    </div>
   </header>
 
   <main>
     <section class="case-hero reveal-case">
       <div>
-        <div class="case-kicker">Senior Enterprise Delivery • Sanitized Public Edition</div>
+        <div class="case-kicker">Senior Enterprise Delivery</div>
         <h1 class="case-title">Enterprise Product Configuration Framework</h1>
         <p class="case-lead">A governed approach for translating complex product rules, stakeholder decisions, and enterprise data into a consistent configuration experience with traceable requirements, validation controls, and ERP-ready outputs.</p>
         <div class="case-tags">
@@ -174,8 +187,8 @@ body{
       <aside class="glance glass-panel">
         <h2>At a Glance</h2>
         <div class="glance-list">
-          <div class="glance-item"><div class="glance-icon">01</div><div><span>Domain</span><strong>Industrial / Electrical Product Configuration</strong></div></div>
-          <div class="glance-item"><div class="glance-icon">02</div><div><span>Role</span><strong>Senior Business Analyst / Technical Product Manager</strong></div></div>
+          <div class="glance-item"><div class="glance-icon">01</div><div><span>Domain</span><strong>Industrial and Electrical Product Configuration</strong></div></div>
+          <div class="glance-item"><div class="glance-icon">02</div><div><span>Role</span><strong>Senior Business Analyst and Technical Product Manager</strong></div></div>
           <div class="glance-item"><div class="glance-icon">03</div><div><span>Scope</span><strong>Discovery through release readiness</strong></div></div>
           <div class="glance-item"><div class="glance-icon">04</div><div><span>Delivery Model</span><strong>Cross-functional, iterative implementation</strong></div></div>
           <div class="glance-item"><div class="glance-icon">05</div><div><span>Focus</span><strong>Rules, validation, traceability, and downstream output</strong></div></div>
@@ -207,7 +220,7 @@ body{
         <article class="workflow-card" style="--step:#30d5c8"><div class="step-number">3</div><h3 class="step-title">Business Rule Design</h3><div class="step-symbol">⚙</div><ul><li>Eligibility and dependency rules</li><li>Decision tables</li><li>Defaulting logic</li><li>Exception scenarios</li></ul><div class="step-tools">Decision Tables · Rule Repository</div></article>
         <article class="workflow-card" style="--step:#f3bd68"><div class="step-number">4</div><h3 class="step-title">Validation & Controls</h3><div class="step-symbol">✓</div><ul><li>Completeness checks</li><li>Invalid combination checks</li><li>Mandatory-code validation</li><li>Error and warning treatment</li></ul><div class="step-tools">Acceptance Criteria · Validation Logic</div></article>
         <article class="workflow-card" style="--step:#a278ff"><div class="step-number">5</div><h3 class="step-title">Functional Architecture</h3><div class="step-symbol">✣</div><ul><li>Current and future-state flow</li><li>System touchpoints</li><li>Data handoffs</li><li>Roles and approvals</li></ul><div class="step-tools">Process Models · Interface Mapping</div></article>
-        <article class="workflow-card" style="--step:#e168c2"><div class="step-number">6</div><h3 class="step-title">Delivery & Assurance</h3><div class="step-symbol">◉</div><ul><li>Backlog decomposition</li><li>Design review</li><li>UAT scenarios</li><li>Defect triage and readiness</li></ul><div class="step-tools">Azure DevOps · UAT · Release Checklist</div></article>
+        <article class="workflow-card" style="--step:#e168c2"><div class="step-number">6</div><h3 class="step-title">Delivery & Assurance</h3><div class="step-symbol">◉</div><ul><li>Backlog decomposition</li><li>Design review</li><li>UAT scenarios</li><li>Defect triage and readiness</li></ul><div class="step-tools">Azure DevOps · UAT · Release</div></article>
         <article class="workflow-card" style="--step:#aa7bff"><div class="step-number">7</div><h3 class="step-title">Order-Ready Output</h3><div class="step-symbol">▤</div><ul><li>Validated configuration output</li><li>BOM and catalog-code handoff</li><li>Documentation package</li><li>Post-release stabilization</li></ul><div class="step-tools">ERP Output · Reports · Support</div></article>
       </div>
     </section>
@@ -245,11 +258,13 @@ body{
       <div class="skill-row">
         <span>SAP ECC</span>
         <span>Azure DevOps</span>
-        <span>Excel / Power Query</span>
+        <span>Excel</span>
+        <span>Power Query</span>
         <span>Power BI</span>
         <span>SharePoint</span>
         <span>Microsoft Teams</span>
-        <span>GitHub / Markdown</span>
+        <span>GitHub</span>
+        <span>Markdown</span>
         <span>Confluence</span>
       </div>
     </section>
@@ -283,11 +298,10 @@ body{
     </section>
 
     <section class="case-cta glass-panel reveal-case">
-      <div class="cta-copy"><h2>Discuss Similar Enterprise Work</h2><p>This work is intentionally sanitized. Additional context can be discussed while respecting employer and customer confidentiality.</p></div>
+      <div class="cta-copy"><h2>Discuss Similar Enterprise Work</h2><p>Additional context can be discussed while respecting employer and customer confidentiality.</p></div>
       <div class="cta-actions"><a class="button" href="../contact.html">Contact Krishna</a><a class="button secondary" href="../experience.html">View Experience</a></div>
     </section>
 
-    <p class="case-note">Sanitized public portfolio representation. Employer, customer, proprietary product, internal architecture, and confidential implementation details are excluded.</p>
   </main>
 </div>
 

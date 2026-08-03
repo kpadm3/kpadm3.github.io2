@@ -79,6 +79,11 @@ body{background:radial-gradient(circle at 15% -8%,rgba(26,74,154,.24),transparen
 @media(max-width:980px){.case-hero,.dual-grid,.case-cta{grid-template-columns:1fr}.executive-grid,.outcome-grid{grid-template-columns:repeat(2,1fr)}.cta-actions{justify-content:flex-start}}
 @media(max-width:700px){.case-wrap{padding:16px}.case-header{align-items:flex-start;flex-direction:column}.case-nav{gap:14px;flex-wrap:wrap}.workflow-grid,.executive-grid,.outcome-grid{grid-template-columns:1fr}.case-title{font-size:clamp(2.5rem,13vw,4rem)}.cta-actions{flex-direction:column}.section-intro{align-items:flex-start;flex-direction:column}}
 @media(prefers-reduced-motion:reduce){.reveal-case{opacity:1;transform:none}.workflow-card{transition:none}}
+.nav-brand-kp{display:flex;align-items:center;gap:9px;text-decoration:none}
+.kp-mark{width:28px;height:28px;border-radius:6px;border:1.5px solid var(--case-cyan);background:#060f1c;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:800;color:var(--case-cyan);letter-spacing:.03em;flex-shrink:0;font-family:system-ui,-apple-system,sans-serif}
+.nav-social{display:flex;align-items:center;gap:7px}
+.nav-soc-btn{width:28px;height:28px;border:1px solid #1e3248;border-radius:6px;display:flex;align-items:center;justify-content:center;color:#5a7a94;font-size:15px;text-decoration:none;transition:border-color .18s,color .18s}
+.nav-soc-btn:hover{border-color:color-mix(in srgb,var(--case-cyan) 55%,transparent);color:var(--case-cyan)}
 </style>
 </head>
 <body>
@@ -88,19 +93,27 @@ body{background:radial-gradient(circle at 15% -8%,rgba(26,74,154,.24),transparen
 
 <div class="case-wrap">
   <header class="case-header">
-    <a class="brand" href="../index.html">Krishna</a>
+    <a class="brand nav-brand-kp" href="../index.html">
+      <span class="kp-mark">KP</span>
+      <span>Krishna</span>
+    </a>
     <nav class="case-nav" aria-label="Primary navigation">
-      <a href="../index.html#components">Solutions</a>
+      <a href="../index.html#foundation">Solutions</a>
       <a href="../experience.html">Experience</a>
       <a href="../framework.html">Framework</a>
       <a href="../contact.html">Contact</a>
     </nav>
+    <div class="nav-social">
+      <a href="https://www.linkedin.com/in/krishna-s-a046a9176/" class="nav-soc-btn" aria-label="LinkedIn" target="_blank" rel="noopener noreferrer"><i class="ti ti-brand-linkedin" aria-hidden="true"></i></a>
+      <a href="https://github.com/kpadm3" class="nav-soc-btn" aria-label="GitHub" target="_blank" rel="noopener noreferrer"><i class="ti ti-brand-github" aria-hidden="true"></i></a>
+      <a href="mailto:pskrishna204@gmail.com" class="nav-soc-btn" aria-label="Email"><i class="ti ti-mail" aria-hidden="true"></i></a>
+    </div>
   </header>
 
   <main>
     <section class="case-hero reveal-case">
       <div>
-        <div class="case-kicker">Senior Enterprise Delivery • Sanitized Public Edition</div>
+        <div class="case-kicker">Senior Enterprise Delivery</div>
         <h1 class="case-title">Enterprise Data Integration</h1>
         <p class="case-lead">A governed approach to connecting enterprise systems through structured source analysis, field-level mapping, API interface design, transformation logic, and end-to-end validation, giving implementation and QA teams a clear interface contract to build and test against.</p>
         <div class="case-tags">
@@ -116,7 +129,7 @@ body{background:radial-gradient(circle at 15% -8%,rgba(26,74,154,.24),transparen
         <h2>At a Glance</h2>
         <div class="glance-list">
           <div class="glance-item"><div class="glance-icon">01</div><div><span>Domain</span><strong>Enterprise product data and systems integration</strong></div></div>
-          <div class="glance-item"><div class="glance-icon">02</div><div><span>Role</span><strong>Senior Business Analyst / Integration Lead</strong></div></div>
+          <div class="glance-item"><div class="glance-icon">02</div><div><span>Role</span><strong>Senior Business Analyst and Integration Lead</strong></div></div>
           <div class="glance-item"><div class="glance-icon">03</div><div><span>Scope</span><strong>Interface requirements through integration validation</strong></div></div>
           <div class="glance-item"><div class="glance-icon">04</div><div><span>Delivery Model</span><strong>Phased, cross-functional releases</strong></div></div>
           <div class="glance-item"><div class="glance-icon">05</div><div><span>Focus</span><strong>Source-to-target mapping, API behaviour, and data controls</strong></div></div>
@@ -148,7 +161,7 @@ body{background:radial-gradient(circle at 15% -8%,rgba(26,74,154,.24),transparen
         <article class="workflow-card" style="--step:#30d5c8"><div class="step-number">3</div><h3 class="step-title">API Interface Design</h3><div class="step-symbol">✣</div><ul><li>REST endpoint requirements</li><li>Request and response payloads</li><li>Error codes and retry logic</li><li>Interface agreement sign-off</li></ul><div class="step-tools">Swagger · Postman · REST APIs</div></article>
         <article class="workflow-card" style="--step:#a278ff"><div class="step-number">4</div><h3 class="step-title">Transformation Logic</h3><div class="step-symbol">⚙</div><ul><li>Format conversion rules</li><li>Field enrichment logic</li><li>Aggregation and lookups</li><li>Exception and edge cases</li></ul><div class="step-tools">Transformation Rules · JSON · XML</div></article>
         <article class="workflow-card" style="--step:#f3bd68"><div class="step-number">5</div><h3 class="step-title">Validation & Testing</h3><div class="step-symbol">✓</div><ul><li>Integration test scenarios</li><li>Error and boundary cases</li><li>End-to-end reconciliation</li><li>Defect triage and evidence</li></ul><div class="step-tools">Azure DevOps · Integration Tests</div></article>
-        <article class="workflow-card" style="--step:#e168c2"><div class="step-number">6</div><h3 class="step-title">ERP Handoff</h3><div class="step-symbol">▤</div><ul><li>Validated data in target system</li><li>Downstream verification</li><li>Business sign-off</li><li>Post-release stabilization</li></ul><div class="step-tools">SAP ERP · Release Checklist</div></article>
+        <article class="workflow-card" style="--step:#e168c2"><div class="step-number">6</div><h3 class="step-title">ERP Handoff</h3><div class="step-symbol">▤</div><ul><li>Validated data in target system</li><li>Downstream verification</li><li>Business sign-off</li><li>Post-release stabilization</li></ul><div class="step-tools">SAP ERP · Release</div></article>
       </div>
     </section>
 
@@ -204,11 +217,10 @@ body{background:radial-gradient(circle at 15% -8%,rgba(26,74,154,.24),transparen
     </section>
 
     <section class="case-cta glass-panel reveal-case">
-      <div class="cta-copy"><h2>Discuss Similar Enterprise Work</h2><p>This work is intentionally sanitized. Additional context can be discussed while respecting employer and customer confidentiality.</p></div>
+      <div class="cta-copy"><h2>Discuss Similar Enterprise Work</h2><p>Additional context can be discussed while respecting employer and customer confidentiality.</p></div>
       <div class="cta-actions"><a class="button" href="../contact.html">Contact Krishna</a><a class="button secondary" href="requirements-to-release.html">Next Program</a></div>
     </section>
 
-    <p class="case-note">Sanitized public portfolio representation. Employer, customer, proprietary product, internal architecture, and confidential implementation details are excluded.</p>
   </main>
 </div>
 
