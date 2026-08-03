@@ -28,7 +28,7 @@ body{
 
 .page-hero{margin-bottom:14px;padding:10px 0 6px}
 .page-kicker{color:var(--case-cyan);font-size:.78rem;font-weight:900;letter-spacing:.09em;text-transform:uppercase;margin-bottom:14px}
-.page-title{font-size:clamp(2.8rem,5vw,5rem);line-height:.97;letter-spacing:-.05em;margin:0 0 18px}
+.page-title{font-size:clamp(1.7rem,2.8vw,2.4rem);line-height:1.1;letter-spacing:-.02em;margin:0 0 16px;font-weight:800}
 .page-lead{max-width:700px;color:#bac8d8;font-size:clamp(.95rem,1.35vw,1.12rem);line-height:1.62;margin:0}
 
 .glass-panel{
@@ -134,8 +134,11 @@ body{
 .nav-social{display:flex;align-items:center;gap:7px}
 .nav-soc-btn{width:28px;height:28px;border:1px solid #1e3248;border-radius:6px;display:flex;align-items:center;justify-content:center;color:#5a7a94;font-size:15px;text-decoration:none;transition:border-color .18s,color .18s}
 .nav-soc-btn:hover{border-color:rgba(53,212,241,.4);color:#35d4f1}
-.cap-check i{font-size:13px}
-.ind-icon{font-size:1rem}
+.cap-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:8px}
+.cap-tile{display:flex;align-items:center;gap:10px;padding:10px 12px;border-left:2px solid rgba(53,212,241,.28);border-radius:0 8px 8px 0;background:rgba(5,15,28,.55);transition:border-left-color .2s,background .2s}
+.cap-tile:hover{border-left-color:#35d4f1;background:rgba(5,20,36,.75)}
+.cap-tile i{font-size:15px;color:#35d4f1;flex-shrink:0}
+.cap-tile span{color:#c8dae8;font-size:.69rem;font-weight:700;line-height:1.3}
 </style>
 </head>
 <body>
@@ -170,10 +173,10 @@ body{
     </section>
 
     <div class="exp-stats reveal-case">
-      <div class="exp-stat"><strong>10+</strong><span>Years delivering enterprise solutions</span></div>
-      <div class="exp-stat"><strong>25+</strong><span>Enterprise initiatives and project streams</span></div>
-      <div class="exp-stat"><strong>6</strong><span>Industries served across delivery engagements</span></div>
-      <div class="exp-stat"><strong>E2E</strong><span>Discovery through release and stabilization</span></div>
+      <div class="exp-stat"><strong data-count="10" data-suffix="+">10+</strong><span>Years of business analysis and product delivery</span></div>
+      <div class="exp-stat"><strong data-count="25" data-suffix="+">25+</strong><span>Enterprise programs and initiative streams</span></div>
+      <div class="exp-stat"><strong data-count="4">4</strong><span>Core delivery specializations</span></div>
+      <div class="exp-stat"><strong data-count="7">7</strong><span>Career roles across progressive growth</span></div>
     </div>
 
     <div class="exp-layout">
@@ -183,64 +186,112 @@ body{
 
           <div class="tl-entry">
             <div class="tl-date">
-              <span class="tl-date-range">2023–<br>Present</span>
+              <span class="tl-date-range">Oct '24–<br>Present</span>
               <span class="tl-date-label">Current</span>
             </div>
             <div class="tl-spine"><div class="tl-dot"></div><div class="tl-line"></div></div>
             <div class="tl-body">
-              <h3 class="tl-role">Technical Product Manager</h3>
-              <div class="tl-company">Global Enterprise Solutions</div>
-              <p class="tl-desc">Leading configurable product initiatives, integrations, and digital transformation programs across SAP and cloud platforms. Owning requirements, stakeholder alignment, solution design, and delivery coordination across cross-functional teams.</p>
+              <h3 class="tl-role">Functional Analyst</h3>
+              <div class="tl-company">Global Automation & Technology Company</div>
+              <p class="tl-desc">Leading functional analysis and requirements definition for enterprise transformation programs. Translating complex business needs into solution specifications across SAP and integrated platforms, coordinating across business and technical delivery teams.</p>
               <div class="tl-tags">
-                <span>Product Leadership</span><span>Solution Design</span><span>Stakeholder Management</span><span>SAP</span>
+                <span>Functional Analysis</span><span>SAP</span><span>Requirements</span><span>Solution Design</span>
               </div>
             </div>
           </div>
 
           <div class="tl-entry">
             <div class="tl-date">
-              <span class="tl-date-range">2019–<br>2023</span>
+              <span class="tl-date-range">Oct '23–<br>Sep '24</span>
+              <span class="tl-date-label">1 year</span>
+            </div>
+            <div class="tl-spine"><div class="tl-dot"></div><div class="tl-line"></div></div>
+            <div class="tl-body">
+              <h3 class="tl-role">Business Process Analyst</h3>
+              <div class="tl-company">Enterprise Calibration Software Company</div>
+              <p class="tl-desc">Analyzed and documented business processes for enterprise calibration and compliance software. Facilitated stakeholder workshops, structured requirements, and supported solution validation and UAT delivery.</p>
+              <div class="tl-tags">
+                <span>Process Analysis</span><span>Requirements</span><span>UAT</span><span>Documentation</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="tl-entry">
+            <div class="tl-date">
+              <span class="tl-date-range">Jun '19–<br>Sep '23</span>
               <span class="tl-date-label">4 years</span>
             </div>
             <div class="tl-spine"><div class="tl-dot"></div><div class="tl-line"></div></div>
             <div class="tl-body">
-              <h3 class="tl-role">Senior Business Analyst</h3>
-              <div class="tl-company">Enterprise IT Consulting</div>
-              <p class="tl-desc">Led requirement analysis, solution design, and delivery for SAP and non-SAP enterprise systems. Managed scope, drove backlog definition, supported UAT, and coordinated cross-functional release readiness across multiple concurrent engagements.</p>
+              <h3 class="tl-role">Business Process Analyst</h3>
+              <div class="tl-company">Enterprise ERP Consulting Firm</div>
+              <p class="tl-desc">Led requirements definition, process analysis, and functional solution design across multiple concurrent SAP and ERP delivery engagements. Managed scope, stakeholder alignment, and delivery coordination from analysis through post-go-live support.</p>
               <div class="tl-tags">
-                <span>Requirements</span><span>Process Design</span><span>UAT & Testing</span><span>Release</span>
+                <span>Business Analysis</span><span>ERP</span><span>Process Design</span><span>Stakeholder Management</span>
               </div>
             </div>
           </div>
 
           <div class="tl-entry">
             <div class="tl-date">
-              <span class="tl-date-range">2015–<br>2019</span>
-              <span class="tl-date-label">4 years</span>
+              <span class="tl-date-range">Apr '18–<br>Jun '19</span>
+              <span class="tl-date-label">14 months</span>
             </div>
             <div class="tl-spine"><div class="tl-dot"></div><div class="tl-line"></div></div>
             <div class="tl-body">
-              <h3 class="tl-role">Business Analyst</h3>
-              <div class="tl-company">Technology Solutions</div>
-              <p class="tl-desc">Analyzed business needs, created functional designs, and supported implementation and testing across enterprise application and reporting projects. Worked closely with technical teams to bridge business requirements and system behaviour.</p>
+              <h3 class="tl-role">Programmer Analyst</h3>
+              <div class="tl-company">Technology Solutions & Services</div>
+              <p class="tl-desc">Supported functional and technical analysis, produced solution documentation, and coordinated system testing and validation activities across enterprise application projects.</p>
               <div class="tl-tags">
-                <span>Functional Design</span><span>Requirements</span><span>System Analysis</span><span>Support</span>
+                <span>Systems Analysis</span><span>UAT</span><span>Documentation</span><span>Technical Support</span>
               </div>
             </div>
           </div>
 
           <div class="tl-entry">
             <div class="tl-date">
-              <span class="tl-date-range">2013–<br>2015</span>
-              <span class="tl-date-label">2 years</span>
+              <span class="tl-date-range">Mar '17–<br>Mar '18</span>
+              <span class="tl-date-label">1 year</span>
             </div>
             <div class="tl-spine"><div class="tl-dot"></div><div class="tl-line"></div></div>
             <div class="tl-body">
-              <h3 class="tl-role">Analyst</h3>
-              <div class="tl-company">IT Services</div>
-              <p class="tl-desc">Supported requirements gathering, testing, and documentation for enterprise applications. Developed structured reports, maintained documentation, and contributed to quality assurance and system validation activities.</p>
+              <h3 class="tl-role">Programmer Analyst</h3>
+              <div class="tl-company">IT Services & Staffing</div>
+              <p class="tl-desc">Conducted systems analysis, produced structured technical documentation, and supported implementation and stakeholder engagement across enterprise technology delivery engagements.</p>
               <div class="tl-tags">
-                <span>Testing</span><span>Reporting</span><span>Documentation</span><span>QA Support</span>
+                <span>Systems Analysis</span><span>Documentation</span><span>Technical Support</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="tl-entry">
+            <div class="tl-date">
+              <span class="tl-date-range">Jun '14–<br>Jul '15</span>
+              <span class="tl-date-label">13 months</span>
+            </div>
+            <div class="tl-spine"><div class="tl-dot"></div><div class="tl-line"></div></div>
+            <div class="tl-body">
+              <h3 class="tl-role">IT Administrator</h3>
+              <div class="tl-company">IT Infrastructure & Services</div>
+              <p class="tl-desc">Administered enterprise IT infrastructure including hardware, software, and network systems. Maintained system uptime, managed documentation, and delivered user support across the organisation.</p>
+              <div class="tl-tags">
+                <span>IT Administration</span><span>Infrastructure</span><span>User Support</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="tl-entry">
+            <div class="tl-date">
+              <span class="tl-date-range">May '10–<br>Apr '13</span>
+              <span class="tl-date-label">3 years</span>
+            </div>
+            <div class="tl-spine"><div class="tl-dot"></div><div class="tl-line"></div></div>
+            <div class="tl-body">
+              <h3 class="tl-role">Customer Service Associate</h3>
+              <div class="tl-company">Global IT & Business Services</div>
+              <p class="tl-desc">Delivered structured client support across enterprise technology operations. Managed case resolution, maintained accurate reporting, and contributed to process improvement and quality initiatives.</p>
+              <div class="tl-tags">
+                <span>Client Services</span><span>Issue Resolution</span><span>Process Improvement</span><span>Reporting</span>
               </div>
             </div>
           </div>
@@ -251,27 +302,15 @@ body{
       <aside class="exp-sidebar">
         <section class="sidebar-panel glass-panel reveal-case">
           <h2 class="sidebar-heading">Core Capabilities</h2>
-          <div class="cap-list">
-            <div class="cap-item"><div class="cap-check"><i class="ti ti-check" aria-hidden="true"></i></div>Requirements Engineering</div>
-            <div class="cap-item"><div class="cap-check"><i class="ti ti-check" aria-hidden="true"></i></div>Business Process Modeling</div>
-            <div class="cap-item"><div class="cap-check"><i class="ti ti-check" aria-hidden="true"></i></div>Functional Design & Specification</div>
-            <div class="cap-item"><div class="cap-check"><i class="ti ti-check" aria-hidden="true"></i></div>Data Analysis & Modeling</div>
-            <div class="cap-item"><div class="cap-check"><i class="ti ti-check" aria-hidden="true"></i></div>System Integration</div>
-            <div class="cap-item"><div class="cap-check"><i class="ti ti-check" aria-hidden="true"></i></div>Testing & Validation</div>
-            <div class="cap-item"><div class="cap-check"><i class="ti ti-check" aria-hidden="true"></i></div>UAT & Training</div>
-            <div class="cap-item"><div class="cap-check"><i class="ti ti-check" aria-hidden="true"></i></div>Release & Support</div>
-          </div>
-        </section>
-
-        <section class="sidebar-panel glass-panel reveal-case">
-          <h2 class="sidebar-heading">Industries Served</h2>
-          <div class="industry-grid">
-            <div class="industry-item"><i class="ti ti-settings-2 ind-icon" aria-hidden="true"></i><span>Manufacturing</span></div>
-            <div class="industry-item"><i class="ti ti-shopping-cart ind-icon" aria-hidden="true"></i><span>Retail</span></div>
-            <div class="industry-item"><i class="ti ti-building-bank ind-icon" aria-hidden="true"></i><span>Financial Services</span></div>
-            <div class="industry-item"><i class="ti ti-stethoscope ind-icon" aria-hidden="true"></i><span>Healthcare</span></div>
-            <div class="industry-item"><i class="ti ti-truck ind-icon" aria-hidden="true"></i><span>Logistics</span></div>
-            <div class="industry-item"><i class="ti ti-building ind-icon" aria-hidden="true"></i><span>Public Sector</span></div>
+          <div class="cap-grid">
+            <div class="cap-tile"><i class="ti ti-file-description" aria-hidden="true"></i><span>Requirements Engineering</span></div>
+            <div class="cap-tile"><i class="ti ti-git-branch" aria-hidden="true"></i><span>Process Modeling</span></div>
+            <div class="cap-tile"><i class="ti ti-layout" aria-hidden="true"></i><span>Functional Design</span></div>
+            <div class="cap-tile"><i class="ti ti-chart-dots-3" aria-hidden="true"></i><span>Data Analysis</span></div>
+            <div class="cap-tile"><i class="ti ti-arrows-exchange" aria-hidden="true"></i><span>System Integration</span></div>
+            <div class="cap-tile"><i class="ti ti-checklist" aria-hidden="true"></i><span>Testing & Validation</span></div>
+            <div class="cap-tile"><i class="ti ti-users-group" aria-hidden="true"></i><span>UAT & Training</span></div>
+            <div class="cap-tile"><i class="ti ti-rocket" aria-hidden="true"></i><span>Release & Support</span></div>
           </div>
         </section>
       </aside>
@@ -283,8 +322,8 @@ body{
         <p>Let's discuss how I can contribute to your next enterprise delivery, product, or transformation program.</p>
       </div>
       <div class="cta-actions">
-        <a class="button magnetic" href="contact.html">Get in Touch</a>
-        <a class="button secondary magnetic" href="index.html#foundation">View Solutions</a>
+        <a class="button magnetic" href="contact.html">Start a Conversation</a>
+        <a class="button secondary magnetic" href="framework.html">View Framework</a>
       </div>
     </div>
   </main>
@@ -300,6 +339,29 @@ body{
   }, { threshold: 0.08, rootMargin: "0px 0px -20px 0px" });
   items.forEach(i => obs.observe(i));
   setTimeout(() => items.forEach(i => i.classList.add("visible")), 1200);
+})();
+(function(){
+  const counters=document.querySelectorAll('[data-count]');
+  if(!counters.length)return;
+  const obs=new IntersectionObserver(entries=>{
+    entries.forEach(entry=>{
+      if(!entry.isIntersecting)return;
+      const el=entry.target;
+      const target=parseInt(el.dataset.count);
+      const suffix=el.dataset.suffix||'';
+      const dur=1400;
+      const start=performance.now();
+      function frame(now){
+        const p=Math.min((now-start)/dur,1);
+        const ease=1-Math.pow(1-p,3);
+        el.textContent=Math.round(ease*target)+suffix;
+        if(p<1)requestAnimationFrame(frame);
+      }
+      requestAnimationFrame(frame);
+      obs.unobserve(el);
+    });
+  },{threshold:0.6});
+  counters.forEach(c=>obs.observe(c));
 })();
 </script>
 </body>
