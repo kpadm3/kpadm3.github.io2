@@ -9,7 +9,7 @@
   <link rel="stylesheet" href="assets/css/site.css">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@3/dist/tabler-icons.min.css">
 <style>
-.hero-new{display:grid;grid-template-columns:minmax(0,1.32fr) minmax(0,1fr);gap:44px;align-items:start;padding:64px 0 52px}
+.hero-new{display:grid;grid-template-columns:minmax(0,1.32fr) minmax(0,1fr);gap:44px;align-items:center;padding:64px 0 52px}
 .hero-new h1{font-size:clamp(1.3rem,2.1vw,1.9rem)!important;font-weight:800!important;line-height:1.22!important;margin:10px 0 0}
 .hn-tagline{font-size:.72rem;font-weight:700;color:#6a8499;margin-top:10px;letter-spacing:.01em}
 .hn-tagline span{color:rgba(53,212,241,.38)}
@@ -67,6 +67,15 @@
 .section{padding:48px 0!important}
 .section-heading h2{font-size:clamp(.95rem,1.4vw,1.1rem)!important;font-weight:700!important;line-height:1.5!important;margin-top:6px!important;color:var(--muted)!important}
 .recruiter-cta h2{font-size:clamp(1.1rem,1.9vw,1.45rem)!important;font-weight:800!important;line-height:1.35!important}
+.section{padding:36px 0!important}
+.section-heading{flex-direction:column!important;align-items:flex-start!important;gap:6px!important}
+.section-heading p{max-width:none!important;margin-top:4px!important}
+.solution-card-v3{cursor:pointer;position:relative;overflow:hidden}
+.card-scan{position:absolute;left:0;right:0;height:1.5px;background:var(--project);opacity:0;top:-4px;pointer-events:none;z-index:4}
+.card-cta{position:absolute;bottom:0;left:0;right:0;background:rgba(4,16,29,.75);border-top:1px solid var(--project);padding:9px 16px;opacity:0;transition:opacity .18s;z-index:3;display:flex;align-items:center;justify-content:space-between}
+.card-cta span{font-size:10px;font-weight:800;letter-spacing:.05em;color:var(--project)}
+.card-cta i{font-size:14px;color:var(--project)}
+.solution-card-v3>a{display:none!important}
 </style>
 </head>
 <body>
@@ -305,6 +314,44 @@
   }
   if(document.readyState==='loading'){document.addEventListener('DOMContentLoaded',runHero);}
   else{setTimeout(runHero,120);}
+})();
+</script>
+<script>
+(function(){
+  function initCards(){
+    document.querySelectorAll('.solution-card-v3').forEach(function(card){
+      var scan=document.createElement('div');
+      scan.className='card-scan';
+      card.insertBefore(scan,card.firstChild);
+      var cta=document.createElement('div');
+      cta.className='card-cta';
+      cta.innerHTML='<span>Read the full case</span><i class="ti ti-arrow-right" aria-hidden="true"></i>';
+      card.appendChild(cta);
+      var link=card.querySelector('a');
+      var busy=false;
+      card.addEventListener('mouseenter',function(){
+        if(busy)return;busy=true;
+        cta.style.opacity='0';
+        scan.style.transition='none';
+        scan.style.opacity='.9';
+        scan.style.top='-4px';
+        void scan.offsetWidth;
+        scan.style.transition='top .55s linear';
+        scan.style.top='100%';
+        setTimeout(function(){cta.style.opacity='1';busy=false;},560);
+      });
+      card.addEventListener('mouseleave',function(){
+        cta.style.opacity='0';
+        scan.style.opacity='0';
+        scan.style.top='-4px';
+      });
+      card.addEventListener('click',function(e){
+        if(!e.target.closest('a')&&link)window.location.href=link.href;
+      });
+    });
+  }
+  if(document.readyState==='loading'){document.addEventListener('DOMContentLoaded',initCards);}
+  else{initCards();}
 })();
 </script>
 </body>
