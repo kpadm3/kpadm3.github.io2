@@ -26,23 +26,31 @@
   const prevLabel = labels[(idx - 1 + pages.length) % pages.length];
   const nextLabel = labels[(idx + 1) % pages.length];
 
+  const dots = pages.map((_, i) =>
+    '<span class="cpn-dot' + (i === idx ? ' active' : '') + '"></span>'
+  ).join('');
+
   const nav = document.createElement('div');
   nav.className = 'case-prog-nav';
   nav.innerHTML =
-    '<a href="' + prev + '" class="cpn-btn" aria-label="Previous: ' + prevLabel + '" title="' + prevLabel + '">' +
-      '<i class="ti ti-chevron-left" aria-hidden="true"></i>' +
+    '<a href="' + prev + '" class="cpn-side cpn-prev" aria-label="Previous: ' + prevLabel + '">' +
+      '<span class="cpn-arr"><i class="ti ti-chevron-left" aria-hidden="true"></i></span>' +
+      '<span class="cpn-meta">' +
+        '<span class="cpn-dir">Previous</span>' +
+        '<span class="cpn-name">' + prevLabel + '</span>' +
+      '</span>' +
     '</a>' +
-    '<div class="cpn-info">' +
-      '<span class="cpn-num">' + (idx + 1) + ' of ' + pages.length + '</span>' +
-      '<span class="cpn-label">' + labels[idx] + '</span>' +
+    '<div class="cpn-center">' +
+      '<span class="cpn-counter">' + (idx + 1) + ' of ' + pages.length + '</span>' +
+      '<div class="cpn-dots">' + dots + '</div>' +
+      '<a href="../index.html" class="cpn-home">Back to home</a>' +
     '</div>' +
-    '<div class="cpn-divider" aria-hidden="true"></div>' +
-    '<a href="../index.html" class="cpn-btn" aria-label="Back to home">' +
-      '<i class="ti ti-x" aria-hidden="true"></i>' +
-    '</a>' +
-    '<div class="cpn-divider" aria-hidden="true"></div>' +
-    '<a href="' + next + '" class="cpn-btn" aria-label="Next: ' + nextLabel + '" title="' + nextLabel + '">' +
-      '<i class="ti ti-chevron-right" aria-hidden="true"></i>' +
+    '<a href="' + next + '" class="cpn-side cpn-next" aria-label="Next: ' + nextLabel + '">' +
+      '<span class="cpn-meta">' +
+        '<span class="cpn-dir">Next</span>' +
+        '<span class="cpn-name">' + nextLabel + '</span>' +
+      '</span>' +
+      '<span class="cpn-arr"><i class="ti ti-chevron-right" aria-hidden="true"></i></span>' +
     '</a>';
 
   document.body.appendChild(nav);
