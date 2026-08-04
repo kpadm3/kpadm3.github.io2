@@ -9,35 +9,58 @@
   <link rel="stylesheet" href="assets/css/site.css">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@3/dist/tabler-icons.min.css">
 <style>
-.hero-new{display:grid;grid-template-columns:minmax(0,1.32fr) minmax(0,1fr);gap:44px;align-items:center;padding:64px 0 52px}
-.hero-new h1{font-size:clamp(1.3rem,2.1vw,1.9rem)!important;font-weight:800!important;line-height:1.22!important;margin:10px 0 0}
-.hn-tagline{font-size:.72rem;font-weight:700;color:#6a8499;margin-top:10px;letter-spacing:.01em}
-.hn-tagline span{color:rgba(53,212,241,.38)}
-.hn-lead{font-size:.78rem;color:#5a7a94;line-height:1.65;margin-top:10px}
-.hn-spec{background:#060f1c;border:1px solid #1a2d42;border-radius:10px;padding:18px;position:relative;overflow:hidden}
-.vp-hdr{font-size:8.5px;font-weight:900;letter-spacing:.12em;text-transform:uppercase;color:#35d4f1;margin:0 0 14px;padding-bottom:8px;border-bottom:1px solid #1a2d42;font-family:system-ui,-apple-system,sans-serif}
-.vp-wrap{display:flex;flex-direction:column}
-.vp-item{display:flex;gap:12px}
-.vp-left{display:flex;flex-direction:column;align-items:center;flex-shrink:0;width:30px}
-.vp-dot{width:30px;height:30px;border-radius:50%;border:1.5px solid #1a3a52;background:#060f1c;display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:border-color .3s,box-shadow .3s}
-.vp-dot i{font-size:13px;color:#2a4a62;transition:color .3s}
-.vp-dot.lit{border-color:#35d4f1;box-shadow:0 0 0 3px rgba(53,212,241,.12)}
-.vp-dot.lit i{color:#35d4f1}
-.vp-seg{width:1.5px;flex:1;min-height:18px;background:#1a3a52;margin-top:3px;position:relative;overflow:hidden}
-.vp-fill{position:absolute;top:0;left:0;width:100%;height:0;background:#35d4f1}
-.vp-right{padding-top:5px;padding-bottom:14px}
-.vp-last .vp-right{padding-bottom:0}
-.vp-name{font-size:10px;font-weight:800;color:#2a4a62;letter-spacing:.04em;text-transform:uppercase;font-family:system-ui,-apple-system,sans-serif;transition:color .3s}
-.vp-sub{font-size:8.5px;color:#1a3a52;margin-top:2px;font-family:system-ui,-apple-system,sans-serif;transition:color .3s}
-.vp-item.lit .vp-name{color:#35d4f1}
-.vp-item.lit .vp-sub{color:#4a7a9a}
-.fade-el{opacity:0;transform:translateY(10px);transition:opacity .45s ease,transform .45s ease}
-.fade-el.in{opacity:1;transform:translateY(0)}
-.row-el{opacity:0;transform:translateX(-5px);transition:opacity .3s ease,transform .3s ease}
-.row-el.in{opacity:1;transform:translateX(0)}
-.tag-el{opacity:0;transform:scale(.85);transition:opacity .25s,transform .25s}
-.tag-el.in{opacity:1;transform:scale(1)}
-@media(max-width:860px){.hero-new{grid-template-columns:1fr;padding:48px 0 36px}}
+.sh-hero{position:relative;overflow:hidden;border-bottom:1px solid #0c1e30}
+.sh-hero::before{content:'';position:absolute;inset:0;background-image:linear-gradient(rgba(12,30,48,.32) 1px,transparent 1px),linear-gradient(90deg,rgba(12,30,48,.32) 1px,transparent 1px);background-size:52px 52px;pointer-events:none}
+.sh-grid{display:grid;grid-template-columns:42% 58%}
+.sh-q-col{padding:52px 44px 44px 0;border-right:1px solid #0c1e30;display:flex;flex-direction:column;justify-content:flex-start;position:relative;z-index:1}
+.sh-q-col::before{content:'';position:absolute;top:0;left:0;width:2px;height:100%;background:linear-gradient(180deg,transparent,#35d4f1,transparent);opacity:.45}
+.sh-a-col{padding:48px 0 44px 48px;display:flex;flex-direction:column;justify-content:flex-start;position:relative;z-index:1}
+.sh-identity{margin-bottom:20px}
+.sh-name{font-size:2rem;font-weight:900;letter-spacing:-.05em;line-height:.98;color:#f0f5fc}
+.sh-role{font-size:.88rem;font-weight:800;color:#35d4f1;margin-top:10px;letter-spacing:.02em}
+.sh-specs{font-size:.68rem;font-weight:700;color:#1e3a52;margin-top:6px;letter-spacing:.02em}
+.sh-cursor{display:inline-block;width:2px;height:.9em;background:#35d4f1;vertical-align:text-bottom;animation:sh-blink .7s step-end infinite;margin-left:1px}
+@keyframes sh-blink{0%,100%{opacity:1}50%{opacity:0}}
+.sh-c-label{font-size:.57rem;font-weight:700;letter-spacing:.13em;color:#2e4d63;text-transform:uppercase;margin-bottom:22px;padding-top:4px}
+.sh-c-item{margin-bottom:18px;opacity:0;transform:translateY(7px);transition:opacity .35s cubic-bezier(.22,1,.36,1),transform .35s cubic-bezier(.22,1,.36,1)}
+.sh-c-item.in{opacity:1;transform:none}
+.sh-c-q{font-size:.61rem;font-weight:800;color:#2e4d63;letter-spacing:.07em;text-transform:uppercase;margin-bottom:8px;display:flex;align-items:center;gap:10px}
+.sh-c-q::before{content:'';width:18px;height:1px;flex-shrink:0;background:rgba(53,212,241,.4)}
+.sh-c-a{font-size:.78rem;color:#8aafc4;line-height:1.85;padding-left:28px}
+.sh-stmt{opacity:0;transform:translateY(10px);transition:opacity .5s cubic-bezier(.22,1,.36,1),transform .5s cubic-bezier(.22,1,.36,1)}
+.sh-stmt.in{opacity:1;transform:none}
+.sh-stmt-card{background:#0a1929;border:1px solid #0c1e30;border-radius:6px;padding:15px 16px;margin-bottom:9px}
+.sh-stmt-label{font-size:.56rem;font-weight:700;letter-spacing:.12em;color:#1e3a52;text-transform:uppercase;margin-bottom:9px}
+.sh-stmt-text{font-size:.79rem;color:#8aafc4;line-height:1.75}
+.sh-stmt-text strong{color:#e0ecfa;font-weight:700}
+.sh-acc{color:#35d4f1;font-weight:700}
+.sh-pills{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px}
+.sh-pill{background:#0a1929;border:1px solid #0c1e30;border-radius:6px;padding:11px 12px}
+.sh-pill-top{display:block;font-size:.79rem;font-weight:800;color:#35d4f1;line-height:1.2}
+.sh-pill-bot{display:block;font-size:.57rem;font-weight:700;color:#2e4d63;margin-top:4px;letter-spacing:.04em;text-transform:uppercase;line-height:1.35}
+.sh-progs{opacity:0;transform:translateY(16px);transition:opacity .7s cubic-bezier(.22,1,.36,1),transform .7s cubic-bezier(.22,1,.36,1)}
+.sh-progs.in{opacity:1;transform:none}
+@media(max-width:860px){.sh-grid{grid-template-columns:1fr}.sh-q-col{padding:44px 0 24px;border-right:none;border-bottom:1px solid #0c1e30}.sh-q-col::before{width:100%;height:2px;background:linear-gradient(90deg,transparent,#35d4f1,transparent)}.sh-a-col{padding:28px 0 44px}.sh-pills{grid-template-columns:1fr 1fr}}
+html[data-theme="light"] .sh-hero::before{opacity:0}
+html[data-theme="light"] .sh-name{color:#0d1f30}
+html[data-theme="light"] .sh-role{color:#0891b2}
+html[data-theme="light"] .sh-specs{color:#4a6a84}
+html[data-theme="light"] .sh-cursor{background:#0891b2}
+html[data-theme="light"] .sh-q-col::before{background:linear-gradient(180deg,transparent,#0891b2,transparent)}
+html[data-theme="light"] .sh-q-col{border-right-color:rgba(8,145,178,.18)}
+html[data-theme="light"] .sh-hero{border-bottom-color:rgba(8,145,178,.15)}
+html[data-theme="light"] .sh-c-label{color:#5a7a94}
+html[data-theme="light"] .sh-c-q{color:#5a7a94}
+html[data-theme="light"] .sh-c-q::before{background:rgba(8,145,178,.4)}
+html[data-theme="light"] .sh-c-a{color:#2a4a62}
+html[data-theme="light"] .sh-stmt-card{background:#ffffff;border-color:rgba(8,145,178,.15)}
+html[data-theme="light"] .sh-stmt-label{color:#5a7a94}
+html[data-theme="light"] .sh-stmt-text{color:#2a4a62}
+html[data-theme="light"] .sh-stmt-text strong{color:#0d1f30}
+html[data-theme="light"] .sh-acc{color:#0891b2}
+html[data-theme="light"] .sh-pill{background:#ffffff;border-color:rgba(8,145,178,.15)}
+html[data-theme="light"] .sh-pill-top{color:#0891b2}
+html[data-theme="light"] .sh-pill-bot{color:#5a7a94}
 .solution-flow-v3::before{display:none!important}
 .solution-icon-wrap{position:relative;display:inline-flex}
 .solution-icon-ring{position:absolute;inset:-8px;border-radius:50%;border:1px solid var(--project);opacity:0;pointer-events:none}
@@ -109,28 +132,32 @@
   </header>
 
   <main id="top">
-    <section class="hero-new container">
-      <div class="hn-left">
-        <div class="eyebrow fade-el" id="hero-ey">Enterprise analysis, integration, and delivery</div>
-        <h1 class="fade-el" id="hero-h1">Transforming complex enterprise requirements into <span class="gradient-text">production-ready business solutions.</span></h1>
-        <div class="hn-tagline fade-el" id="hero-tg">Structured analysis <span>&middot;</span> Traceable delivery <span>&middot;</span> Measurable outcomes</div>
-        <p class="hn-lead fade-el" id="hero-ld">10 years across business analysis, product management, data integration, migration, and release. I own the full delivery thread from requirements definition to production sign-off.</p>
+    <section class="sh-hero">
+      <div class="container sh-grid">
+        <div class="sh-q-col" id="sh-q-col"></div>
+        <div class="sh-a-col">
+          <div class="sh-identity">
+            <div class="sh-name">Krishna</div>
+            <div class="sh-role">Enterprise Delivery Lead</div>
+            <div class="sh-specs">Business Analysis &nbsp;&middot;&nbsp; Systems Integration &nbsp;&middot;&nbsp; Product Management &nbsp;&middot;&nbsp; Release</div>
+          </div>
+          <div class="sh-stmt" id="sh-stmt">
+        <div class="sh-stmt-card">
+          <div class="sh-stmt-label">What I bring</div>
+          <div class="sh-stmt-text"><strong>Four disciplines that usually take a team.</strong> Business analysis, systems integration, product management, and release planning. Over a decade delivering all four as <span class="sh-acc">one practitioner</span>, from strategy analysis through production sign-off.</div>
+        </div>
+        <div class="sh-pills">
+          <div class="sh-pill"><span class="sh-pill-top">10+</span><span class="sh-pill-bot">Years Enterprise Delivery</span></div>
+          <div class="sh-pill"><span class="sh-pill-top">BABOK</span><span class="sh-pill-bot">Full knowledge area coverage</span></div>
+          <div class="sh-pill"><span class="sh-pill-top">Enterprise Platforms</span><span class="sh-pill-bot">Multi-system program delivery</span></div>
+        </div>
       </div>
-      <div class="hn-spec fade-el" id="hero-spec">
-        <div class="vp-hdr">Delivery lifecycle</div>
-        <div class="vp-wrap">
-          <div class="vp-item" id="vpi0"><div class="vp-left"><div class="vp-dot" id="vpd0"><i class="ti ti-file-description" aria-hidden="true"></i></div><div class="vp-seg"><div class="vp-fill" id="vpf0"></div></div></div><div class="vp-right"><div class="vp-name">Requirements</div><div class="vp-sub">Elicitation and baseline</div></div></div>
-          <div class="vp-item" id="vpi1"><div class="vp-left"><div class="vp-dot" id="vpd1"><i class="ti ti-search" aria-hidden="true"></i></div><div class="vp-seg"><div class="vp-fill" id="vpf1"></div></div></div><div class="vp-right"><div class="vp-name">Analysis</div><div class="vp-sub">Mapping and traceability</div></div></div>
-          <div class="vp-item" id="vpi2"><div class="vp-left"><div class="vp-dot" id="vpd2"><i class="ti ti-layout" aria-hidden="true"></i></div><div class="vp-seg"><div class="vp-fill" id="vpf2"></div></div></div><div class="vp-right"><div class="vp-name">Design</div><div class="vp-sub">Functional specifications</div></div></div>
-          <div class="vp-item" id="vpi3"><div class="vp-left"><div class="vp-dot" id="vpd3"><i class="ti ti-arrows-exchange" aria-hidden="true"></i></div><div class="vp-seg"><div class="vp-fill" id="vpf3"></div></div></div><div class="vp-right"><div class="vp-name">Integration</div><div class="vp-sub">Systems and data</div></div></div>
-          <div class="vp-item" id="vpi4"><div class="vp-left"><div class="vp-dot" id="vpd4"><i class="ti ti-checkbox" aria-hidden="true"></i></div><div class="vp-seg"><div class="vp-fill" id="vpf4"></div></div></div><div class="vp-right"><div class="vp-name">Validation</div><div class="vp-sub">UAT and sign-off</div></div></div>
-          <div class="vp-item vp-last" id="vpi5"><div class="vp-left"><div class="vp-dot" id="vpd5"><i class="ti ti-rocket" aria-hidden="true"></i></div></div><div class="vp-right"><div class="vp-name">Release</div><div class="vp-sub">Go-live and hypercare</div></div></div>
         </div>
       </div>
     </section>
 
-<section class="section container" id="foundation">
-      <header class="section-heading solution-heading-v3 reveal visible">
+<section class="section container sh-progs" id="foundation" style="display:none">
+      <header class="section-heading solution-heading-v3">
         <div>
           <div class="eyebrow">Enterprise programs</div>
           <div class="sp-click-cue"><i class="ti ti-hand-click" aria-hidden="true"></i><span>Click any card to read the full delivery program</span></div>
@@ -197,7 +224,7 @@
       </div>
     </section>
 
-    <section class="section container" id="approach-preview">
+    <section class="section container sh-progs sh-below" id="approach-preview" style="display:none">
       <header class="section-heading reveal"><div><div class="eyebrow">How I work</div><h2>Discovery to delivery, without losing the thread.</h2></div><p>Discovery, analysis, design, validation, and release. All structured to keep the original business need visible through every stage.</p></header>
       <div class="effects-grid">
         <article class="effect-card interactive reveal" data-tilt><div class="hw-bar" aria-hidden="true"></div><div class="hw-top"><span class="hw-num">01</span><i class="ti ti-zoom-question hw-ico" aria-hidden="true"></i></div><span>Discovery</span><h3>Define the problem before designing the solution</h3><p>Capture business context, surface conflicting assumptions, and identify the decisions that need to be made before design begins.</p></article>
@@ -207,7 +234,7 @@
       </div>
     </section>
 
-    <section class="section container">
+    <section class="section container sh-progs sh-below" style="display:none">
       <div class="recruiter-cta reveal">
         <div>
           <div class="eyebrow">Open to the right opportunity</div>
@@ -262,53 +289,74 @@
   </script>
 <script>
 (function(){
-  function runHero(){
-    var ids=['hero-ey','hero-h1','hero-tg','hero-ld'];
-    ids.forEach(function(id,i){
-      setTimeout(function(){
-        var el=document.getElementById(id);
-        if(el)el.classList.add('in');
-      },i*130+80);
-    });
-    setTimeout(function(){
-      var spec=document.getElementById('hero-spec');
-      if(!spec)return;
-      spec.classList.add('in');
-      setTimeout(runPipeline,450);
-    },700);
-  }
-  function runPipeline(){
-    var count=6;var delay=460;
-    function reset(){
-      for(var i=0;i<count;i++){
-        var dot=document.getElementById('vpd'+i);
-        var fill=document.getElementById('vpf'+i);
-        var item=document.getElementById('vpi'+i);
-        if(dot)dot.classList.remove('lit');
-        if(item)item.classList.remove('lit');
-        if(fill){fill.style.transition='none';fill.style.height='0';}
-      }
+  var D=[
+    {q:'Tell me about yourself.',
+     a:'Over 10 years of enterprise delivery across business analysis, systems integration, product management, and release planning. I lead programs end to end. Strategy analysis through solution evaluation. Full lifecycle ownership.'},
+    {q:'What have you delivered?',
+     a:'Key programs across my career include enterprise product configuration, data integration, full requirements-to-release delivery, business reporting automation, root-cause analysis, and data migration. Each delivered end to end with documented outcomes.'},
+    {q:'What are your strengths?',
+     a:'Structured decomposition of complex business problems. Stakeholder alignment across executive, business, and technical layers. I keep the original business need traceable from elicitation through production sign-off.'},
+    {q:'What tools and techniques do you use?',
+     a:'JIRA, Confluence, Azure DevOps, SQL, Visio, and Lucidchart for delivery and documentation. BABOK techniques across elicitation, process modeling, requirements architecture, and solution evaluation. Agile and waterfall delivery across enterprise platforms.'}
+  ];
+  var _t=[];
+  function later(fn,ms){var t=setTimeout(fn,ms);_t.push(t);return t;}
+
+  function typeText(el,text,cb){
+    var i=0;var c=document.createElement('span');c.className='sh-cursor';el.appendChild(c);
+    function tick(){
+      if(i<text.length){
+        el.insertBefore(document.createTextNode(text[i]),c);
+        var ch=text[i];i++;
+        later(tick,ch==='.'||ch==='?'?68:14);
+      }else{later(function(){c.remove();if(cb)cb();},280);}
     }
-    function run(){
-      reset();
-      for(var i=0;i<count;i++){
-        (function(idx){
-          setTimeout(function(){
-            var dot=document.getElementById('vpd'+idx);
-            var fill=document.getElementById('vpf'+idx);
-            var item=document.getElementById('vpi'+idx);
-            if(dot)dot.classList.add('lit');
-            if(item)item.classList.add('lit');
-            if(fill&&idx<count-1){fill.style.transition='height .42s ease';fill.style.height='100%';}
-            if(idx===count-1){setTimeout(run,2400);}
-          },idx*delay);
-        })(i);
-      }
-    }
-    run();
+    tick();
   }
-  if(document.readyState==='loading'){document.addEventListener('DOMContentLoaded',runHero);}
-  else{setTimeout(runHero,120);}
+
+  function addItem(d,cb){
+    var col=document.getElementById('sh-q-col');
+    var item=document.createElement('div');item.className='sh-c-item';
+    var qe=document.createElement('div');qe.className='sh-c-q';qe.textContent=d.q;
+    var ae=document.createElement('div');ae.className='sh-c-a';
+    item.appendChild(qe);item.appendChild(ae);
+    col.appendChild(item);
+    later(function(){
+      item.classList.add('in');
+      later(function(){typeText(ae,d.a,cb);},240);
+    },60);
+  }
+
+  function run(){
+    var col=document.getElementById('sh-q-col');
+    var lbl=document.createElement('div');lbl.className='sh-c-label';lbl.textContent='On the record';
+    col.appendChild(lbl);
+    function step(i){
+      if(i>=D.length){
+        later(function(){
+          var s=document.getElementById('sh-stmt');
+          if(s)s.classList.add('in');
+        },200);
+        later(function(){
+          var f=document.getElementById('foundation');
+          if(f){f.style.display='';later(function(){f.classList.add('in');},20);}
+          later(function(){
+            document.querySelectorAll('.sh-below').forEach(function(s,i){
+              later(function(){s.style.display='';later(function(){s.classList.add('in');},20);},i*220);
+            });
+          },800);
+        },700);
+        return;
+      }
+      later(function(){
+        addItem(D[i],function(){later(function(){step(i+1);},100);});
+      },i===0?520:70);
+    }
+    step(0);
+  }
+
+  if(document.readyState==='loading'){document.addEventListener('DOMContentLoaded',run);}
+  else{setTimeout(run,120);}
 })();
 </script>
 <script>
