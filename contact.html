@@ -39,11 +39,12 @@ body{
 }
 
 /* Contact layout */
-.contact-layout{margin-top:14px;max-width:560px}
+.contact-layout{margin-top:14px}
 
 /* Info panel */
 .info-panel{padding:26px 28px}
 .panel-heading{margin:0 0 20px;color:var(--case-cyan);font-size:.82rem;font-weight:900;letter-spacing:.08em;text-transform:uppercase}
+.contact-items-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
 
 .contact-item{
   display:flex;align-items:flex-start;gap:14px;
@@ -51,7 +52,6 @@ body{
   border:1px solid rgba(53,212,241,.24);
   border-radius:12px;
   background:rgba(5,15,28,.68);
-  margin-bottom:10px;
   transition:border-color .2s,transform .2s;
   text-decoration:none;
 }
@@ -101,6 +101,7 @@ a.contact-item:hover{border-color:rgba(53,212,241,.56);transform:translateX(3px)
 @media(max-width:600px){
   .case-wrap{padding:16px}
   .page-title{font-size:clamp(2.2rem,12vw,3.2rem)}
+  .contact-items-grid{grid-template-columns:1fr}
   .footer-inner{grid-template-columns:1fr}
 }
 @media(prefers-reduced-motion:reduce){.reveal-case{opacity:1;transform:none}}
@@ -164,6 +165,7 @@ html[data-theme="light"] .nav-soc-btn:hover{border-color:rgba(8,145,178,.4);colo
     <div class="contact-layout">
       <section class="info-panel glass-panel reveal-case">
         <h2 class="panel-heading">Contact Details</h2>
+        <div class="contact-items-grid">
 
         <a class="contact-item" href="mailto:pskrishna204@gmail.com">
           <div class="contact-icon"><i class="ti ti-mail" aria-hidden="true"></i></div>
@@ -200,6 +202,8 @@ html[data-theme="light"] .nav-soc-btn:hover{border-color:rgba(8,145,178,.4);colo
             <span class="contact-item-sub">Live portfolio and solution work</span>
           </div>
         </a>
+
+        </div>
       </section>
 
     </div>
