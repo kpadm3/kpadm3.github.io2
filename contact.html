@@ -39,7 +39,7 @@ body{
 }
 
 /* Contact layout */
-.contact-layout{display:grid;grid-template-columns:minmax(280px,.8fr) minmax(0,1.3fr);gap:16px;margin-top:14px}
+.contact-layout{margin-top:14px;max-width:560px}
 
 /* Info panel */
 .info-panel{padding:26px 28px}
@@ -69,47 +69,6 @@ a.contact-item:hover{border-color:rgba(53,212,241,.56);transform:translateX(3px)
 .contact-item-value{display:block;color:#d5e2ef;font-size:.76rem;font-weight:700;line-height:1.35}
 .contact-item-sub{display:block;margin-top:3px;color:#7e9ab5;font-size:.65rem}
 
-/* Form panel */
-.form-panel{padding:26px 28px}
-.contact-form{display:flex;flex-direction:column;gap:14px;margin-top:6px}
-.form-row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
-.field-wrap{display:flex;flex-direction:column;gap:7px}
-.field-wrap label{color:var(--case-cyan);font-size:.65rem;font-weight:900;letter-spacing:.06em;text-transform:uppercase}
-.field-wrap input,
-.field-wrap textarea{
-  width:100%;
-  padding:12px 14px;
-  border:1px solid rgba(53,212,241,.28);
-  border-radius:10px;
-  background:rgba(3,12,24,.80);
-  color:#edf5fb;
-  font-size:.78rem;
-  font-family:inherit;
-  line-height:1.5;
-  outline:none;
-  transition:border-color .2s,box-shadow .2s;
-  box-sizing:border-box;
-}
-.field-wrap input:focus,
-.field-wrap textarea:focus{
-  border-color:rgba(53,212,241,.65);
-  box-shadow:0 0 0 3px rgba(53,212,241,.10);
-}
-.field-wrap input::placeholder,
-.field-wrap textarea::placeholder{color:#4e6a84}
-.field-wrap textarea{resize:vertical;min-height:130px}
-.form-submit{
-  width:100%;padding:13px;
-  border:none;border-radius:10px;
-  background:var(--case-cyan);
-  color:#03101f;font-size:.82rem;font-weight:900;
-  cursor:pointer;
-  letter-spacing:.02em;
-  transition:opacity .2s,transform .15s;
-}
-.form-submit:hover{opacity:.88;transform:translateY(-1px)}
-.form-submit:active{transform:translateY(0)}
-.form-note{margin:6px 0 0;color:#5e7a96;font-size:.62rem;text-align:center;line-height:1.55}
 
 /* CTA */
 .cta-panel{
@@ -135,7 +94,6 @@ a.contact-item:hover{border-color:rgba(53,212,241,.56);transform:translateX(3px)
 .reveal-case.visible{opacity:1;transform:none}
 
 @media(max-width:980px){
-  .contact-layout{grid-template-columns:1fr}
   .cta-panel{grid-template-columns:1fr}
   .cta-actions{justify-content:flex-start}
   .footer-inner{grid-template-columns:1fr 1fr}
@@ -143,7 +101,6 @@ a.contact-item:hover{border-color:rgba(53,212,241,.56);transform:translateX(3px)
 @media(max-width:600px){
   .case-wrap{padding:16px}
   .page-title{font-size:clamp(2.2rem,12vw,3.2rem)}
-  .form-row{grid-template-columns:1fr}
   .footer-inner{grid-template-columns:1fr}
 }
 @media(prefers-reduced-motion:reduce){.reveal-case{opacity:1;transform:none}}
@@ -163,11 +120,7 @@ html[data-theme="light"] a.contact-item:hover{border-color:rgba(8,145,178,.48)}
 html[data-theme="light"] .contact-icon{border-color:rgba(8,145,178,.28)}
 html[data-theme="light"] .contact-item-value{color:#0d1f30}
 html[data-theme="light"] .contact-item-sub{color:#5a7a94}
-html[data-theme="light"] .field-wrap input,html[data-theme="light"] .field-wrap textarea{background:#ffffff;border-color:rgba(8,145,178,.22);color:#0d1f30}
-html[data-theme="light"] .field-wrap input:focus,html[data-theme="light"] .field-wrap textarea:focus{border-color:rgba(8,145,178,.58);box-shadow:0 0 0 3px rgba(8,145,178,.08)}
-html[data-theme="light"] .field-wrap input::placeholder,html[data-theme="light"] .field-wrap textarea::placeholder{color:#8aafc4}
-html[data-theme="light"] .form-submit{background:#0891b2;color:#ffffff}
-html[data-theme="light"] .form-note{color:#5a7a94}
+
 html[data-theme="light"] .cta-copy p{color:#3a5a74}
 html[data-theme="light"] .case-nav{color:#5a7a94}
 html[data-theme="light"] .case-nav a{color:#5a7a94}
@@ -249,28 +202,6 @@ html[data-theme="light"] .nav-soc-btn:hover{border-color:rgba(8,145,178,.4);colo
         </a>
       </section>
 
-      <section class="form-panel glass-panel reveal-case">
-        <h2 class="panel-heading">Send a Message</h2>
-        <form class="contact-form" id="contactForm" action="https://formspree.io/f/xjgnnrgw" method="POST">
-          <input type="hidden" name="_subject" value="Portfolio Enquiry">
-          <div class="form-row">
-            <div class="field-wrap">
-              <label for="contact-name">Name</label>
-              <input type="text" id="contact-name" name="name" placeholder="Your name" autocomplete="name" required>
-            </div>
-            <div class="field-wrap">
-              <label for="contact-email">Email</label>
-              <input type="email" id="contact-email" name="email" placeholder="your.email@domain.com" autocomplete="email" required>
-            </div>
-          </div>
-          <div class="field-wrap">
-            <label for="contact-message">Message</label>
-            <textarea id="contact-message" name="message" placeholder="Tell me about the initiative or opportunity…" required></textarea>
-          </div>
-          <button class="form-submit" type="submit" id="form-btn">Send Message</button>
-          <p class="form-note" id="form-status"></p>
-        </form>
-      </section>
     </div>
 
     <div class="cta-panel glass-panel reveal-case">
@@ -299,37 +230,6 @@ html[data-theme="light"] .nav-soc-btn:hover{border-color:rgba(8,145,178,.4);colo
   setTimeout(() => items.forEach(i => i.classList.add("visible")), 1200);
 })();
 
-// Contact form → Formspree
-// Sign up at formspree.io and replace YOUR_FORM_ID in the form action above
-document.getElementById("contactForm").addEventListener("submit", async function(e) {
-  e.preventDefault();
-  const form = e.target;
-  const status = document.getElementById("form-status");
-  const btn = document.getElementById("form-btn");
-  btn.disabled = true;
-  btn.textContent = "Sending…";
-  try {
-    const res = await fetch(form.action, {
-      method: "POST",
-      body: new FormData(form),
-      headers: { "Accept": "application/json" }
-    });
-    if (res.ok) {
-      status.textContent = "Message sent. I will be in touch soon.";
-      status.style.color = "#35d4f1";
-      form.reset();
-    } else {
-      const json = await res.json();
-      status.textContent = json.errors ? json.errors.map(function(e){return e.message;}).join(", ") : "Something went wrong. Please email pskrishna204@gmail.com directly.";
-      status.style.color = "#f2b45c";
-    }
-  } catch(err) {
-    status.textContent = "Could not send. Please email pskrishna204@gmail.com directly.";
-    status.style.color = "#f2b45c";
-  }
-  btn.disabled = false;
-  btn.textContent = "Send Message";
-});
 </script>
 </body>
 </html>
