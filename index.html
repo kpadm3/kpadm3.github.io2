@@ -232,6 +232,11 @@ html[data-theme="light"] .sh-hint-lbl{color:#1e4a6a}
 @media(max-width:1050px){.nav-positioning{font-size:.54rem;letter-spacing:.12em}.sp-scroll{display:flex;position:relative;left:auto;bottom:auto;transform:none;margin:28px auto 0;animation:none}}
 @media(max-width:720px){.nav-positioning{display:none}}
 
+
+/* Keep the existing theme control, but place it in the header */
+.theme-header-host{display:flex;align-items:center;margin-left:4px}
+.theme-header-host .theme-fab{position:static!important;right:auto!important;bottom:auto!important;z-index:auto!important}
+@media(max-width:720px){.theme-header-host{margin-left:0}}
 </style>
 <script>if(localStorage.getItem('kp-theme')==='light')document.documentElement.setAttribute('data-theme','light');</script>
 </head>
@@ -253,6 +258,7 @@ html[data-theme="light"] .sh-hint-lbl{color:#1e4a6a}
         <a href="https://www.linkedin.com/in/krishna-s-a046a9176/" class="nav-soc-btn" aria-label="LinkedIn" target="_blank" rel="noopener noreferrer"><i class="ti ti-brand-linkedin" aria-hidden="true"></i></a>
         <a href="https://github.com/kpadm3" class="nav-soc-btn" aria-label="GitHub" target="_blank" rel="noopener noreferrer"><i class="ti ti-brand-github" aria-hidden="true"></i></a>
         <a href="mailto:pskrishna204@gmail.com" class="nav-soc-btn" aria-label="Email"><i class="ti ti-mail" aria-hidden="true"></i></a>
+        <span class="theme-header-host" aria-label="Theme control"></span>
       </div>
     </div>
   </header>
@@ -321,16 +327,6 @@ html[data-theme="light"] .sh-hint-lbl{color:#1e4a6a}
           </div>
 
         </aside>
-      </div>
-
-      <div class="sp-cap-strip">
-        <div class="sp-cap-foot">
-          <div class="sp-stats">
-            <div class="sp-stat"><strong>10+</strong><span>Years delivery</span></div>
-            <div class="sp-stat"><strong>5</strong><span>Programs end to end</span></div>
-            <div class="sp-stat"><strong>4</strong><span>Core disciplines</span></div>
-          </div>
-        </div>
       </div>
 
       <div class="sp-scroll" onclick="document.getElementById('foundation').scrollIntoView({behavior:'smooth'})">
