@@ -237,6 +237,31 @@ html[data-theme="light"] .sh-hint-lbl{color:#1e4a6a}
 .theme-header-host{display:flex;align-items:center;margin-left:4px}
 .theme-header-host .theme-fab{position:static!important;right:auto!important;bottom:auto!important;z-index:auto!important}
 @media(max-width:720px){.theme-header-host{margin-left:0}}
+
+/* Wider portfolio canvas below the hero */
+.sh-progs.container{width:min(1540px,calc(100% - 64px));max-width:none;padding-left:0;padding-right:0}
+@media(max-width:900px){.sh-progs.container{width:calc(100% - 40px)}}
+
+/* Lightweight agentic AI motion graphic. CSS only, no external GIF payload. */
+.agent-flow{margin-top:24px;border-top:1px solid var(--line);padding-top:18px}
+.agent-flow-head{display:flex;align-items:center;justify-content:space-between;gap:16px;text-transform:uppercase;letter-spacing:.14em}
+.agent-flow-head>span{font-size:.52rem;font-weight:700;color:var(--muted)}
+.agent-flow-head small{font-size:.48rem;font-weight:500;color:var(--accent);letter-spacing:.1em}
+.agent-stage{height:190px;position:relative;overflow:hidden;margin-top:10px;border:1px solid rgba(53,212,241,.12);border-radius:12px;background:radial-gradient(circle at 50% 50%,rgba(53,212,241,.08),transparent 34%),linear-gradient(180deg,rgba(5,11,20,.18),rgba(5,11,20,.42))}
+.agent-core{position:absolute;left:50%;top:50%;width:62px;height:62px;transform:translate(-50%,-50%);border:1px solid rgba(53,212,241,.72);border-radius:50%;display:grid;place-items:center;color:var(--accent);box-shadow:0 0 28px rgba(53,212,241,.16);animation:agentCore 2.8s ease-in-out infinite}
+.agent-core i{font-size:1.05rem}.agent-core span{position:absolute;bottom:9px;font-size:.42rem;font-weight:800;letter-spacing:.12em}
+.agent-orbit{position:absolute;left:50%;top:50%;border:1px solid rgba(53,212,241,.16);border-radius:50%;transform:translate(-50%,-50%)}
+.orbit-a{width:250px;height:120px;animation:agentOrbit 12s linear infinite}.orbit-b{width:360px;height:155px;animation:agentOrbitReverse 16s linear infinite}
+.agent-node{position:absolute;display:flex;align-items:center;gap:6px;padding:6px 9px;border:1px solid rgba(53,212,241,.25);border-radius:6px;background:rgba(5,11,20,.78);font-size:.48rem;letter-spacing:.08em;text-transform:uppercase;color:var(--soft)}
+.agent-node i{color:var(--accent);font-size:.75rem}.node-1{left:7%;top:22%}.node-2{right:7%;top:22%}.node-3{right:9%;bottom:18%}.node-4{left:9%;bottom:18%}
+.agent-pulse{position:absolute;width:7px;height:7px;border-radius:50%;background:var(--accent);box-shadow:0 0 12px var(--accent)}
+.pulse-1{left:20%;top:49%;animation:agentTravel 4.8s ease-in-out infinite}.pulse-2{right:20%;top:49%;animation:agentTravel2 4.8s ease-in-out 2.4s infinite}
+@keyframes agentCore{0%,100%{box-shadow:0 0 18px rgba(53,212,241,.12);transform:translate(-50%,-50%) scale(1)}50%{box-shadow:0 0 34px rgba(53,212,241,.32);transform:translate(-50%,-50%) scale(1.05)}}
+@keyframes agentOrbit{to{transform:translate(-50%,-50%) rotate(360deg)}}@keyframes agentOrbitReverse{to{transform:translate(-50%,-50%) rotate(-360deg)}}
+@keyframes agentTravel{0%,100%{left:20%;opacity:.15}50%{left:49%;opacity:1}}@keyframes agentTravel2{0%,100%{right:20%;opacity:.15}50%{right:49%;opacity:1}}
+@media(prefers-reduced-motion:reduce){.agent-core,.agent-orbit,.agent-pulse{animation:none}}
+@media(max-width:640px){.agent-flow-head{align-items:flex-start;flex-direction:column;gap:4px}.agent-stage{height:170px}.orbit-b{width:280px}.agent-node span{display:none}}
+
 </style>
 <script>if(localStorage.getItem('kp-theme')==='light')document.documentElement.setAttribute('data-theme','light');</script>
 </head>
@@ -268,7 +293,7 @@ html[data-theme="light"] .sh-hint-lbl{color:#1e4a6a}
       <div class="sp-hero-grid">
         <div class="sp-hero-main">
           <h1 class="sp-headline">Enterprise delivery<br>is the AI edge.</h1>
-          <p class="sp-sub">I lead cross-functional delivery across complex enterprise initiatives, connecting business priorities, process, technology and execution. With 10+ years across transformation programs, I bring structure to ambiguity, drive decisions across teams and carry initiatives from definition through delivery and adoption.</p>
+          <p class="sp-sub">AI programs rarely stall because of the model alone. They stall when process, data, ownership, controls and adoption are not ready. I lead transformation across those layers, aligning business and technology teams from definition through implementation so AI and automation can move from capability to operational value.</p>
 
           <div class="sp-list">
             <div class="sp-item">
@@ -323,6 +348,20 @@ html[data-theme="light"] .sh-hint-lbl{color:#1e4a6a}
               <span class="sp-ai-tag">RAG Architecture</span>
               <span class="sp-ai-tag">AI Governance</span>
               <span class="sp-ai-tag">Model Validation &amp; UAT</span>
+            </div>
+          </div>
+
+          <div class="agent-flow" aria-label="Animated agentic AI workflow">
+            <div class="agent-flow-head"><span>Agentic delivery loop</span><small>Observe · Reason · Act · Learn</small></div>
+            <div class="agent-stage">
+              <div class="agent-orbit orbit-a"></div>
+              <div class="agent-orbit orbit-b"></div>
+              <div class="agent-core"><i class="ti ti-sparkles" aria-hidden="true"></i><span>AI</span></div>
+              <div class="agent-node node-1"><i class="ti ti-eye"></i><span>Observe</span></div>
+              <div class="agent-node node-2"><i class="ti ti-brain"></i><span>Reason</span></div>
+              <div class="agent-node node-3"><i class="ti ti-bolt"></i><span>Act</span></div>
+              <div class="agent-node node-4"><i class="ti ti-refresh"></i><span>Learn</span></div>
+              <span class="agent-pulse pulse-1"></span><span class="agent-pulse pulse-2"></span>
             </div>
           </div>
 
