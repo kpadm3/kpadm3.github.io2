@@ -123,6 +123,73 @@ html[data-theme="light"] .sh-hint-lbl{color:#1e4a6a}
 .nav-social{display:flex;align-items:center;gap:7px}
 .nav-soc-btn{width:28px;height:28px;border:1px solid #1e3248;border-radius:6px;display:flex;align-items:center;justify-content:center;color:#5a7a94;font-size:15px;text-decoration:none;transition:border-color .18s,color .18s}
 .nav-soc-btn:hover{border-color:#35d4f166;color:#35d4f1}
+
+
+/* Selected V3 hero + chatbot, adapted to production theme */
+/* ── Single-pane hero ── */
+.sp-hero{padding:72px 80px 56px;border-bottom:1px solid var(--line);display:flex;flex-direction:column;min-height:calc(100vh - 64px);position:relative}
+.sp-headline{font-size:clamp(3rem,5vw,5.5rem);font-weight:100;letter-spacing:.01em;line-height:1.05;color:var(--text);margin-bottom:24px;max-width:820px}
+.sp-sub{font-size:.88rem;font-weight:300;color:var(--muted);line-height:1.78;max-width:620px;margin-bottom:52px}
+.sp-list{display:flex;flex-direction:column;border-top:1px solid var(--line);max-width:820px;margin-bottom:auto}
+.sp-item{padding:20px 0;border-bottom:1px solid var(--line);display:grid;grid-template-columns:180px 1fr;gap:28px;align-items:start}
+.sp-kicker{font-size:.54rem;font-weight:300;letter-spacing:.18em;text-transform:uppercase;color:var(--accent);padding-top:3px;line-height:1.5}
+.sp-item-title{font-size:.86rem;font-weight:300;color:var(--text);margin-bottom:6px}
+.sp-item-desc{font-size:.72rem;font-weight:300;color:var(--muted);line-height:1.68}
+.sp-cap-strip{margin-top:48px;border-top:1px solid var(--line)}
+.sp-cap-row{display:flex;align-items:flex-start;gap:20px;padding:18px 0;border-bottom:1px solid var(--line)}
+.sp-cap-label{font-size:.52rem;font-weight:300;letter-spacing:.18em;text-transform:uppercase;color:var(--muted);white-space:nowrap;min-width:148px;padding-top:5px;flex-shrink:0}
+.sp-cap-tags{display:flex;flex-wrap:wrap;gap:6px}
+.sp-cap-tag{padding:4px 11px;border:1px solid var(--line);border-radius:3px;font-size:.6rem;font-weight:300;color:var(--muted);background:var(--bg-2)}
+.sp-cap-tag.ai{border-color:rgba(37,99,235,.28);color:var(--accent);background:rgba(37,99,235,.04)}
+.sp-cap-sep{height:0}
+.sp-cap-foot{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:24px;padding-top:24px}
+.sp-stats{display:flex;gap:36px}
+.sp-stat strong{display:block;font-size:1.7rem;font-weight:100;color:var(--text);line-height:1}
+.sp-stat span{display:block;margin-top:5px;font-size:.52rem;font-weight:300;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+.sp-open{display:flex;align-items:center;gap:8px;font-size:.62rem;font-weight:300;color:var(--muted)}
+.sp-open-dot{width:6px;height:6px;border-radius:50%;background:#22c55e;flex-shrink:0;animation:dhPulse 2.4s ease-in-out infinite}
+@keyframes spBob{0%,100%{transform:translateX(-50%) translateY(0)}50%{transform:translateX(-50%) translateY(7px)}}
+.sp-scroll{position:absolute;bottom:28px;left:50%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:8px;cursor:pointer;animation:spBob 2.2s ease-in-out infinite}
+.sp-scroll-lbl{font-size:.52rem;font-weight:300;letter-spacing:.18em;text-transform:uppercase;color:var(--muted)}
+.sp-scroll-arrow{width:18px;height:18px;border-right:1px solid var(--muted);border-bottom:1px solid var(--muted);transform:rotate(45deg)}
+
+/* ── Floating chat widget ── */
+@keyframes dhBounce{0%,60%,100%{transform:translateY(0);opacity:.4}30%{transform:translateY(-6px);opacity:1}}
+@keyframes dhPulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.4;transform:scale(.8)}}
+.chat-fab{position:fixed;bottom:28px;right:28px;z-index:1000;display:flex;flex-direction:column;align-items:flex-end;gap:12px}
+.chat-fab-btn{display:flex;align-items:center;gap:10px;padding:13px 22px;background:var(--accent);color:#fff;border:none;border-radius:50px;cursor:pointer;font-size:.74rem;font-weight:300;letter-spacing:.1em;box-shadow:0 4px 24px rgba(37,99,235,.32);transition:transform .18s,box-shadow .18s}
+.chat-fab-btn:hover{transform:translateY(-2px);box-shadow:0 8px 32px rgba(37,99,235,.42)}
+.chat-fab-dot{width:7px;height:7px;border-radius:50%;background:#22c55e;animation:dhPulse 2.4s ease-in-out infinite;flex-shrink:0}
+.chat-widget{width:380px;height:510px;background:var(--bg-2);border:1px solid var(--line);border-radius:16px;box-shadow:0 8px 40px rgba(0,0,0,.12);display:flex;flex-direction:column;overflow:hidden;transform:translateY(16px) scale(.96);opacity:0;pointer-events:none;transition:transform .24s cubic-bezier(.22,1,.36,1),opacity .2s}
+.chat-widget.open{transform:translateY(0) scale(1);opacity:1;pointer-events:all}
+.cw-hdr{padding:16px 20px;border-bottom:1px solid var(--line);display:flex;align-items:center;justify-content:space-between;background:var(--bg-2);flex-shrink:0}
+.cw-hdr-left{display:flex;align-items:center;gap:12px}
+.cw-av{width:34px;height:34px;border-radius:50%;background:var(--accent);display:grid;place-items:center;color:#fff;font-size:.66rem;font-weight:300;flex-shrink:0}
+.cw-name{font-size:.76rem;font-weight:300;letter-spacing:.06em;color:var(--text);margin-bottom:2px}
+.cw-status{display:flex;align-items:center;gap:5px;font-size:.56rem;color:var(--muted)}
+.cw-online{width:6px;height:6px;border-radius:50%;background:#22c55e;animation:dhPulse 2.4s ease-in-out infinite}
+.cw-close{background:none;border:none;cursor:pointer;color:var(--muted);font-size:1.1rem;padding:4px 6px;transition:color .18s;line-height:1;font-family:sans-serif}
+.cw-close:hover{color:var(--text)}
+.cw-msgs{flex:1;overflow-y:auto;padding:16px 16px 10px;display:flex;flex-direction:column;gap:12px}
+.cw-bubble{max-width:90%;padding:11px 14px;font-size:.76rem;font-weight:300;line-height:1.65;}
+.cw-bubble.ai{background:var(--bg);border:1px solid var(--line);align-self:flex-start;border-radius:4px 12px 12px 12px;color:var(--text)}
+.cw-bubble.user{background:var(--accent);color:#fff;align-self:flex-end;border-radius:12px 4px 12px 12px}
+.cw-bubble.typing{display:flex;gap:5px;align-items:center;padding:12px 16px}
+.cw-bubble.typing span{width:5px;height:5px;border-radius:50%;background:var(--muted);animation:dhBounce 1.4s infinite}
+.cw-bubble.typing span:nth-child(2){animation-delay:.2s}
+.cw-bubble.typing span:nth-child(3){animation-delay:.4s}
+.cw-chips{display:flex;flex-direction:column;gap:5px;margin-top:10px}
+.cw-chip{padding:7px 11px;border:1px solid var(--line);background:var(--bg-2);border-radius:6px;font-size:.68rem;font-weight:300;color:var(--text);cursor:pointer;text-align:left;transition:border-color .18s,color .18s}
+.cw-chip:hover{border-color:var(--accent);color:var(--accent)}
+.cw-chip:disabled{opacity:.4;cursor:default}
+.cw-input-row{padding:12px 14px;border-top:1px solid var(--line);display:flex;align-items:center;gap:8px;background:var(--bg-2);flex-shrink:0}
+.cw-input{flex:1;border:1px solid var(--line);border-radius:18px;padding:9px 14px;font-size:.72rem;font-weight:300;color:var(--text);background:var(--bg);outline:none;transition:border-color .18s}
+.cw-input:focus{border-color:var(--accent)}
+.cw-input::placeholder{color:var(--muted)}
+.cw-send{width:32px;height:32px;border-radius:50%;background:var(--accent);color:#fff;border:none;cursor:pointer;display:grid;place-items:center;flex-shrink:0;transition:opacity .18s}
+.cw-send:hover{opacity:.88}
+.cw-send svg{width:12px;height:12px;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+
 </style>
 <script>if(localStorage.getItem('kp-theme')==='light')document.documentElement.setAttribute('data-theme','light');</script>
 </head>
@@ -152,30 +219,84 @@ html[data-theme="light"] .sh-hint-lbl{color:#1e4a6a}
   </header>
 
   <main id="top">
-    <section class="sh-hero">
-      <div class="container sh-grid">
-        <div class="sh-q-col" id="sh-q-col"><button class="sh-skip" id="sh-skip" aria-label="Skip animation">Skip intro</button></div>
-        <div class="sh-a-col">
-          <div class="sh-identity">
-            <div class="sh-name">Krishna</div>
-            <div class="sh-role">Enterprise Delivery Lead</div>
-            <div class="sh-specs">Business Analysis &nbsp;&middot;&nbsp; Systems Integration &nbsp;&middot;&nbsp; Product Management &nbsp;&middot;&nbsp; Release</div>
+    <section class="sp-hero">
+
+      <h1 class="sp-headline">Enterprise delivery<br>is the AI edge.</h1>
+      <p class="sp-sub">Most AI programs stall at the process layer, not the model layer. A practitioner who spent 10 years mapping exactly those gaps is the one who makes transformation actually land.</p>
+
+      <!-- Capabilities -->
+      <div class="sp-list">
+        <div class="sp-item">
+          <div class="sp-kicker">Process intelligence</div>
+          <div>
+            <div class="sp-item-title">Know where AI fails before it ships</div>
+            <div class="sp-item-desc">Enterprise BA work maps data ownership gaps, business rule edge cases, and adoption blockers that technical teams typically miss until post-launch. That knowledge is the foundation of any AI transformation program that actually works.</div>
           </div>
-          <div class="sh-stmt" id="sh-stmt">
-        <div class="sh-stmt-card">
-          <div class="sh-stmt-label">What I bring</div>
-          <div class="sh-stmt-text"><strong>Four disciplines that usually take a team.</strong> Business analysis, systems integration, product management, and release planning. Over a decade delivering all four as <span class="sh-acc">one practitioner</span>, from strategy analysis through production sign-off.</div>
         </div>
-        <div class="sh-pills">
-          <div class="sh-pill"><span class="sh-pill-top">10+</span><span class="sh-pill-bot">Years Enterprise Delivery</span></div>
-          <div class="sh-pill"><span class="sh-pill-top">Cross-functional</span><span class="sh-pill-bot">Exec, engineering, and business</span></div>
-          <div class="sh-pill"><span class="sh-pill-top">Enterprise Platforms</span><span class="sh-pill-bot">Multi-system program delivery</span></div>
+        <div class="sp-item">
+          <div class="sp-kicker">Delivery continuity</div>
+          <div>
+            <div class="sp-item-title">Same discipline. New domain.</div>
+            <div class="sp-item-desc">AI transformation programs need the same rigor as any enterprise program. Requirements for model validation, stakeholder UAT, change management, and hypercare are the same skills applied to a new technology layer.</div>
+          </div>
+        </div>
+        <div class="sp-item">
+          <div class="sp-kicker">Translation fluency</div>
+          <div>
+            <div class="sp-item-title">AI capability to business action</div>
+            <div class="sp-item-desc">Translating what AI can do into what the business needs to change is the role of the BA. A decade of that translation work across executive, operations, and engineering layers is the core skill AI transformation programs need most.</div>
+          </div>
         </div>
       </div>
-      <div class="sh-cta" id="sh-cta"><button class="sh-cta-btn">View my work &darr;</button></div>
+
+      <!-- Capability strip -->
+      <div class="sp-cap-strip">
+        <div class="sp-cap-row">
+          <span class="sp-cap-label">AI layer</span>
+          <div class="sp-cap-tags">
+            <span class="sp-cap-tag ai">LLM Integration</span>
+            <span class="sp-cap-tag ai">AI Agent Orchestration</span>
+            <span class="sp-cap-tag ai">Prompt Engineering</span>
+            <span class="sp-cap-tag ai">Azure OpenAI</span>
+            <span class="sp-cap-tag ai">Microsoft Copilot</span>
+            <span class="sp-cap-tag ai">RAG Architecture</span>
+            <span class="sp-cap-tag ai">AI Governance</span>
+            <span class="sp-cap-tag ai">Model Validation UAT</span>
+          </div>
+        </div>
+        <div class="sp-cap-sep"></div>
+        <div class="sp-cap-row">
+          <span class="sp-cap-label">Enterprise foundation</span>
+          <div class="sp-cap-tags">
+            <span class="sp-cap-tag">Requirements Engineering</span>
+            <span class="sp-cap-tag">Process Mining</span>
+            <span class="sp-cap-tag">Systems Integration</span>
+            <span class="sp-cap-tag">SAP ECC</span>
+            <span class="sp-cap-tag">Azure DevOps</span>
+            <span class="sp-cap-tag">Power Automate</span>
+            <span class="sp-cap-tag">BABOK</span>
+          </div>
+        </div>
+        <div class="sp-cap-foot">
+          <div class="sp-stats">
+            <div class="sp-stat"><strong>10+</strong><span>Years delivery</span></div>
+            <div class="sp-stat"><strong>5</strong><span>Programs end to end</span></div>
+            <div class="sp-stat"><strong>4</strong><span>Core disciplines</span></div>
+          </div>
+          <div class="sp-open">
+            <span class="sp-open-dot"></span>
+            Open · Remote / Hybrid · USA &amp; Canada
+          </div>
         </div>
       </div>
-      <div class="sh-scroll-hint" id="sh-scroll-hint"><div class="sh-hint-inner"><span class="sh-hint-lbl">Work below</span><span class="sh-hint-ico"><i class="ti ti-chevrons-down" aria-hidden="true"></i></span></div></div>
+
+      <!-- Scroll cue -->
+      <div class="sp-scroll" onclick="document.getElementById('foundation').scrollIntoView({behavior:'smooth'})">
+        <div class="sp-scroll-arrow"></div>
+        <span class="sp-scroll-lbl">See the work</span>
+      </div>
+
+
     </section>
 
 <section class="section container sh-progs" id="foundation" style="display:none">
@@ -270,6 +391,43 @@ html[data-theme="light"] .sh-hint-lbl{color:#1e4a6a}
       </div>
     </section>
   </main>
+
+  <!-- ══ Floating Chat Widget ══ -->
+  <div class="chat-fab" id="chatFab">
+    <div class="chat-widget" id="chatWidget">
+      <div class="cw-hdr">
+        <div class="cw-hdr-left">
+          <div class="cw-av">KP</div>
+          <div>
+            <div class="cw-name">Krishna's AI Assistant</div>
+            <div class="cw-status"><span class="cw-online"></span>Online now</div>
+          </div>
+        </div>
+        <button class="cw-close" onclick="toggleChat()" aria-label="Close chat">&#x2715;</button>
+      </div>
+      <div class="cw-msgs" id="cwMsgs">
+        <div class="cw-bubble ai">
+          Hi. I know Krishna's background, programs, and experience well. What would you like to know?
+          <div class="cw-chips">
+            <button class="cw-chip" onclick="cwSendChip(this,'recruiter','I am a recruiter — give me the summary')">I am a recruiter — give me the summary</button>
+            <button class="cw-chip" onclick="cwSendChip(this,'ai','What is your AI transformation experience?')">What is your AI transformation experience?</button>
+            <button class="cw-chip" onclick="cwSendChip(this,'programs','Walk me through one of your programs')">Walk me through one of your programs</button>
+            <button class="cw-chip" onclick="cwSendChip(this,'diff','What makes you different from other BAs?')">What makes you different from other BAs?</button>
+          </div>
+        </div>
+      </div>
+      <div class="cw-input-row">
+        <input class="cw-input" id="cwInput" type="text" placeholder="Ask anything about Krishna...">
+        <button class="cw-send" onclick="cwSendCustom()">
+          <svg viewBox="0 0 24 24"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+        </button>
+      </div>
+    </div>
+    <button class="chat-fab-btn" onclick="toggleChat()" id="chatFabBtn">
+      <span class="chat-fab-dot"></span>
+      <span>Ask about Krishna</span>
+    </button>
+  </div>
 
   <script src="assets/js/site.js"></script>
   <script>
@@ -468,6 +626,36 @@ html[data-theme="light"] .sh-hint-lbl{color:#1e4a6a}
   }
   if(document.readyState==='loading'){document.addEventListener('DOMContentLoaded',initCards);}
   else{initCards();}
+})();
+</script>
+<script>
+(function(){
+  var responses={
+    recruiter:'10+ years of enterprise program delivery across business analysis, systems integration, product management, and release planning. Programs led from requirements through production. Work spans SAP, Azure DevOps, Oracle, and Power Platform. Now targeting AI Transformation Lead, Senior BA, and Technical Product Manager roles where full-lifecycle operational experience is the foundation.',
+    ai:'My AI transformation angle comes from the operational side. I understand how enterprise processes actually work. The gaps in data ownership, the edge cases in business rules, the adoption resistance — most AI programs fail there, not at the model layer. My focus is on mapping those exact gaps before deployment begins.',
+    programs:'One strong example is an enterprise product configuration framework delivered end to end. Seven phases: requirement intake, data modeling, business rule design, validation logic, functional architecture, delivery assurance, and order-ready output. I owned the full specification and led the program through to UAT sign-off.',
+    diff:'Most business analysts hand off once the requirements document is written. I stay through delivery, UAT, and hypercare. I keep the original business need traceable from the first stakeholder session to the last acceptance sign-off.'
+  };
+  var msgs=document.getElementById('cwMsgs');
+  function addUser(text){var el=document.createElement('div');el.className='cw-bubble user';el.textContent=text;msgs.appendChild(el);msgs.scrollTop=msgs.scrollHeight;}
+  function addTyping(){var el=document.createElement('div');el.className='cw-bubble ai typing';el.id='cwTyping';el.innerHTML='<span></span><span></span><span></span>';msgs.appendChild(el);msgs.scrollTop=msgs.scrollHeight;}
+  function addAI(text){var t=document.getElementById('cwTyping');if(t)t.remove();var el=document.createElement('div');el.className='cw-bubble ai';el.textContent=text;msgs.appendChild(el);msgs.scrollTop=msgs.scrollHeight;}
+  window.cwSendChip=function(btn,key,label){
+    document.querySelectorAll('.cw-chip').forEach(function(c){c.disabled=true;});
+    addUser(label);addTyping();
+    setTimeout(function(){addAI(responses[key]);},900);
+  };
+  window.cwSendCustom=function(){
+    var inp=document.getElementById('cwInput');var val=inp.value.trim();if(!val)return;
+    inp.value='';addUser(val);addTyping();
+    setTimeout(function(){addAI('The live AI agent will answer that once connected. For now, try one of the suggested questions to see how it works.');},900);
+  };
+  window.toggleChat=function(){
+    var w=document.getElementById('chatWidget');
+    w.classList.toggle('open');
+  };
+  var inp=document.getElementById('cwInput');
+  if(inp)inp.addEventListener('keydown',function(e){if(e.key==='Enter')window.cwSendCustom();});
 })();
 </script>
 </body>
