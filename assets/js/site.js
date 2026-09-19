@@ -163,7 +163,7 @@
   fab.className = 'theme-fab';
   fab.setAttribute('aria-label', 'Toggle light/dark theme');
   fab.innerHTML = '<i class="ti ti-sun" aria-hidden="true"></i><span class="theme-fab-lbl">Light</span><span class="theme-fab-tip"></span>';
-  document.body.appendChild(fab);
+  (document.querySelector('.theme-header-host') || document.body).appendChild(fab);
 
   const tip = fab.querySelector('.theme-fab-tip');
 
