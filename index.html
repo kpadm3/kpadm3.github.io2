@@ -153,6 +153,36 @@ html[data-theme="light"] .sh-hint-lbl{color:#1e4a6a}
 .sp-scroll-lbl{font-size:.52rem;font-weight:300;letter-spacing:.18em;text-transform:uppercase;color:var(--muted)}
 .sp-scroll-arrow{width:18px;height:18px;border-right:1px solid var(--muted);border-bottom:1px solid var(--muted);transform:rotate(45deg)}
 
+
+/* ── Hero leadership profile panel ── */
+.sp-hero{padding:56px 64px 42px;min-height:calc(100vh - 64px)}
+.sp-hero-grid{display:grid;grid-template-columns:minmax(0,1.08fr) minmax(390px,.92fr);gap:64px;align-items:start}
+.sp-hero-main{min-width:0}
+.sp-hero-main .sp-headline{font-size:clamp(2.9rem,4.7vw,5.15rem);margin-bottom:20px}
+.sp-hero-main .sp-sub{margin-bottom:36px}
+.sp-hero-main .sp-list{max-width:none}
+.sp-profile{position:relative;border:1px solid var(--line);border-radius:10px;background:linear-gradient(145deg,rgba(53,212,241,.045),rgba(10,25,41,.3));padding:34px 32px 30px;overflow:hidden}
+.sp-profile::before{content:'';position:absolute;inset:0 0 auto;height:2px;background:linear-gradient(90deg,transparent,var(--accent),transparent);opacity:.8}
+.sp-profile-status{display:inline-flex;align-items:center;gap:8px;font-size:.56rem;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin-bottom:28px}
+.sp-profile-status::before{content:'';width:6px;height:6px;border-radius:50%;background:#22c55e;box-shadow:0 0 10px rgba(34,197,94,.55)}
+.sp-profile-name{font-size:clamp(1.65rem,2.25vw,2.55rem);font-weight:200;letter-spacing:.16em;line-height:1.15;color:var(--text);text-transform:uppercase;margin:0}
+.sp-profile-role{font-size:.7rem;font-weight:600;letter-spacing:.105em;line-height:1.7;color:var(--accent);text-transform:uppercase;margin-top:14px}
+.sp-profile-rule{height:1px;background:var(--line);margin:26px 0 22px}
+.sp-profile-label{font-size:.51rem;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:var(--muted);margin-bottom:11px}
+.sp-leadership-tags,.sp-ai-tags{display:flex;flex-wrap:wrap;gap:7px}
+.sp-leadership-tag,.sp-ai-tag{padding:6px 10px;border:1px solid var(--line);border-radius:4px;font-size:.61rem;line-height:1.35;background:var(--bg-2)}
+.sp-leadership-tag{color:var(--text)}
+.sp-ai-tag{color:var(--accent);border-color:rgba(53,212,241,.24);background:rgba(53,212,241,.035)}
+.sp-profile-section+.sp-profile-section{margin-top:24px}
+.sp-profile-note{margin-top:25px;padding-top:20px;border-top:1px solid var(--line);display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.sp-profile-note div{min-width:0}
+.sp-profile-note strong{display:block;font-size:.64rem;font-weight:600;color:var(--text);margin-bottom:4px}
+.sp-profile-note span{display:block;font-size:.55rem;line-height:1.45;color:var(--muted)}
+.sp-cap-strip{margin-top:34px}
+.sp-cap-foot{padding-top:20px}
+@media(max-width:1050px){.sp-hero{padding:48px 36px 42px}.sp-hero-grid{grid-template-columns:1fr;gap:38px}.sp-profile{max-width:none}.sp-scroll{display:none}}
+@media(max-width:640px){.sp-hero{padding:38px 22px 34px}.sp-profile{padding:26px 22px}.sp-profile-name{letter-spacing:.1em}.sp-profile-note{grid-template-columns:1fr}.sp-stats{gap:22px;flex-wrap:wrap}.sp-cap-foot{align-items:flex-start}}
+
 /* ── Floating chat widget ── */
 @keyframes dhBounce{0%,60%,100%{transform:translateY(0);opacity:.4}30%{transform:translateY(-6px);opacity:1}}
 @keyframes dhPulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.4;transform:scale(.8)}}
@@ -220,63 +250,77 @@ html[data-theme="light"] .sh-hint-lbl{color:#1e4a6a}
 
   <main id="top">
     <section class="sp-hero">
+      <div class="sp-hero-grid">
+        <div class="sp-hero-main">
+          <h1 class="sp-headline">Enterprise delivery<br>is the AI edge.</h1>
+          <p class="sp-sub">Most AI programs stall at the process layer, not the model layer. A practitioner who spent 10 years mapping exactly those gaps is the one who makes transformation actually land.</p>
 
-      <h1 class="sp-headline">Enterprise delivery<br>is the AI edge.</h1>
-      <p class="sp-sub">Most AI programs stall at the process layer, not the model layer. A practitioner who spent 10 years mapping exactly those gaps is the one who makes transformation actually land.</p>
+          <div class="sp-list">
+            <div class="sp-item">
+              <div class="sp-kicker">Process intelligence</div>
+              <div>
+                <div class="sp-item-title">Know where AI fails before it ships</div>
+                <div class="sp-item-desc">Enterprise BA work maps data ownership gaps, business rule edge cases, and adoption blockers that technical teams typically miss until post-launch. That knowledge is the foundation of any AI transformation program that actually works.</div>
+              </div>
+            </div>
+            <div class="sp-item">
+              <div class="sp-kicker">Delivery continuity</div>
+              <div>
+                <div class="sp-item-title">Same discipline. New domain.</div>
+                <div class="sp-item-desc">AI transformation programs need the same rigor as any enterprise program. Requirements for model validation, stakeholder UAT, change management, and hypercare are the same skills applied to a new technology layer.</div>
+              </div>
+            </div>
+            <div class="sp-item">
+              <div class="sp-kicker">Translation fluency</div>
+              <div>
+                <div class="sp-item-title">AI capability to business action</div>
+                <div class="sp-item-desc">Translating what AI can do into what the business needs to change is the role of the BA. A decade of that translation work across executive, operations, and engineering layers is the core skill AI transformation programs need most.</div>
+              </div>
+            </div>
+          </div>
+        </div>
 
-      <!-- Capabilities -->
-      <div class="sp-list">
-        <div class="sp-item">
-          <div class="sp-kicker">Process intelligence</div>
-          <div>
-            <div class="sp-item-title">Know where AI fails before it ships</div>
-            <div class="sp-item-desc">Enterprise BA work maps data ownership gaps, business rule edge cases, and adoption blockers that technical teams typically miss until post-launch. That knowledge is the foundation of any AI transformation program that actually works.</div>
+        <aside class="sp-profile" aria-label="Krishna Padmanabhan profile">
+          <div class="sp-profile-status">Open to opportunities</div>
+          <h2 class="sp-profile-name">Krishna Padmanabhan</h2>
+          <div class="sp-profile-role">Enterprise AI Transformation Lead | Process and Automation Delivery</div>
+          <div class="sp-profile-rule"></div>
+
+          <div class="sp-profile-section">
+            <div class="sp-profile-label">Leadership &amp; delivery</div>
+            <div class="sp-leadership-tags">
+              <span class="sp-leadership-tag">AI Transformation</span>
+              <span class="sp-leadership-tag">Enterprise Delivery</span>
+              <span class="sp-leadership-tag">Process Intelligence</span>
+              <span class="sp-leadership-tag">Systems Integration</span>
+              <span class="sp-leadership-tag">Program Leadership</span>
+              <span class="sp-leadership-tag">Scaled Agile</span>
+            </div>
           </div>
-        </div>
-        <div class="sp-item">
-          <div class="sp-kicker">Delivery continuity</div>
-          <div>
-            <div class="sp-item-title">Same discipline. New domain.</div>
-            <div class="sp-item-desc">AI transformation programs need the same rigor as any enterprise program. Requirements for model validation, stakeholder UAT, change management, and hypercare are the same skills applied to a new technology layer.</div>
+
+          <div class="sp-profile-section">
+            <div class="sp-profile-label">AI layer</div>
+            <div class="sp-ai-tags">
+              <span class="sp-ai-tag">LLM Integration</span>
+              <span class="sp-ai-tag">AI Agent Orchestration</span>
+              <span class="sp-ai-tag">Prompt Engineering</span>
+              <span class="sp-ai-tag">Azure OpenAI</span>
+              <span class="sp-ai-tag">Microsoft Copilot</span>
+              <span class="sp-ai-tag">RAG Architecture</span>
+              <span class="sp-ai-tag">AI Governance</span>
+              <span class="sp-ai-tag">Model Validation &amp; UAT</span>
+            </div>
           </div>
-        </div>
-        <div class="sp-item">
-          <div class="sp-kicker">Translation fluency</div>
-          <div>
-            <div class="sp-item-title">AI capability to business action</div>
-            <div class="sp-item-desc">Translating what AI can do into what the business needs to change is the role of the BA. A decade of that translation work across executive, operations, and engineering layers is the core skill AI transformation programs need most.</div>
+
+          <div class="sp-profile-note">
+            <div><strong>Business Focus</strong><span>Real outcomes</span></div>
+            <div><strong>Collaborative</strong><span>Across teams</span></div>
+            <div><strong>Continuous Learner</strong><span>AI &amp; emerging tech</span></div>
           </div>
-        </div>
+        </aside>
       </div>
 
-      <!-- Capability strip -->
       <div class="sp-cap-strip">
-        <div class="sp-cap-row">
-          <span class="sp-cap-label">AI layer</span>
-          <div class="sp-cap-tags">
-            <span class="sp-cap-tag ai">LLM Integration</span>
-            <span class="sp-cap-tag ai">AI Agent Orchestration</span>
-            <span class="sp-cap-tag ai">Prompt Engineering</span>
-            <span class="sp-cap-tag ai">Azure OpenAI</span>
-            <span class="sp-cap-tag ai">Microsoft Copilot</span>
-            <span class="sp-cap-tag ai">RAG Architecture</span>
-            <span class="sp-cap-tag ai">AI Governance</span>
-            <span class="sp-cap-tag ai">Model Validation UAT</span>
-          </div>
-        </div>
-        <div class="sp-cap-sep"></div>
-        <div class="sp-cap-row">
-          <span class="sp-cap-label">Enterprise foundation</span>
-          <div class="sp-cap-tags">
-            <span class="sp-cap-tag">Requirements Engineering</span>
-            <span class="sp-cap-tag">Process Mining</span>
-            <span class="sp-cap-tag">Systems Integration</span>
-            <span class="sp-cap-tag">SAP ECC</span>
-            <span class="sp-cap-tag">Azure DevOps</span>
-            <span class="sp-cap-tag">Power Automate</span>
-            <span class="sp-cap-tag">BABOK</span>
-          </div>
-        </div>
         <div class="sp-cap-foot">
           <div class="sp-stats">
             <div class="sp-stat"><strong>10+</strong><span>Years delivery</span></div>
@@ -290,13 +334,10 @@ html[data-theme="light"] .sh-hint-lbl{color:#1e4a6a}
         </div>
       </div>
 
-      <!-- Scroll cue -->
       <div class="sp-scroll" onclick="document.getElementById('foundation').scrollIntoView({behavior:'smooth'})">
         <div class="sp-scroll-arrow"></div>
         <span class="sp-scroll-lbl">See the work</span>
       </div>
-
-
     </section>
 
 <section class="section container sh-progs" id="foundation" style="display:none">
