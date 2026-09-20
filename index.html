@@ -850,6 +850,73 @@ html[data-theme="light"] .hx-path path.purple{stroke:#8067ef!important}html[data
 html[data-theme="light"] .hx-junction circle{filter:drop-shadow(0 0 4px rgba(0,160,198,.5))!important}
 @media(prefers-reduced-motion:reduce){.hx-junction circle{animation:none!important}}
 
+/* AI MESH FINAL RESET v6
+   Deliberately overrides every legacy ring/core effect without touching routing. */
+.heroX-ai .heroX-core{
+  width:100%!important;
+  height:236px!important;
+  margin:-2px auto 0!important;
+  display:grid!important;
+  place-items:center!important;
+  position:relative!important;
+  overflow:visible!important;
+  isolation:isolate!important;
+  background:none!important;
+  background-image:none!important;
+  box-shadow:none!important;
+  filter:none!important;
+  animation:none!important;
+  transform:none!important;
+}
+.heroX-ai .heroX-core:before,
+.heroX-ai .heroX-core:after,
+.heroX-ai .heroX-core .hx-ring,
+.heroX-ai .heroX-core .hx-vector-field,
+.heroX-ai .heroX-core .hx-vector-nodes{display:none!important;content:none!important;background:none!important;border:0!important;box-shadow:none!important;animation:none!important}
+.heroX-ai .hx-mesh{
+  display:block!important;
+  position:absolute!important;
+  z-index:1!important;
+  left:50%!important;
+  top:50%!important;
+  width:min(520px,118%)!important;
+  height:236px!important;
+  transform:translate(-50%,-50%)!important;
+  overflow:visible!important;
+  opacity:1!important;
+  filter:drop-shadow(0 0 6px rgba(45,222,244,.22))!important;
+  animation:none!important;
+}
+.heroX-ai .hx-mesh-lines path{fill:none!important;stroke:#2bdcf1!important;stroke-width:1.15!important;stroke-linecap:round!important;stroke-linejoin:round!important;opacity:.48!important;filter:none!important}
+.heroX-ai .hx-mesh-lines path:nth-child(3n+1){stroke:#31dfd0!important;opacity:.52!important}
+.heroX-ai .hx-mesh-lines path:nth-child(4n+2){stroke:#8874ff!important;opacity:.34!important}
+.heroX-ai .hx-mesh-dots circle{fill:#62f1ff!important;opacity:.92!important;filter:drop-shadow(0 0 3px #62f1ff)!important;animation:hxMeshPulse 3.8s ease-in-out infinite!important}
+.heroX-ai .hx-mesh-dots circle:nth-child(3n){fill:#9b7cff!important}.heroX-ai .hx-mesh-dots circle:nth-child(4n){fill:#43e2d0!important}
+.heroX-ai .hx-coretext{
+  position:relative!important;
+  z-index:5!important;
+  display:inline-block!important;
+  padding:10px 18px!important;
+  background:rgba(3,24,42,.34)!important;
+  border:0!important;
+  border-radius:8px!important;
+  box-shadow:none!important;
+  color:#f4fbff!important;
+  font-size:15px!important;
+  line-height:1.25!important;
+  font-weight:800!important;
+  text-shadow:0 0 12px rgba(53,218,246,.28)!important;
+  animation:none!important;
+}
+.heroX-ai .heroX-caps{position:relative!important;z-index:6!important;margin-top:-2px!important}
+html[data-theme="light"] .heroX-ai .heroX-core{background:none!important;box-shadow:none!important;filter:none!important}
+html[data-theme="light"] .heroX-ai .hx-coretext{background:rgba(244,252,255,.62)!important;color:#173f58!important;text-shadow:none!important}
+html[data-theme="light"] .heroX-ai .hx-mesh-lines path{stroke:#078eaa!important;opacity:.48!important}
+html[data-theme="light"] .heroX-ai .hx-mesh-lines path:nth-child(3n+1){stroke:#099e91!important}
+html[data-theme="light"] .heroX-ai .hx-mesh-lines path:nth-child(4n+2){stroke:#7160d8!important}
+@media(max-width:1200px){.heroX-ai .heroX-core{width:100%!important;height:220px!important}.heroX-ai .hx-mesh{width:min(480px,112%)!important;height:220px!important}}
+@media(prefers-reduced-motion:reduce){.heroX-ai .hx-mesh-dots circle{animation:none!important}}
+
 /* HERO X DYNAMIC FLOW ROUTING v5 */
 .heroX-links{overflow:visible}
 .hx-dynamic-wire{fill:none;stroke:#42ddf6;stroke-width:2.15;stroke-linecap:round;stroke-linejoin:round;filter:url(#hxg);opacity:.94}
