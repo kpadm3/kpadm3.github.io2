@@ -668,7 +668,7 @@ html[data-theme="light"] .sp-scroll-arrow{border-color:#35d4f1!important;color:#
 .heroX-enterprise article.violet,.heroX-agents article.violet{border-color:rgba(147,112,255,.72)}.heroX-agents article.teal{border-color:rgba(44,225,205,.72)}
 .heroX-enterprise article>i,.heroX-agents article>i{font-size:28px;color:#5bdfff}.heroX-agents article.violet>i{color:#9c7cff}.heroX-agents article.teal>i{color:#35dfca}
 .heroX-enterprise article b,.heroX-agents article b{display:block;font-size:11px;letter-spacing:.03em}.heroX-enterprise article small,.heroX-agents article small{display:block;margin-top:4px;font-size:9px;color:#9ab0c1}.heroX-agents article em{display:block;margin-top:3px;font-size:8px;font-style:normal;font-weight:800;letter-spacing:.12em;color:#31d9f0}.heroX-agents article.violet em{color:#9b7cff}.heroX-agents article.teal em{color:#39dfcc}
-.heroX-enterprise article>span,.heroX-agents article>span{position:absolute;right:-5px;top:27px;width:10px;height:10px;border-radius:50%;background:#3de5f6;box-shadow:0 0 12px #3de5f6;animation:hxpulse 2s ease-in-out infinite}.heroX-enterprise article.violet>span,.heroX-agents article.violet>span{background:#9b7cff;box-shadow:0 0 12px #9b7cff}.heroX-agents article.teal>span{background:#35dfca;box-shadow:0 0 12px #35dfca}
+.heroX-enterprise article>span,.heroX-agents article>span{position:absolute;right:-5px;top:27px;width:10px;height:10px;border-radius:50%;background:#3de5f6;box-shadow:0 0 12px #3de5f6;animation:hxpulse 2s ease-in-out infinite}.heroX-enterprise article>span:not(.hx-out-port),.heroX-agents article>span:not(.hx-in-port):not(.hx-out-port){display:none}.heroX-enterprise article.violet>span,.heroX-agents article.violet>span{background:#9b7cff;box-shadow:0 0 12px #9b7cff}.heroX-agents article.teal>span{background:#35dfca;box-shadow:0 0 12px #35dfca}
 .heroX-ai{text-align:center}.heroX-core{position:relative;width:250px;height:250px;margin:-4px auto 2px;display:grid;place-items:center}.hx-ring{position:absolute;border-radius:50%;border:1px solid rgba(48,208,244,.38)}.hx-ring.r1{inset:0;border-style:dashed;animation:hxspin 20s linear infinite}.hx-ring.r2{inset:18px;border:3px solid rgba(30,166,235,.35);animation:hxspin2 16s linear infinite}.hx-ring.r3{inset:40px;border:2px solid rgba(53,218,246,.58);box-shadow:0 0 26px rgba(53,218,246,.14)}.hx-ring.r4{inset:67px;border-color:rgba(80,165,255,.45)}.hx-coretext{font-size:14px;line-height:1.3;font-weight:800;text-shadow:0 0 18px rgba(53,218,246,.35)}
 .heroX-caps{display:flex;flex-wrap:wrap;justify-content:center;gap:8px;max-width:390px;margin:auto}.heroX-caps span{padding:7px 15px;border:1px solid rgba(54,197,240,.6);border-radius:18px;background:rgba(3,31,53,.92);font-size:8px;font-weight:700}
 .heroX-valuebox{border:1px solid rgba(40,222,210,.68);border-radius:20px;overflow:hidden;background:linear-gradient(180deg,rgba(4,69,81,.42),rgba(3,29,45,.55))}.heroX-valuebox article{height:70px;display:grid;grid-template-columns:55px 1fr;align-items:center;padding:0 12px;border-bottom:1px solid rgba(53,212,241,.13)}.heroX-valuebox article:last-child{border-bottom:0}.heroX-valuebox i{font-size:29px;color:#32dff2}.heroX-valuebox .violet i,.heroX-valuebox .violet em{color:#9b7cff}.heroX-valuebox .teal i,.heroX-valuebox .teal em{color:#34dfc8}.heroX-valuebox em{display:block;font-size:9px;font-style:normal;font-weight:800;color:#31d9ef}.heroX-valuebox b{display:block;margin-top:5px;font-size:11px}
@@ -1831,9 +1831,9 @@ html[data-theme="light"] .heroX-ai .hx-cube-dots circle{opacity:.52}
   function ensurePort(el,cls,left){
     var p=el.querySelector('.'+cls);
     if(!p){p=document.createElement('span');p.className=cls;p.setAttribute('aria-hidden','true');el.appendChild(p);}
-    Object.assign(p.style,{position:'absolute',top:'50%',left:left?'-5px':'auto',right:left?'auto':'-5px',
+    Object.assign(p.style,{position:'absolute',top:'50%',left:left?'4px':'auto',right:left?'auto':'4px',
       transform:'translateY(-50%)',width:'10px',height:'10px',borderRadius:'50%',
-      background:'#43e5fb',boxShadow:'0 0 9px #43e5fb',zIndex:'9'});
+      background:'#43e5fb',boxShadow:'0 0 9px #43e5fb',zIndex:'9',animation:'none'});
     return p;
   }
   enterprise.concat(agents,values).forEach(function(card){
@@ -1859,9 +1859,15 @@ html[data-theme="light"] .heroX-ai .hx-cube-dots circle{opacity:.52}
     addPath('M '+a.x+' '+a.y+' C '+(a.x+dx)+' '+a.y+', '+(b.x-dx)+' '+b.y+', '+b.x+' '+b.y,cls,false,bucket,null,null);
   }
   function routed(a,b,cls,secondary,bucket,agentIndex,valueIndex){
-    var gap=Math.max(60,b.x-a.x),mid=(a.x+b.x)/2,delta=b.y-a.y,dir=delta===0?(agentIndex%2===0?-1:1):(delta>0?1:-1),bend=secondary?Math.max(24,Math.abs(delta)*.34):22,lift=dir*bend;
-    addPath('M '+a.x+' '+a.y+' C '+(a.x+gap*.18)+' '+a.y+', '+(mid-gap*.18)+' '+(a.y+lift)+', '+mid+' '+((a.y+b.y)/2)+
-      ' C '+(mid+gap*.18)+' '+(b.y-lift)+', '+(b.x-gap*.18)+' '+b.y+', '+b.x+' '+b.y,cls,secondary,bucket,agentIndex,valueIndex);
+    var gap=Math.max(70,b.x-a.x),mid=(a.x+b.x)/2,delta=b.y-a.y;
+    // Give every route its own visible lane. Even same-row mappings arc instead of reading as straight pipes.
+    var laneBase=[-24,24,-34,34][agentIndex]||24;
+    var lane=secondary?(laneBase+(valueIndex-agentIndex)*18):laneBase;
+    var midY=(a.y+b.y)/2+lane;
+    addPath('M '+a.x+' '+a.y+
+      ' C '+(a.x+gap*.22)+' '+a.y+', '+(mid-gap*.16)+' '+midY+', '+mid+' '+midY+
+      ' C '+(mid+gap*.16)+' '+midY+', '+(b.x-gap*.22)+' '+b.y+', '+b.x+' '+b.y,
+      cls,secondary,bucket,agentIndex,valueIndex);
   }
 
   function draw(){
@@ -1948,9 +1954,10 @@ html[data-theme="light"] .heroX-ai .hx-cube-dots circle{opacity:.52}
   function setActive(cards,indexes,on){
     cards.forEach(function(card,i){
       var active=on&&indexes.indexOf(i)!==-1;
-      card.style.borderColor=active?'rgba(67,229,251,.72)':'';
-      card.style.boxShadow=active?'0 0 0 1px rgba(67,229,251,.16), 0 0 20px rgba(67,229,251,.10)':'';
-      card.style.backgroundColor=active?'rgba(67,229,251,.045)':'';
+      card.style.borderColor=active?'#62efff':'';
+      card.style.boxShadow=active?'0 0 0 1px rgba(98,239,255,.38), inset 0 0 24px rgba(67,229,251,.13), 0 0 24px rgba(67,229,251,.18)':'';
+      card.style.filter=active?'brightness(1.16)':'';
+      card.style.transform=active?'translateX(2px)':'';
     });
   }
   function clearActive(){
