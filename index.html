@@ -1568,129 +1568,7 @@ html[data-theme="light"] .heroX-ai .hx-cube-dots circle{opacity:.52}
     });
   })();
   </script>
-<script>
-(function(){
-  var D=[
-    {q:'Tell me about yourself.',
-     a:'Over 10 years of enterprise delivery across business analysis, systems integration, product management, and release planning. I lead programs end to end. Strategy analysis through solution evaluation. Full lifecycle ownership.'},
-    {q:'What have you delivered?',
-     a:'Key programs across my career include enterprise product configuration, data integration, full requirements-to-release delivery, business reporting automation, root-cause analysis, and data migration. Each delivered end to end with documented outcomes.'},
-    {q:'What are your strengths?',
-     a:'Structured decomposition of complex business problems. Stakeholder alignment across executive, business, and technical layers. I keep the original business need traceable from elicitation through production sign-off.'},
-    {q:'What tools and techniques do you use?',
-     a:'JIRA, Confluence, Azure DevOps, SQL, Visio, and Lucidchart for delivery and documentation. BABOK techniques across elicitation, process modeling, requirements architecture, and solution evaluation. Agile and waterfall delivery across enterprise platforms.'}
-  ];
-  var _t=[];
-  function later(fn,ms){var t=setTimeout(fn,ms);_t.push(t);return t;}
 
-  function typeText(el,text,cb){
-    var i=0;var c=document.createElement('span');c.className='sh-cursor';el.appendChild(c);
-    function tick(){
-      if(i<text.length){
-        el.insertBefore(document.createTextNode(text[i]),c);
-        var ch=text[i];i++;
-        later(tick,ch==='.'||ch==='?'?68:14);
-      }else{later(function(){c.remove();if(cb)cb();},280);}
-    }
-    tick();
-  }
-
-  function addItem(d,cb){
-    var col=document.getElementById('sh-q-col');
-    var item=document.createElement('div');item.className='sh-c-item';
-    var qe=document.createElement('div');qe.className='sh-c-q';qe.textContent=d.q;
-    var ae=document.createElement('div');ae.className='sh-c-a';
-    item.appendChild(qe);item.appendChild(ae);
-    col.appendChild(item);
-    later(function(){
-      item.classList.add('in');
-      later(function(){typeText(ae,d.a,cb);},240);
-    },60);
-  }
-
-  function revealAll(){
-    _t.forEach(clearTimeout);_t=[];
-    var skipBtn=document.getElementById('sh-skip');
-    if(skipBtn)skipBtn.style.display='none';
-    var col=document.getElementById('sh-q-col');
-    col.innerHTML='';
-    var lbl=document.createElement('div');lbl.className='sh-c-label';lbl.textContent='On the record';col.appendChild(lbl);
-    D.forEach(function(d){
-      var item=document.createElement('div');item.className='sh-c-item in';
-      var qe=document.createElement('div');qe.className='sh-c-q';qe.textContent=d.q;
-      var ae=document.createElement('div');ae.className='sh-c-a';ae.textContent=d.a;
-      item.appendChild(qe);item.appendChild(ae);col.appendChild(item);
-    });
-    var s=document.getElementById('sh-stmt');if(s)s.classList.add('in');
-    var cta=document.getElementById('sh-cta');if(cta)cta.classList.add('in');
-    var hint=document.getElementById('sh-scroll-hint');if(hint)hint.classList.add('in');
-    var f=document.getElementById('foundation');
-    if(f){f.style.display='';f.classList.add('in');}
-    document.querySelectorAll('.sh-below').forEach(function(el){
-      el.style.display='';el.classList.add('in');
-    });
-  }
-
-  function run(){
-    var skipBtn=document.getElementById('sh-skip');
-    if(skipBtn)skipBtn.addEventListener('click',revealAll);
-    var ctaBtn=document.querySelector('.sh-cta-btn');
-    if(ctaBtn){
-      ctaBtn.addEventListener('click',function(){
-        var f=document.getElementById('foundation');
-        if(!f)return;
-        if(f.style.display==='none'){f.style.display='';f.classList.add('in');}
-        f.scrollIntoView({behavior:'smooth'});
-      });
-    }
-    var heroEl=document.querySelector('.sh-hero');
-    window.addEventListener('scroll',function(){
-      var hint=document.getElementById('sh-scroll-hint');
-      if(!hint||!hint.classList.contains('in'))return;
-      if(heroEl&&heroEl.getBoundingClientRect().bottom<window.innerHeight*0.55){
-        hint.classList.remove('in');hint.classList.add('out');
-      }
-    },{passive:true});
-    var col=document.getElementById('sh-q-col');
-    var lbl=document.createElement('div');lbl.className='sh-c-label';lbl.textContent='On the record';
-    col.appendChild(lbl);
-    function step(i){
-      if(i>=D.length){
-        if(skipBtn)skipBtn.style.display='none';
-        later(function(){
-          var s=document.getElementById('sh-stmt');
-          if(s)s.classList.add('in');
-        },200);
-        later(function(){
-          var cta=document.getElementById('sh-cta');
-          if(cta)cta.classList.add('in');
-        },600);
-        later(function(){
-          var hint=document.getElementById('sh-scroll-hint');
-          if(hint)hint.classList.add('in');
-        },700);
-        later(function(){
-          var f=document.getElementById('foundation');
-          if(f){f.style.display='';later(function(){f.classList.add('in');},20);}
-          later(function(){
-            document.querySelectorAll('.sh-below').forEach(function(s,i){
-              later(function(){s.style.display='';later(function(){s.classList.add('in');},20);},i*220);
-            });
-          },800);
-        },700);
-        return;
-      }
-      later(function(){
-        addItem(D[i],function(){later(function(){step(i+1);},100);});
-      },i===0?520:70);
-    }
-    step(0);
-  }
-
-  if(document.readyState==='loading'){document.addEventListener('DOMContentLoaded',run);}
-  else{setTimeout(run,120);}
-})();
-</script>
 <script>
 (function(){
   function initCards(){
@@ -1749,7 +1627,7 @@ html[data-theme="light"] .heroX-ai .hx-cube-dots circle{opacity:.52}
   window.cwSendCustom=function(){
     var inp=document.getElementById('cwInput');var val=inp.value.trim();if(!val)return;
     inp.value='';addUser(val);addTyping();
-    setTimeout(function(){addAI('The live AI agent will answer that once connected. For now, try one of the suggested questions to see how it works.');},900);
+    setTimeout(function(){addAI('I'm currently set up to answer specific questions about Krishna's experience and enterprise programs. Try one of the suggested questions above.');},900);
   };
   window.toggleChat=function(){
     var w=document.getElementById('chatWidget');
