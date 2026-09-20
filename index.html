@@ -1792,7 +1792,7 @@ html[data-theme="light"] .heroX-ai .hx-cube-dots circle{opacity:.52}
   ];
   var colors=['','blue','purple','teal'];
   var reduced=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  var drawRaf=0,lifeRaf=0,startTime=0;
+  var drawRaf=0,lifeRaf=0,startTime=0,particlePool=[],activeState={enterprise:'',agents:'',values:''},cubeMode='reset',capIndex=-1;
 
   // Flatter, wider perspective: same three-face dotted cube, viewed more from above.
   var T={x:280,y:52},L={x:112,y:92},C={x:280,y:132},R={x:448,y:92};
@@ -1836,7 +1836,7 @@ html[data-theme="light"] .heroX-ai .hx-cube-dots circle{opacity:.52}
     if(!p){p=document.createElement('span');p.className=cls;p.setAttribute('aria-hidden','true');el.appendChild(p);}
     Object.assign(p.style,{position:'absolute',top:'50%',left:left?'5px':'auto',right:left?'auto':'5px',
       transform:'translateY(-50%)',width:'10px',height:'10px',borderRadius:'50%',
-      background:'#43e5fb',border:'2px solid rgba(6,37,61,.96)',boxSizing:'border-box',boxShadow:'0 0 8px #43e5fb',zIndex:'9',animation:'none'});
+      background:'#43e5fb',border:'0',boxSizing:'border-box',boxShadow:'0 0 0 3px rgba(6,37,61,.98),0 0 8px rgba(67,229,251,.82)',zIndex:'12',animation:'none',overflow:'hidden'});
     return p;
   }
   enterprise.concat(agents,values).forEach(function(card){
@@ -1855,7 +1855,7 @@ html[data-theme="light"] .heroX-ai .hx-cube-dots circle{opacity:.52}
     var p=document.createElementNS(NS,'path');
     p.setAttribute('d',d);p.setAttribute('class','hx-flow-path '+(secondary?'secondary ':'')+(cls||''));
     linkSvg.appendChild(p);
-    bucket.push({d:d,cls:cls||'',secondary:!!secondary,agent:agentIndex,value:valueIndex});
+    bucket.push({d:d,el:p,length:p.getTotalLength(),cls:cls||'',secondary:!!secondary,agent:agentIndex,value:valueIndex});
   }
   function simple(a,b,cls,bucket){
     var dx=Math.max(30,(b.x-a.x)*.46);
@@ -1870,7 +1870,8 @@ html[data-theme="light"] .heroX-ai .hx-cube-dots circle{opacity:.52}
   function draw(){
     cancelAnimationFrame(drawRaf);
     drawRaf=requestAnimationFrame(function(){
-      linkSvg.querySelectorAll('.hx-path,.hx-junction,.hx-flow-path,.hx-flow-comet,.hx-flow-token,.hx-dynamic-wire,.hx-signal-pulse,.hx-signal-particle,.hx-life-particle').forEach(function(n){n.remove();});
+      linkSvg.querySelectorAll('.hx-path,.hx-junction,.hx-flow-path,.hx-flow-token,.hx-dynamic-wire,.hx-signal-pulse,.hx-signal-particle').forEach(function(n){n.remove();});
+      hideParticles();
       paths={incoming:[],outgoing:[],value:[]};
       if(window.innerWidth<=1200)return;
 
@@ -1901,31 +1902,46 @@ html[data-theme="light"] .heroX-ai .hx-cube-dots circle{opacity:.52}
     });
   }
 
-  function clearParticles(){linkSvg.querySelectorAll('.hx-life-particle').forEach(function(n){n.remove();});}
-  function particle(spec,progress,index){
-    var path=document.createElementNS(NS,'path');
-    path.setAttribute('d',spec.d);
-    var len=path.getTotalLength?path.getTotalLength():0;
-    if(!len){linkSvg.appendChild(path);len=path.getTotalLength();path.remove();}
-    else path.remove();
-    if(!len)return;
-    var pt=(function(){var tmp=document.createElementNS(NS,'path');tmp.setAttribute('d',spec.d);linkSvg.appendChild(tmp);var p=tmp.getPointAtLength(Math.max(0,Math.min(len,len*progress)));tmp.remove();return p;})();
+  function ensureParticle(index){
+    if(particlePool[index])return particlePool[index];
     var el=document.createElementNS(NS,'circle');
+    el.setAttribute('class','hx-life-particle hx-flow-comet');
+    el.setAttribute('r','3.2');
+    el.style.display='none';
+    el.style.pointerEvents='none';
+    linkSvg.appendChild(el);
+    particlePool[index]=el;
+    return el;
+  }
+  function hideParticles(){
+    particlePool.forEach(function(el){el.style.display='none';});
+  }
+  function particle(spec,progress,index){
+    if(!spec||!spec.el||!spec.length)return;
+    var el=ensureParticle(index);
+    // Keep the particle beneath the card node at both ends to eliminate endpoint flashes.
+    var safe=.018+Math.max(0,Math.min(1,progress))*.964;
+    var pt=spec.el.getPointAtLength(spec.length*safe);
     el.setAttribute('class','hx-life-particle hx-flow-comet '+spec.cls);
-    el.setAttribute('cx',pt.x);el.setAttribute('cy',pt.y);el.setAttribute('r',spec.secondary?'2':'3.2');
+    el.setAttribute('cx',pt.x.toFixed(2));el.setAttribute('cy',pt.y.toFixed(2));
+    el.setAttribute('r',spec.secondary?'2':'3.2');
     el.style.opacity=String(.72+.22*Math.sin((progress+index*.17)*Math.PI));
+    el.style.display='';
     linkSvg.appendChild(el);
   }
   function stageParticles(list,p){
-    clearParticles();
+    var used=0;
     list.forEach(function(spec,i){
       var stagger=i*.07,local=(p-stagger)/(1-stagger);
-      if(local>=0&&local<=1)particle(spec,local,i);
+      if(local>=0&&local<=1){particle(spec,local,used);used++;}
     });
+    for(var i=used;i<particlePool.length;i++)particlePool[i].style.display='none';
   }
   function resetCube(){
+    if(cubeMode==='reset')return;
     dots.forEach(function(d){d.el.setAttribute('cy',d.baseY.toFixed(2));d.el.style.opacity=String(d.baseOpacity);});
     capEls.forEach(function(el){el.style.opacity='.58';el.style.color='';el.style.textShadow='none';});
+    cubeMode='reset';capIndex=-1;
   }
   function wave(p){
     // One broad Gaussian crest: rises, crosses the full 3D mesh, then leaves it completely still.
@@ -1938,42 +1954,44 @@ html[data-theme="light"] .heroX-ai .hx-cube-dots circle{opacity:.52}
       d.el.setAttribute('cy',(d.baseY+dy).toFixed(2));
       d.el.style.opacity=String(Math.min(1,d.baseOpacity+crest*.10));
     });
+    cubeMode='wave';
     if(capEls.length===5){
       var active=Math.min(4,Math.floor(p*5));
-      capEls.forEach(function(el,i){
-        var on=i===active;
-        el.style.opacity=on?'1':'.58';
-        el.style.color=on?'#7deeff':'';
-        el.style.textShadow=on?'0 0 10px rgba(89,239,255,.28)':'none';
-      });
+      if(active!==capIndex){
+        capEls.forEach(function(el,i){var on=i===active;el.style.opacity=on?'1':'.58';el.style.color=on?'#7deeff':'';el.style.textShadow=on?'0 0 10px rgba(89,239,255,.28)':'none';});
+        capIndex=active;
+      }
     }
   }
 
-  function setActive(cards,indexes,on){
+  function setActive(cards,indexes,on,key){
+    var next=on?indexes.join(','):'';
+    if(activeState[key]===next)return;
+    activeState[key]=next;
     cards.forEach(function(card,i){
       var active=on&&indexes.indexOf(i)!==-1;
       card.style.borderColor=active?'#62efff':'';
-      card.style.boxShadow=active?'0 0 0 1px rgba(98,239,255,.38), inset 0 0 24px rgba(67,229,251,.13), 0 0 24px rgba(67,229,251,.18)':'';
-      card.style.filter=active?'brightness(1.16)':'';
+      card.style.boxShadow=active?'0 0 0 1px rgba(98,239,255,.32), inset 0 0 18px rgba(67,229,251,.10), 0 0 16px rgba(67,229,251,.12)':'';
+      card.style.filter=active?'brightness(1.12)':'';
       card.style.transform=active?'translateX(2px)':'';
     });
   }
   function clearActive(){
-    setActive(enterprise,[],false);setActive(agents,[],false);setActive(values,[],false);
+    setActive(enterprise,[],false,'enterprise');setActive(agents,[],false,'agents');setActive(values,[],false,'values');
   }
   function sequentialAgent(progress){
     var idx=Math.min(agents.length-1,Math.floor(progress*agents.length));
-    setActive(enterprise,[],false);
-    setActive(agents,[idx],true);
-    setActive(values,[],false);
+    setActive(enterprise,[],false,'enterprise');
+    setActive(agents,[idx],true,'agents');
+    setActive(values,[],false,'values');
   }
   function staggerValues(progress){
     var count=Math.min(values.length,Math.max(1,Math.floor(progress*values.length)+1));
     var active=[];
     for(var i=0;i<count;i++)active.push(i);
-    setActive(enterprise,[],false);
-    setActive(agents,[],false);
-    setActive(values,active,true);
+    setActive(enterprise,[],false,'enterprise');
+    setActive(agents,[],false,'agents');
+    setActive(values,active,true,'values');
   }
 
   // Left-to-right lifecycle: all enterprise architecture inputs → AI processing → sequential agent checks → value resolution.
@@ -1992,11 +2010,11 @@ html[data-theme="light"] .heroX-ai .hx-cube-dots circle{opacity:.52}
 
     if(t<IN_END){
       resetCube();
-      setActive(enterprise,scenario.inputs,true);setActive(agents,[],false);setActive(values,[],false);
+      setActive(enterprise,scenario.inputs,true,'enterprise');setActive(agents,[],false,'agents');setActive(values,[],false,'values');
       stageParticles(paths.incoming,t/IN_END);
     }else if(t<WAVE_END){
-      clearParticles();
-      setActive(enterprise,scenario.inputs,true);setActive(agents,[],false);setActive(values,[],false);
+      hideParticles();
+      setActive(enterprise,scenario.inputs,true,'enterprise');setActive(agents,[],false,'agents');setActive(values,[],false,'values');
       wave((t-IN_END)/(WAVE_END-IN_END));
     }else if(t<AGENT_END){
       resetCube();
@@ -2011,7 +2029,7 @@ html[data-theme="light"] .heroX-ai .hx-cube-dots circle{opacity:.52}
       staggerValues(vp);
       stageParticles(valueRoutesFor(scenario),vp);
     }else{
-      clearParticles();resetCube();clearActive();
+      hideParticles();resetCube();clearActive();
     }
     lifeRaf=requestAnimationFrame(lifecycle);
   }
@@ -2021,7 +2039,7 @@ html[data-theme="light"] .heroX-ai .hx-cube-dots circle{opacity:.52}
   window.addEventListener('resize',function(){draw();startTime=performance.now();},{passive:true});
   if('ResizeObserver' in window)new ResizeObserver(draw).observe(map);
 
-  resetCube();
+  cubeMode='';resetCube();
   if(!reduced)lifeRaf=requestAnimationFrame(lifecycle);
 })();
 </script>
