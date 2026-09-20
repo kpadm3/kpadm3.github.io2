@@ -426,72 +426,73 @@ html[data-theme="light"] .sp-hero::after{opacity:.1}
 @media(prefers-reduced-motion:reduce){.e2a-core{animation:none!important}}
 
 
-/* ── MASTER HERO SHELL REBUILD: full-width intro + full-width pipeline ── */
+
+/* ── HERO REBUILD v4: annotated two-row geometry + complete light theme ── */
 @media(min-width:1201px){
   .sp-hero{
     min-height:calc(100vh - 54px)!important;
-    padding:28px 46px 16px!important;
-    display:block!important;
+    padding:26px 46px 16px!important;
+    display:flex!important;
+    flex-direction:column!important;
     background:
-      radial-gradient(ellipse at 58% 18%,rgba(0,102,180,.18),transparent 43%),
+      radial-gradient(ellipse at 68% 20%,rgba(0,96,176,.16),transparent 43%),
       linear-gradient(180deg,#03111f 0%,#06192b 100%)!important;
   }
-
-  /* New geometry: two rows, no left/right split */
   .sp-hero-grid{
     display:grid!important;
     grid-template-columns:1fr!important;
     grid-template-rows:auto auto!important;
-    gap:18px!important;
+    gap:14px!important;
     width:100%!important;
-    max-width:none!important;
-    align-items:stretch!important;
+    flex:0 0 auto!important;
   }
 
-  /* Former left pane becomes the full-width top strip */
+  /* Top red band: keep ALL intro content, arranged compactly across the top */
   .sp-hero-main{
     grid-column:1!important;
     grid-row:1!important;
     width:100%!important;
+    max-width:none!important;
     min-height:0!important;
-    padding:0 4px 18px!important;
     margin:0!important;
+    padding:10px 8px 14px!important;
     border:0!important;
-    border-bottom:1px solid rgba(54,176,226,.22)!important;
+    border-bottom:1px solid rgba(53,212,241,.18)!important;
     display:grid!important;
-    grid-template-columns:310px minmax(430px,620px) minmax(360px,1fr)!important;
-    column-gap:34px!important;
+    grid-template-columns:300px minmax(420px,610px) minmax(380px,1fr)!important;
+    column-gap:38px!important;
     align-items:center!important;
   }
-  .sp-hero-identity{margin:0!important;align-self:center!important}
-  .sp-hero-name{font-size:.72rem!important;letter-spacing:.22em!important;color:#50dff2!important;margin:0 0 8px!important}
-  .sp-hero-role-line{font-size:.59rem!important;letter-spacing:.18em!important;color:#dce9f5!important}
-  .sp-hero-sep{width:40px!important;margin-top:16px!important}
-
+  .sp-hero-identity{margin:0!important}
+  .sp-hero-name{font-size:.7rem!important;letter-spacing:.22em!important;color:#50dff2!important;margin:0 0 7px!important}
+  .sp-hero-role-line{font-size:.57rem!important;letter-spacing:.17em!important;color:#dce9f5!important}
+  .sp-hero-sep{width:40px!important;margin-top:13px!important}
   .sp-headline{
+    display:block!important;
     margin:0!important;
     max-width:none!important;
-    font-size:clamp(2.05rem,2.45vw,3.15rem)!important;
+    font-size:clamp(2.05rem,2.55vw,3.15rem)!important;
     line-height:1.08!important;
     letter-spacing:-.025em!important;
   }
   .sp-headline br{display:none!important}
   .sp-headline .sp-acc{white-space:nowrap!important}
-
   .sp-sub{
+    display:block!important;
     margin:0!important;
     max-width:560px!important;
-    font-size:.78rem!important;
-    line-height:1.65!important;
     justify-self:end!important;
+    font-size:.76rem!important;
+    line-height:1.65!important;
     color:#91a9bf!important;
   }
 
-  /* Diagram now owns the complete horizontal canvas */
+  /* Green band: diagram gets the entire page width */
   .sp-hero-visual{
     grid-column:1!important;
     grid-row:2!important;
     width:100%!important;
+    max-width:none!important;
     min-width:0!important;
     margin:0!important;
     padding:0!important;
@@ -505,99 +506,78 @@ html[data-theme="light"] .sp-hero::after{opacity:.1}
   }
   .e2a-stage{
     width:100%!important;
-    grid-template-columns:minmax(225px,1.28fr) 52px minmax(270px,1.62fr) 52px minmax(230px,1.3fr) 52px minmax(180px,.95fr)!important;
+    grid-template-columns:minmax(235px,1.3fr) 52px minmax(285px,1.62fr) 52px minmax(240px,1.3fr) 52px minmax(190px,.96fr)!important;
+    gap:0!important;
   }
-  .e2a-core{width:202px!important;height:202px!important}
-  .e2a-flow{height:242px!important}
-  .e2a-flow svg{height:242px!important}
+  .e2a-core{width:200px!important;height:200px!important;margin:4px auto 10px!important}
+  .e2a-flow,.e2a-flow svg{height:242px!important}
 
-  /* Pillars remain a clean full-width footer row */
   .sp-hero-pillars{
     width:100%!important;
-    margin-top:18px!important;
-    padding-bottom:42px!important;
+    margin-top:16px!important;
+    padding-bottom:38px!important;
   }
   .sp-hero-pillar{padding-top:16px!important}
-  .sp-scroll{bottom:10px!important}
-}
-@media(min-width:1500px){
-  .sp-hero{padding-left:50px!important;padding-right:50px!important}
-  .sp-hero-main{grid-template-columns:330px minmax(520px,690px) minmax(390px,1fr)!important}
-  .sp-headline{font-size:3.05rem!important}
+  .sp-scroll{bottom:9px!important}
 }
 
-
-/* ── EXACT ANNOTATED GEOMETRY: compact intro top-left, full-width visual below ── */
-@media(min-width:1201px){
-  .sp-hero{
-    padding:28px 46px 16px!important;
-    min-height:calc(100vh - 54px)!important;
-  }
-  .sp-hero-grid{
-    display:grid!important;
-    grid-template-columns:1fr!important;
-    grid-template-rows:auto auto!important;
-    gap:4px!important;
-    width:100%!important;
-  }
-
-  /* RED annotation: preserve the original intro as a compact left pane, but move it to the top */
-  .sp-hero-main{
-    grid-column:1!important;
-    grid-row:1!important;
-    display:block!important;
-    width:30%!important;
-    min-width:420px!important;
-    max-width:520px!important;
-    min-height:0!important;
-    padding:12px 26px 12px 4px!important;
-    margin:0!important;
-    border:0!important;
-    align-self:start!important;
-  }
-  .sp-hero-identity{margin:0 0 14px!important}
-  .sp-hero-name{font-size:.7rem!important;letter-spacing:.22em!important;margin-bottom:7px!important}
-  .sp-hero-role-line{font-size:.57rem!important;letter-spacing:.17em!important}
-  .sp-hero-sep{width:40px!important;margin-top:13px!important}
-  .sp-headline{
-    display:none!important;
-  }
-  .sp-sub{
-    display:none!important;
-  }
-
-  /* GREEN annotation: visual starts at the far left and runs to the far right */
-  .sp-hero-visual{
-    grid-column:1!important;
-    grid-row:2!important;
-    width:100%!important;
-    max-width:none!important;
-    min-width:0!important;
-    margin:0!important;
-    padding:0!important;
-  }
-  .sp-hero-visual .e2a-wide{
-    width:100%!important;
-    max-width:none!important;
-    box-sizing:border-box!important;
-    margin:0!important;
-    padding:18px 18px 12px!important;
-  }
-  .e2a-stage{
-    width:100%!important;
-    grid-template-columns:minmax(235px,1.28fr) 54px minmax(285px,1.62fr) 54px minmax(240px,1.3fr) 54px minmax(190px,.96fr)!important;
-  }
-  .e2a-core{width:205px!important;height:205px!important}
-  .e2a-flow,.e2a-flow svg{height:245px!important}
-
-  .sp-hero-pillars{
-    margin-top:14px!important;
-    padding-bottom:40px!important;
-  }
+/* Full light-mode hero. No forced dark island. */
+html[data-theme="light"] .sp-hero{
+  background:
+    radial-gradient(ellipse at 68% 20%,rgba(8,145,178,.07),transparent 43%),
+    linear-gradient(180deg,#f7fbff 0%,#edf6fc 100%)!important;
+  border-bottom-color:rgba(8,145,178,.16)!important;
 }
-@media(min-width:1500px){
-  .sp-hero-main{width:29%!important;max-width:540px!important}
+html[data-theme="light"] .sp-hero-main{border-bottom-color:rgba(8,145,178,.16)!important}
+html[data-theme="light"] .sp-hero-name{color:#087f9e!important}
+html[data-theme="light"] .sp-hero-role-line{color:#18364e!important}
+html[data-theme="light"] .sp-headline{color:#10283d!important}
+html[data-theme="light"] .sp-acc{color:#0891b2!important}
+html[data-theme="light"] .sp-sub{color:#49677e!important}
+html[data-theme="light"] .e2a-wide{
+  background:linear-gradient(135deg,rgba(255,255,255,.94),rgba(232,247,253,.92))!important;
+  border-color:rgba(8,145,178,.24)!important;
+  box-shadow:inset 0 0 50px rgba(8,145,178,.035),0 10px 28px rgba(35,77,105,.06)!important;
 }
+html[data-theme="light"] .e2a-zone{border-right-color:rgba(8,145,178,.12)!important}
+html[data-theme="light"] .e2a-zone-head span{color:#087f9e!important}
+html[data-theme="light"] .e2a-zone-head small{color:#607d92!important}
+html[data-theme="light"] .e2a-input,
+html[data-theme="light"] .e2a-agent{
+  background:linear-gradient(90deg,#ffffff,#edf8fc)!important;
+  border-color:rgba(8,145,178,.34)!important;
+  box-shadow:0 3px 12px rgba(30,86,115,.06)!important;
+}
+html[data-theme="light"] .e2a-input strong,
+html[data-theme="light"] .e2a-agent strong,
+html[data-theme="light"] .e2a-outcome strong,
+html[data-theme="light"] .e2a-core-copy strong{color:#17364d!important}
+html[data-theme="light"] .e2a-input small,
+html[data-theme="light"] .e2a-agent small{color:#607b90!important}
+html[data-theme="light"] .e2a-icon,
+html[data-theme="light"] .e2a-agent-icon,
+html[data-theme="light"] .e2a-value-icon{color:#078eae!important}
+html[data-theme="light"] .e2a-core{
+  background:radial-gradient(circle,rgba(8,145,178,.11),rgba(255,255,255,.4) 58%,transparent 72%)!important;
+  filter:drop-shadow(0 0 18px rgba(8,145,178,.12))!important;
+}
+html[data-theme="light"] .e2a-ring{border-color:rgba(8,145,178,.32)!important}
+html[data-theme="light"] .e2a-capabilities span{
+  background:#f8fdff!important;color:#315a70!important;border-color:rgba(8,145,178,.28)!important;
+}
+html[data-theme="light"] .e2a-value{
+  background:linear-gradient(180deg,rgba(229,250,250,.9),rgba(244,251,253,.96))!important;
+  border-color:rgba(8,145,178,.3)!important;
+}
+html[data-theme="light"] .e2a-outcome{border-bottom-color:rgba(8,145,178,.12)!important}
+html[data-theme="light"] .e2a-outcome span{color:#087f9e!important}
+html[data-theme="light"] .e2a-scale-label{color:#58788e!important}
+html[data-theme="light"] .e2a-scale-line{background:linear-gradient(90deg,rgba(8,145,178,.15),#0891b2,rgba(8,145,178,.15))!important}
+html[data-theme="light"] .sp-pillar-title{color:#087f9e!important}
+html[data-theme="light"] .sp-pillar-text{color:#4e6c82!important}
+html[data-theme="light"] .sp-pillar-icon{color:#0891b2!important}
+html[data-theme="light"] .sp-scroll-lbl{color:#55758b!important}
+html[data-theme="light"] .sp-scroll-arrow{border-color:#55758b!important}
 
 </style>
 <script>if(localStorage.getItem('kp-theme')==='light')document.documentElement.setAttribute('data-theme','light');</script>
