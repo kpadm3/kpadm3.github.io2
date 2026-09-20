@@ -1831,11 +1831,15 @@ html[data-theme="light"] .heroX-ai .hx-cube-dots circle{opacity:.52}
   function ensurePort(el,cls,left){
     var p=el.querySelector('.'+cls);
     if(!p){p=document.createElement('span');p.className=cls;p.setAttribute('aria-hidden','true');el.appendChild(p);}
-    Object.assign(p.style,{position:'absolute',top:'50%',left:left?'-6px':'auto',right:left?'auto':'-6px',
+    Object.assign(p.style,{position:'absolute',top:'50%',left:left?'-5px':'auto',right:left?'auto':'-5px',
       transform:'translateY(-50%)',width:'10px',height:'10px',borderRadius:'50%',
       background:'#43e5fb',boxShadow:'0 0 9px #43e5fb',zIndex:'9'});
     return p;
   }
+  enterprise.concat(agents,values).forEach(function(card){
+    card.querySelectorAll('.hx-out-port,.hx-in-port,.hx-value-port').forEach(function(p){p.remove();});
+    card.style.transition='border-color .28s ease, box-shadow .28s ease, background-color .28s ease, transform .28s ease';
+  });
   enterprise.forEach(function(card){ensurePort(card,'hx-out-port',false);});
   agents.forEach(function(card){ensurePort(card,'hx-in-port',true);ensurePort(card,'hx-out-port',false);});
   values.forEach(function(card){ensurePort(card,'hx-value-port',true);});
@@ -1855,7 +1859,7 @@ html[data-theme="light"] .heroX-ai .hx-cube-dots circle{opacity:.52}
     addPath('M '+a.x+' '+a.y+' C '+(a.x+dx)+' '+a.y+', '+(b.x-dx)+' '+b.y+', '+b.x+' '+b.y,cls,false,bucket,null,null);
   }
   function routed(a,b,cls,secondary,bucket,agentIndex,valueIndex){
-    var gap=Math.max(60,b.x-a.x),mid=(a.x+b.x)/2,lift=secondary?(b.y-a.y)*.28:(b.y-a.y)*.14;
+    var gap=Math.max(60,b.x-a.x),mid=(a.x+b.x)/2,delta=b.y-a.y,dir=delta===0?(agentIndex%2===0?-1:1):(delta>0?1:-1),bend=secondary?Math.max(24,Math.abs(delta)*.34):22,lift=dir*bend;
     addPath('M '+a.x+' '+a.y+' C '+(a.x+gap*.18)+' '+a.y+', '+(mid-gap*.18)+' '+(a.y+lift)+', '+mid+' '+((a.y+b.y)/2)+
       ' C '+(mid+gap*.18)+' '+(b.y-lift)+', '+(b.x-gap*.18)+' '+b.y+', '+b.x+' '+b.y,cls,secondary,bucket,agentIndex,valueIndex);
   }
@@ -1941,6 +1945,18 @@ html[data-theme="light"] .heroX-ai .hx-cube-dots circle{opacity:.52}
     }
   }
 
+  function setActive(cards,indexes,on){
+    cards.forEach(function(card,i){
+      var active=on&&indexes.indexOf(i)!==-1;
+      card.style.borderColor=active?'rgba(67,229,251,.72)':'';
+      card.style.boxShadow=active?'0 0 0 1px rgba(67,229,251,.16), 0 0 20px rgba(67,229,251,.10)':'';
+      card.style.backgroundColor=active?'rgba(67,229,251,.045)':'';
+    });
+  }
+  function clearActive(){
+    setActive(enterprise,[],false);setActive(agents,[],false);setActive(values,[],false);
+  }
+
   // Scenario lifecycle: a complex enterprise situation activates only the agents and outcomes it needs.
   // 10.5s each: selected inputs 1.8s → AI wave 2.5s → selected agents 1.5s → relevant values 1.8s → rest 2.9s.
   var TOTAL=10500,IN_END=1800,WAVE_END=4300,AGENT_END=5800,VALUE_END=7600;
@@ -1959,19 +1975,22 @@ html[data-theme="light"] .heroX-ai .hx-cube-dots circle{opacity:.52}
 
     if(t<IN_END){
       resetCube();
+      setActive(enterprise,scenario.inputs,true);setActive(agents,[],false);setActive(values,[],false);
       stageParticles(selected(paths.incoming,scenario.inputs),t/IN_END);
     }else if(t<WAVE_END){
       clearParticles();
+      setActive(enterprise,scenario.inputs,true);setActive(agents,[],false);setActive(values,[],false);
       wave((t-IN_END)/(WAVE_END-IN_END));
     }else if(t<AGENT_END){
       resetCube();
+      setActive(enterprise,[],false);setActive(agents,scenario.agents,true);setActive(values,[],false);
       stageParticles(selected(paths.outgoing,scenario.agents),(t-WAVE_END)/(AGENT_END-WAVE_END));
     }else if(t<VALUE_END){
       resetCube();
+      setActive(enterprise,[],false);setActive(agents,scenario.agents,true);setActive(values,scenario.values,true);
       stageParticles(valueRoutesFor(scenario),(t-AGENT_END)/(VALUE_END-AGENT_END));
     }else{
-      clearParticles();
-      resetCube();
+      clearParticles();resetCube();clearActive();
     }
     lifeRaf=requestAnimationFrame(lifecycle);
   }
