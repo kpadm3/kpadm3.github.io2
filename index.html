@@ -988,7 +988,7 @@ html[data-theme="light"] .heroX-ai .hx-cube-dots circle{filter:none!important;op
 .hx-dynamic-runner{fill:#e8fdff;filter:url(#hxg)}
 @media(prefers-reduced-motion:reduce){.hx-dynamic-runner{display:none}}
 </style>
-<script>const _t=localStorage.getItem('kp-theme');if(_t)document.documentElement.setAttribute('data-theme',_t);</script>
+<script>(() => { const s = localStorage.getItem('kp-theme'); const t = s || (matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark'); document.documentElement.setAttribute('data-theme', t); })();</script>
 </head>
 <body>
   <div class="page-progress" data-progress></div>

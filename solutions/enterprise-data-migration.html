@@ -21,12 +21,6 @@ html[data-theme="light"] {
   --bg:#f0f4f8; --panel:#ffffff; --text:#1a2c3e; --muted:#456280; --soft:#2a4560;
   --line:rgba(239,109,168,.18); --accent-dim:rgba(239,109,168,.10); --accent-border:rgba(239,109,168,.35);
 }
-@media(prefers-color-scheme:light){
-  :root:not([data-theme="dark"]){
-    --bg:#f0f4f8; --panel:#ffffff; --text:#1a2c3e; --muted:#456280; --soft:#2a4560;
-    --line:rgba(239,109,168,.18); --accent-dim:rgba(239,109,168,.10); --accent-border:rgba(239,109,168,.35);
-  }
-}
 body { font-family:'Inter',system-ui,sans-serif; background:var(--bg); color:var(--text); font-size:14px; line-height:1.6; }
 .p3-content { max-width:780px; margin:0 auto; padding:88px 20px 60px; }
 .back-nav { display:inline-flex; align-items:center; gap:7px; color:var(--muted); font-size:.72rem; font-weight:700; letter-spacing:.07em; text-transform:uppercase; text-decoration:none; margin-bottom:36px; transition:color .18s; }
@@ -96,7 +90,7 @@ details[open] summary { color:var(--accent); border-bottom:1px solid var(--line)
   .sc-badge { width:fit-content; }
 }
 </style>
-<script>const _t=localStorage.getItem('kp-theme');if(_t)document.documentElement.setAttribute('data-theme',_t);</script>
+<script>(() => { const s = localStorage.getItem('kp-theme'); const t = s || (matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark'); document.documentElement.setAttribute('data-theme', t); })();</script>
 </head>
 <body>
 <div class="ambient ambient-a" aria-hidden="true"></div>
