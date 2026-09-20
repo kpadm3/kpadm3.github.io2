@@ -658,6 +658,31 @@ html[data-theme="light"] .sp-scroll-arrow{border-color:#35d4f1!important;color:#
   .sp-hero-pillars{margin-top:12px!important}
 }
 
+
+/* ===== HERO X: clean rebuild from approved reference ===== */
+@keyframes hxspin{to{transform:rotate(360deg)}}@keyframes hxspin2{to{transform:rotate(-360deg)}}@keyframes hxpulse{0%,100%{opacity:.5}50%{opacity:1}}
+.heroX{position:relative;box-sizing:border-box;min-height:calc(100vh - 54px);padding:28px 38px 16px;background:radial-gradient(ellipse at 58% 18%,rgba(0,92,170,.18),transparent 42%),linear-gradient(180deg,#03111f,#06182a);color:#eef7ff;overflow:hidden}
+.heroX *{box-sizing:border-box}.heroX-intro{display:grid;grid-template-columns:360px minmax(520px,1fr) minmax(390px,500px);gap:34px;align-items:center;min-height:100px;margin-bottom:15px}
+.heroX-name{font-size:15px;letter-spacing:.22em;font-weight:700;color:#35dff3}.heroX-role{margin-top:9px;font-size:10px;letter-spacing:.22em;font-weight:700;color:#e5eef7}.heroX-rule{width:62px;height:2px;margin-top:18px;background:#2fd8ea}
+.heroX-intro h1{margin:0;font-size:clamp(34px,3vw,55px);line-height:1.06;font-weight:300;letter-spacing:-.03em;white-space:nowrap}.heroX-intro h1 em{font-style:normal;color:#22d4f1}.heroX-intro p{margin:0;padding-left:28px;border-left:1px solid rgba(85,183,236,.7);font-size:13px;line-height:1.55;color:#b5c6d6}
+.heroX-map{position:relative;height:458px;border:1px solid rgba(47,173,226,.38);border-radius:13px;background:linear-gradient(135deg,rgba(4,28,49,.92),rgba(4,43,69,.62));display:grid;grid-template-columns:26% 34% 26% 14%;overflow:hidden}
+.heroX-zone{position:relative;z-index:2;padding:19px 22px 52px;border-right:1px solid rgba(71,163,211,.12)}.heroX-zone:last-of-type{border-right:0}.heroX-zone header{height:58px}.heroX-zone header>b{display:block;font-size:12px;letter-spacing:.13em;color:#52e1f4}.heroX-zone header small{display:block;margin-top:7px;font-size:10px;color:#91a8bb}
+.heroX-enterprise article,.heroX-agents article{position:relative;height:62px;margin:8px 0;display:grid;grid-template-columns:48px 1fr;align-items:center;padding:0 15px;border:1px solid rgba(55,177,237,.62);border-radius:11px;background:linear-gradient(90deg,rgba(5,36,61,.98),rgba(8,46,76,.83));box-shadow:inset 0 0 20px rgba(31,163,225,.04)}
+.heroX-enterprise article.violet,.heroX-agents article.violet{border-color:rgba(147,112,255,.72)}.heroX-agents article.teal{border-color:rgba(44,225,205,.72)}
+.heroX-enterprise article>i,.heroX-agents article>i{font-size:28px;color:#5bdfff}.heroX-agents article.violet>i{color:#9c7cff}.heroX-agents article.teal>i{color:#35dfca}
+.heroX-enterprise article b,.heroX-agents article b{display:block;font-size:11px;letter-spacing:.03em}.heroX-enterprise article small,.heroX-agents article small{display:block;margin-top:4px;font-size:9px;color:#9ab0c1}.heroX-agents article em{display:block;margin-top:3px;font-size:8px;font-style:normal;font-weight:800;letter-spacing:.12em;color:#31d9f0}.heroX-agents article.violet em{color:#9b7cff}.heroX-agents article.teal em{color:#39dfcc}
+.heroX-enterprise article>span,.heroX-agents article>span{position:absolute;right:-5px;top:27px;width:10px;height:10px;border-radius:50%;background:#3de5f6;box-shadow:0 0 12px #3de5f6;animation:hxpulse 2s ease-in-out infinite}.heroX-enterprise article.violet>span,.heroX-agents article.violet>span{background:#9b7cff;box-shadow:0 0 12px #9b7cff}.heroX-agents article.teal>span{background:#35dfca;box-shadow:0 0 12px #35dfca}
+.heroX-ai{text-align:center}.heroX-core{position:relative;width:250px;height:250px;margin:-4px auto 2px;display:grid;place-items:center}.hx-ring{position:absolute;border-radius:50%;border:1px solid rgba(48,208,244,.38)}.hx-ring.r1{inset:0;border-style:dashed;animation:hxspin 20s linear infinite}.hx-ring.r2{inset:18px;border:3px solid rgba(30,166,235,.35);animation:hxspin2 16s linear infinite}.hx-ring.r3{inset:40px;border:2px solid rgba(53,218,246,.58);box-shadow:0 0 26px rgba(53,218,246,.14)}.hx-ring.r4{inset:67px;border-color:rgba(80,165,255,.45)}.hx-coretext{font-size:14px;line-height:1.3;font-weight:800;text-shadow:0 0 18px rgba(53,218,246,.35)}
+.heroX-caps{display:flex;flex-wrap:wrap;justify-content:center;gap:8px;max-width:390px;margin:auto}.heroX-caps span{padding:7px 15px;border:1px solid rgba(54,197,240,.6);border-radius:18px;background:rgba(3,31,53,.92);font-size:8px;font-weight:700}
+.heroX-valuebox{border:1px solid rgba(40,222,210,.68);border-radius:20px;overflow:hidden;background:linear-gradient(180deg,rgba(4,69,81,.42),rgba(3,29,45,.55))}.heroX-valuebox article{height:70px;display:grid;grid-template-columns:55px 1fr;align-items:center;padding:0 12px;border-bottom:1px solid rgba(53,212,241,.13)}.heroX-valuebox article:last-child{border-bottom:0}.heroX-valuebox i{font-size:29px;color:#32dff2}.heroX-valuebox .violet i,.heroX-valuebox .violet em{color:#9b7cff}.heroX-valuebox .teal i,.heroX-valuebox .teal em{color:#34dfc8}.heroX-valuebox em{display:block;font-size:9px;font-style:normal;font-weight:800;color:#31d9ef}.heroX-valuebox b{display:block;margin-top:5px;font-size:11px}
+.heroX-links{position:absolute;inset:0;width:100%;height:400px;z-index:3;pointer-events:none}.hx-path path{fill:none;stroke-width:2;stroke-linecap:round;filter:url(#hxg)}.hx-in path{stroke:url(#hxc)}.hx-ag path,.hx-val path{stroke:url(#hxt)}
+.heroX-scale{position:absolute;left:24px;right:24px;bottom:16px;z-index:4;display:grid;grid-template-columns:105px 1fr 55px;gap:14px;align-items:center;font-size:9px;letter-spacing:.2em;color:#7692a8}.heroX-scale>div{height:1px;background:linear-gradient(90deg,#2bcde8,#2ce3d0);position:relative}.heroX-scale>div:after{content:"";position:absolute;right:0;top:-5px;width:9px;height:9px;border-top:2px solid #2ce3d0;border-right:2px solid #2ce3d0;transform:rotate(45deg)}.heroX-scale i{position:absolute;top:-3px;width:7px;height:7px;border-radius:50%;background:#36e0ed}.heroX-scale i:nth-child(1){left:15%}.heroX-scale i:nth-child(2){left:40%}.heroX-scale i:nth-child(3){left:65%}.heroX-scale i:nth-child(4){left:85%}
+.heroX-pillars{display:grid;grid-template-columns:repeat(3,1fr);margin-top:14px;border-top:1px solid rgba(67,160,210,.24)}.heroX-pillars article{display:grid;grid-template-columns:52px 1fr;align-items:center;min-height:76px;padding:10px 32px;border-right:1px solid rgba(67,160,210,.22)}.heroX-pillars article:last-child{border-right:0}.heroX-pillars i{font-size:30px;color:#2ed9ed}.heroX-pillars b{display:block;font-size:11px;letter-spacing:.11em;color:#45dff2}.heroX-pillars span{display:block;margin-top:7px;font-size:10px;color:#91a9bd}
+.heroX-scroll{position:absolute;bottom:5px;left:50%;transform:translateX(-50%);border:0;background:none;color:#edf8ff;display:grid;justify-items:center;gap:4px;cursor:pointer}.heroX-scroll span{display:grid;place-items:center;width:40px;height:40px;border:2px solid #2cd9ef;border-radius:50%;font-size:24px}.heroX-scroll small{font-size:8px;letter-spacing:.2em}
+html[data-theme="light"] .heroX{background:radial-gradient(ellipse at 58% 18%,rgba(0,92,170,.18),transparent 42%),linear-gradient(180deg,#03111f,#06182a)!important;color:#eef7ff!important}
+@media(max-width:1200px){.heroX{padding:24px 20px}.heroX-intro{grid-template-columns:1fr;gap:16px}.heroX-intro h1{white-space:normal}.heroX-intro p{padding-left:0;border-left:0}.heroX-map{height:auto;grid-template-columns:1fr 1fr}.heroX-links{display:none}.heroX-zone{padding-bottom:22px}.heroX-scale{display:none}.heroX-pillars{grid-template-columns:1fr}.heroX-scroll{display:none}}
+@media(max-width:720px){.heroX-map{grid-template-columns:1fr}.heroX-pillars article{border-right:0}.heroX-core{width:220px;height:220px}}
+
 </style>
 <script>if(localStorage.getItem('kp-theme')==='light')document.documentElement.setAttribute('data-theme','light');</script>
 </head>
@@ -685,230 +710,78 @@ html[data-theme="light"] .sp-scroll-arrow{border-color:#35d4f1!important;color:#
   </header>
 
   <main id="top">
-    <section class="sp-hero">
-      <div class="sp-hero-grid">
+    <section class="heroX" aria-label="Krishna Padmanabhan portfolio introduction">
+  <div class="heroX-intro">
+    <div class="heroX-id">
+      <div class="heroX-name">KRISHNA PADMANABHAN</div>
+      <div class="heroX-role">ENTERPRISE AI TRANSFORMATION LEAD</div>
+      <div class="heroX-rule"></div>
+    </div>
+    <h1>Enterprise delivery is the <em>AI edge.</em></h1>
+    <p>AI transformation succeeds when process, data, systems and people are ready to move with it. I lead that connection from enterprise complexity through implementation, adoption and operational value.</p>
+  </div>
 
-        <!-- Left: identity + headline + intro -->
-        <div class="sp-hero-main">
-          <div class="sp-hero-identity">
-            <div class="sp-hero-name">Krishna Padmanabhan</div>
-            <div class="sp-hero-role-line">Enterprise AI Transformation Lead</div>
-            <div class="sp-hero-sep"></div>
-          </div>
-          <h1 class="sp-headline">Enterprise delivery<br>is the <em class="sp-acc">AI edge.</em></h1>
-          <p class="sp-sub">AI transformation succeeds when process, data, systems and people are ready to move with it. I lead that connection from enterprise complexity through implementation, adoption and operational value.</p>
-        </div>
+  <div class="heroX-map">
+    <svg class="heroX-links" viewBox="0 0 1600 400" preserveAspectRatio="none" aria-hidden="true">
+      <defs>
+        <filter id="hxg"><feGaussianBlur stdDeviation="3" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+        <linearGradient id="hxc" x1="0" x2="1"><stop stop-color="#29dcff"/><stop offset=".7" stop-color="#45a9ff"/><stop offset="1" stop-color="#8c72ff"/></linearGradient>
+        <linearGradient id="hxt" x1="0" x2="1"><stop stop-color="#8c72ff"/><stop offset=".55" stop-color="#29dcff"/><stop offset="1" stop-color="#25e1c8"/></linearGradient>
+      </defs>
+      <g class="hx-path hx-in">
+        <path d="M335 105 C410 105 435 175 555 181"/><path d="M335 164 C425 164 450 183 555 188"/><path d="M335 223 C425 223 450 199 555 195"/><path d="M335 282 C410 282 435 207 555 202"/>
+      </g>
+      <g class="hx-path hx-ag">
+        <path d="M820 181 C930 176 930 105 1010 105"/><path d="M820 188 C930 185 940 164 1010 164"/><path d="M820 195 C930 199 940 223 1010 223"/><path d="M820 202 C930 208 930 282 1010 282"/>
+      </g>
+      <g class="hx-path hx-val">
+        <path d="M1280 105 C1320 105 1320 105 1360 105"/><path d="M1280 164 C1320 164 1320 164 1360 164"/><path d="M1280 223 C1320 223 1320 223 1360 223"/><path d="M1280 282 C1320 282 1320 282 1360 282"/>
+        <path d="M1280 105 C1330 105 1325 282 1360 282"/><path d="M1280 282 C1330 282 1325 105 1360 105"/>
+      </g>
+    </svg>
 
-        <!-- Right: full-width animated graphic -->
-        <div class="sp-hero-visual">
-          <div class="e2a-wide" aria-label="Enterprise to Agentic AI Transformation">
-            <div class="e2a-stage">
+    <section class="heroX-zone heroX-enterprise">
+      <header><b>ENTERPRISE REALITY</b><small>Complex systems. Real constraints. Big opportunity.</small></header>
+      <article><i class="ti ti-file-description"></i><div><b>PROCESS</b><small>Workflows · Handoffs · Exceptions</small></div><span></span></article>
+      <article><i class="ti ti-database"></i><div><b>SYSTEMS</b><small>ERP · CRM · Enterprise Platforms</small></div><span></span></article>
+      <article><i class="ti ti-files"></i><div><b>DATA + KNOWLEDGE</b><small>Documents · Data · Business Context</small></div><span></span></article>
+      <article class="violet"><i class="ti ti-users"></i><div><b>PEOPLE + DECISIONS</b><small>Approvals · Judgment · Escalations</small></div><span></span></article>
+    </section>
 
-              <section class="e2a-zone e2a-enterprise" aria-label="Enterprise inputs">
-                <div class="e2a-zone-head">
-                  <span>ENTERPRISE REALITY</span>
-                  <small>Complex systems. Real constraints. Big opportunity.</small>
-                </div>
-                <article class="e2a-input">
-                  <div class="e2a-icon"><i class="ti ti-file-description" aria-hidden="true"></i></div>
-                  <div><strong>PROCESS</strong><small>Workflows · Handoffs · Exceptions</small></div>
-                  <div class="e2a-port"></div>
-                </article>
-                <article class="e2a-input" style="animation-delay:.3s">
-                  <div class="e2a-icon"><i class="ti ti-server" aria-hidden="true"></i></div>
-                  <div><strong>SYSTEMS</strong><small>ERP · CRM · Enterprise Platforms</small></div>
-                  <div class="e2a-port"></div>
-                </article>
-                <article class="e2a-input" style="animation-delay:.6s">
-                  <div class="e2a-icon"><i class="ti ti-files" aria-hidden="true"></i></div>
-                  <div><strong>DATA + KNOWLEDGE</strong><small>Documents · Data · Business Context</small></div>
-                  <div class="e2a-port"></div>
-                </article>
-                <article class="e2a-input" style="animation-delay:.9s">
-                  <div class="e2a-icon"><i class="ti ti-users" aria-hidden="true"></i></div>
-                  <div><strong>PEOPLE + DECISIONS</strong><small>Approvals · Judgment · Escalations</small></div>
-                  <div class="e2a-port"></div>
-                </article>
-              </section>
+    <section class="heroX-zone heroX-ai">
+      <header><b>AI TRANSFORMATION LAYER</b><small>From complexity to coordinated execution.</small></header>
+      <div class="heroX-core"><div class="hx-ring r1"></div><div class="hx-ring r2"></div><div class="hx-ring r3"></div><div class="hx-ring r4"></div><div class="hx-coretext">AI-ENABLED<br>TRANSFORMATION</div></div>
+      <div class="heroX-caps"><span>CONTEXT</span><span>REASONING</span><span>ORCHESTRATION</span><span>GOVERNANCE</span><span>CONTROL</span></div>
+    </section>
 
-              <div class="e2a-flow" aria-hidden="true">
-                <svg style="position:absolute;top:0;left:0;pointer-events:none;overflow:visible" width="34" height="220" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M-52,53 C-15,53 12,110 82,110" stroke="rgba(40,217,245,.40)" stroke-width="9" fill="none" stroke-linecap="round"/>
-                  <path d="M-52,111 C-15,111 12,110 82,110" stroke="rgba(40,217,245,.32)" stroke-width="9" fill="none" stroke-linecap="round"/>
-                  <path d="M-52,169 C-15,169 12,110 82,110" stroke="rgba(40,217,245,.26)" stroke-width="9" fill="none" stroke-linecap="round"/>
-                  <path d="M-52,227 C-15,227 12,113 82,110" stroke="rgba(40,217,245,.18)" stroke-width="9" fill="none" stroke-linecap="round"/>
-                  <path d="M-52,53 C-15,53 12,110 82,110" stroke="rgba(40,217,245,.62)" stroke-width="1.2" fill="none" stroke-linecap="round"/>
-                  <path d="M-52,111 C-15,111 12,110 82,110" stroke="rgba(40,217,245,.50)" stroke-width="1.2" fill="none" stroke-linecap="round"/>
-                  <path d="M-52,169 C-15,169 12,110 82,110" stroke="rgba(40,217,245,.42)" stroke-width="1.2" fill="none" stroke-linecap="round"/>
-                  <path d="M-52,227 C-15,227 12,113 82,110" stroke="rgba(40,217,245,.30)" stroke-width="1" fill="none" stroke-linecap="round"/>
-                  <circle r="2.5" fill="#69edff"><animateMotion path="M-52,53 C-15,53 12,110 82,110" dur="2.8s" begin="0s" repeatCount="indefinite"/><animate attributeName="opacity" values="0;1;1;0" keyTimes="0;0.1;0.85;1" dur="2.8s" begin="0s" repeatCount="indefinite"/></circle>
-                  <circle r="2" fill="#69edff"><animateMotion path="M-52,111 C-15,111 12,110 82,110" dur="3.2s" begin="1s" repeatCount="indefinite"/><animate attributeName="opacity" values="0;0.8;0.8;0" keyTimes="0;0.1;0.85;1" dur="3.2s" begin="1s" repeatCount="indefinite"/></circle>
-                  <circle r="2" fill="#69edff"><animateMotion path="M-52,169 C-15,169 12,110 82,110" dur="2.9s" begin="1.8s" repeatCount="indefinite"/><animate attributeName="opacity" values="0;0.7;0.7;0" keyTimes="0;0.1;0.85;1" dur="2.9s" begin="1.8s" repeatCount="indefinite"/></circle>
-                  <circle r="1.8" fill="#9c7cff"><animateMotion path="M-52,227 C-15,227 12,113 82,110" dur="3.5s" begin="2.6s" repeatCount="indefinite"/><animate attributeName="opacity" values="0;0.6;0.6;0" keyTimes="0;0.1;0.85;1" dur="3.5s" begin="2.6s" repeatCount="indefinite"/></circle>
-                </svg>
-              </div>
+    <section class="heroX-zone heroX-agents">
+      <header><b>SPECIALIZED AGENTS</b><small>Focused expertise. Real execution.</small></header>
+      <article><i class="ti ti-settings-2"></i><div><b>PROCESS AGENT</b><em>ANALYZING</em><small>Flow · Exceptions</small></div><span></span></article>
+      <article class="violet"><i class="ti ti-book-2"></i><div><b>KNOWLEDGE AGENT</b><em>RETRIEVING</em><small>Context · Evidence</small></div><span></span></article>
+      <article class="violet"><i class="ti ti-player-play"></i><div><b>ACTION AGENT</b><em>EXECUTING</em><small>Tasks · System Actions</small></div><span></span></article>
+      <article class="teal"><i class="ti ti-shield-check"></i><div><b>VALIDATION AGENT</b><em>VERIFYING</em><small>Quality · Controls</small></div><span></span></article>
+    </section>
 
-              <section class="e2a-zone e2a-ai" aria-label="AI transformation engine">
-                <div class="e2a-zone-head">
-                  <span>AI TRANSFORMATION LAYER</span>
-                  <small>From complexity to coordinated execution.</small>
-                </div>
-                <div class="e2a-core">
-                  <div class="e2a-ring ring-outer"></div>
-                  <div class="e2a-ring ring-mid"></div>
-                  <div class="e2a-ring ring-inner"></div>
-                  <div class="e2a-orbit-dot dot-1"></div>
-                  <div class="e2a-orbit-dot dot-2"></div>
-                  <div class="e2a-orbit-dot dot-3"></div>
-                  <div class="e2a-core-glow"></div>
-                  <div class="e2a-core-copy">
-                    <strong>AI-ENABLED</strong>
-                    <strong>TRANSFORMATION</strong>
-                  </div>
-                </div>
-                <div class="e2a-capabilities">
-                  <span>CONTEXT</span><span>REASONING</span><span>ORCHESTRATION</span><span>GOVERNANCE</span><span>CONTROL</span>
-                </div>
-              </section>
-
-              <div class="e2a-flow" aria-hidden="true">
-                <svg style="position:absolute;top:0;left:0;pointer-events:none;overflow:visible" width="34" height="220" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M-48,110 C-15,110 12,53 82,53" stroke="rgba(40,217,245,.40)" stroke-width="9" fill="none" stroke-linecap="round"/>
-                  <path d="M-48,110 C-15,110 12,111 82,111" stroke="rgba(40,217,245,.32)" stroke-width="9" fill="none" stroke-linecap="round"/>
-                  <path d="M-48,110 C-15,110 12,169 82,169" stroke="rgba(40,217,245,.26)" stroke-width="9" fill="none" stroke-linecap="round"/>
-                  <path d="M-48,110 C-15,120 12,227 82,227" stroke="rgba(40,217,245,.18)" stroke-width="9" fill="none" stroke-linecap="round"/>
-                  <path d="M-48,110 C-15,110 12,53 82,53" stroke="rgba(40,217,245,.62)" stroke-width="1.2" fill="none" stroke-linecap="round"/>
-                  <path d="M-48,110 C-15,110 12,111 82,111" stroke="rgba(40,217,245,.50)" stroke-width="1.2" fill="none" stroke-linecap="round"/>
-                  <path d="M-48,110 C-15,110 12,169 82,169" stroke="rgba(40,217,245,.42)" stroke-width="1.2" fill="none" stroke-linecap="round"/>
-                  <path d="M-48,110 C-15,120 12,227 82,227" stroke="rgba(40,217,245,.30)" stroke-width="1" fill="none" stroke-linecap="round"/>
-                  <circle r="2.5" fill="#69edff"><animateMotion path="M-48,110 C-15,110 12,53 82,53" dur="2.8s" begin="0.5s" repeatCount="indefinite"/><animate attributeName="opacity" values="0;1;1;0" keyTimes="0;0.1;0.85;1" dur="2.8s" begin="0.5s" repeatCount="indefinite"/></circle>
-                  <circle r="2" fill="#69edff"><animateMotion path="M-48,110 C-15,110 12,111 82,111" dur="3.1s" begin="1.3s" repeatCount="indefinite"/><animate attributeName="opacity" values="0;0.8;0.8;0" keyTimes="0;0.1;0.85;1" dur="3.1s" begin="1.3s" repeatCount="indefinite"/></circle>
-                  <circle r="2" fill="#69edff"><animateMotion path="M-48,110 C-15,110 12,169 82,169" dur="3.0s" begin="2.1s" repeatCount="indefinite"/><animate attributeName="opacity" values="0;0.7;0.7;0" keyTimes="0;0.1;0.85;1" dur="3.0s" begin="2.1s" repeatCount="indefinite"/></circle>
-                  <circle r="1.8" fill="#9c7cff"><animateMotion path="M-48,110 C-15,120 12,227 82,227" dur="3.4s" begin="2.9s" repeatCount="indefinite"/><animate attributeName="opacity" values="0;0.6;0.6;0" keyTimes="0;0.1;0.85;1" dur="3.4s" begin="2.9s" repeatCount="indefinite"/></circle>
-                </svg>
-              </div>
-
-              <section class="e2a-zone e2a-agents" aria-label="Specialized AI agents">
-                <div class="e2a-zone-head">
-                  <span>SPECIALIZED AGENTS</span>
-                  <small>Focused expertise. Real execution.</small>
-                </div>
-                <div class="e2a-agent-stack">
-                  <div class="e2a-agent agent-process">
-                    <div class="e2a-agent-icon"><i class="ti ti-settings-2" aria-hidden="true"></i></div>
-                    <div class="e2a-agent-copy"><strong>PROCESS AGENT</strong><span>ANALYZING</span><small>Flow · Exceptions</small></div>
-                    <i></i>
-                  </div>
-                  <div class="e2a-agent agent-knowledge">
-                    <div class="e2a-agent-icon"><i class="ti ti-book-2" aria-hidden="true"></i></div>
-                    <div class="e2a-agent-copy"><strong>KNOWLEDGE AGENT</strong><span>RETRIEVING</span><small>Context · Evidence</small></div>
-                    <i></i>
-                  </div>
-                  <div class="e2a-agent agent-action">
-                    <div class="e2a-agent-icon"><i class="ti ti-player-play-filled" aria-hidden="true"></i></div>
-                    <div class="e2a-agent-copy"><strong>ACTION AGENT</strong><span>EXECUTING</span><small>Tasks · System Actions</small></div>
-                    <i></i>
-                  </div>
-                  <div class="e2a-agent agent-validation">
-                    <div class="e2a-agent-icon"><i class="ti ti-shield-check" aria-hidden="true"></i></div>
-                    <div class="e2a-agent-copy"><strong>VALIDATION AGENT</strong><span>VERIFYING</span><small>Quality · Controls</small></div>
-                    <i></i>
-                  </div>
-                </div>
-              </section>
-
-              <div class="e2a-flow" aria-hidden="true">
-                <svg style="position:absolute;top:0;left:0;pointer-events:none;overflow:visible" width="34" height="220" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M-52,53 C-15,53 12,110 82,110" stroke="rgba(55,224,194,.38)" stroke-width="9" fill="none" stroke-linecap="round"/>
-                  <path d="M-52,111 C-15,111 12,110 82,110" stroke="rgba(55,224,194,.30)" stroke-width="9" fill="none" stroke-linecap="round"/>
-                  <path d="M-52,169 C-15,169 12,110 82,110" stroke="rgba(55,224,194,.24)" stroke-width="9" fill="none" stroke-linecap="round"/>
-                  <path d="M-52,227 C-15,227 12,113 82,110" stroke="rgba(55,224,194,.16)" stroke-width="9" fill="none" stroke-linecap="round"/>
-                  <path d="M-52,53 C-15,53 12,110 82,110" stroke="rgba(55,224,194,.55)" stroke-width="1.2" fill="none" stroke-linecap="round"/>
-                  <path d="M-52,111 C-15,111 12,110 82,110" stroke="rgba(55,224,194,.45)" stroke-width="1.2" fill="none" stroke-linecap="round"/>
-                  <path d="M-52,169 C-15,169 12,110 82,110" stroke="rgba(55,224,194,.38)" stroke-width="1.2" fill="none" stroke-linecap="round"/>
-                  <path d="M-52,227 C-15,227 12,113 82,110" stroke="rgba(55,224,194,.28)" stroke-width="1" fill="none" stroke-linecap="round"/>
-                  <circle r="2.5" fill="#37e0c2"><animateMotion path="M-52,53 C-15,53 12,110 82,110" dur="3s" begin="0.3s" repeatCount="indefinite"/><animate attributeName="opacity" values="0;0.9;0.9;0" keyTimes="0;0.1;0.85;1" dur="3s" begin="0.3s" repeatCount="indefinite"/></circle>
-                  <circle r="2" fill="#37e0c2"><animateMotion path="M-52,111 C-15,111 12,110 82,110" dur="3.3s" begin="1.1s" repeatCount="indefinite"/><animate attributeName="opacity" values="0;0.7;0.7;0" keyTimes="0;0.1;0.85;1" dur="3.3s" begin="1.1s" repeatCount="indefinite"/></circle>
-                  <circle r="2" fill="#37e0c2"><animateMotion path="M-52,169 C-15,169 12,110 82,110" dur="3.1s" begin="1.9s" repeatCount="indefinite"/><animate attributeName="opacity" values="0;0.65;0.65;0" keyTimes="0;0.1;0.85;1" dur="3.1s" begin="1.9s" repeatCount="indefinite"/></circle>
-                  <circle r="1.8" fill="#37e0c2"><animateMotion path="M-52,227 C-15,227 12,113 82,110" dur="3.6s" begin="2.7s" repeatCount="indefinite"/><animate attributeName="opacity" values="0;0.55;0.55;0" keyTimes="0;0.1;0.85;1" dur="3.6s" begin="2.7s" repeatCount="indefinite"/></circle>
-                </svg>
-              </div>
-
-              <section class="e2a-zone e2a-value" aria-label="Operational outcomes">
-                <div class="e2a-zone-head">
-                  <span>OPERATIONAL VALUE</span>
-                  <small>Measurable outcomes. Lasting impact.</small>
-                </div>
-                <div class="e2a-outcomes">
-                  <div class="e2a-outcome outcome-1">
-                    <div class="e2a-value-icon"><i class="ti ti-bolt" aria-hidden="true"></i></div>
-                    <div><span>FASTER</span><strong>DECISIONS</strong></div>
-                  </div>
-                  <div class="e2a-outcome outcome-2">
-                    <div class="e2a-value-icon"><i class="ti ti-chart-bar" aria-hidden="true"></i></div>
-                    <div><span>LESS</span><strong>MANUAL WORK</strong></div>
-                  </div>
-                  <div class="e2a-outcome outcome-3">
-                    <div class="e2a-value-icon"><i class="ti ti-share" aria-hidden="true"></i></div>
-                    <div><span>CONNECTED</span><strong>EXECUTION</strong></div>
-                  </div>
-                  <div class="e2a-outcome outcome-4">
-                    <div class="e2a-value-icon"><i class="ti ti-target" aria-hidden="true"></i></div>
-                    <div><span>CONTROLLED</span><strong>SCALE</strong></div>
-                  </div>
-                </div>
-              </section>
-
-            </div>
-
-            <div class="e2a-scale" aria-hidden="true">
-              <span>COMPLEXITY</span>
-              <div class="e2a-scale-track">
-                <div class="e2a-scale-base"></div>
-                <div class="e2a-scale-light"></div>
-                <div class="scale-node node-1"></div>
-                <div class="scale-node node-2"></div>
-                <div class="scale-node node-3"></div>
-                <div class="scale-node node-4"></div>
-                <div class="e2a-scale-arrow"></div>
-              </div>
-              <span>SCALE</span>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- 3-pillar strip below the grid -->
-      <div class="sp-hero-pillars">
-        <div class="sp-hero-pillar">
-          <i class="ti ti-layers-subtract sp-pillar-icon" aria-hidden="true"></i>
-          <div>
-            <div class="sp-pillar-title">Process Intelligence</div>
-            <div class="sp-pillar-text">Understand how the business runs before designing change.</div>
-          </div>
-        </div>
-        <div class="sp-hero-pillar">
-          <i class="ti ti-route sp-pillar-icon" aria-hidden="true"></i>
-          <div>
-            <div class="sp-pillar-title">Delivery Continuity</div>
-            <div class="sp-pillar-text">Keep delivery connected from strategy to adoption.</div>
-          </div>
-        </div>
-        <div class="sp-hero-pillar">
-          <i class="ti ti-arrows-exchange sp-pillar-icon" aria-hidden="true"></i>
-          <div>
-            <div class="sp-pillar-title">Translation Fluency</div>
-            <div class="sp-pillar-text">Connect business needs with technical execution.</div>
-          </div>
-        </div>
-      </div>
-
-      <div class="sp-scroll" onclick="document.getElementById('foundation').scrollIntoView({behavior:'smooth'})">
-        <div class="sp-scroll-arrow"></div>
-        <span class="sp-scroll-lbl">Scroll to explore</span>
+    <section class="heroX-zone heroX-value">
+      <header><b>OPERATIONAL VALUE</b><small>Measurable outcomes. Lasting impact.</small></header>
+      <div class="heroX-valuebox">
+        <article><i class="ti ti-bolt"></i><div><em>FASTER</em><b>DECISIONS</b></div></article>
+        <article class="violet"><i class="ti ti-chart-bar"></i><div><em>LESS</em><b>MANUAL WORK</b></div></article>
+        <article><i class="ti ti-share-3"></i><div><em>CONNECTED</em><b>EXECUTION</b></div></article>
+        <article class="teal"><i class="ti ti-target"></i><div><em>CONTROLLED</em><b>SCALE</b></div></article>
       </div>
     </section>
 
+    <div class="heroX-scale"><span>COMPLEXITY</span><div><i></i><i></i><i></i><i></i></div><span>SCALE</span></div>
+  </div>
+
+  <div class="heroX-pillars">
+    <article><i class="ti ti-layers-subtract"></i><div><b>PROCESS INTELLIGENCE</b><span>Understand how the business runs before designing change.</span></div></article>
+    <article><i class="ti ti-target-arrow"></i><div><b>DELIVERY CONTINUITY</b><span>Keep delivery connected from strategy to adoption.</span></div></article>
+    <article><i class="ti ti-users"></i><div><b>TRANSLATION FLUENCY</b><span>Connect business needs with technical execution.</span></div></article>
+  </div>
+  <button class="heroX-scroll" type="button" onclick="document.getElementById('foundation').scrollIntoView({behavior:'smooth'})"><span>⌄</span><small>SCROLL TO EXPLORE</small></button>
+</section>
 <section class="section container sh-progs in" id="foundation">
       <header class="section-heading solution-heading-v3">
         <div>
