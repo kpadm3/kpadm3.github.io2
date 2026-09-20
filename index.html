@@ -951,6 +951,18 @@ html[data-theme="light"] .heroX-ai .hx-coretext{background:rgba(244,252,255,.48)
 html[data-theme="light"] .heroX-ai .hx-terrain-back path,html[data-theme="light"] .heroX-ai .hx-terrain-front path,html[data-theme="light"] .heroX-ai .hx-terrain-cross path{stroke:#078eaa!important}
 @media(prefers-reduced-motion:reduce){.heroX-ai .hx-flow-nodes circle{animation:none!important}}
 
+/* AI UNIFORM FULL-FIELD MESH v9 */
+.heroX-ai .heroX-core{height:230px!important;width:100%!important;margin:-1px auto 2px!important;background:transparent!important;box-shadow:none!important;filter:none!important;animation:none!important;overflow:visible!important}
+.heroX-ai .hx-flowmesh{display:block!important;position:absolute!important;left:50%!important;top:50%!important;width:calc(100% + 36px)!important;height:230px!important;transform:translate(-50%,-50%)!important;overflow:visible!important;filter:drop-shadow(0 0 4px rgba(43,220,242,.14))!important;animation:none!important}
+.heroX-ai .hx-terrain-back,.heroX-ai .hx-terrain-front,.heroX-ai .hx-terrain-cross,.heroX-ai .hx-flow-lines{display:none!important}
+.heroX-ai .hx-uniform-rows path,.heroX-ai .hx-uniform-cols path{fill:none!important;stroke:#2ddcf2!important;stroke-width:.9!important;vector-effect:non-scaling-stroke;stroke-linecap:round!important;opacity:.34!important}
+.heroX-ai .hx-uniform-rows path:nth-child(3n){stroke:#38dfcf!important;opacity:.38!important}.heroX-ai .hx-uniform-rows path:nth-child(4n){stroke:#8274f7!important;opacity:.26!important}
+.heroX-ai .hx-uniform-cols path{stroke:#28c7dd!important;stroke-width:.72!important;opacity:.20!important}.heroX-ai .hx-uniform-cols path:nth-child(3n){stroke:#7d70ef!important;opacity:.16!important}
+.heroX-ai .hx-flow-nodes circle{fill:#62efff!important;opacity:.82!important;filter:drop-shadow(0 0 2.5px #62efff)!important;animation:hxMeshPulse 4.4s ease-in-out infinite!important}.heroX-ai .hx-flow-nodes circle:nth-child(7n){fill:#9178ff!important}.heroX-ai .hx-flow-nodes circle:nth-child(11n){fill:#3fe0ce!important}
+.heroX-ai .hx-coretext{position:relative!important;z-index:5!important;background:rgba(3,24,42,.22)!important;padding:8px 14px!important;border-radius:7px!important;box-shadow:none!important}
+html[data-theme="light"] .heroX-ai .hx-uniform-rows path,html[data-theme="light"] .heroX-ai .hx-uniform-cols path{stroke:#078eaa!important}
+@media(prefers-reduced-motion:reduce){.heroX-ai .hx-flow-nodes circle{animation:none!important}}
+
 /* HERO X DYNAMIC FLOW ROUTING v5 */
 .heroX-links{overflow:visible}
 .hx-dynamic-wire{fill:none;stroke:#42ddf6;stroke-width:2.15;stroke-linecap:round;stroke-linejoin:round;filter:url(#hxg);opacity:.94}
@@ -1046,35 +1058,18 @@ html[data-theme="light"] .heroX-ai .hx-terrain-back path,html[data-theme="light"
     <section class="heroX-zone heroX-ai">
       <header><b>AI TRANSFORMATION LAYER</b><small>From complexity to coordinated execution.</small></header>
       <div class="heroX-core">
-        <svg class="hx-flowmesh" viewBox="0 0 560 230" aria-hidden="true">
-          <g class="hx-terrain-back">
-            <path d="M8 119 C55 112 86 86 126 91 C170 96 196 65 238 74 C279 83 300 48 343 58 C389 69 421 92 463 88 C503 84 528 103 552 111"/>
-            <path d="M8 127 C55 121 88 99 130 103 C172 107 200 82 241 89 C282 96 305 66 346 74 C390 83 421 104 464 101 C503 98 528 112 552 119"/>
-            <path d="M8 135 C58 130 91 113 132 116 C175 120 204 99 244 105 C284 111 308 85 349 92 C393 100 423 117 466 114 C505 112 530 121 552 127"/>
-            <path d="M8 143 C59 140 93 127 136 130 C178 133 207 118 247 122 C287 126 311 104 352 111 C396 118 426 131 468 129 C507 127 531 132 552 135"/>
-            <path d="M8 151 C61 149 96 142 139 144 C181 146 210 137 250 139 C290 141 314 124 355 130 C399 136 429 144 470 143 C509 142 533 142 552 143"/>
-          </g>
-          <g class="hx-terrain-front">
-            <path d="M8 159 C60 160 99 157 143 158 C185 159 216 156 254 155 C294 154 321 146 360 149 C403 152 433 157 474 157 C511 157 534 153 552 151"/>
-            <path d="M8 167 C62 170 102 172 146 171 C188 170 219 168 258 165 C298 162 325 158 364 160 C406 162 436 169 476 170 C513 171 536 164 552 159"/>
-            <path d="M8 175 C64 181 105 187 150 184 C192 181 224 178 262 174 C302 170 329 170 368 173 C410 176 440 184 479 186 C516 188 538 177 552 167"/>
-          </g>
-          <g class="hx-terrain-cross">
-            <path d="M57 112 C67 129 68 151 64 178"/><path d="M105 93 C118 119 120 153 113 187"/>
-            <path d="M154 94 C168 116 171 149 162 183"/><path d="M203 75 C216 101 219 137 211 179"/>
-            <path d="M252 76 C266 100 269 136 263 174"/><path d="M302 56 C315 84 318 125 311 169"/>
-            <path d="M352 61 C365 91 368 126 360 173"/><path d="M402 76 C414 101 418 136 410 177"/>
-            <path d="M451 89 C462 112 466 145 458 184"/><path d="M500 91 C510 114 514 145 506 180"/>
-          </g>
-          <g class="hx-flow-nodes">
-            <circle cx="61" cy="121" r="2"/><circle cx="107" cy="105" r="2.2"/><circle cx="155" cy="111" r="1.8"/>
-            <circle cx="205" cy="91" r="2.2"/><circle cx="254" cy="106" r="2"/><circle cx="303" cy="78" r="2.5"/>
-            <circle cx="353" cy="94" r="2"/><circle cx="403" cy="111" r="2.2"/><circle cx="452" cy="105" r="1.8"/>
-            <circle cx="501" cy="116" r="2.2"/><circle cx="84" cy="157" r="1.8"/><circle cx="135" cy="145" r="2.1"/>
-            <circle cx="184" cy="160" r="1.8"/><circle cx="234" cy="140" r="2.3"/><circle cx="284" cy="154" r="1.9"/>
-            <circle cx="334" cy="131" r="2.2"/><circle cx="384" cy="151" r="1.8"/><circle cx="434" cy="145" r="2.2"/>
-            <circle cx="484" cy="158" r="1.9"/>
-          </g>
+        <svg class="hx-flowmesh" viewBox="0 0 560 230" preserveAspectRatio="none" aria-hidden="true">
+          <g class="hx-uniform-rows"><path d="M8 24.0 C82 12.0 128 30.0 190 20.4 C246 28.8 304 17.4 362 27.0 C424 19.8 478 27.0 552 24.0"/>
+            <path d="M8 46.5 C82 36.5 128 51.5 190 43.5 C246 50.5 304 41.0 362 49.0 C424 43.0 478 49.0 552 46.5"/>
+            <path d="M8 69.0 C82 61.0 128 73.0 190 66.6 C246 72.2 304 64.6 362 71.0 C424 66.2 478 71.0 552 69.0"/>
+            <path d="M8 91.5 C82 85.5 128 94.5 190 89.7 C246 93.9 304 88.2 362 93.0 C424 89.4 478 93.0 552 91.5"/>
+            <path d="M8 114.0 C82 114.0 128 114.0 190 114.0 C246 114.0 304 114.0 362 114.0 C424 114.0 478 114.0 552 114.0"/>
+            <path d="M8 136.5 C82 139.0 128 135.3 190 137.3 C246 135.5 304 137.9 362 135.9 C424 137.4 478 135.9 552 136.5"/>
+            <path d="M8 159.0 C82 164.0 128 156.5 190 160.5 C246 157.0 304 161.8 362 157.8 C424 160.8 478 157.8 552 159.0"/>
+            <path d="M8 181.5 C82 189.0 128 177.8 190 183.8 C246 178.5 304 185.6 362 179.6 C424 184.1 478 179.6 552 181.5"/>
+            <path d="M8 204.0 C82 214.0 128 199.0 190 207.0 C246 200.0 304 209.5 362 201.5 C424 207.5 478 201.5 552 204.0"/></g>
+          <g class="hx-uniform-cols"><path d="M48 18 C40 72 55 156 48 212"/><path d="M98 18 C106 72 91 156 98 212"/><path d="M148 18 C140 72 155 156 148 212"/><path d="M198 18 C206 72 191 156 198 212"/><path d="M248 18 C240 72 255 156 248 212"/><path d="M298 18 C306 72 291 156 298 212"/><path d="M348 18 C340 72 355 156 348 212"/><path d="M398 18 C406 72 391 156 398 212"/><path d="M448 18 C440 72 455 156 448 212"/><path d="M498 18 C506 72 491 156 498 212"/></g>
+          <g class="hx-flow-nodes"><circle cx="62" cy="38" r="2.4"/><circle cx="124" cy="43" r="1.7"/><circle cx="186" cy="42" r="1.7"/><circle cx="248" cy="36" r="1.7"/><circle cx="310" cy="33" r="1.7"/><circle cx="372" cy="35" r="2.4"/><circle cx="434" cy="41" r="1.7"/><circle cx="496" cy="43" r="1.7"/><circle cx="72" cy="68" r="1.7"/><circle cx="134" cy="67" r="1.7"/><circle cx="196" cy="61" r="1.7"/><circle cx="258" cy="58" r="1.7"/><circle cx="320" cy="60" r="2.4"/><circle cx="382" cy="66" r="1.7"/><circle cx="444" cy="68" r="1.7"/><circle cx="506" cy="64" r="1.7"/><circle cx="62" cy="92" r="1.7"/><circle cx="124" cy="86" r="1.7"/><circle cx="186" cy="83" r="1.7"/><circle cx="248" cy="85" r="2.4"/><circle cx="310" cy="91" r="1.7"/><circle cx="372" cy="93" r="1.7"/><circle cx="434" cy="89" r="1.7"/><circle cx="496" cy="84" r="1.7"/><circle cx="72" cy="111" r="1.7"/><circle cx="134" cy="108" r="1.7"/><circle cx="196" cy="110" r="2.4"/><circle cx="258" cy="116" r="1.7"/><circle cx="320" cy="118" r="1.7"/><circle cx="382" cy="114" r="1.7"/><circle cx="444" cy="109" r="1.7"/><circle cx="506" cy="109" r="2.4"/><circle cx="62" cy="133" r="1.7"/><circle cx="124" cy="135" r="2.4"/><circle cx="186" cy="141" r="1.7"/><circle cx="248" cy="143" r="1.7"/><circle cx="310" cy="139" r="1.7"/><circle cx="372" cy="134" r="1.7"/><circle cx="434" cy="134" r="2.4"/><circle cx="496" cy="138" r="1.7"/><circle cx="72" cy="160" r="2.4"/><circle cx="134" cy="166" r="1.7"/><circle cx="196" cy="168" r="1.7"/><circle cx="258" cy="164" r="1.7"/><circle cx="320" cy="159" r="1.7"/><circle cx="382" cy="159" r="2.4"/><circle cx="444" cy="163" r="1.7"/><circle cx="506" cy="168" r="1.7"/><circle cx="62" cy="191" r="1.7"/><circle cx="124" cy="193" r="1.7"/><circle cx="186" cy="189" r="1.7"/><circle cx="248" cy="184" r="1.7"/><circle cx="310" cy="184" r="2.4"/><circle cx="372" cy="188" r="1.7"/><circle cx="434" cy="193" r="1.7"/><circle cx="496" cy="191" r="1.7"/></g>
         </svg>
         <div class="hx-coretext">AI-ENABLED<br>TRANSFORMATION</div>
       </div>
@@ -1530,7 +1525,7 @@ html[data-theme="light"] .heroX-ai .hx-terrain-back path,html[data-theme="light"
 
       var core=hero.querySelector('.heroX-core'), cr=core.getBoundingClientRect(), mm=map.getBoundingClientRect();
       var mesh=hero.querySelector('.hx-flowmesh'), mr=mesh?mesh.getBoundingClientRect():cr;
-      var leftX=mr.left-mm.left+8, rightX=mr.right-mm.left-8, cy=mr.top+mr.height*.56-mm.top;
+      var leftX=mr.left-mm.left+8, rightX=mr.right-mm.left-8, cy=mr.top+mr.height*.50-mm.top;
       var offsets=[-13,-4,5,14], colors=['','', '', 'purple'];
       var outColors=['','purple','purple','teal'];
 
