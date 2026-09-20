@@ -425,6 +425,107 @@ html[data-theme="light"] .sp-hero::after{opacity:.1}
 }
 @media(prefers-reduced-motion:reduce){.e2a-core{animation:none!important}}
 
+
+/* ── MASTER HERO SHELL REBUILD: full-width intro + full-width pipeline ── */
+@media(min-width:1201px){
+  .sp-hero{
+    min-height:calc(100vh - 54px)!important;
+    padding:28px 46px 16px!important;
+    display:block!important;
+    background:
+      radial-gradient(ellipse at 58% 18%,rgba(0,102,180,.18),transparent 43%),
+      linear-gradient(180deg,#03111f 0%,#06192b 100%)!important;
+  }
+
+  /* New geometry: two rows, no left/right split */
+  .sp-hero-grid{
+    display:grid!important;
+    grid-template-columns:1fr!important;
+    grid-template-rows:auto auto!important;
+    gap:18px!important;
+    width:100%!important;
+    max-width:none!important;
+    align-items:stretch!important;
+  }
+
+  /* Former left pane becomes the full-width top strip */
+  .sp-hero-main{
+    grid-column:1!important;
+    grid-row:1!important;
+    width:100%!important;
+    min-height:0!important;
+    padding:0 4px 18px!important;
+    margin:0!important;
+    border:0!important;
+    border-bottom:1px solid rgba(54,176,226,.22)!important;
+    display:grid!important;
+    grid-template-columns:310px minmax(430px,620px) minmax(360px,1fr)!important;
+    column-gap:34px!important;
+    align-items:center!important;
+  }
+  .sp-hero-identity{margin:0!important;align-self:center!important}
+  .sp-hero-name{font-size:.72rem!important;letter-spacing:.22em!important;color:#50dff2!important;margin:0 0 8px!important}
+  .sp-hero-role-line{font-size:.59rem!important;letter-spacing:.18em!important;color:#dce9f5!important}
+  .sp-hero-sep{width:40px!important;margin-top:16px!important}
+
+  .sp-headline{
+    margin:0!important;
+    max-width:none!important;
+    font-size:clamp(2.05rem,2.45vw,3.15rem)!important;
+    line-height:1.08!important;
+    letter-spacing:-.025em!important;
+  }
+  .sp-headline br{display:none!important}
+  .sp-headline .sp-acc{white-space:nowrap!important}
+
+  .sp-sub{
+    margin:0!important;
+    max-width:560px!important;
+    font-size:.78rem!important;
+    line-height:1.65!important;
+    justify-self:end!important;
+    color:#91a9bf!important;
+  }
+
+  /* Diagram now owns the complete horizontal canvas */
+  .sp-hero-visual{
+    grid-column:1!important;
+    grid-row:2!important;
+    width:100%!important;
+    min-width:0!important;
+    margin:0!important;
+    padding:0!important;
+  }
+  .sp-hero-visual .e2a-wide{
+    width:100%!important;
+    max-width:none!important;
+    box-sizing:border-box!important;
+    margin:0!important;
+    padding:18px 18px 12px!important;
+  }
+  .e2a-stage{
+    width:100%!important;
+    grid-template-columns:minmax(225px,1.28fr) 52px minmax(270px,1.62fr) 52px minmax(230px,1.3fr) 52px minmax(180px,.95fr)!important;
+  }
+  .e2a-core{width:202px!important;height:202px!important}
+  .e2a-flow{height:242px!important}
+  .e2a-flow svg{height:242px!important}
+
+  /* Pillars remain a clean full-width footer row */
+  .sp-hero-pillars{
+    width:100%!important;
+    margin-top:18px!important;
+    padding-bottom:42px!important;
+  }
+  .sp-hero-pillar{padding-top:16px!important}
+  .sp-scroll{bottom:10px!important}
+}
+@media(min-width:1500px){
+  .sp-hero{padding-left:50px!important;padding-right:50px!important}
+  .sp-hero-main{grid-template-columns:330px minmax(520px,690px) minmax(390px,1fr)!important}
+  .sp-headline{font-size:3.05rem!important}
+}
+
 </style>
 <script>if(localStorage.getItem('kp-theme')==='light')document.documentElement.setAttribute('data-theme','light');</script>
 </head>
