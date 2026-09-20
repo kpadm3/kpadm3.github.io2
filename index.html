@@ -579,6 +579,85 @@ html[data-theme="light"] .sp-pillar-icon{color:#0891b2!important}
 html[data-theme="light"] .sp-scroll-lbl{color:#55758b!important}
 html[data-theme="light"] .sp-scroll-arrow{border-color:#55758b!important}
 
+
+/* ── LIGHT HERO REFERENCE CORRECTION v5 ── */
+/* The approved hero is a dark cinematic composition in both site themes.
+   Light mode changes the surrounding site/header, not the hero artwork itself. */
+html[data-theme="light"] .sp-hero{
+  background:
+    radial-gradient(ellipse at 68% 18%,rgba(0,96,176,.18),transparent 42%),
+    linear-gradient(180deg,#03111f 0%,#06192b 100%)!important;
+  border-bottom-color:rgba(53,212,241,.14)!important;
+}
+html[data-theme="light"] .sp-hero-main{border-bottom-color:rgba(53,212,241,.18)!important}
+html[data-theme="light"] .sp-hero-name{color:#50dff2!important}
+html[data-theme="light"] .sp-hero-role-line{color:#dce9f5!important}
+html[data-theme="light"] .sp-headline{color:#f3f8fc!important}
+html[data-theme="light"] .sp-acc{color:#24d5f2!important}
+html[data-theme="light"] .sp-sub{color:#91a9bf!important}
+html[data-theme="light"] .sp-hero-visual .e2a-wide{
+  background:linear-gradient(135deg,rgba(5,31,54,.82),rgba(5,49,78,.42))!important;
+  border-color:rgba(47,171,226,.30)!important;
+  box-shadow:inset 0 0 60px rgba(0,137,201,.05),0 0 34px rgba(0,0,0,.14)!important;
+}
+html[data-theme="light"] .e2a-zone{border-right-color:rgba(68,166,218,.11)!important}
+html[data-theme="light"] .e2a-zone-head span{color:#65e6f7!important}
+html[data-theme="light"] .e2a-zone-head small{color:#7e9ab0!important}
+html[data-theme="light"] .e2a-input,
+html[data-theme="light"] .e2a-agent{
+  background:linear-gradient(90deg,rgba(5,36,61,.96),rgba(8,46,76,.82))!important;
+  border-color:rgba(55,171,235,.52)!important;
+  box-shadow:inset 0 0 18px rgba(31,163,225,.04),0 0 14px rgba(0,0,0,.10)!important;
+}
+html[data-theme="light"] .e2a-agent:nth-child(2),
+html[data-theme="light"] .e2a-agent:nth-child(3){border-color:rgba(145,111,255,.58)!important}
+html[data-theme="light"] .e2a-agent:nth-child(4){border-color:rgba(54,222,211,.58)!important}
+html[data-theme="light"] .e2a-input strong,
+html[data-theme="light"] .e2a-agent strong,
+html[data-theme="light"] .e2a-outcome strong,
+html[data-theme="light"] .e2a-core-copy strong{color:#f1f8ff!important}
+html[data-theme="light"] .e2a-input small,
+html[data-theme="light"] .e2a-agent small{color:#8aa4b8!important}
+html[data-theme="light"] .e2a-icon,
+html[data-theme="light"] .e2a-agent-icon,
+html[data-theme="light"] .e2a-value-icon{color:#54ddfa!important}
+html[data-theme="light"] .e2a-core{
+  background:radial-gradient(circle,rgba(17,91,132,.24),rgba(5,29,49,.10) 58%,transparent 72%)!important;
+  filter:drop-shadow(0 0 25px rgba(53,212,241,.22))!important;
+}
+html[data-theme="light"] .e2a-ring{border-color:rgba(53,212,241,.42)!important}
+html[data-theme="light"] .e2a-capabilities span{
+  background:rgba(4,34,56,.9)!important;color:#c2e6f5!important;border-color:rgba(53,212,241,.38)!important;
+}
+html[data-theme="light"] .e2a-value{
+  background:linear-gradient(180deg,rgba(5,74,85,.34),rgba(3,31,47,.46))!important;
+  border-color:rgba(48,218,215,.50)!important;
+}
+html[data-theme="light"] .e2a-outcome{border-bottom-color:rgba(53,212,241,.13)!important}
+html[data-theme="light"] .e2a-outcome span{color:#43dff0!important}
+html[data-theme="light"] .e2a-scale-label{color:#6f8ea4!important}
+html[data-theme="light"] .e2a-scale-line{background:linear-gradient(90deg,rgba(53,212,241,.14),#35d4f1,rgba(66,226,208,.18))!important}
+html[data-theme="light"] .sp-pillar-title{color:#55dff4!important}
+html[data-theme="light"] .sp-pillar-text{color:#8fa9bd!important}
+html[data-theme="light"] .sp-pillar-icon{color:#35d4f1!important}
+html[data-theme="light"] .sp-scroll-lbl{color:#dceaf6!important}
+html[data-theme="light"] .sp-scroll-arrow{border-color:#35d4f1!important;color:#eef8ff!important}
+
+/* Bring the stacked composition closer to the supplied reference proportions. */
+@media(min-width:1201px){
+  .sp-hero{padding-top:20px!important}
+  .sp-hero-grid{gap:10px!important}
+  .sp-hero-main{
+    padding:6px 8px 11px!important;
+    grid-template-columns:285px minmax(455px,625px) minmax(400px,1fr)!important;
+    column-gap:34px!important;
+  }
+  .sp-headline{font-size:clamp(2rem,2.35vw,2.85rem)!important}
+  .sp-sub{font-size:.72rem!important;line-height:1.55!important}
+  .sp-hero-visual .e2a-wide{padding-top:15px!important}
+  .sp-hero-pillars{margin-top:12px!important}
+}
+
 </style>
 <script>if(localStorage.getItem('kp-theme')==='light')document.documentElement.setAttribute('data-theme','light');</script>
 </head>
