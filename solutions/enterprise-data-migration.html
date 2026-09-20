@@ -1,95 +1,103 @@
-﻿<!doctype html>
+<!doctype html>
 <html lang="en">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Enterprise Data Migration | Krishna</title>
-<meta name="description" content="Senior-level enterprise data migration delivery program covering source assessment, business rules, field mapping, gap analysis, load and reconciliation, and cutover readiness.">
+<meta name="description" content="Controlled source-to-target migration with governed mappings, reconciliation and cutover readiness.">
 <meta name="theme-color" content="#050b14">
 <link rel="stylesheet" href="../assets/css/site.css">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@3/dist/tabler-icons.min.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap">
 <style>
-:root{
-  --case-cyan:#eb6aca;
-  --case-blue:#e168c2;
-  --case-teal:#a278ff;
-  --case-gold:#f3bd68;
-  --case-violet:#4da3ff;
-  --case-pink:#30d5c8;
-  --case-panel:rgba(7,18,31,.90);
-  --case-border:rgba(93,135,179,.52);
+:root {
+  --bg:#04101d; --panel:#081828;
+  --accent:#ef6da8; --accent-dim:rgba(239,109,168,.12); --accent-border:rgba(239,109,168,.30);
+  --line:rgba(239,109,168,.13);
+  --text:#d5e6f2; --muted:#7090ae; --soft:#a8c0d4;
+  --good:#46d39a; --warn:#f4c95d; --insight:#35d4f1; --purple:#7c8cff; --orange:#ff8a5b;
 }
-body{background:radial-gradient(circle at 15% -8%,rgba(154,26,110,.24),transparent 26%),radial-gradient(circle at 88% 8%,rgba(235,106,202,.08),transparent 24%),linear-gradient(180deg,#04101d 0%,#06111e 56%,#030914 100%)}
-.case-wrap{width:min(1480px,100%);margin:auto;padding:24px}
-.case-hero{display:grid;grid-template-columns:minmax(0,1.65fr) minmax(330px,.75fr);gap:28px;align-items:stretch}
-.case-kicker{color:var(--case-cyan);font-size:.78rem;font-weight:900;letter-spacing:.09em;text-transform:uppercase}
-.case-title{max-width:960px;margin:15px 0 12px;font-size:clamp(1.9rem,2.8vw,2.8rem);line-height:1.05;letter-spacing:-.03em}
-.case-lead{max-width:820px;margin:0;color:#bac8d8;font-size:clamp(1rem,1.4vw,1.16rem);line-height:1.58}
-.case-tags{display:flex;flex-wrap:wrap;gap:10px;margin-top:24px}
-.case-tags span,.skill-row span{padding:9px 12px;border:1px solid rgba(235,106,202,.42);border-radius:8px;background:rgba(6,20,34,.72);font-size:.74rem;font-weight:750}
-.glass-panel{border:1px solid var(--case-border);border-radius:17px;background:linear-gradient(145deg,rgba(8,24,40,.95),rgba(3,12,23,.93));box-shadow:0 20px 48px rgba(0,0,0,.28),inset 0 1px 0 rgba(255,255,255,.025)}
-.glass-panel:hover{border-color:rgba(235,106,202,.70)}
-.glance{padding:18px 22px}
-.glance h2,.section-title{margin:0;color:var(--case-cyan);font-size:1rem;letter-spacing:.04em;text-transform:uppercase}
-.glance h2{text-align:center;margin-bottom:16px}
-.glance-list{display:grid;gap:14px}
-.glance-item{display:grid;grid-template-columns:34px 1fr;gap:12px;align-items:start}
-.glance-icon{width:30px;height:30px;display:grid;place-items:center;border:1px solid rgba(235,106,202,.35);border-radius:9px;color:var(--case-cyan);font-size:.76rem;font-weight:900}
-.glance-item span{display:block;color:var(--case-cyan);font-size:.68rem}
-.glance-item strong{display:block;margin-top:2px;color:#f5f8fc;font-size:.78rem;line-height:1.35}
-.section-block{margin-top:16px;padding:20px}
-.section-intro{display:flex;align-items:end;justify-content:space-between;gap:24px;margin-bottom:18px}
-.section-intro p{max-width:620px;margin:0;color:#9fb0c3;font-size:.74rem;line-height:1.55}
-.executive-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
-.executive-card{padding:17px;border:1px solid rgba(93,135,179,.36);border-radius:13px;background:rgba(5,17,29,.72)}
-.executive-card span{display:block;color:var(--case-cyan);font-size:.64rem;font-weight:900;text-transform:uppercase;letter-spacing:.08em}
-.executive-card p{margin:10px 0 0;color:#d5e0ea;font-size:.76rem;line-height:1.55}
-.workflow-grid{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:10px;margin-top:24px}
-.workflow-card{--step:var(--case-cyan);position:relative;min-height:370px;display:flex;flex-direction:column;padding:17px 13px;border:1px solid color-mix(in srgb,var(--step) 62%,#243c5a);border-radius:12px;background:radial-gradient(circle at 50% 0,color-mix(in srgb,var(--step) 12%,transparent),transparent 32%),linear-gradient(180deg,rgba(5,18,31,.98),rgba(3,12,23,.98));transition:transform .22s ease,border-color .22s ease,box-shadow .22s ease}
-.workflow-card:hover{transform:translateY(-7px);border-color:var(--step);box-shadow:0 20px 42px rgba(0,0,0,.35),0 0 28px color-mix(in srgb,var(--step) 14%,transparent)}
-.workflow-card:not(:last-child)::after{content:"➜";position:absolute;right:-13px;top:48%;z-index:5;color:#eef5fb;font-size:1.2rem}
-.step-number{position:absolute;top:-17px;left:50%;width:35px;height:35px;display:grid;place-items:center;transform:translateX(-50%);border-radius:50%;background:var(--step);color:#041019;font-weight:900}
-.step-title{min-height:58px;margin:16px 0 8px;color:color-mix(in srgb,var(--step) 76%,white);text-align:center;font-size:.76rem;text-transform:uppercase}
-.step-symbol{height:68px;display:grid;place-items:center;color:var(--step);font-size:2.05rem}
-.workflow-card ul{margin:4px 0 16px;padding-left:16px;color:#edf4fb;font-size:.69rem;line-height:1.55}
-.workflow-card .step-tools{margin-top:auto;padding-top:10px;border-top:1px solid color-mix(in srgb,var(--step) 34%,transparent);color:color-mix(in srgb,var(--step) 72%,white);font-size:.62rem;line-height:1.55}
-.dual-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:16px}
-.content-card{padding:20px}
-.content-card h2{margin:0;color:var(--case-cyan);font-size:.98rem;text-transform:uppercase;letter-spacing:.04em}
-.content-card p,.content-card li{color:#b9c7d7;font-size:.74rem;line-height:1.62}
-.content-card p{margin:10px 0 0}
-.content-card ul{margin:10px 0 0;padding-left:18px}
-.content-card li::marker{color:var(--case-cyan)}
-.outcome-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:14px}
-.outcome-card{padding:16px;border:1px solid rgba(235,106,202,.30);border-radius:12px;background:linear-gradient(180deg,rgba(9,28,45,.78),rgba(5,16,28,.72))}
-.outcome-card strong{display:block;color:#eef5fb;font-size:.76rem}
-.outcome-card span{display:block;margin-top:7px;color:#9fb0c3;font-size:.66rem;line-height:1.48}
-.skill-row{display:flex;flex-wrap:wrap;gap:9px;margin-top:14px}
-.case-cta{display:grid;grid-template-columns:1.35fr .65fr;gap:22px;align-items:center;margin:16px 0 28px;padding:20px 24px}
-.cta-copy h2{margin:0;color:var(--case-cyan);font-size:1rem;text-transform:uppercase}
-.cta-copy p{margin:6px 0 0;color:#b8c6d5;font-size:.78rem}
-.cta-actions{display:flex;gap:14px;justify-content:flex-end}
-.case-note{margin:14px 0;color:#7890a7;font-size:.62rem;text-align:center}
-.reveal-case{opacity:0;transform:translateY(14px);transition:opacity .55s ease,transform .55s cubic-bezier(.22,1,.36,1)}
-.reveal-case.visible{opacity:1;transform:none}
-@media(max-width:1200px){.workflow-grid{grid-template-columns:repeat(4,1fr)}.workflow-card:not(:last-child)::after{display:none}}
-@media(max-width:980px){.case-hero,.dual-grid,.case-cta{grid-template-columns:1fr}.executive-grid,.outcome-grid{grid-template-columns:repeat(2,1fr)}.cta-actions{justify-content:flex-start}}
-@media(max-width:700px){.case-wrap{padding:16px}.workflow-grid,.executive-grid,.outcome-grid{grid-template-columns:1fr}.case-title{font-size:clamp(1.9rem,8vw,2.8rem)}.cta-actions{flex-direction:column}.section-intro{align-items:flex-start;flex-direction:column}}
-@media(prefers-reduced-motion:reduce){.reveal-case{opacity:1;transform:none}.workflow-card{transition:none}}
-.nav-social{display:flex;align-items:center;gap:7px}
-.nav-positioning{display:flex;align-items:center;gap:9px;text-decoration:none;font-size:.62rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--accent);white-space:nowrap}
-.nav-positioning span{color:var(--muted);font-weight:400}
-.theme-header-host{display:flex;align-items:center;margin-left:4px}
-.theme-header-host .theme-fab{position:static!important;right:auto!important;bottom:auto!important;z-index:auto!important}
-@media(max-width:1050px){.nav-positioning{font-size:.54rem;letter-spacing:.12em}}
-@media(max-width:720px){.nav-positioning{display:none}.theme-header-host{margin-left:0}}
-.nav-soc-btn{width:28px;height:28px;border:1px solid #1e3248;border-radius:6px;display:flex;align-items:center;justify-content:center;color:#5a7a94;font-size:15px;text-decoration:none;transition:border-color .18s,color .18s}
-.nav-soc-btn:hover{border-color:color-mix(in srgb,var(--case-cyan) 55%,transparent);color:var(--case-cyan)}
+html[data-theme="light"] {
+  --bg:#f0f4f8; --panel:#ffffff; --text:#1a2c3e; --muted:#456280; --soft:#2a4560;
+  --line:rgba(239,109,168,.18); --accent-dim:rgba(239,109,168,.10); --accent-border:rgba(239,109,168,.35);
+}
+@media(prefers-color-scheme:light){
+  :root:not([data-theme="dark"]){
+    --bg:#f0f4f8; --panel:#ffffff; --text:#1a2c3e; --muted:#456280; --soft:#2a4560;
+    --line:rgba(239,109,168,.18); --accent-dim:rgba(239,109,168,.10); --accent-border:rgba(239,109,168,.35);
+  }
+}
+body { font-family:'Inter',system-ui,sans-serif; background:var(--bg); color:var(--text); font-size:14px; line-height:1.6; }
+.p3-content { max-width:780px; margin:0 auto; padding:88px 20px 60px; }
+.back-nav { display:inline-flex; align-items:center; gap:7px; color:var(--muted); font-size:.72rem; font-weight:700; letter-spacing:.07em; text-transform:uppercase; text-decoration:none; margin-bottom:36px; transition:color .18s; }
+.back-nav:hover { color:var(--accent); }
+.back-nav::before { content:'←'; font-size:.9rem; }
+.hero { margin-bottom:32px; }
+.hero-eyebrow { display:flex; align-items:center; gap:10px; margin-bottom:12px; }
+.hero-num { font-size:.62rem; font-weight:900; color:var(--accent); letter-spacing:.1em; text-transform:uppercase; border:1px solid var(--accent-border); padding:3px 9px; border-radius:4px; }
+.hero h1 { font-size:clamp(1.45rem,3.5vw,2rem); font-weight:800; letter-spacing:-.025em; line-height:1.15; margin-bottom:10px; text-wrap:balance; }
+.hero-lead { font-size:.84rem; color:var(--muted); line-height:1.55; max-width:560px; }
+.divider { height:1px; background:var(--line); margin:28px 0; }
+.glance-grid { display:grid; grid-template-columns:repeat(2,1fr); gap:10px; margin-bottom:32px; }
+.glance-item { padding:13px 15px; border:1px solid var(--line); border-radius:10px; background:var(--panel); }
+.glance-label { display:block; font-size:.58rem; font-weight:800; text-transform:uppercase; letter-spacing:.09em; color:var(--accent); margin-bottom:5px; }
+.glance-value { font-size:.76rem; color:var(--soft); line-height:1.4; }
+.section-label { font-size:.63rem; font-weight:900; letter-spacing:.1em; text-transform:uppercase; color:var(--accent); margin-bottom:12px; }
+.flow-strip { display:flex; align-items:center; margin-bottom:28px; overflow-x:auto; }
+.flow-step { flex:1; min-width:80px; padding:11px 10px; text-align:center; border:1px solid var(--line); background:var(--panel); font-size:.67rem; font-weight:700; color:var(--soft); line-height:1.3; }
+.flow-step+.flow-step { margin-left:-1px; }
+.flow-step:first-child { border-radius:8px 0 0 8px; }
+.flow-step:last-child { border-radius:0 8px 8px 0; }
+.flow-step small { display:block; font-size:.55rem; color:var(--accent); font-weight:800; margin-bottom:3px; letter-spacing:.06em; }
+.owned-list { display:flex; flex-wrap:wrap; gap:7px; margin-bottom:32px; }
+.owned-tag { font-size:.67rem; font-weight:600; color:var(--soft); padding:4px 10px; border-radius:5px; border:1px solid var(--line); background:var(--panel); }
+.aaa-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:10px; margin-bottom:16px; }
+.aaa-card { padding:15px 14px; border:1px solid var(--line); border-radius:12px; background:var(--panel); }
+.aaa-card.ai-card { border-color:var(--accent-border); }
+.aaa-label { display:inline-block; font-size:.55rem; font-weight:900; letter-spacing:.1em; text-transform:uppercase; padding:2px 8px; border-radius:3px; margin-bottom:8px; }
+.ai-card .aaa-label { background:var(--accent-dim); color:var(--accent); }
+.agent-card .aaa-label { background:rgba(53,212,241,.1); color:#35d4f1; border:1px solid rgba(53,212,241,.25); }
+.human-card .aaa-label { background:rgba(70,211,154,.1); color:#46d39a; border:1px solid rgba(70,211,154,.25); }
+.aaa-text { font-size:.71rem; color:var(--soft); line-height:1.5; }
+.stack-row { display:flex; align-items:center; gap:8px; flex-wrap:wrap; margin-bottom:28px; }
+.stack-label { font-size:.6rem; font-weight:800; text-transform:uppercase; letter-spacing:.08em; color:var(--muted); white-space:nowrap; }
+.stack-chip { font-size:.65rem; font-weight:600; color:var(--soft); padding:3px 9px; border-radius:4px; border:1px solid var(--line); background:var(--panel); }
+.arch-flow { display:flex; flex-wrap:wrap; align-items:center; gap:6px; margin-bottom:28px; padding:14px 16px; border:1px solid var(--line); border-radius:10px; background:var(--panel); }
+.arch-step { font-size:.65rem; font-weight:700; color:var(--soft); padding:4px 9px; border-radius:5px; background:rgba(255,255,255,.04); border:1px solid var(--line); white-space:nowrap; }
+.arch-step.hi { color:var(--accent); border-color:var(--accent-border); background:var(--accent-dim); }
+.arch-arrow { color:var(--muted); font-size:.75rem; }
+.value-row { display:flex; flex-wrap:wrap; gap:8px; margin-bottom:32px; }
+.value-chip { font-size:.7rem; font-weight:600; color:var(--accent); padding:6px 13px; border-radius:6px; border:1px solid var(--accent-border); background:var(--accent-dim); }
+details { border:1px solid var(--line); border-radius:10px; background:var(--panel); }
+summary { padding:13px 16px; cursor:pointer; list-style:none; font-size:.63rem; font-weight:900; letter-spacing:.1em; text-transform:uppercase; color:var(--muted); display:flex; align-items:center; justify-content:space-between; user-select:none; }
+summary::-webkit-details-marker { display:none; }
+summary::after { content:'▾'; font-size:.8rem; transition:transform .2s; }
+details[open] summary::after { transform:rotate(-180deg); }
+details[open] summary { color:var(--accent); border-bottom:1px solid var(--line); }
+.details-inner { padding:18px 16px; display:flex; flex-direction:column; gap:24px; }
+.scenarios { display:flex; flex-direction:column; gap:8px; }
+.scenario { display:grid; grid-template-columns:70px 1fr auto; gap:12px; align-items:start; padding:11px 14px; border:1px solid var(--line); border-radius:8px; background:rgba(255,255,255,.025); }
+.sc-num { font-size:.58rem; font-weight:900; color:var(--accent); letter-spacing:.06em; text-transform:uppercase; padding-top:1px; }
+.sc-text { font-size:.72rem; color:var(--soft); line-height:1.45; }
+.sc-badge { font-size:.55rem; font-weight:800; letter-spacing:.07em; text-transform:uppercase; padding:3px 8px; border-radius:4px; white-space:nowrap; align-self:start; }
+.sc-badge.pass     { background:rgba(70,211,154,.12);  color:var(--good); }
+.sc-badge.fail     { background:rgba(244,201,93,.12);  color:var(--warn); }
+.sc-badge.review   { background:rgba(255,138,91,.1);   color:var(--orange); }
+.sc-badge.invest   { background:rgba(53,212,241,.1);   color:var(--insight); }
+.sc-badge.exception { background:rgba(239,109,168,.12); color:var(--accent); }
+.sc-badge.decision { background:rgba(124,140,255,.12); color:var(--purple); }
+.controls-list { display:flex; flex-direction:column; gap:7px; }
+.control-item { display:flex; gap:10px; align-items:flex-start; font-size:.72rem; color:var(--soft); line-height:1.45; }
+.control-item::before { content:'›'; color:var(--accent); flex-shrink:0; font-weight:700; margin-top:1px; }
+@media(max-width:560px){
+  .aaa-grid { grid-template-columns:1fr; }
+  .glance-grid { grid-template-columns:1fr; }
+  .scenario { grid-template-columns:1fr; }
+  .sc-badge { width:fit-content; }
+}
 </style>
-<script>if(localStorage.getItem('kp-theme')==='light')document.documentElement.setAttribute('data-theme','light');</script>
 </head>
 <body>
-<div class="page-progress" data-progress></div>
 <div class="ambient ambient-a" aria-hidden="true"></div>
 <div class="ambient ambient-b" aria-hidden="true"></div>
 
@@ -112,135 +120,180 @@ body{background:radial-gradient(circle at 15% -8%,rgba(154,26,110,.24),transpare
   </div>
 </header>
 
-<div class="case-wrap">
+<main>
+<div class="p3-content">
 
-  <main>
-    <section class="case-hero reveal-case">
-      <div>
-        <div class="case-kicker">Senior Enterprise Delivery</div>
-        <h1 class="case-title">Enterprise Data Migration</h1>
-        <p class="case-lead">A governed source-to-target migration approach covering source assessment, business rule definition, field mapping, gap tracking, load validation, and cutover readiness, giving stakeholders the evidence and confidence needed for a controlled go-live.</p>
-        <div class="case-tags">
-          <span>Business Analysis</span>
-          <span>Data Migration</span>
-          <span>Field Mapping</span>
-          <span>Business Rules</span>
-          <span>Gap Analysis</span>
-          <span>Cutover Readiness</span>
-        </div>
-      </div>
-      <aside class="glance glass-panel">
-        <h2>At a Glance</h2>
-        <div class="glance-list">
-          <div class="glance-item"><div class="glance-icon">01</div><div><span>Domain</span><strong>Enterprise data migration and ERP transformation</strong></div></div>
-          <div class="glance-item"><div class="glance-icon">02</div><div><span>Role</span><strong>Sr. Business Analyst / Technical Product Manager</strong></div></div>
-          <div class="glance-item"><div class="glance-icon">03</div><div><span>Scope</span><strong>Source assessment through cutover readiness and sign-off</strong></div></div>
-          <div class="glance-item"><div class="glance-icon">04</div><div><span>Delivery Model</span><strong>Phased migration releases with business and technical validation</strong></div></div>
-          <div class="glance-item"><div class="glance-icon">05</div><div><span>Focus</span><strong>Mapping, rule governance, gap resolution, and reconciliation</strong></div></div>
-        </div>
-      </aside>
-    </section>
+<a class="back-nav" href="../index.html#foundation">Enterprise Programs</a>
 
-    <section class="section-block glass-panel reveal-case">
-      <div class="section-intro">
-        <h2 class="section-title">Executive Summary</h2>
-        <p>A concise view of the migration challenge, my ownership, and the value delivered.</p>
-      </div>
-      <div class="executive-grid">
-        <article class="executive-card"><span>Business Challenge</span><p>Undocumented migration rules, inconsistent source data behaviour, and unclear ownership of data decisions created significant risk ahead of go-live.</p></article>
-        <article class="executive-card"><span>My Role</span><p>Led migration analysis, defined field mappings, reconciled business rules, tracked gaps, coordinated validation runs, and supported cutover readiness and sign-off.</p></article>
-        <article class="executive-card"><span>Solution</span><p>A structured source-to-target migration flow with governed rules, documented gaps, controlled load runs, reconciliation validation, and sign-off evidence at each milestone.</p></article>
-        <article class="executive-card"><span>Business Value</span><p>Improved migration traceability, reduced data risk, clear rule ownership, and a structured readiness process that gave stakeholders confidence at cutover.</p></article>
-      </div>
-    </section>
-
-    <section class="section-block glass-panel reveal-case">
-      <div class="section-intro">
-        <h2 class="section-title">End-to-End Migration Workflow</h2>
-        <p>The core flow from source assessment through reconciled, cutover-ready data delivery.</p>
-      </div>
-      <div class="workflow-grid">
-        <article class="workflow-card" style="--step:#eb6aca"><div class="step-number">1</div><h3 class="step-title">Source Assessment</h3><div class="step-symbol">◎</div><ul><li>Source system audit</li><li>Data profiling and quality</li><li>Volume and scope mapping</li><li>Migration risk identification</li></ul><div class="step-tools">Data Profiling · SQL · Excel</div></article>
-        <article class="workflow-card" style="--step:#a278ff"><div class="step-number">2</div><h3 class="step-title">Business Rules</h3><div class="step-symbol">⚙</div><ul><li>Migration decision workshops</li><li>Transformation logic</li><li>Default value rules</li><li>Exception handling</li></ul><div class="step-tools">Rule Repository · Decision Log</div></article>
-        <article class="workflow-card" style="--step:#4da3ff"><div class="step-number">3</div><h3 class="step-title">Field Mapping</h3><div class="step-symbol">◇</div><ul><li>Source-to-target mapping</li><li>Field-level transformation</li><li>Data type conversion</li><li>Mapping specification sign-off</li></ul><div class="step-tools">Mapping Specification · Excel</div></article>
-        <article class="workflow-card" style="--step:#f3bd68"><div class="step-number">4</div><h3 class="step-title">Gap Analysis</h3><div class="step-symbol">✣</div><ul><li>Unmapped field identification</li><li>Missing value assessment</li><li>Decision register tracking</li><li>Risk and impact log</li></ul><div class="step-tools">Gap Register · Risk Log</div></article>
-        <article class="workflow-card" style="--step:#30d5c8"><div class="step-number">5</div><h3 class="step-title">Load & Transform</h3><div class="step-symbol">◉</div><ul><li>Data extraction execution</li><li>Transformation run monitoring</li><li>Error identification and triage</li><li>Reload and correction cycles</li></ul><div class="step-tools">Oracle · SAP ERP · SQL</div></article>
-        <article class="workflow-card" style="--step:#e168c2"><div class="step-number">6</div><h3 class="step-title">Validation & Reconciliation</h3><div class="step-symbol">✓</div><ul><li>Record count verification</li><li>Value and field checks</li><li>Error analysis and resolution</li><li>Business review and sign-off</li></ul><div class="step-tools">Reconciliation · UAT · Evidence</div></article>
-        <article class="workflow-card" style="--step:#aa7bff"><div class="step-number">7</div><h3 class="step-title">Cutover Readiness</h3><div class="step-symbol">▤</div><ul><li>Go-live checklist completion</li><li>Rollback plan review</li><li>Stakeholder sign-off</li><li>Hypercare and support plan</li></ul><div class="step-tools">Cutover Checklist · Release Notes</div></article>
-      </div>
-    </section>
-
-    <section class="dual-grid">
-      <article class="content-card glass-panel reveal-case">
-        <h2>My Contributions</h2>
-        <ul>
-          <li>Led source system assessment to document data volumes, quality issues, structural inconsistencies, and migration risks before mapping began.</li>
-          <li>Defined field-level mapping specifications connecting source attributes to target model fields with transformation logic and exception handling.</li>
-          <li>Facilitated business rule sessions to resolve migration decisions, defaulting logic, and data exception treatment with business and data teams.</li>
-          <li>Tracked and managed a gap register covering unmapped records, missing values, and outstanding decisions requiring business input.</li>
-          <li>Coordinated validation runs, reconciliation reviews, and business sign-off at each migration milestone through to cutover.</li>
-        </ul>
-      </article>
-      <article class="content-card glass-panel reveal-case">
-        <h2>Key Deliverables</h2>
-        <ul>
-          <li>Source data assessment and profiling report</li>
-          <li>Field-level mapping specification document</li>
-          <li>Business rules and transformation logic documentation</li>
-          <li>Gap register and outstanding decision log</li>
-          <li>Validation run results and reconciliation evidence</li>
-          <li>Cutover checklist and readiness sign-off record</li>
-        </ul>
-      </article>
-    </section>
-
-    <section class="section-block glass-panel reveal-case">
-      <div class="section-intro">
-        <h2 class="section-title">Technology in Context</h2>
-        <p>Technology enabled data movement and validation, but the work focuses on mapping governance, rule ownership, gap management, and readiness evidence.</p>
-      </div>
-      <div class="skill-row">
-        <span>SQL</span><span>Oracle</span><span>SAP ERP</span><span>Excel</span><span>Data Mapping</span><span>SharePoint</span><span>UAT</span><span>Release Notes</span>
-      </div>
-    </section>
-
-    <section class="section-block glass-panel reveal-case">
-      <h2 class="section-title">Business Outcomes</h2>
-      <div class="outcome-grid">
-        <article class="outcome-card"><strong>Reduced Data Risk</strong><span>Structured mapping and gap analysis surfaced data issues before load runs, preventing costly post-migration corrections.</span></article>
-        <article class="outcome-card"><strong>Clear Rule Ownership</strong><span>Business migration decisions were documented, approved, and traceable, removing ambiguity from transformation logic.</span></article>
-        <article class="outcome-card"><strong>Validated Data Quality</strong><span>Reconciliation controls confirmed record counts and value accuracy after each load run before progressing to the next milestone.</span></article>
-        <article class="outcome-card"><strong>Cutover Confidence</strong><span>A completed readiness checklist and documented sign-off gave stakeholders the evidence needed to approve go-live with confidence.</span></article>
-      </div>
-    </section>
-
-    <section class="section-block glass-panel reveal-case">
-      <h2 class="section-title">Skills Demonstrated</h2>
-      <div class="skill-row">
-        <span>Data Migration Analysis</span><span>Field Mapping</span><span>Business Rule Analysis</span><span>Gap Analysis</span><span>Data Quality</span><span>Reconciliation</span><span>Cutover Planning</span><span>Stakeholder Communication</span><span>Requirements Engineering</span><span>Release Readiness</span><span>Risk Management</span><span>Technical Documentation</span>
-      </div>
-    </section>
-
-    <section class="case-cta glass-panel reveal-case">
-      <div class="cta-copy"><h2>Discuss Similar Enterprise Work</h2><p>Additional context can be discussed while respecting employer and customer confidentiality.</p></div>
-      <div class="cta-actions"><a class="button" href="../contact.html">Contact Krishna</a><a class="button secondary" href="enterprise-product-configuration.html">Back to Program 1</a></div>
-    </section>
-
-  </main>
+<div class="hero">
+  <div class="hero-eyebrow">
+    <span class="hero-num">06 · Migration</span>
+  </div>
+  <h1>Enterprise Data Migration</h1>
+  <p class="hero-lead">Controlled source-to-target migration with governed mappings, reconciliation and cutover readiness.</p>
 </div>
 
+<div class="glance-grid">
+  <div class="glance-item">
+    <span class="glance-label">Business problem</span>
+    <span class="glance-value">Inconsistent source data, unclear mappings and reconciliation gaps can create significant risk before cutover</span>
+  </div>
+  <div class="glance-item">
+    <span class="glance-label">My role</span>
+    <span class="glance-value">Sr. Business Analyst / Technical Product Manager</span>
+  </div>
+  <div class="glance-item">
+    <span class="glance-label">Current environment</span>
+    <span class="glance-value">SAP / legacy exports · mapping specifications · validation evidence · SharePoint</span>
+  </div>
+  <div class="glance-item">
+    <span class="glance-label">Outcome</span>
+    <span class="glance-value">Lower migration risk, clearer ownership, stronger reconciliation and controlled cutover</span>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<div class="section-label">Current workflow</div>
+<div class="flow-strip">
+  <div class="flow-step"><small>01</small>Source assessment</div>
+  <div class="flow-step"><small>02</small>Mapping</div>
+  <div class="flow-step"><small>03</small>Transformation</div>
+  <div class="flow-step"><small>04</small>Load validation</div>
+  <div class="flow-step"><small>05</small>Reconciliation</div>
+  <div class="flow-step"><small>06</small>Cutover</div>
+</div>
+
+<div class="section-label">What I owned</div>
+<div class="owned-list">
+  <span class="owned-tag">Mapping requirements</span>
+  <span class="owned-tag">Business rules</span>
+  <span class="owned-tag">Source profiling criteria</span>
+  <span class="owned-tag">Duplicate criteria</span>
+  <span class="owned-tag">Reconciliation rules</span>
+  <span class="owned-tag">Exception categories</span>
+  <span class="owned-tag">Ownership model</span>
+  <span class="owned-tag">Cutover-readiness criteria</span>
+  <span class="owned-tag">Acceptance criteria</span>
+  <span class="owned-tag">UAT</span>
+  <span class="owned-tag">AI use-case definition</span>
+  <span class="owned-tag">AI output requirements</span>
+</div>
+
+<div class="divider"></div>
+
+<div class="section-label">AI / Agent / Human</div>
+<div class="aaa-grid">
+  <div class="aaa-card ai-card">
+    <span class="aaa-label">AI</span>
+    <p class="aaa-text">Interprets ambiguous mappings, explains reconciliation failures and groups related migration exceptions for review.</p>
+  </div>
+  <div class="aaa-card agent-card">
+    <span class="aaa-label">Agent</span>
+    <p class="aaa-text">Orchestrates exception handling, routes issues to the right owners and tracks unresolved items through migration readiness.</p>
+  </div>
+  <div class="aaa-card human-card">
+    <span class="aaa-label">Human</span>
+    <p class="aaa-text">Business and data owners approve mappings, exceptions and overrides. Final cutover sign-off remains human.</p>
+  </div>
+</div>
+
+<div class="stack-row">
+  <span class="stack-label">Target stack</span>
+  <span class="stack-chip">Python</span>
+  <span class="stack-chip">Enterprise LLM</span>
+  <span class="stack-chip">SharePoint</span>
+</div>
+
+<div class="section-label">Target architecture</div>
+<div class="arch-flow">
+  <span class="arch-step">SAP / legacy export</span><span class="arch-arrow">→</span>
+  <span class="arch-step">SharePoint</span><span class="arch-arrow">→</span>
+  <span class="arch-step hi">Python profiling + validation</span><span class="arch-arrow">→</span>
+  <span class="arch-step hi">Enterprise LLM</span><span class="arch-arrow">→</span>
+  <span class="arch-step">Exception queue</span><span class="arch-arrow">→</span>
+  <span class="arch-step">Owner review</span><span class="arch-arrow">→</span>
+  <span class="arch-step">Human approval</span><span class="arch-arrow">→</span>
+  <span class="arch-step">Reconciliation evidence + cutover decision logged</span>
+</div>
+
+<div class="section-label">Business value</div>
+<div class="value-row">
+  <span class="value-chip">Lower migration risk</span>
+  <span class="value-chip">Faster exception handling</span>
+  <span class="value-chip">Stronger reconciliation</span>
+  <span class="value-chip">Controlled cutover</span>
+</div>
+
+<details>
+  <summary>Technical design</summary>
+  <div class="details-inner">
+
+    <div>
+      <div class="section-label" style="margin-bottom:10px">MVP scenarios</div>
+      <div class="scenarios">
+        <div class="scenario">
+          <span class="sc-num">Scenario 1</span>
+          <span class="sc-text">Clean record. Record satisfies mapping and validation rules.</span>
+          <span class="sc-badge pass">Pass</span>
+        </div>
+        <div class="scenario">
+          <span class="sc-num">Scenario 2</span>
+          <span class="sc-text">Known validation failure. Required field, datatype or predefined rule fails.</span>
+          <span class="sc-badge fail">Fail</span>
+        </div>
+        <div class="scenario">
+          <span class="sc-num">Scenario 3</span>
+          <span class="sc-text">Ambiguous mapping. More than one plausible target field exists. AI explains likely options and routes for approval.</span>
+          <span class="sc-badge review">Review</span>
+        </div>
+        <div class="scenario">
+          <span class="sc-num">Scenario 4</span>
+          <span class="sc-text">No target equivalent. No clear destination field exists. AI surfaces the closest candidates or flags that no suitable match is evident.</span>
+          <span class="sc-badge review">Review</span>
+        </div>
+        <div class="scenario">
+          <span class="sc-num">Scenario 5</span>
+          <span class="sc-text">Reconciliation mismatch. Source and target totals do not reconcile. AI groups affected records and summarizes likely causes.</span>
+          <span class="sc-badge invest">Investigation</span>
+        </div>
+        <div class="scenario">
+          <span class="sc-num">Scenario 6</span>
+          <span class="sc-text">Duplicate or conflicting records. Python detects duplicate or conflicting source records. AI explains the likely business impact.</span>
+          <span class="sc-badge exception">Exception</span>
+        </div>
+        <div class="scenario">
+          <span class="sc-num">Scenario 7</span>
+          <span class="sc-text">Insufficient context. Required mapping rule or business decision is missing. AI does not guess. The agent routes the gap for clarification.</span>
+          <span class="sc-badge decision">Decision required</span>
+        </div>
+      </div>
+    </div>
+
+    <div>
+      <div class="section-label" style="margin-bottom:10px">Controls and governance</div>
+      <div class="controls-list">
+        <div class="control-item">Profiling, duplicate detection and reconciliation rules remain deterministic.</div>
+        <div class="control-item">AI only handles interpretation and unresolved exceptions.</div>
+        <div class="control-item">AI does not approve mappings or cutover readiness.</div>
+        <div class="control-item">Missing context triggers review, not inference.</div>
+        <div class="control-item">Business and data-owner approval is required for mapping exceptions.</div>
+        <div class="control-item">Human overrides and reasons are logged.</div>
+        <div class="control-item">Final reconciliation and cutover sign-off remain human decisions.</div>
+      </div>
+    </div>
+
+    <div>
+      <div class="section-label" style="margin-bottom:8px">Implementation note</div>
+      <p style="font-size:.72rem;color:var(--soft);line-height:1.55;">Azure OpenAI can provide the managed LLM layer for this design. The workflow, deterministic controls, human approvals and orchestration are designed to remain portable to equivalent enterprise LLM platforms.</p>
+    </div>
+
+  </div>
+</details>
+
+</div>
+</main>
+
 <script src="../assets/js/site.js"></script>
-<script>
-(() => {
-  const items = document.querySelectorAll(".reveal-case");
-  if (!("IntersectionObserver" in window)) { items.forEach(i => i.classList.add("visible")); return; }
-  const obs = new IntersectionObserver(entries => {
-    entries.forEach(e => { if (!e.isIntersecting) return; e.target.classList.add("visible"); obs.unobserve(e.target); });
-  }, { threshold: 0.08, rootMargin: "0px 0px -20px 0px" });
-  items.forEach(i => obs.observe(i));
-  setTimeout(() => items.forEach(i => i.classList.add("visible")), 1200);
-})();
-</script>
-<script src="../assets/js/case-nav.js"></script>
 </body>
 </html>
