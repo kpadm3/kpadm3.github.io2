@@ -1796,60 +1796,75 @@ html[data-theme="light"] .heroX-ai .hx-cube-wave-dots{filter:drop-shadow(0 0 2px
 })();
 </script>
 
-<!-- HERO X DOTTED CUBE WAVE v18 -->
+<!-- HERO X DOTTED CUBE + WAVE v19 -->
 <script>
 (function(){
   var svg=document.querySelector('.heroX .hx-dotcube');
   var base=svg&&svg.querySelector('.hx-cube-dots');
   if(!svg||!base)return;
 
-  var NS='http://www.w3.org/2000/svg';
+  var NS='http://www.w3.org/2000/svg',N=15;
   var old=svg.querySelector('.hx-cube-wave-dots');if(old)old.remove();
-  var oldDefs=svg.querySelector('.hx-cube-wave-defs');if(oldDefs)oldDefs.remove();
 
-  // IMPORTANT: do not rebuild or resize the cube.
-  // Clone the exact existing dots so the approved cube design stays pixel-for-pixel aligned.
+  // Recreate the APPROVED dotted cube geometry exactly as before.
+  base.textContent='';
   var overlay=document.createElementNS(NS,'g');
   overlay.setAttribute('class','hx-cube-wave-dots');
   base.insertAdjacentElement('afterend',overlay);
-
-  var source=Array.from(base.querySelectorAll('circle'));
   var points=[];
-  var minX=Infinity,maxX=-Infinity,minY=Infinity,maxY=-Infinity;
 
-  source.forEach(function(dot){
-    var x=parseFloat(dot.getAttribute('cx')),y=parseFloat(dot.getAttribute('cy'));
-    if(!isFinite(x)||!isFinite(y))return;
-    minX=Math.min(minX,x);maxX=Math.max(maxX,x);
-    minY=Math.min(minY,y);maxY=Math.max(maxY,y);
-  });
+  function bilerp(a,b,c,d,u,v){
+    return {
+      x:(1-u)*(1-v)*a.x+u*(1-v)*b.x+u*v*c.x+(1-u)*v*d.x,
+      y:(1-u)*(1-v)*a.y+u*(1-v)*b.y+u*v*c.y+(1-u)*v*d.y
+    };
+  }
 
-  source.forEach(function(dot){
-    var x=parseFloat(dot.getAttribute('cx')),y=parseFloat(dot.getAttribute('cy'));
-    if(!isFinite(x)||!isFinite(y))return;
-    var w=dot.cloneNode(false);
-    // Same radius as the original dot: no swelling/pulsing/redesign.
-    w.removeAttribute('class');
-    w.style.opacity='0';
-    overlay.appendChild(w);
+  function face(cls,a,b,c,d){
+    for(var row=0;row<N;row++){
+      for(var col=0;col<N;col++){
+        var u=col/(N-1),v=row/(N-1),p=bilerp(a,b,c,d,u,v);
+        var edge=row===0||col===0||row===N-1||col===N-1;
+        var radius=edge?1.48:1.22;
 
-    var nx=(x-minX)/(maxX-minX||1);
-    var ny=(y-minY)/(maxY-minY||1);
-    // Slight diagonal tilt makes the dotted front read across all three cube faces.
-    points.push({el:w,pos:nx*.86+ny*.14});
-  });
+        // Base dot: original cube remains visible at all times.
+        var dot=document.createElementNS(NS,'circle');
+        dot.setAttribute('class',cls);
+        dot.setAttribute('cx',p.x.toFixed(2));
+        dot.setAttribute('cy',p.y.toFixed(2));
+        dot.setAttribute('r',radius);
+        base.appendChild(dot);
+
+        // Wave dot: exact same position AND exact same radius. It only changes color/brightness.
+        var w=document.createElementNS(NS,'circle');
+        w.setAttribute('cx',p.x.toFixed(2));
+        w.setAttribute('cy',p.y.toFixed(2));
+        w.setAttribute('r',radius);
+        w.style.opacity='0';
+        overlay.appendChild(w);
+
+        var nx=(p.x-145)/270;
+        var ny=(p.y-30)/190;
+        points.push({el:w,pos:nx*.86+ny*.14});
+      }
+    }
+  }
+
+  var T={x:280,y:30},L={x:145,y:88},C={x:280,y:145},R={x:415,y:88};
+  var LB={x:145,y:163},B={x:280,y:220},RB={x:415,y:163};
+  face('hx-dot-top',T,R,C,L);
+  face('hx-dot-left',L,C,B,LB);
+  face('hx-dot-right',C,R,RB,B);
 
   var reduced=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  var start=performance.now();
-  var duration=4200;
-  var band=.24;
-
+  var started=performance.now(),duration=3900,band=.22;
   var stops=[
-    {p:0.00,c:[89,239,255]},   // cyan leading edge
-    {p:0.34,c:[77,161,255]},   // blue
-    {p:0.67,c:[155,119,255]},  // violet
-    {p:1.00,c:[63,224,206]}    // teal trailing edge
+    {p:0,c:[89,239,255]},
+    {p:.34,c:[77,161,255]},
+    {p:.67,c:[155,119,255]},
+    {p:1,c:[63,224,206]}
   ];
+
   function mix(a,b,t){return Math.round(a+(b-a)*t)}
   function colorAt(t){
     t=Math.max(0,Math.min(1,t));
@@ -1863,27 +1878,23 @@ html[data-theme="light"] .heroX-ai .hx-cube-wave-dots{filter:drop-shadow(0 0 2px
   }
 
   function render(now){
-    // Continuous sweep. Short off-cube margins prevent a visible jump at reset.
-    var t=reduced?.52:((now-start)%duration)/duration;
+    var t=reduced?.52:((now-started)%duration)/duration;
     var center=-band+(1+band*2)*t;
 
     points.forEach(function(p){
-      var d=p.pos-center;
-      var ad=Math.abs(d);
+      var d=p.pos-center,ad=Math.abs(d);
       if(ad>=band){
         p.el.style.opacity='0';
         p.el.style.filter='none';
         return;
       }
-
-      // Smooth broad dotted wave. Original dots underneath always remain visible.
       var strength=1-ad/band;
       strength=strength*strength*(3-2*strength);
       var across=(d+band)/(band*2);
       var col=colorAt(across);
       p.el.style.fill=col;
-      p.el.style.opacity=(.12+.88*strength).toFixed(3);
-      p.el.style.filter='drop-shadow(0 0 '+(1.2+3.2*strength).toFixed(1)+'px '+col+')';
+      p.el.style.opacity=(.16+.84*strength).toFixed(3);
+      p.el.style.filter='drop-shadow(0 0 '+(1+3.6*strength).toFixed(1)+'px '+col+')';
     });
 
     if(!reduced)requestAnimationFrame(render);
