@@ -526,6 +526,79 @@ html[data-theme="light"] .sp-hero::after{opacity:.1}
   .sp-headline{font-size:3.05rem!important}
 }
 
+
+/* ── EXACT ANNOTATED GEOMETRY: compact intro top-left, full-width visual below ── */
+@media(min-width:1201px){
+  .sp-hero{
+    padding:28px 46px 16px!important;
+    min-height:calc(100vh - 54px)!important;
+  }
+  .sp-hero-grid{
+    display:grid!important;
+    grid-template-columns:1fr!important;
+    grid-template-rows:auto auto!important;
+    gap:4px!important;
+    width:100%!important;
+  }
+
+  /* RED annotation: preserve the original intro as a compact left pane, but move it to the top */
+  .sp-hero-main{
+    grid-column:1!important;
+    grid-row:1!important;
+    display:block!important;
+    width:30%!important;
+    min-width:420px!important;
+    max-width:520px!important;
+    min-height:0!important;
+    padding:12px 26px 12px 4px!important;
+    margin:0!important;
+    border:0!important;
+    align-self:start!important;
+  }
+  .sp-hero-identity{margin:0 0 14px!important}
+  .sp-hero-name{font-size:.7rem!important;letter-spacing:.22em!important;margin-bottom:7px!important}
+  .sp-hero-role-line{font-size:.57rem!important;letter-spacing:.17em!important}
+  .sp-hero-sep{width:40px!important;margin-top:13px!important}
+  .sp-headline{
+    display:none!important;
+  }
+  .sp-sub{
+    display:none!important;
+  }
+
+  /* GREEN annotation: visual starts at the far left and runs to the far right */
+  .sp-hero-visual{
+    grid-column:1!important;
+    grid-row:2!important;
+    width:100%!important;
+    max-width:none!important;
+    min-width:0!important;
+    margin:0!important;
+    padding:0!important;
+  }
+  .sp-hero-visual .e2a-wide{
+    width:100%!important;
+    max-width:none!important;
+    box-sizing:border-box!important;
+    margin:0!important;
+    padding:18px 18px 12px!important;
+  }
+  .e2a-stage{
+    width:100%!important;
+    grid-template-columns:minmax(235px,1.28fr) 54px minmax(285px,1.62fr) 54px minmax(240px,1.3fr) 54px minmax(190px,.96fr)!important;
+  }
+  .e2a-core{width:205px!important;height:205px!important}
+  .e2a-flow,.e2a-flow svg{height:245px!important}
+
+  .sp-hero-pillars{
+    margin-top:14px!important;
+    padding-bottom:40px!important;
+  }
+}
+@media(min-width:1500px){
+  .sp-hero-main{width:29%!important;max-width:540px!important}
+}
+
 </style>
 <script>if(localStorage.getItem('kp-theme')==='light')document.documentElement.setAttribute('data-theme','light');</script>
 </head>
