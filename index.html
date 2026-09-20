@@ -917,6 +917,22 @@ html[data-theme="light"] .heroX-ai .hx-mesh-lines path:nth-child(4n+2){stroke:#7
 @media(max-width:1200px){.heroX-ai .heroX-core{width:100%!important;height:220px!important}.heroX-ai .hx-mesh{width:min(480px,112%)!important;height:220px!important}}
 @media(prefers-reduced-motion:reduce){.heroX-ai .hx-mesh-dots circle{animation:none!important}}
 
+/* AI TRANSFORMATION LAYER FROM SCRATCH v7 */
+.heroX-ai .heroX-core{position:relative!important;width:100%!important;height:250px!important;margin:-5px auto -3px!important;display:grid!important;place-items:center!important;background:transparent!important;background-image:none!important;border:0!important;border-radius:0!important;box-shadow:none!important;filter:none!important;animation:none!important;transform:none!important;overflow:visible!important;isolation:isolate!important}
+.heroX-ai .heroX-core:before,.heroX-ai .heroX-core:after,.heroX-ai .heroX-core .hx-ring,.heroX-ai .hx-mesh,.heroX-ai .hx-vector-field,.heroX-ai .hx-vector-nodes{display:none!important;content:none!important}
+.heroX-ai .hx-flowmesh{position:absolute!important;z-index:1!important;left:50%!important;top:50%!important;width:min(570px,132%)!important;height:250px!important;transform:translate(-50%,-50%)!important;overflow:visible!important;filter:drop-shadow(0 0 5px rgba(42,222,244,.18))!important}
+.heroX-ai .hx-flow-lines path{fill:none!important;stroke:#2ddcf2!important;stroke-width:1.05!important;stroke-linecap:round!important;stroke-linejoin:round!important;opacity:.42!important}
+.heroX-ai .hx-flow-lines path:nth-child(4n+2){stroke:#8874ff!important;opacity:.27!important}.heroX-ai .hx-flow-lines path:nth-child(5n){stroke:#35dfcc!important;opacity:.38!important}
+.heroX-ai .hx-flow-nodes circle{fill:#62efff!important;opacity:.9!important;filter:drop-shadow(0 0 3px #62efff)!important;animation:hxMeshPulse 3.8s ease-in-out infinite!important}
+.heroX-ai .hx-flow-nodes circle:nth-child(4n){fill:#9479ff!important}.heroX-ai .hx-flow-nodes circle:nth-child(5n){fill:#3ee0cd!important}
+.heroX-ai .hx-coretext{position:relative!important;z-index:5!important;padding:8px 14px!important;background:rgba(3,24,42,.22)!important;border:0!important;border-radius:7px!important;box-shadow:none!important;color:#f4fbff!important;font-size:15px!important;line-height:1.25!important;font-weight:800!important;text-shadow:0 0 12px rgba(53,218,246,.26)!important;animation:none!important;transform:none!important}
+.heroX-ai .heroX-caps{position:relative!important;z-index:6!important;margin-top:-4px!important}
+html[data-theme="light"] .heroX-ai .heroX-core{background:transparent!important;box-shadow:none!important;filter:none!important}
+html[data-theme="light"] .heroX-ai .hx-flow-lines path{stroke:#078eaa!important;opacity:.42!important}
+html[data-theme="light"] .heroX-ai .hx-flow-lines path:nth-child(4n+2){stroke:#7160d8!important}.heroX-ai .hx-flow-lines path:nth-child(5n){stroke:#0a9e91!important}
+html[data-theme="light"] .heroX-ai .hx-coretext{background:rgba(244,252,255,.48)!important;color:#173f58!important;text-shadow:none!important}
+@media(prefers-reduced-motion:reduce){.heroX-ai .hx-flow-nodes circle{animation:none!important}}
+
 /* HERO X DYNAMIC FLOW ROUTING v5 */
 .heroX-links{overflow:visible}
 .hx-dynamic-wire{fill:none;stroke:#42ddf6;stroke-width:2.15;stroke-linecap:round;stroke-linejoin:round;filter:url(#hxg);opacity:.94}
@@ -1012,26 +1028,29 @@ html[data-theme="light"] .heroX-ai .hx-mesh-lines path:nth-child(4n+2){stroke:#7
     <section class="heroX-zone heroX-ai">
       <header><b>AI TRANSFORMATION LAYER</b><small>From complexity to coordinated execution.</small></header>
       <div class="heroX-core">
-        <svg class="hx-mesh" viewBox="0 0 360 220" aria-hidden="true">
-          <g class="hx-mesh-lines">
-            <path d="M8 111 C55 72 92 82 132 105 S210 142 258 100 S326 76 352 110"/>
-            <path d="M8 96 C58 54 98 64 138 91 S216 126 258 84 S326 62 352 98"/>
-            <path d="M8 126 C55 91 95 98 134 119 S210 157 260 116 S325 91 352 122"/>
-            <path d="M24 77 C70 39 112 53 150 78 S220 108 250 66 S310 48 338 79"/>
-            <path d="M24 145 C69 111 111 116 151 139 S221 174 254 136 S311 115 338 142"/>
-            <path d="M46 61 C91 35 125 43 163 67 S220 89 242 51 S287 39 316 62"/>
-            <path d="M46 161 C90 137 126 139 164 158 S220 186 244 153 S290 137 316 158"/>
-            <path d="M37 72 C60 91 68 120 50 151"/><path d="M73 50 C96 79 101 132 79 169"/>
-            <path d="M111 45 C129 78 133 143 116 176"/><path d="M151 58 C163 91 166 145 153 166"/>
-            <path d="M191 64 C186 95 186 139 193 160"/><path d="M230 48 C214 83 213 143 232 173"/>
-            <path d="M270 42 C245 78 246 137 274 169"/><path d="M308 57 C281 87 285 126 315 153"/>
+        <svg class="hx-flowmesh" viewBox="0 0 520 230" aria-hidden="true">
+          <g class="hx-flow-lines">
+            <path d="M4 115 C72 115 92 60 168 65 C225 69 226 112 260 115 C294 112 295 69 352 65 C428 60 448 115 516 115"/>
+            <path d="M4 107 C72 107 96 75 166 78 C221 80 229 108 260 111 C291 108 299 80 354 78 C424 75 448 107 516 107"/>
+            <path d="M4 123 C72 123 96 155 166 152 C221 150 229 122 260 119 C291 122 299 150 354 152 C424 155 448 123 516 123"/>
+            <path d="M18 94 C80 91 108 47 176 50 C230 53 238 101 260 105 C282 101 290 53 344 50 C412 47 440 91 502 94"/>
+            <path d="M18 136 C80 139 108 183 176 180 C230 177 238 129 260 125 C282 129 290 177 344 180 C412 183 440 139 502 136"/>
+            <path d="M44 79 C102 71 128 34 190 40 C236 44 245 94 260 99 C275 94 284 44 330 40 C392 34 418 71 476 79"/>
+            <path d="M44 151 C102 159 128 196 190 190 C236 186 245 136 260 131 C275 136 284 186 330 190 C392 196 418 159 476 151"/>
+            <path d="M82 66 C130 54 157 28 208 35 C243 40 252 88 260 93 C268 88 277 40 312 35 C363 28 390 54 438 66"/>
+            <path d="M82 164 C130 176 157 202 208 195 C243 190 252 142 260 137 C268 142 277 190 312 195 C363 202 390 176 438 164"/>
+            <path d="M108 55 C128 82 131 145 109 174"/><path d="M151 42 C170 77 171 153 151 188"/>
+            <path d="M197 37 C211 75 213 156 198 194"/><path d="M238 61 C245 88 246 143 238 169"/>
+            <path d="M282 61 C275 88 274 143 282 169"/><path d="M323 37 C309 75 307 156 322 194"/>
+            <path d="M369 42 C350 77 349 153 369 188"/><path d="M412 55 C392 82 389 145 411 174"/>
           </g>
-          <g class="hx-mesh-dots">
-            <circle cx="49" cy="85" r="2.4"/><circle cx="78" cy="69" r="2"/><circle cx="111" cy="73" r="2.2"/>
-            <circle cx="145" cy="94" r="2"/><circle cx="180" cy="112" r="2.6"/><circle cx="218" cy="119" r="2"/>
-            <circle cx="253" cy="91" r="2.4"/><circle cx="286" cy="75" r="2"/><circle cx="319" cy="88" r="2.2"/>
-            <circle cx="68" cy="129" r="2"/><circle cx="107" cy="126" r="2.4"/><circle cx="149" cy="139" r="2"/>
-            <circle cx="195" cy="150" r="2.2"/><circle cx="238" cy="137" r="2"/><circle cx="285" cy="121" r="2.4"/>
+          <g class="hx-flow-nodes">
+            <circle cx="83" cy="105" r="2.4"/><circle cx="112" cy="83" r="2"/><circle cx="145" cy="66" r="2.2"/>
+            <circle cx="181" cy="80" r="2"/><circle cx="216" cy="103" r="2.2"/><circle cx="260" cy="115" r="2.8"/>
+            <circle cx="304" cy="103" r="2.2"/><circle cx="339" cy="80" r="2"/><circle cx="375" cy="66" r="2.2"/>
+            <circle cx="408" cy="83" r="2"/><circle cx="437" cy="105" r="2.4"/><circle cx="131" cy="139" r="2"/>
+            <circle cx="174" cy="151" r="2.2"/><circle cx="220" cy="139" r="2"/><circle cx="300" cy="139" r="2"/>
+            <circle cx="346" cy="151" r="2.2"/><circle cx="389" cy="139" r="2"/>
           </g>
         </svg>
         <div class="hx-coretext">AI-ENABLED<br>TRANSFORMATION</div>
@@ -1487,7 +1506,8 @@ html[data-theme="light"] .heroX-ai .hx-mesh-lines path:nth-child(4n+2){stroke:#7
       Array.from(svg.querySelectorAll('.hx-path,.hx-junction,.hx-dynamic-wire,.hx-dynamic-runner')).forEach(function(n){n.remove();});
 
       var core=hero.querySelector('.heroX-core'), cr=core.getBoundingClientRect(), mm=map.getBoundingClientRect();
-      var leftX=cr.left-mm.left, rightX=cr.right-mm.left, cy=cr.top+cr.height/2-mm.top;
+      var mesh=hero.querySelector('.hx-flowmesh'), mr=mesh?mesh.getBoundingClientRect():cr;
+      var leftX=mr.left-mm.left+4, rightX=mr.right-mm.left-4, cy=mr.top+mr.height/2-mm.top;
       var offsets=[-13,-4,5,14], colors=['','', '', 'purple'];
       var outColors=['','purple','purple','teal'];
 
