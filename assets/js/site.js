@@ -97,39 +97,6 @@
   });
 })();
 
-// Custom cursor with lagging ring
-(() => {
-  if (matchMedia('(pointer:coarse)').matches || matchMedia('(prefers-reduced-motion:reduce)').matches) return;
-  const dot = document.createElement('div');
-  dot.className = 'cr-dot';
-  const ring = document.createElement('div');
-  ring.className = 'cr-ring';
-  document.body.append(dot, ring);
-
-  let mx = -100, my = -100, rx = -100, ry = -100;
-
-  document.addEventListener('pointermove', e => {
-    mx = e.clientX; my = e.clientY;
-    dot.style.left = mx + 'px';
-    dot.style.top = my + 'px';
-    document.body.classList.add('cr-active');
-  });
-
-  document.addEventListener('pointerleave', () => document.body.classList.remove('cr-active'));
-
-  (function loop() {
-    rx += (mx - rx) * 0.11;
-    ry += (my - ry) * 0.11;
-    ring.style.left = rx + 'px';
-    ring.style.top = ry + 'px';
-    requestAnimationFrame(loop);
-  })();
-
-  document.addEventListener('pointerover', e => {
-    ring.classList.toggle('cr-hover', !!e.target.closest('a,button,.solution-card-v3,.effect-card,.interactive'));
-  });
-})();
-
 // Page fade transitions
 (() => {
   if (matchMedia('(prefers-reduced-motion:reduce)').matches) return;
