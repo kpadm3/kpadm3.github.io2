@@ -695,7 +695,7 @@ html[data-theme="light"] .heroX{background:radial-gradient(ellipse at 58% 18%,rg
 .hx-coretext{position:relative;z-index:4;padding:10px 16px;font-size:14px;line-height:1.25;font-weight:800;text-shadow:0 0 14px rgba(53,218,246,.38)}
 html[data-theme="light"] .heroX-core{background:none!important;filter:none!important}
 html[data-theme="light"] .hx-mesh-lines path{stroke:#078eaa;opacity:.42}
-html[data-theme="light"] .hx-mesh-lines path:nth-child(3n+1){stroke:#099e91}.html[data-theme="light"] .hx-mesh-lines path:nth-child(4n+2){stroke:#7160d8}
+html[data-theme="light"] .hx-mesh-lines path:nth-child(3n+1){stroke:#099e91}html[data-theme="light"] .hx-mesh-lines path:nth-child(4n+2){stroke:#7160d8}
 @media(prefers-reduced-motion:reduce){.hx-mesh,.hx-mesh-dots circle{animation:none!important}}
 
 /* HERO X EFFECTS PASS */
@@ -1362,10 +1362,10 @@ html[data-theme="light"] .heroX-ai .hx-cube-dots circle{opacity:.52}
 
     <section class="heroX-zone heroX-enterprise">
       <header><b>Enterprise Architecture</b><small>THE FOUNDATION FOR AI</small></header>
-      <article><i class="ti ti-file-description"></i><div><b>PROCESS</b><small>Workflows · Handoffs · Exceptions</small></div></article>
-      <article><i class="ti ti-database"></i><div><b>SYSTEMS</b><small>ERP · CRM · Enterprise Platforms</small></div></article>
-      <article><i class="ti ti-files"></i><div><b>DATA + KNOWLEDGE</b><small>Documents · Data · Business Context</small></div></article>
-      <article class="violet"><i class="ti ti-users"></i><div><b>PEOPLE + DECISIONS</b><small>Approvals · Judgment · Escalations</small></div></article>
+      <article><i class="ti ti-file-description"></i><div><b>PROCESS</b><small>Workflows · Rules · Dependencies · Exceptions</small></div></article>
+      <article><i class="ti ti-database"></i><div><b>SYSTEMS</b><small>ERP · CRM · PLM · Platforms · Integrations</small></div></article>
+      <article><i class="ti ti-files"></i><div><b>DATA + KNOWLEDGE</b><small>Data · Documents · Knowledge · Context</small></div></article>
+      <article class="violet"><i class="ti ti-users"></i><div><b>PEOPLE + DECISIONS</b><small>Decisions · Approvals · Judgment · Escalations</small></div></article>
     </section>
 
     <section class="heroX-zone heroX-ai">
@@ -1396,7 +1396,7 @@ html[data-theme="light"] .heroX-ai .hx-cube-dots circle{opacity:.52}
       <div class="heroX-valuebox">
         <article><i class="ti ti-bolt"></i><div><b>HIGHER EFFICIENCY</b><small>DO MORE WITH LESS</small></div></article>
         <article class="violet"><i class="ti ti-chart-bar"></i><div><b>FASTER INSIGHTS</b><small>TURN INFORMATION INTO ACTION</small></div></article>
-        <article><i class="ti ti-share-3"></i><div><b>GREATER AGILITY</b><small>ADAPT AND SCALE</small></div></article>
+        <article><i class="ti ti-share-3"></i><div><b>GREATER AGILITY</b><small>ADAPT &amp; SCALE</small></div></article>
         <article class="teal"><i class="ti ti-target"></i><div><b>STRONGER OUTCOMES</b><small>DELIVER MEASURABLE RESULTS</small></div></article>
       </div>
     </section>
@@ -1796,6 +1796,137 @@ html[data-theme="light"] .heroX-ai .hx-cube-dots circle{opacity:.52}
 }
 @media (prefers-reduced-motion:reduce){.heroX-enterprise article.hx-scan::after{animation:none;opacity:.08}}
 </style>
+<style id="heroX-light-polish-final">
+/* Hero-only light theme polish. Dark mode and the rest of the application are intentionally untouched. */
+html[data-theme="light"] .heroX{
+  background:
+    radial-gradient(ellipse at 58% 12%,rgba(29,165,211,.10),transparent 35%),
+    linear-gradient(180deg,#f3f9fd 0%,#eaf5fb 55%,#f4f9fc 100%)!important;
+}
+html[data-theme="light"] .heroX:before{opacity:.035!important}
+html[data-theme="light"] .heroX:after{opacity:.16!important;filter:none!important}
+
+/* Four stages remain open, but gain just enough structure to read as one architecture. */
+html[data-theme="light"] .heroX-map .heroX-zone{
+  background:linear-gradient(180deg,rgba(255,255,255,.10),rgba(212,236,247,.075))!important;
+}
+html[data-theme="light"] .heroX-zone header>b{
+  color:#087f9e!important;
+  text-shadow:none!important;
+  font-weight:800!important;
+}
+html[data-theme="light"] .heroX-zone header small{
+  color:#4c6d82!important;
+  font-weight:600!important;
+}
+
+/* Consistent card surface and hierarchy across Architecture, Agents and Value. */
+html[data-theme="light"] .heroX-enterprise article,
+html[data-theme="light"] .heroX-agents article,
+html[data-theme="light"] .heroX-valuebox article{
+  background:linear-gradient(100deg,rgba(255,255,255,.94),rgba(245,251,254,.88))!important;
+  border:1px solid rgba(21,135,170,.24)!important;
+  box-shadow:0 5px 15px rgba(25,72,98,.075),inset 0 0 18px rgba(40,185,220,.025)!important;
+  color:#17364d!important;
+}
+html[data-theme="light"] .heroX-enterprise article b,
+html[data-theme="light"] .heroX-agents article b,
+html[data-theme="light"] .heroX-valuebox article b{color:#17364d!important}
+html[data-theme="light"] .heroX-enterprise article small,
+html[data-theme="light"] .heroX-agents article small,
+html[data-theme="light"] .heroX-valuebox article small{
+  color:#486a80!important;
+  opacity:1!important;
+}
+
+/* Architecture helper lines: clearer without making the cards taller. */
+html[data-theme="light"] .heroX-enterprise article small{
+  font-size:9.2px!important;
+  font-weight:500!important;
+  letter-spacing:.005em!important;
+  white-space:nowrap!important;
+}
+
+/* Value cards mirror Agent-card typography: one-line title + one-line helper. */
+.heroX-valuebox article{grid-template-columns:48px minmax(0,1fr)!important;padding:0 9px!important}
+.heroX-valuebox article div{min-width:0!important}
+.heroX-valuebox article div b{
+  margin:0!important;
+  font-size:10.2px!important;
+  line-height:1.2!important;
+  letter-spacing:.015em!important;
+  white-space:nowrap!important;
+}
+.heroX-valuebox article div small{
+  margin-top:4px!important;
+  font-size:7.7px!important;
+  line-height:1.2!important;
+  letter-spacing:.025em!important;
+  white-space:nowrap!important;
+}
+html[data-theme="light"] .heroX-valuebox article div small{color:#628197!important}
+
+/* The dotted cube must float: no filled SVG faces or grey polygon background. */
+.heroX-ai .hx-cube-edges path{fill:none!important}
+html[data-theme="light"] .heroX-ai .hx-cube-edges path{
+  fill:none!important;
+  stroke:#1599b5!important;
+  opacity:.14!important;
+}
+html[data-theme="light"] .heroX-ai .hx-cube-dots .hx-dot-top{fill:#18b8d2!important}
+html[data-theme="light"] .heroX-ai .hx-cube-dots .hx-dot-left{fill:#0fa8c7!important}
+html[data-theme="light"] .heroX-ai .hx-cube-dots .hx-dot-right{fill:#716de8!important}
+html[data-theme="light"] .heroX-ai .hx-cube-dots circle{opacity:.70!important}
+html[data-theme="light"] .heroX-ai .hx-dotcube{background:transparent!important;filter:none!important}
+
+/* Capability controls are readable at rest and visibly active during AI processing. */
+html[data-theme="light"] .heroX-caps span{
+  background:rgba(249,253,255,.84)!important;
+  color:#42677e!important;
+  border-color:rgba(20,145,178,.36)!important;
+  box-shadow:0 2px 7px rgba(25,72,98,.035)!important;
+}
+
+/* Static rails recede; moving packets remain the dominant signal. */
+html[data-theme="light"] .hx-flow-path{
+  opacity:.66!important;
+  filter:drop-shadow(0 0 1px rgba(32,158,192,.30))!important;
+}
+html[data-theme="light"] .hx-flow-path.secondary{opacity:.30!important}
+html[data-theme="light"] .hx-flow-comet{
+  filter:drop-shadow(0 0 3px rgba(22,157,190,.72))!important;
+}
+
+/* Uniform vertical signal tabs: same geometry and resting treatment in every layer. */
+html[data-theme="light"] .hx-out-port,
+html[data-theme="light"] .hx-in-port,
+html[data-theme="light"] .hx-value-port{
+  width:4px!important;height:14px!important;border-radius:3px!important;
+  background:#7ed7e8!important;
+  box-shadow:0 0 0 2px #eaf5fb,0 0 4px rgba(25,151,183,.30)!important;
+}
+html[data-theme="light"] .hx-port-live{
+  background:#08b8d2!important;
+  box-shadow:0 0 0 2px #eaf5fb,0 0 9px rgba(8,184,210,.72)!important;
+}
+
+/* Architecture's scan remains visible on a pale card while sharing the same active-card treatment as other layers. */
+html[data-theme="light"] .heroX-enterprise article.hx-scan::after{
+  background:linear-gradient(90deg,transparent 0%,rgba(23,173,204,.03) 34%,rgba(23,173,204,.19) 50%,rgba(23,173,204,.03) 66%,transparent 100%)!important;
+}
+
+/* Floor gives depth without competing with the lifecycle. */
+html[data-theme="light"] .heroX:after{mask-image:linear-gradient(to top,rgba(0,0,0,.62) 8%,transparent 78%)!important}
+
+@media(max-width:1200px){
+  .heroX-valuebox article div b,.heroX-valuebox article div small{white-space:normal!important}
+  html[data-theme="light"] .heroX-enterprise article small{white-space:normal!important}
+}
+@media(prefers-reduced-motion:reduce){
+  html[data-theme="light"] .heroX-enterprise article.hx-scan::after{animation:none!important;opacity:.08!important}
+}
+</style>
+
 <!-- HERO X COORDINATED AI LIFECYCLE -->
 <script>
 (function(){
