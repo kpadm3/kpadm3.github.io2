@@ -342,7 +342,7 @@ linear-gradient(180deg,#04101d 0%,#071426 100%);padding:52px 50px 18px}
 background-image:radial-gradient(circle,rgba(53,212,241,.8) 1px,transparent 1.4px),linear-gradient(180deg,transparent,rgba(0,173,239,.08));
 background-size:18px 12px,100% 100%;transform:perspective(300px) rotateX(62deg) scaleX(1.2);transform-origin:bottom;mask-image:linear-gradient(to top,#000,transparent 78%);animation:waveDrift 8s linear infinite}
 .e2a-wide{border:1px solid rgba(53,212,241,.22)!important;border-radius:14px!important;background:linear-gradient(135deg,rgba(7,27,47,.72),rgba(6,41,68,.42))!important;box-shadow:inset 0 0 60px rgba(0,129,201,.05),0 0 30px rgba(0,0,0,.12);padding:24px 22px 16px!important}
-.e2a-stage{gap:0!important;grid-template-columns:27% 31% 25% 17%!important}
+.e2a-stage{gap:0!important;grid-template-columns:minmax(0,1.3fr) 34px minmax(0,1.6fr) 34px minmax(0,1.35fr) 34px minmax(0,1fr)!important}
 .e2a-zone{padding:0 16px!important;border-right:1px solid rgba(53,212,241,.11)}
 .e2a-zone:first-child{padding-left:0!important}.e2a-zone:last-child{border-right:0;padding-right:0!important}
 .e2a-zone-head span{font-size:.67rem!important;letter-spacing:.1em;color:#58e4f6!important}
@@ -368,6 +368,26 @@ background-size:18px 12px,100% 100%;transform:perspective(300px) rotateX(62deg) 
 .e2a-scale-line{box-shadow:0 0 8px rgba(53,212,241,.28)}
 html[data-theme="light"] .sp-hero::after{opacity:.1}
 @media(max-width:1200px){.sp-hero::after{display:none}.e2a-wide{padding:18px!important}}
+
+/* ── Multi-path SVG flows + icon polish ── */
+.e2a-stage{overflow:visible!important;grid-template-columns:minmax(0,1.15fr) 34px minmax(0,2fr) 34px minmax(0,1.4fr) 34px minmax(0,.9fr)!important}
+.e2a-flow{overflow:visible!important;position:relative}
+.e2a-zone{position:relative;z-index:1}
+.e2a-flow svg{filter:drop-shadow(0 0 5px rgba(40,217,245,.75)) drop-shadow(0 0 12px rgba(40,217,245,.35))}
+.e2a-zone-head span{font-size:.72rem!important;font-weight:700!important}
+.e2a-agent-icon{border-radius:50%!important;border:1px solid rgba(40,217,245,.45)!important;background:rgba(40,217,245,.16)!important;font-size:14px!important}
+.agent-knowledge .e2a-agent-icon{background:rgba(156,124,255,.25)!important;border-color:rgba(156,124,255,.6)!important;color:#b49fff!important}
+.agent-validation .e2a-agent-icon{background:rgba(55,224,194,.16)!important;border-color:rgba(55,224,194,.5)!important;color:#37e0c2!important}
+.outcome-1 .e2a-value-icon{background:rgba(40,217,245,.48)!important;border-color:#35d4f1!important;color:#fff!important;box-shadow:0 0 14px rgba(40,217,245,.4)!important}
+.outcome-2 .e2a-value-icon{background:rgba(180,60,220,.48)!important;border-color:#c060e0!important;color:#fff!important;box-shadow:0 0 14px rgba(180,60,220,.4)!important}
+.outcome-2 .e2a-outcome span{color:#e879f9!important}
+.outcome-3 .e2a-value-icon{background:rgba(40,217,245,.42)!important;border-color:#35d4f1!important;color:#fff!important;box-shadow:0 0 14px rgba(40,217,245,.35)!important}
+.outcome-4 .e2a-value-icon{background:rgba(55,224,194,.42)!important;border-color:#37e0c2!important;color:#fff!important;box-shadow:0 0 14px rgba(55,224,194,.35)!important}
+.outcome-4 .e2a-outcome span{color:#37e0c2!important}
+.e2a-core-copy strong{font-size:.7rem!important;letter-spacing:.04em!important}
+.e2a-icon{font-size:13px!important}
+.e2a-value-icon{font-size:14px!important}
+.e2a-enterprise .e2a-input{border-color:rgba(53,212,241,.45)!important;box-shadow:0 0 10px rgba(40,217,245,.07)!important}
 
 </style>
 <script>if(localStorage.getItem('kp-theme')==='light')document.documentElement.setAttribute('data-theme','light');</script>
@@ -421,31 +441,42 @@ html[data-theme="light"] .sp-hero::after{opacity:.1}
                   <small>Complex systems. Real constraints. Big opportunity.</small>
                 </div>
                 <article class="e2a-input">
-                  <div class="e2a-icon">⬡</div>
+                  <div class="e2a-icon"><i class="ti ti-file-description" aria-hidden="true"></i></div>
                   <div><strong>PROCESS</strong><small>Workflows · Handoffs · Exceptions</small></div>
                   <div class="e2a-port"></div>
                 </article>
                 <article class="e2a-input" style="animation-delay:.3s">
-                  <div class="e2a-icon">⬢</div>
+                  <div class="e2a-icon"><i class="ti ti-server" aria-hidden="true"></i></div>
                   <div><strong>SYSTEMS</strong><small>ERP · CRM · Enterprise Platforms</small></div>
                   <div class="e2a-port"></div>
                 </article>
                 <article class="e2a-input" style="animation-delay:.6s">
-                  <div class="e2a-icon">◈</div>
+                  <div class="e2a-icon"><i class="ti ti-files" aria-hidden="true"></i></div>
                   <div><strong>DATA + KNOWLEDGE</strong><small>Documents · Data · Business Context</small></div>
                   <div class="e2a-port"></div>
                 </article>
                 <article class="e2a-input" style="animation-delay:.9s">
-                  <div class="e2a-icon">◉</div>
+                  <div class="e2a-icon"><i class="ti ti-users" aria-hidden="true"></i></div>
                   <div><strong>PEOPLE + DECISIONS</strong><small>Approvals · Judgment · Escalations</small></div>
                   <div class="e2a-port"></div>
                 </article>
               </section>
 
               <div class="e2a-flow" aria-hidden="true">
-                <div class="e2a-wire"></div>
-                <span class="e2a-orb orb-a"></span>
-                <span class="e2a-orb orb-b"></span>
+                <svg style="position:absolute;top:0;left:0;pointer-events:none;overflow:visible" width="34" height="220" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M-52,53 C-15,53 12,110 82,110" stroke="rgba(40,217,245,.40)" stroke-width="9" fill="none" stroke-linecap="round"/>
+                  <path d="M-52,111 C-15,111 12,110 82,110" stroke="rgba(40,217,245,.32)" stroke-width="9" fill="none" stroke-linecap="round"/>
+                  <path d="M-52,169 C-15,169 12,110 82,110" stroke="rgba(40,217,245,.26)" stroke-width="9" fill="none" stroke-linecap="round"/>
+                  <path d="M-52,227 C-15,227 12,113 82,110" stroke="rgba(40,217,245,.18)" stroke-width="9" fill="none" stroke-linecap="round"/>
+                  <path d="M-52,53 C-15,53 12,110 82,110" stroke="rgba(40,217,245,.62)" stroke-width="1.2" fill="none" stroke-linecap="round"/>
+                  <path d="M-52,111 C-15,111 12,110 82,110" stroke="rgba(40,217,245,.50)" stroke-width="1.2" fill="none" stroke-linecap="round"/>
+                  <path d="M-52,169 C-15,169 12,110 82,110" stroke="rgba(40,217,245,.42)" stroke-width="1.2" fill="none" stroke-linecap="round"/>
+                  <path d="M-52,227 C-15,227 12,113 82,110" stroke="rgba(40,217,245,.30)" stroke-width="1" fill="none" stroke-linecap="round"/>
+                  <circle r="2.5" fill="#69edff"><animateMotion path="M-52,53 C-15,53 12,110 82,110" dur="2.8s" begin="0s" repeatCount="indefinite"/><animate attributeName="opacity" values="0;1;1;0" keyTimes="0;0.1;0.85;1" dur="2.8s" begin="0s" repeatCount="indefinite"/></circle>
+                  <circle r="2" fill="#69edff"><animateMotion path="M-52,111 C-15,111 12,110 82,110" dur="3.2s" begin="1s" repeatCount="indefinite"/><animate attributeName="opacity" values="0;0.8;0.8;0" keyTimes="0;0.1;0.85;1" dur="3.2s" begin="1s" repeatCount="indefinite"/></circle>
+                  <circle r="2" fill="#69edff"><animateMotion path="M-52,169 C-15,169 12,110 82,110" dur="2.9s" begin="1.8s" repeatCount="indefinite"/><animate attributeName="opacity" values="0;0.7;0.7;0" keyTimes="0;0.1;0.85;1" dur="2.9s" begin="1.8s" repeatCount="indefinite"/></circle>
+                  <circle r="1.8" fill="#9c7cff"><animateMotion path="M-52,227 C-15,227 12,113 82,110" dur="3.5s" begin="2.6s" repeatCount="indefinite"/><animate attributeName="opacity" values="0;0.6;0.6;0" keyTimes="0;0.1;0.85;1" dur="3.5s" begin="2.6s" repeatCount="indefinite"/></circle>
+                </svg>
               </div>
 
               <section class="e2a-zone e2a-ai" aria-label="AI transformation engine">
@@ -472,9 +503,20 @@ html[data-theme="light"] .sp-hero::after{opacity:.1}
               </section>
 
               <div class="e2a-flow" aria-hidden="true">
-                <div class="e2a-wire"></div>
-                <span class="e2a-orb orb-c"></span>
-                <span class="e2a-orb orb-d"></span>
+                <svg style="position:absolute;top:0;left:0;pointer-events:none;overflow:visible" width="34" height="220" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M-48,110 C-15,110 12,53 82,53" stroke="rgba(40,217,245,.40)" stroke-width="9" fill="none" stroke-linecap="round"/>
+                  <path d="M-48,110 C-15,110 12,111 82,111" stroke="rgba(40,217,245,.32)" stroke-width="9" fill="none" stroke-linecap="round"/>
+                  <path d="M-48,110 C-15,110 12,169 82,169" stroke="rgba(40,217,245,.26)" stroke-width="9" fill="none" stroke-linecap="round"/>
+                  <path d="M-48,110 C-15,120 12,227 82,227" stroke="rgba(40,217,245,.18)" stroke-width="9" fill="none" stroke-linecap="round"/>
+                  <path d="M-48,110 C-15,110 12,53 82,53" stroke="rgba(40,217,245,.62)" stroke-width="1.2" fill="none" stroke-linecap="round"/>
+                  <path d="M-48,110 C-15,110 12,111 82,111" stroke="rgba(40,217,245,.50)" stroke-width="1.2" fill="none" stroke-linecap="round"/>
+                  <path d="M-48,110 C-15,110 12,169 82,169" stroke="rgba(40,217,245,.42)" stroke-width="1.2" fill="none" stroke-linecap="round"/>
+                  <path d="M-48,110 C-15,120 12,227 82,227" stroke="rgba(40,217,245,.30)" stroke-width="1" fill="none" stroke-linecap="round"/>
+                  <circle r="2.5" fill="#69edff"><animateMotion path="M-48,110 C-15,110 12,53 82,53" dur="2.8s" begin="0.5s" repeatCount="indefinite"/><animate attributeName="opacity" values="0;1;1;0" keyTimes="0;0.1;0.85;1" dur="2.8s" begin="0.5s" repeatCount="indefinite"/></circle>
+                  <circle r="2" fill="#69edff"><animateMotion path="M-48,110 C-15,110 12,111 82,111" dur="3.1s" begin="1.3s" repeatCount="indefinite"/><animate attributeName="opacity" values="0;0.8;0.8;0" keyTimes="0;0.1;0.85;1" dur="3.1s" begin="1.3s" repeatCount="indefinite"/></circle>
+                  <circle r="2" fill="#69edff"><animateMotion path="M-48,110 C-15,110 12,169 82,169" dur="3.0s" begin="2.1s" repeatCount="indefinite"/><animate attributeName="opacity" values="0;0.7;0.7;0" keyTimes="0;0.1;0.85;1" dur="3.0s" begin="2.1s" repeatCount="indefinite"/></circle>
+                  <circle r="1.8" fill="#9c7cff"><animateMotion path="M-48,110 C-15,120 12,227 82,227" dur="3.4s" begin="2.9s" repeatCount="indefinite"/><animate attributeName="opacity" values="0;0.6;0.6;0" keyTimes="0;0.1;0.85;1" dur="3.4s" begin="2.9s" repeatCount="indefinite"/></circle>
+                </svg>
               </div>
 
               <section class="e2a-zone e2a-agents" aria-label="Specialized AI agents">
@@ -484,22 +526,22 @@ html[data-theme="light"] .sp-hero::after{opacity:.1}
                 </div>
                 <div class="e2a-agent-stack">
                   <div class="e2a-agent agent-process">
-                    <div class="e2a-agent-icon">⚙</div>
+                    <div class="e2a-agent-icon"><i class="ti ti-settings-2" aria-hidden="true"></i></div>
                     <div class="e2a-agent-copy"><strong>PROCESS AGENT</strong><span>ANALYZING</span><small>Flow · Exceptions</small></div>
                     <i></i>
                   </div>
                   <div class="e2a-agent agent-knowledge">
-                    <div class="e2a-agent-icon">◎</div>
+                    <div class="e2a-agent-icon"><i class="ti ti-book-2" aria-hidden="true"></i></div>
                     <div class="e2a-agent-copy"><strong>KNOWLEDGE AGENT</strong><span>RETRIEVING</span><small>Context · Evidence</small></div>
                     <i></i>
                   </div>
                   <div class="e2a-agent agent-action">
-                    <div class="e2a-agent-icon">▶</div>
+                    <div class="e2a-agent-icon"><i class="ti ti-player-play-filled" aria-hidden="true"></i></div>
                     <div class="e2a-agent-copy"><strong>ACTION AGENT</strong><span>EXECUTING</span><small>Tasks · System Actions</small></div>
                     <i></i>
                   </div>
                   <div class="e2a-agent agent-validation">
-                    <div class="e2a-agent-icon">✓</div>
+                    <div class="e2a-agent-icon"><i class="ti ti-shield-check" aria-hidden="true"></i></div>
                     <div class="e2a-agent-copy"><strong>VALIDATION AGENT</strong><span>VERIFYING</span><small>Quality · Controls</small></div>
                     <i></i>
                   </div>
@@ -507,9 +549,20 @@ html[data-theme="light"] .sp-hero::after{opacity:.1}
               </section>
 
               <div class="e2a-flow" aria-hidden="true">
-                <div class="e2a-wire"></div>
-                <span class="e2a-orb orb-e"></span>
-                <span class="e2a-orb orb-f"></span>
+                <svg style="position:absolute;top:0;left:0;pointer-events:none;overflow:visible" width="34" height="220" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M-52,53 C-15,53 12,110 82,110" stroke="rgba(55,224,194,.38)" stroke-width="9" fill="none" stroke-linecap="round"/>
+                  <path d="M-52,111 C-15,111 12,110 82,110" stroke="rgba(55,224,194,.30)" stroke-width="9" fill="none" stroke-linecap="round"/>
+                  <path d="M-52,169 C-15,169 12,110 82,110" stroke="rgba(55,224,194,.24)" stroke-width="9" fill="none" stroke-linecap="round"/>
+                  <path d="M-52,227 C-15,227 12,113 82,110" stroke="rgba(55,224,194,.16)" stroke-width="9" fill="none" stroke-linecap="round"/>
+                  <path d="M-52,53 C-15,53 12,110 82,110" stroke="rgba(55,224,194,.55)" stroke-width="1.2" fill="none" stroke-linecap="round"/>
+                  <path d="M-52,111 C-15,111 12,110 82,110" stroke="rgba(55,224,194,.45)" stroke-width="1.2" fill="none" stroke-linecap="round"/>
+                  <path d="M-52,169 C-15,169 12,110 82,110" stroke="rgba(55,224,194,.38)" stroke-width="1.2" fill="none" stroke-linecap="round"/>
+                  <path d="M-52,227 C-15,227 12,113 82,110" stroke="rgba(55,224,194,.28)" stroke-width="1" fill="none" stroke-linecap="round"/>
+                  <circle r="2.5" fill="#37e0c2"><animateMotion path="M-52,53 C-15,53 12,110 82,110" dur="3s" begin="0.3s" repeatCount="indefinite"/><animate attributeName="opacity" values="0;0.9;0.9;0" keyTimes="0;0.1;0.85;1" dur="3s" begin="0.3s" repeatCount="indefinite"/></circle>
+                  <circle r="2" fill="#37e0c2"><animateMotion path="M-52,111 C-15,111 12,110 82,110" dur="3.3s" begin="1.1s" repeatCount="indefinite"/><animate attributeName="opacity" values="0;0.7;0.7;0" keyTimes="0;0.1;0.85;1" dur="3.3s" begin="1.1s" repeatCount="indefinite"/></circle>
+                  <circle r="2" fill="#37e0c2"><animateMotion path="M-52,169 C-15,169 12,110 82,110" dur="3.1s" begin="1.9s" repeatCount="indefinite"/><animate attributeName="opacity" values="0;0.65;0.65;0" keyTimes="0;0.1;0.85;1" dur="3.1s" begin="1.9s" repeatCount="indefinite"/></circle>
+                  <circle r="1.8" fill="#37e0c2"><animateMotion path="M-52,227 C-15,227 12,113 82,110" dur="3.6s" begin="2.7s" repeatCount="indefinite"/><animate attributeName="opacity" values="0;0.55;0.55;0" keyTimes="0;0.1;0.85;1" dur="3.6s" begin="2.7s" repeatCount="indefinite"/></circle>
+                </svg>
               </div>
 
               <section class="e2a-zone e2a-value" aria-label="Operational outcomes">
@@ -519,19 +572,19 @@ html[data-theme="light"] .sp-hero::after{opacity:.1}
                 </div>
                 <div class="e2a-outcomes">
                   <div class="e2a-outcome outcome-1">
-                    <div class="e2a-value-icon">⚡</div>
+                    <div class="e2a-value-icon"><i class="ti ti-bolt" aria-hidden="true"></i></div>
                     <div><span>FASTER</span><strong>DECISIONS</strong></div>
                   </div>
                   <div class="e2a-outcome outcome-2">
-                    <div class="e2a-value-icon">◈</div>
+                    <div class="e2a-value-icon"><i class="ti ti-chart-bar" aria-hidden="true"></i></div>
                     <div><span>LESS</span><strong>MANUAL WORK</strong></div>
                   </div>
                   <div class="e2a-outcome outcome-3">
-                    <div class="e2a-value-icon">⬡</div>
+                    <div class="e2a-value-icon"><i class="ti ti-share" aria-hidden="true"></i></div>
                     <div><span>CONNECTED</span><strong>EXECUTION</strong></div>
                   </div>
                   <div class="e2a-outcome outcome-4">
-                    <div class="e2a-value-icon">⬢</div>
+                    <div class="e2a-value-icon"><i class="ti ti-target" aria-hidden="true"></i></div>
                     <div><span>CONTROLLED</span><strong>SCALE</strong></div>
                   </div>
                 </div>
