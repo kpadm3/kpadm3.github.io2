@@ -833,6 +833,12 @@ html[data-theme="light"] .hx-path path.purple{stroke:#8067ef!important}html[data
 html[data-theme="light"] .hx-junction circle{filter:drop-shadow(0 0 4px rgba(0,160,198,.5))!important}
 @media(prefers-reduced-motion:reduce){.hx-junction circle{animation:none!important}}
 
+/* HERO X DYNAMIC FLOW ROUTING v5 */
+.heroX-links{overflow:visible}
+.hx-dynamic-wire{fill:none;stroke:#42ddf6;stroke-width:2.15;stroke-linecap:round;stroke-linejoin:round;filter:url(#hxg);opacity:.94}
+.hx-dynamic-wire.purple{stroke:#9877ff}.hx-dynamic-wire.teal{stroke:#2de0ce}
+.hx-dynamic-runner{fill:#e8fdff;filter:url(#hxg)}
+@media(prefers-reduced-motion:reduce){.hx-dynamic-runner{display:none}}
 </style>
 <script>if(localStorage.getItem('kp-theme')==='light')document.documentElement.setAttribute('data-theme','light');</script>
 </head>
@@ -1310,6 +1316,94 @@ html[data-theme="light"] .hx-junction circle{filter:drop-shadow(0 0 4px rgba(0,1
   };
   var inp=document.getElementById('cwInput');
   if(inp)inp.addEventListener('keydown',function(e){if(e.key==='Enter')window.cwSendCustom();});
+})();
+</script>
+<!-- HERO X DYNAMIC FLOW ROUTING v5 -->
+<script>
+(function(){
+  var hero=document.querySelector('.heroX');
+  if(!hero||hero.dataset.dynamicFlow==='1')return;
+  hero.dataset.dynamicFlow='1';
+  var map=hero.querySelector('.heroX-map');
+  var svg=hero.querySelector('.heroX-links');
+  var enterprise=Array.from(hero.querySelectorAll('.heroX-enterprise article'));
+  var agents=Array.from(hero.querySelectorAll('.heroX-agents article'));
+  var values=Array.from(hero.querySelectorAll('.heroX-valuebox article'));
+  if(!map||!svg||enterprise.length<4||agents.length<4||values.length<4)return;
+
+  // Add true receiving ports without changing card copy/layout.
+  agents.forEach(function(card,i){
+    if(!card.querySelector('.hx-in-port')){
+      var p=document.createElement('span');
+      p.className='hx-in-port';
+      p.setAttribute('aria-hidden','true');
+      card.appendChild(p);
+    }
+  });
+  values.forEach(function(row,i){
+    if(!row.querySelector('.hx-value-port')){
+      var p=document.createElement('span');
+      p.className='hx-value-port';
+      p.setAttribute('aria-hidden','true');
+      row.appendChild(p);
+    }
+  });
+
+  var style=document.createElement('style');
+  style.textContent='.heroX-agents article .hx-in-port,.heroX-valuebox article .hx-value-port{position:absolute;left:-6px;top:50%;transform:translateY(-50%);width:10px;height:10px;border-radius:50%;background:#43e5fb;box-shadow:0 0 8px #43e5fb,0 0 15px rgba(67,229,251,.55);z-index:7}.heroX-agents article.violet .hx-in-port{background:#9877ff;box-shadow:0 0 9px #9877ff}.heroX-agents article.teal .hx-in-port{background:#2de0ce;box-shadow:0 0 9px #2de0ce}.heroX-valuebox article{position:relative}.heroX-valuebox article:nth-child(2) .hx-value-port{background:#9877ff;box-shadow:0 0 9px #9877ff}.heroX-valuebox article:nth-child(4) .hx-value-port{background:#2de0ce;box-shadow:0 0 9px #2de0ce}';
+  document.head.appendChild(style);
+
+  var NS='http://www.w3.org/2000/svg', raf=0;
+  function center(el){
+    var r=el.getBoundingClientRect(), m=map.getBoundingClientRect();
+    return {x:r.left+r.width/2-m.left,y:r.top+r.height/2-m.top};
+  }
+  function addPath(a,b,cls,runner,delay){
+    var dx=Math.max(26,(b.x-a.x)*.46);
+    var d='M '+a.x+' '+a.y+' C '+(a.x+dx)+' '+a.y+', '+(b.x-dx)+' '+b.y+', '+b.x+' '+b.y;
+    var p=document.createElementNS(NS,'path');
+    p.setAttribute('d',d);p.setAttribute('class','hx-dynamic-wire '+(cls||''));svg.appendChild(p);
+    if(runner&&!window.matchMedia('(prefers-reduced-motion: reduce)').matches){
+      var dot=document.createElementNS(NS,'circle');dot.setAttribute('r','2.3');dot.setAttribute('class','hx-dynamic-runner');
+      var am=document.createElementNS(NS,'animateMotion');am.setAttribute('dur','4.6s');am.setAttribute('repeatCount','indefinite');am.setAttribute('path',d);am.setAttribute('begin',(delay||0)+'s');
+      dot.appendChild(am);svg.appendChild(dot);
+    }
+  }
+  function draw(){
+    cancelAnimationFrame(raf);
+    raf=requestAnimationFrame(function(){
+      if(window.innerWidth<=1200)return;
+      var mr=map.getBoundingClientRect();
+      svg.setAttribute('viewBox','0 0 '+mr.width+' '+400);
+      svg.setAttribute('preserveAspectRatio','none');
+      Array.from(svg.querySelectorAll('.hx-path,.hx-junction,.hx-dynamic-wire,.hx-dynamic-runner')).forEach(function(n){n.remove();});
+
+      var core=hero.querySelector('.heroX-core'), cr=core.getBoundingClientRect(), mm=map.getBoundingClientRect();
+      var leftX=cr.left-mm.left, rightX=cr.right-mm.left, cy=cr.top+cr.height/2-mm.top;
+      var offsets=[-13,-4,5,14], colors=['','', '', 'purple'];
+      var outColors=['','purple','purple','teal'];
+
+      enterprise.forEach(function(card,i){
+        var port=card.querySelector(':scope > span'), a=center(port), b={x:leftX,y:cy+offsets[i]};
+        addPath(a,b,colors[i],true,-i*.55);
+      });
+      agents.forEach(function(card,i){
+        var a={x:rightX,y:cy+offsets[i]}, b=center(card.querySelector('.hx-in-port'));
+        addPath(a,b,outColors[i],true,-i*.6);
+      });
+      agents.forEach(function(card,i){
+        var a=center(card.querySelector(':scope > span:not(.hx-in-port)')), b=center(values[i].querySelector('.hx-value-port'));
+        addPath(a,b,outColors[i],false,0);
+      });
+      // Reference-style restrained cross-flow fan-out.
+      addPath(center(agents[0].querySelector(':scope > span:not(.hx-in-port)')),center(values[2].querySelector('.hx-value-port')),'',false,0);
+      addPath(center(agents[1].querySelector(':scope > span:not(.hx-in-port)')),center(values[3].querySelector('.hx-value-port')),'purple',false,0);
+      addPath(center(agents[2].querySelector(':scope > span:not(.hx-in-port)')),center(values[0].querySelector('.hx-value-port')),'purple',false,0);
+      addPath(center(agents[3].querySelector(':scope > span:not(.hx-in-port)')),center(values[1].querySelector('.hx-value-port')),'teal',false,0);
+    });
+  }
+  draw();
+  if('ResizeObserver' in window){new ResizeObserver(draw).observe(map);}else{window.addEventListener('resize',draw,{passive:true});}
 })();
 </script>
 </body>
