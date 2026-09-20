@@ -167,21 +167,27 @@
 
   const tip = fab.querySelector('.theme-fab-tip');
 
+  function isVisuallyLight() {
+    const explicit = root.getAttribute('data-theme');
+    if (explicit === 'light') return true;
+    if (explicit === 'dark') return false;
+    return window.matchMedia('(prefers-color-scheme: light)').matches;
+  }
+
   function updateFab() {
-    const isLight = root.getAttribute('data-theme') === 'light';
-    fab.querySelector('i').className = isLight ? 'ti ti-moon-stars' : 'ti ti-sun';
-    fab.querySelector('.theme-fab-lbl').textContent = isLight ? 'Dark' : 'Light';
-    tip.textContent = isLight ? 'Switch to dark mode' : 'Switch to light mode';
+    const light = isVisuallyLight();
+    fab.querySelector('i').className = light ? 'ti ti-moon-stars' : 'ti ti-sun';
+    fab.querySelector('.theme-fab-lbl').textContent = light ? 'Dark' : 'Light';
+    tip.textContent = light ? 'Switch to dark mode' : 'Switch to light mode';
     const meta = document.querySelector('meta[name="theme-color"]');
-    if (meta) meta.content = isLight ? '#f0f5fb' : '#050b14';
+    if (meta) meta.content = light ? '#f0f5fb' : '#050b14';
   }
 
   fab.addEventListener('click', () => {
-    const isLight = root.getAttribute('data-theme') === 'light';
     tip.classList.remove('vis');
-    if (isLight) {
-      root.removeAttribute('data-theme');
-      localStorage.removeItem(THEME_KEY);
+    if (isVisuallyLight()) {
+      root.setAttribute('data-theme', 'dark');
+      localStorage.setItem(THEME_KEY, 'dark');
     } else {
       root.setAttribute('data-theme', 'light');
       localStorage.setItem(THEME_KEY, 'light');
