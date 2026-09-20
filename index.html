@@ -1299,33 +1299,19 @@ html[data-theme="light"] .heroX-ai .hx-cube-wave-dots{filter:drop-shadow(0 0 2px
 }
 .hx-flow-token.blue{stroke:#4da1ff}.hx-flow-token.purple{stroke:#9877ff}.hx-flow-token.teal{stroke:#2de0ce}
 
-/* Reliable cube wave: CSS drives each dot; no animated SVG gradient dependency. */
-@keyframes hxDotWave{
-  0%,100%{opacity:.10;transform:scale(.72);color:#2bbbd5}
-  20%{opacity:.18;transform:scale(.82);color:#35cde8}
-  36%{opacity:.98;transform:scale(1.42);color:#59efff}
-  45%{opacity:1;transform:scale(1.34);color:#4da1ff}
-  54%{opacity:1;transform:scale(1.30);color:#9b7cff}
-  64%{opacity:.96;transform:scale(1.22);color:#3fe0ce}
-  78%{opacity:.28;transform:scale(.92);color:#52e9ff}
-  90%{opacity:.12;transform:scale(.78);color:#35cde8}
-}
+/* Cube wave v16: JavaScript paints a moving band directly onto the SVG dots.
+   This avoids browser inconsistencies with CSS transforms/animations on SVG circles. */
 .heroX-ai .hx-cube-dots circle{
   fill:#2dcbe3!important;
-  opacity:.36!important;
-  filter:drop-shadow(0 0 1.2px rgba(45,203,227,.42))!important;
-  animation:none!important
+  opacity:.25;
+  filter:drop-shadow(0 0 1px rgba(45,203,227,.34));
 }
 .heroX-ai .hx-cube-wave-dots circle{
-  fill:currentColor!important;
-  color:#35cde8;
-  opacity:.1;
-  transform-box:fill-box;
-  transform-origin:center;
-  animation:hxDotWave 4.2s linear infinite!important;
-  animation-delay:var(--wave-delay,0s)!important;
-  will-change:transform,opacity;
-  filter:drop-shadow(0 0 4px currentColor)!important
+  opacity:0;
+  transform:none!important;
+  animation:none!important;
+  transition:none!important;
+  will-change:opacity,fill;
 }
 .heroX-ai .hx-cube-wave-dots{opacity:1!important;filter:none!important}
 .heroX-ai .hx-cube-edges path{opacity:.12!important}
@@ -1335,7 +1321,7 @@ html[data-theme="light"] .heroX-ai .hx-cube-wave-dots{filter:drop-shadow(0 0 2px
   .heroX-links{display:none!important}
 }
 @media(prefers-reduced-motion:reduce){
-  .heroX-ai .hx-cube-wave-dots circle{animation:none!important;opacity:.35!important;transform:none!important}
+  .heroX-ai .hx-cube-wave-dots circle{animation:none!important;transform:none!important}
 }
 
 </style>
@@ -1810,14 +1796,14 @@ html[data-theme="light"] .heroX-ai .hx-cube-wave-dots{filter:drop-shadow(0 0 2px
 })();
 </script>
 
-<!-- HERO X DOTTED CUBE WAVE v15 -->
+<!-- HERO X DOTTED CUBE WAVE v16 -->
 <script>
 (function(){
   var svg=document.querySelector('.heroX .hx-dotcube');
   var base=svg&&svg.querySelector('.hx-cube-dots');
   if(!svg||!base)return;
-  var NS='http://www.w3.org/2000/svg', N=15, DURATION=4.2;
 
+  var NS='http://www.w3.org/2000/svg',N=15;
   var old=svg.querySelector('.hx-cube-wave-dots');
   if(old)old.remove();
   var oldDefs=svg.querySelector('.hx-cube-wave-defs');
@@ -1827,11 +1813,10 @@ html[data-theme="light"] .heroX-ai .hx-cube-wave-dots{filter:drop-shadow(0 0 2px
   wave.setAttribute('class','hx-cube-wave-dots');
   base.insertAdjacentElement('afterend',wave);
 
+  var points=[];
   function bilerp(a,b,c,d,u,v){
-    return {
-      x:(1-u)*(1-v)*a.x+u*(1-v)*b.x+u*v*c.x+(1-u)*v*d.x,
-      y:(1-u)*(1-v)*a.y+u*(1-v)*b.y+u*v*c.y+(1-u)*v*d.y
-    };
+    return{x:(1-u)*(1-v)*a.x+u*(1-v)*b.x+u*v*c.x+(1-u)*v*d.x,
+           y:(1-u)*(1-v)*a.y+u*(1-v)*b.y+u*v*c.y+(1-u)*v*d.y};
   }
   function face(cls,a,b,c,d,bias){
     for(var row=0;row<N;row++){
@@ -1841,22 +1826,18 @@ html[data-theme="light"] .heroX-ai .hx-cube-wave-dots{filter:drop-shadow(0 0 2px
 
         var dot=document.createElementNS(NS,'circle');
         dot.setAttribute('class',cls);
-        dot.setAttribute('cx',p.x.toFixed(2));
-        dot.setAttribute('cy',p.y.toFixed(2));
+        dot.setAttribute('cx',p.x.toFixed(2));dot.setAttribute('cy',p.y.toFixed(2));
         dot.setAttribute('r',edge?'1.48':'1.22');
         base.appendChild(dot);
 
         var w=document.createElementNS(NS,'circle');
-        w.setAttribute('cx',p.x.toFixed(2));
-        w.setAttribute('cy',p.y.toFixed(2));
-        w.setAttribute('r',edge?'2.05':'1.72');
-
-        // Phase follows x with a small y bend: a coherent diagonal wave travels through the cube.
-        var x=(p.x-145)/270;
-        var y=(p.y-30)/190;
-        var phase=(x*.78+y*.22+bias)%1;
-        w.style.setProperty('--wave-delay',(-phase*DURATION).toFixed(3)+'s');
+        w.setAttribute('cx',p.x.toFixed(2));w.setAttribute('cy',p.y.toFixed(2));
+        w.setAttribute('r',edge?'2.45':'2.05');
         wave.appendChild(w);
+
+        // Diagonal coordinate. The band moves left -> right and slightly downward.
+        var nx=(p.x-145)/270,ny=(p.y-30)/190;
+        points.push({el:w,phase:(nx*.76+ny*.24+bias)%1});
       }
     }
   }
@@ -1865,8 +1846,47 @@ html[data-theme="light"] .heroX-ai .hx-cube-wave-dots{filter:drop-shadow(0 0 2px
   var T={x:280,y:30},L={x:145,y:88},C={x:280,y:145},R={x:415,y:88};
   var LB={x:145,y:163},B={x:280,y:220},RB={x:415,y:163};
   face('hx-dot-top',T,R,C,L,0);
-  face('hx-dot-left',L,C,B,LB,.04);
-  face('hx-dot-right',C,R,RB,B,.08);
+  face('hx-dot-left',L,C,B,LB,.035);
+  face('hx-dot-right',C,R,RB,B,.07);
+
+  var palette=[
+    [89,239,255],
+    [77,161,255],
+    [155,119,255],
+    [63,224,206]
+  ];
+  var reduced=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var start=performance.now(),duration=4300;
+
+  function colorAt(t){
+    var x=Math.max(0,Math.min(.999,t))*3;
+    var i=Math.floor(x),f=x-i,a=palette[i],b=palette[Math.min(3,i+1)];
+    return 'rgb('+Math.round(a[0]+(b[0]-a[0])*f)+','+
+                  Math.round(a[1]+(b[1]-a[1])*f)+','+
+                  Math.round(a[2]+(b[2]-a[2])*f)+')';
+  }
+  function render(now){
+    var travel=reduced?.48:((now-start)%duration)/duration;
+    points.forEach(function(p){
+      // Circular distance from each point to the moving wave center.
+      var d=Math.abs(p.phase-travel);d=Math.min(d,1-d);
+      // Broad enough to read as a wave, narrow enough to visibly travel.
+      var strength=Math.max(0,1-d/.17);
+      strength=strength*strength*(3-2*strength);
+      if(strength>.015){
+        var local=(.5+(p.phase-travel)*2)%1;if(local<0)local+=1;
+        var col=colorAt(local);
+        p.el.style.fill=col;
+        p.el.style.opacity=(.05+.95*strength).toFixed(3);
+        p.el.style.filter='drop-shadow(0 0 '+(1+5*strength).toFixed(1)+'px '+col+')';
+        p.el.setAttribute('r',(2.0+1.35*strength).toFixed(2));
+      }else{
+        p.el.style.opacity='0';
+      }
+    });
+    if(!reduced)requestAnimationFrame(render);
+  }
+  requestAnimationFrame(render);
 })();
 </script>
 
