@@ -803,6 +803,36 @@ html[data-theme="light"] .heroX:after{opacity:.18!important}
 html[data-theme="light"] .heroX-links{filter:drop-shadow(0 0 3px rgba(8,145,178,.34))!important}
 }
 
+
+/* HERO X CONNECTION + LIGHT CORE FIX v4 */
+/* Paths are continuous and terminate on explicit glowing junctions. */
+.hx-path path{fill:none!important;stroke:url(#hxc)!important;stroke-width:2.35!important;stroke-linecap:round!important;stroke-linejoin:round!important;opacity:.98!important;filter:url(#hxg)!important}
+.hx-path path.purple{stroke:#9578ff!important}.hx-path path.teal{stroke:#2be2cf!important}
+.hx-junction circle{fill:#6eeeff;stroke:#d7fbff;stroke-width:1;filter:url(#hxg);animation:hxNodeSvg 2s ease-in-out infinite}
+.hx-junction circle.purple{fill:#9b7cff;stroke:#e4dbff}.hx-junction circle.teal{fill:#31e1cc;stroke:#d8fff8}
+@keyframes hxNodeSvg{0%,100%{opacity:.68}50%{opacity:1}}
+/* Make the actual card ports sit visually on the connection system. */
+.heroX-enterprise article>span{right:-6px!important}.heroX-agents article>span{right:-6px!important}
+.heroX-enterprise article:after,.heroX-agents article:after{content:"";position:absolute;right:-17px;top:50%;width:12px;height:1px;background:linear-gradient(90deg,currentColor,transparent);opacity:.55}
+/* Dark core: layered luminous machinery like the reference. */
+.heroX-core{isolation:isolate;background:radial-gradient(circle at 50% 50%,#06263f 0 31%,rgba(6,44,70,.9) 32% 42%,rgba(7,57,88,.36) 43% 58%,transparent 70%)!important}
+.heroX-core .r1{border:1px dashed rgba(44,200,239,.34)!important}
+.heroX-core .r2{border:3px solid rgba(22,139,210,.35)!important;box-shadow:inset 0 0 18px rgba(31,205,242,.08),0 0 18px rgba(31,205,242,.08)!important}
+.heroX-core .r3{border:2px solid rgba(45,221,247,.68)!important;box-shadow:0 0 24px rgba(45,221,247,.20)!important}
+.heroX-core .r4{border:1px solid rgba(63,151,222,.55)!important;box-shadow:inset 0 0 26px rgba(24,137,205,.12)!important}
+.hx-coretext{color:#f4fbff!important;text-shadow:0 0 12px rgba(58,218,245,.24)!important}
+/* Light mode keeps the same engineered core instead of a dark solid disk. */
+html[data-theme="light"] .heroX-core{background:radial-gradient(circle at 50% 50%,rgba(237,250,255,.98) 0 31%,rgba(205,239,249,.82) 32% 42%,rgba(155,220,240,.22) 43% 58%,transparent 70%)!important;filter:drop-shadow(0 0 25px rgba(8,159,194,.16))!important}
+html[data-theme="light"] .heroX-core .r1{border-color:rgba(7,145,181,.30)!important}
+html[data-theme="light"] .heroX-core .r2{border-color:rgba(8,153,193,.38)!important;box-shadow:inset 0 0 18px rgba(8,153,193,.07),0 0 18px rgba(8,153,193,.08)!important}
+html[data-theme="light"] .heroX-core .r3{border-color:rgba(7,169,205,.62)!important;box-shadow:0 0 22px rgba(7,169,205,.14)!important}
+html[data-theme="light"] .heroX-core .r4{border-color:rgba(31,123,177,.42)!important}
+html[data-theme="light"] .hx-coretext{color:#173f58!important;text-shadow:none!important}
+html[data-theme="light"] .hx-path path{opacity:.82!important;filter:drop-shadow(0 0 3px rgba(0,164,204,.28))!important}
+html[data-theme="light"] .hx-path path.purple{stroke:#8067ef!important}html[data-theme="light"] .hx-path path.teal{stroke:#0bc9b6!important}
+html[data-theme="light"] .hx-junction circle{filter:drop-shadow(0 0 4px rgba(0,160,198,.5))!important}
+@media(prefers-reduced-motion:reduce){.hx-junction circle{animation:none!important}}
+
 </style>
 <script>if(localStorage.getItem('kp-theme')==='light')document.documentElement.setAttribute('data-theme','light');</script>
 </head>
@@ -843,22 +873,43 @@ html[data-theme="light"] .heroX-links{filter:drop-shadow(0 0 3px rgba(8,145,178,
 
   <div class="heroX-map">
     <svg class="heroX-links" viewBox="0 0 1600 400" preserveAspectRatio="none" aria-hidden="true">
-      <defs>
-        <filter id="hxg"><feGaussianBlur stdDeviation="3" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
-        <linearGradient id="hxc" x1="0" x2="1"><stop stop-color="#29dcff"/><stop offset=".7" stop-color="#45a9ff"/><stop offset="1" stop-color="#8c72ff"/></linearGradient>
-        <linearGradient id="hxt" x1="0" x2="1"><stop stop-color="#8c72ff"/><stop offset=".55" stop-color="#29dcff"/><stop offset="1" stop-color="#25e1c8"/></linearGradient>
-      </defs>
-      <g class="hx-path hx-in">
-        <path d="M365 112 C455 112 470 183 585 188"/><path d="M365 181 C470 181 495 192 585 195"/><path d="M365 250 C470 250 495 207 585 202"/><path d="M365 319 C455 319 470 216 585 209"/>
-      </g>
-      <g class="hx-path hx-ag">
-        <path d="M875 188 C960 184 970 112 1030 112"/><path d="M875 195 C970 192 980 181 1030 181"/><path d="M875 202 C970 208 980 250 1030 250"/><path d="M875 209 C960 218 970 319 1030 319"/>
-      </g>
-      <g class="hx-path hx-val">
-        <path d="M1270 112 C1320 112 1325 112 1360 112"/><path d="M1270 181 C1320 181 1325 181 1360 181"/><path d="M1270 250 C1320 250 1325 250 1360 250"/><path d="M1270 319 C1320 319 1325 319 1360 319"/>
-        <path d="M1270 112 C1328 112 1325 319 1360 319"/><path d="M1270 319 C1328 319 1325 112 1360 112"/>
-      </g>
-    </svg>
+  <defs>
+    <filter id="hxg" x="-30%" y="-30%" width="160%" height="160%"><feGaussianBlur stdDeviation="2.4" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+    <linearGradient id="hxc" x1="0" x2="1"><stop stop-color="#31e4ff"/><stop offset=".62" stop-color="#39bfff"/><stop offset="1" stop-color="#8476ff"/></linearGradient>
+    <linearGradient id="hxp" x1="0" x2="1"><stop stop-color="#8476ff"/><stop offset=".48" stop-color="#39cfff"/><stop offset="1" stop-color="#27e2d0"/></linearGradient>
+  </defs>
+  <g class="hx-path hx-in">
+    <path d="M355 111 C430 111 452 178 535 183"/>
+    <path d="M355 180 C438 180 468 188 535 190"/>
+    <path d="M355 249 C438 249 468 199 535 197"/>
+    <path class="purple" d="M355 318 C430 318 452 210 535 204"/>
+  </g>
+  <g class="hx-junction">
+    <circle cx="535" cy="183" r="4"/><circle cx="535" cy="190" r="4"/><circle cx="535" cy="197" r="4"/><circle cx="535" cy="204" r="4" class="purple"/>
+  </g>
+  <g class="hx-path hx-ag">
+    <path d="M865 183 C935 180 945 111 990 111"/>
+    <path class="purple" d="M865 190 C935 188 950 180 990 180"/>
+    <path class="purple" d="M865 197 C935 202 950 249 990 249"/>
+    <path class="teal" d="M865 204 C935 214 945 318 990 318"/>
+  </g>
+  <g class="hx-junction">
+    <circle cx="865" cy="183" r="4"/><circle cx="865" cy="190" r="4" class="purple"/><circle cx="865" cy="197" r="4" class="purple"/><circle cx="865" cy="204" r="4" class="teal"/>
+  </g>
+  <g class="hx-path hx-val">
+    <path d="M1295 111 C1335 111 1338 111 1360 111"/>
+    <path class="purple" d="M1295 180 C1335 180 1338 180 1360 180"/>
+    <path d="M1295 249 C1335 249 1338 249 1360 249"/>
+    <path class="teal" d="M1295 318 C1335 318 1338 318 1360 318"/>
+    <path d="M1295 111 C1338 111 1328 249 1360 249"/>
+    <path class="purple" d="M1295 180 C1338 180 1328 318 1360 318"/>
+    <path d="M1295 249 C1338 249 1328 111 1360 111"/>
+    <path class="teal" d="M1295 318 C1338 318 1328 180 1360 180"/>
+  </g>
+  <g class="hx-junction hx-value-junction">
+    <circle cx="1360" cy="111" r="4"/><circle cx="1360" cy="180" r="4" class="purple"/><circle cx="1360" cy="249" r="4"/><circle cx="1360" cy="318" r="4" class="teal"/>
+  </g>
+</svg>
 
     <section class="heroX-zone heroX-enterprise">
       <header><b>ENTERPRISE REALITY</b><small>Complex systems. Real constraints. Big opportunity.</small></header>
