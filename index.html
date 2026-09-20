@@ -1792,7 +1792,7 @@ html[data-theme="light"] .heroX-ai .hx-cube-dots circle{opacity:.52}
   ];
   var colors=['','blue','purple','teal'];
   var reduced=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  var drawRaf=0,lifeRaf=0,startTime=0,particlePool=[],activeState={enterprise:'',agents:'',values:''},cubeMode='reset',capIndex=-1;
+  var drawRaf=0,lifeRaf=0,startTime=0,particlePool=[],activeState={enterprise:null,agents:null,values:null},cubeMode='reset',capIndex=-1;
 
   // Flatter, wider perspective: same three-face dotted cube, viewed more from above.
   var T={x:280,y:52},L={x:112,y:92},C={x:280,y:132},R={x:448,y:92};
@@ -2036,7 +2036,7 @@ html[data-theme="light"] .heroX-ai .hx-cube-dots circle{opacity:.52}
 
   draw();
   window.addEventListener('load',draw,{once:true});
-  window.addEventListener('resize',function(){draw();startTime=performance.now();},{passive:true});
+  window.addEventListener('resize',function(){draw();activeState={enterprise:null,agents:null,values:null};startTime=performance.now();},{passive:true});
   if('ResizeObserver' in window)new ResizeObserver(draw).observe(map);
 
   cubeMode='';resetCube();
