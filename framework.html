@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Framework | Krishna Padmanabhan</title>
-<meta name="description" content="A structured, outcome-focused delivery framework applied across enterprise business analysis, product, and systems delivery: Understand, Analyze & Design, Validate, Deliver.">
+<meta name="description" content="A five-phase enterprise transformation framework: from understanding enterprise reality through structured rules, automation opportunity, controlled execution and validated delivery.">
 <meta name="theme-color" content="#050b14">
 <link rel="stylesheet" href="assets/css/site.css">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@3/dist/tabler-icons.min.css">
@@ -40,7 +40,7 @@ body{
 .section-title{margin:0;color:var(--case-cyan);font-size:.82rem;font-weight:900;letter-spacing:.08em;text-transform:uppercase}
 .section-intro p{max-width:560px;margin:0;color:#9fb0c3;font-size:.74rem;line-height:1.55}
 
-.framework-steps{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+.framework-steps{display:grid;grid-template-columns:repeat(5,1fr);gap:14px}
 .framework-step{
   position:relative;
   padding:30px 16px 22px;
@@ -128,6 +128,20 @@ body{
 .cta-actions{display:flex;gap:14px;justify-content:flex-end}
 
 .case-note{margin:10px 0 24px;color:#6a8099;font-size:.62rem;text-align:center;line-height:1.65}
+.principle-bar{
+  margin:14px 0;
+  padding:15px 24px;
+  border:1px solid color-mix(in srgb,var(--case-cyan) 30%,transparent);
+  border-radius:12px;
+  background:color-mix(in srgb,var(--case-cyan) 6%,transparent);
+  text-align:center;
+  color:color-mix(in srgb,var(--case-cyan) 85%,white);
+  font-size:.74rem;
+  font-weight:700;
+  letter-spacing:.035em;
+  line-height:1.7;
+}
+html[data-theme="light"] .principle-bar{background:rgba(8,145,178,.06);border-color:rgba(8,145,178,.22);color:#0891b2}
 
 .reveal-case{opacity:0;transform:translateY(14px);transition:opacity .55s ease,transform .55s cubic-bezier(.22,1,.36,1)}
 .reveal-case.visible{opacity:1;transform:none}
@@ -192,6 +206,7 @@ html[data-theme="light"] .nav-soc-btn:hover{border-color:rgba(8,145,178,.4);colo
   <div class="container nav-row">
     <a class="brand nav-positioning" href="index.html" aria-label="Home">Process <span>×</span> People <span>×</span> AI <span>×</span> Agents</a>
     <nav class="nav-links" aria-label="Primary navigation">
+      <a href="index.html">Home</a>
       <a href="index.html#foundation">Solutions</a>
       <a href="experience.html">Experience</a>
       <a href="framework.html" class="active">Framework</a>
@@ -200,7 +215,7 @@ html[data-theme="light"] .nav-soc-btn:hover{border-color:rgba(8,145,178,.4);colo
     <div class="nav-social">
       <a href="https://www.linkedin.com/in/krishna-s-a046a9176/" class="nav-soc-btn" aria-label="LinkedIn" target="_blank" rel="noopener noreferrer"><i class="ti ti-brand-linkedin" aria-hidden="true"></i></a>
       <a href="https://github.com/kpadm3" class="nav-soc-btn" aria-label="GitHub" target="_blank" rel="noopener noreferrer"><i class="ti ti-brand-github" aria-hidden="true"></i></a>
-      <a href="mailto:pskrishna204@gmail.com" class="nav-soc-btn" aria-label="Email"><i class="ti ti-mail" aria-hidden="true"></i></a>
+      <a href="contact.html" class="nav-soc-btn" aria-label="Contact"><i class="ti ti-mail" aria-hidden="true"></i></a>
       <span class="theme-header-host" aria-label="Theme control"></span>
     </div>
   </div>
@@ -210,43 +225,53 @@ html[data-theme="light"] .nav-soc-btn:hover{border-color:rgba(8,145,178,.4);colo
 
   <main>
     <section class="page-hero reveal-case">
-      <div class="page-kicker">Delivery Methodology</div>
-      <h1 class="page-title">My Framework</h1>
-      <p class="page-lead">A practical, structured approach to solving complex enterprise problems. From business need through production-ready outcomes. Four phases applied consistently across analysis, design, validation, and delivery.</p>
+      <div class="page-kicker">Enterprise Transformation Framework</div>
+      <h1 class="page-title">From Enterprise Reality to Controlled AI-Enabled Delivery</h1>
+      <p class="page-lead">I start with the process, rules, systems, data and controls. Not with AI. From there, I determine what should remain deterministic, where AI can reason, where agents can orchestrate work and where human approval must remain.</p>
     </section>
 
     <section class="section-block glass-panel reveal-case">
       <div class="section-intro">
-        <h2 class="section-title">Four-Phase Delivery Framework</h2>
-        <p>Every engagement follows the same core structure, adapted to scale with the complexity of the initiative.</p>
+        <h2 class="section-title">Five-Phase Delivery Framework</h2>
+        <p>Every engagement follows the same core structure, adapted to scale with the complexity and automation opportunity of the initiative.</p>
       </div>
       <div class="framework-steps">
         <div class="framework-step">
           <div class="step-badge">1</div>
           <div class="step-icon"><i class="ti ti-eye" aria-hidden="true"></i></div>
-          <div class="step-name">Understand</div>
-          <p>Engage stakeholders, elicit business needs, analyze current state, surface constraints, and define the problem worth solving.</p>
+          <div class="step-name">Understand the Enterprise Reality</div>
+          <p>Understand the business problem, stakeholders, current process, systems, data, constraints and operational pain points before designing a solution.</p>
         </div>
         <div class="framework-step">
           <div class="step-badge">2</div>
-          <div class="step-icon"><i class="ti ti-chart-dots-3" aria-hidden="true"></i></div>
-          <div class="step-name">Analyze & Design</div>
-          <p>Model processes, define business rules, structure data, and design functional solutions with traceable acceptance criteria.</p>
+          <div class="step-icon"><i class="ti ti-sitemap" aria-hidden="true"></i></div>
+          <div class="step-name">Structure Rules, Data &amp; Controls</div>
+          <p>Translate complexity into requirements, process flows, business rules, data relationships, validation criteria and clear decision boundaries.</p>
         </div>
         <div class="framework-step">
           <div class="step-badge">3</div>
-          <div class="step-icon"><i class="ti ti-list-check" aria-hidden="true"></i></div>
-          <div class="step-name">Validate</div>
-          <p>Validate designs with stakeholders, refine assumptions, surface gaps, and confirm the solution fits the real business need.</p>
+          <div class="step-icon"><i class="ti ti-cpu" aria-hidden="true"></i></div>
+          <div class="step-name">Identify the Right Automation</div>
+          <p>Determine what should remain deterministic, where AI can interpret ambiguity, where agents can coordinate actions and where human judgment is required.</p>
         </div>
         <div class="framework-step">
           <div class="step-badge">4</div>
-          <div class="step-icon"><i class="ti ti-rocket" aria-hidden="true"></i></div>
-          <div class="step-name">Deliver</div>
-          <p>Support implementation, UAT coordination, release readiness, and post-production stabilization through hypercare.</p>
+          <div class="step-icon"><i class="ti ti-layout-kanban" aria-hidden="true"></i></div>
+          <div class="step-name">Design Controlled Execution</div>
+          <p>Define workflows, system interactions, exception handling, ownership, auditability and human-in-the-loop controls before implementation.</p>
+        </div>
+        <div class="framework-step">
+          <div class="step-badge">5</div>
+          <div class="step-icon"><i class="ti ti-circle-check" aria-hidden="true"></i></div>
+          <div class="step-name">Validate &amp; Operationalize</div>
+          <p>Test against real scenarios, validate with stakeholders, run UAT, measure outcomes and support controlled release and continuous improvement.</p>
         </div>
       </div>
     </section>
+
+    <div class="principle-bar reveal-case">
+      Deterministic logic handles certainty &nbsp;·&nbsp; AI reasons through ambiguity &nbsp;·&nbsp; Agents coordinate action &nbsp;·&nbsp; Humans retain decision authority
+    </div>
 
     <section class="section-block glass-panel reveal-case">
       <div class="section-intro">
@@ -255,24 +280,24 @@ html[data-theme="light"] .nav-soc-btn:hover{border-color:rgba(8,145,178,.4);colo
       </div>
       <div class="how-grid">
         <article class="how-card">
-          <div class="how-icon"><i class="ti ti-users" aria-hidden="true"></i></div>
-          <h3>Stakeholder Collaboration</h3>
-          <p>Work closely with business, product, and technology teams to surface real needs, resolve ambiguity, and align decisions at the right level.</p>
+          <div class="how-icon"><i class="ti ti-building" aria-hidden="true"></i></div>
+          <h3>Business-First</h3>
+          <p>Start with the operational problem and desired outcome rather than selecting technology first.</p>
         </article>
         <article class="how-card">
           <div class="how-icon"><i class="ti ti-chart-bar" aria-hidden="true"></i></div>
           <h3>Structured Analysis</h3>
-          <p>Use proven analysis techniques, including models, matrices, rule tables, and data flows, to turn complexity into structured, traceable logic.</p>
+          <p>Turn processes, rules, data and dependencies into explicit, traceable logic that teams can implement and validate.</p>
         </article>
         <article class="how-card">
-          <div class="how-icon"><i class="ti ti-circle-check" aria-hidden="true"></i></div>
-          <h3>Quality & Validation</h3>
-          <p>Ensure quality through structured reviews, stakeholder walkthroughs, test coverage, and evidence-based acceptance and sign-off.</p>
+          <div class="how-icon"><i class="ti ti-shield-lock" aria-hidden="true"></i></div>
+          <h3>Governed Automation</h3>
+          <p>Separate deterministic rules, AI reasoning, agent actions and human decisions so automation remains explainable and controlled.</p>
         </article>
         <article class="how-card">
           <div class="how-icon"><i class="ti ti-target" aria-hidden="true"></i></div>
-          <h3>Outcome Focused</h3>
-          <p>Drive measurable business outcomes, traceable from the original need through to delivered result and sustained operational value.</p>
+          <h3>Outcome &amp; Evidence</h3>
+          <p>Validate through real scenarios, measurable results, human approval and traceable evidence rather than relying on assumed success.</p>
         </article>
       </div>
     </section>
@@ -283,14 +308,14 @@ html[data-theme="light"] .nav-soc-btn:hover{border-color:rgba(8,145,178,.4);colo
         <p>Core techniques and practices applied throughout the delivery lifecycle to produce traceable, quality outcomes.</p>
       </div>
       <div class="practice-grid">
-        <div class="practice-item"><div class="practice-sym"><i class="ti ti-arrow-right" aria-hidden="true"></i></div><span>Stakeholder Engagement</span></div>
-        <div class="practice-item"><div class="practice-sym"><i class="ti ti-arrow-right" aria-hidden="true"></i></div><span>Requirements Elicitation</span></div>
-        <div class="practice-item"><div class="practice-sym"><i class="ti ti-arrow-right" aria-hidden="true"></i></div><span>Process Modeling</span></div>
-        <div class="practice-item"><div class="practice-sym"><i class="ti ti-arrow-right" aria-hidden="true"></i></div><span>Data Analysis</span></div>
-        <div class="practice-item"><div class="practice-sym"><i class="ti ti-arrow-right" aria-hidden="true"></i></div><span>Business Rules Design</span></div>
-        <div class="practice-item"><div class="practice-sym"><i class="ti ti-arrow-right" aria-hidden="true"></i></div><span>Validation & Testing</span></div>
-        <div class="practice-item"><div class="practice-sym"><i class="ti ti-arrow-right" aria-hidden="true"></i></div><span>Implementation Support</span></div>
-        <div class="practice-item"><div class="practice-sym"><i class="ti ti-arrow-right" aria-hidden="true"></i></div><span>Measurement & Improvement</span></div>
+        <div class="practice-item"><div class="practice-sym"><i class="ti ti-arrow-right" aria-hidden="true"></i></div><span>Stakeholder &amp; Process Discovery</span></div>
+        <div class="practice-item"><div class="practice-sym"><i class="ti ti-arrow-right" aria-hidden="true"></i></div><span>Requirements &amp; Business Rules</span></div>
+        <div class="practice-item"><div class="practice-sym"><i class="ti ti-arrow-right" aria-hidden="true"></i></div><span>Data &amp; System Mapping</span></div>
+        <div class="practice-item"><div class="practice-sym"><i class="ti ti-arrow-right" aria-hidden="true"></i></div><span>Deterministic Validation</span></div>
+        <div class="practice-item"><div class="practice-sym"><i class="ti ti-arrow-right" aria-hidden="true"></i></div><span>AI / Agent Opportunity Assessment</span></div>
+        <div class="practice-item"><div class="practice-sym"><i class="ti ti-arrow-right" aria-hidden="true"></i></div><span>Human-in-the-Loop Design</span></div>
+        <div class="practice-item"><div class="practice-sym"><i class="ti ti-arrow-right" aria-hidden="true"></i></div><span>Testing &amp; UAT</span></div>
+        <div class="practice-item"><div class="practice-sym"><i class="ti ti-arrow-right" aria-hidden="true"></i></div><span>Release &amp; Continuous Improvement</span></div>
       </div>
     </section>
 

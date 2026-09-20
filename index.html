@@ -86,15 +86,6 @@ html[data-theme="light"] .sh-hint-lbl{color:#1e4a6a}
 .solution-icon-ring{position:absolute;inset:-8px;border-radius:50%;border:1px solid var(--project);opacity:0;pointer-events:none}
 @keyframes icon-ring-out{0%{transform:scale(.8);opacity:.7}100%{transform:scale(2.2);opacity:0}}
 .i-ring{animation:icon-ring-out .55s ease-out forwards}
-.effects-grid .effect-card{position:relative;overflow:hidden}
-.hw-bar{position:absolute;top:0;left:0;right:0;height:2px;background:#35d4f1;transform:scaleX(0);transform-origin:left;transition:transform .42s cubic-bezier(.22,1,.36,1);pointer-events:none}
-.effect-card:hover .hw-bar,.effect-card:focus .hw-bar{transform:scaleX(1)}
-.hw-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:14px}
-.hw-num{font-size:10px;font-weight:900;color:#35d4f1;opacity:.35;letter-spacing:.04em;transition:opacity .2s}
-.hw-ico{font-size:20px;color:#35d4f1;opacity:.3;transition:opacity .2s,font-size .15s}
-.effect-card:hover .hw-num,.effect-card:focus .hw-num{opacity:1}
-.effect-card:hover .hw-ico,.effect-card:focus .hw-ico{opacity:.9;font-size:22px}
-.effects-grid .effect-card h3{margin-top:10px}
 @property --cta-angle{syntax:'<angle>';initial-value:0deg;inherits:false}
 @keyframes cta-spin{to{--cta-angle:360deg}}
 .recruiter-cta{position:relative}
@@ -118,6 +109,15 @@ html[data-theme="light"] .sh-hint-lbl{color:#1e4a6a}
 .card-cta i{font-size:14px;color:var(--project)}
 .solution-card-v3>a{display:none!important}
 .solution-icon-ring{display:none!important}
+.solution-aiagent{display:flex;flex-direction:column;gap:7px;margin-bottom:18px}
+.saa-row{display:flex;align-items:flex-start;gap:9px;padding:9px 11px;border-radius:9px;border:1px solid color-mix(in srgb,var(--project) 28%,var(--line));background:rgba(8,19,33,.68)}
+.saa-label{flex-shrink:0;width:42px;padding:2px 0;text-align:center;border-radius:4px;font-size:.56rem;font-weight:900;letter-spacing:.08em;text-transform:uppercase}
+.saa-ai .saa-label{background:color-mix(in srgb,var(--project) 18%,transparent);color:var(--project);border:1px solid color-mix(in srgb,var(--project) 40%,transparent)}
+.saa-agent .saa-label{background:rgba(255,255,255,.06);color:#8fafc8;border:1px solid rgba(255,255,255,.1)}
+.saa-text{font-size:.68rem;color:#9db8ce;line-height:1.4;padding-top:1px}
+html[data-theme="light"] .saa-row{background:#f4f8fd;border-color:color-mix(in srgb,var(--project) 20%,rgba(8,145,178,.1))}
+html[data-theme="light"] .saa-text{color:#3a5570}
+html[data-theme="light"] .saa-agent .saa-label{background:rgba(0,0,0,.05);color:#4a6a84;border-color:rgba(0,0,0,.1)}
 .nav-brand-kp{display:flex;align-items:center;gap:9px;text-decoration:none}
 .kp-mark{width:28px;height:28px;border-radius:6px;border:1.5px solid #35d4f1;background:#060f1c;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:800;color:#35d4f1;letter-spacing:.03em;flex-shrink:0}
 .nav-social{display:flex;align-items:center;gap:7px}
@@ -999,7 +999,8 @@ html[data-theme="light"] .heroX-ai .hx-cube-dots circle{filter:none!important;op
     <div class="container nav-row">
       <a class="brand nav-positioning" href="#top" aria-label="Back to top">Process <span>×</span> People <span>×</span> AI <span>×</span> Agents</a>
       <nav class="nav-links" aria-label="Primary navigation">
-        <a href="#foundation" class="active">Solutions</a>
+        <a href="#top" class="active">Home</a>
+        <a href="#foundation">Solutions</a>
         <a href="experience.html">Experience</a>
         <a href="framework.html">Framework</a>
         <a href="contact.html">Contact</a>
@@ -1007,7 +1008,7 @@ html[data-theme="light"] .heroX-ai .hx-cube-dots circle{filter:none!important;op
       <div class="nav-social">
         <a href="https://www.linkedin.com/in/krishna-s-a046a9176/" class="nav-soc-btn" aria-label="LinkedIn" target="_blank" rel="noopener noreferrer"><i class="ti ti-brand-linkedin" aria-hidden="true"></i></a>
         <a href="https://github.com/kpadm3" class="nav-soc-btn" aria-label="GitHub" target="_blank" rel="noopener noreferrer"><i class="ti ti-brand-github" aria-hidden="true"></i></a>
-        <a href="mailto:pskrishna204@gmail.com" class="nav-soc-btn" aria-label="Email"><i class="ti ti-mail" aria-hidden="true"></i></a>
+        <a href="contact.html" class="nav-soc-btn" aria-label="Contact"><i class="ti ti-mail" aria-hidden="true"></i></a>
         <span class="theme-header-host" aria-label="Theme control"></span>
       </div>
     </div>
@@ -1018,7 +1019,7 @@ html[data-theme="light"] .heroX-ai .hx-cube-dots circle{filter:none!important;op
   <div class="heroX-intro">
     <div class="heroX-id">
       <div class="heroX-name">KRISHNA PADMANABHAN</div>
-      <div class="heroX-role">ENTERPRISE AI TRANSFORMATION LEAD</div>
+      <div class="heroX-role">ENTERPRISE TRANSFORMATION · TECHNICAL PRODUCT · AI-ENABLED DELIVERY</div>
       <div class="heroX-rule"></div>
     </div>
     <h1>Enterprise delivery is the <em>AI edge.</em></h1>
@@ -1130,8 +1131,9 @@ html[data-theme="light"] .heroX-ai .hx-cube-dots circle{filter:none!important;op
       <div class="solution-icon-wrap"><div class="solution-icon-ring" aria-hidden="true"></div><div class="solution-icon-v3" aria-hidden="true"><i class="ti ti-adjustments"></i></div></div>
       <div class="solution-meta-v3"><span>01</span><span>Configuration</span></div>
       <h3>Enterprise Product Configuration</h3>
-      <div class="solution-flow-v3">
-        <div><small>01</small><strong>Stakeholder need</strong></div><div><small>02</small><strong>Business rules</strong></div><div><small>03</small><strong>Product catalog</strong></div><div><small>04</small><strong>Output QA</strong></div>
+      <div class="solution-aiagent">
+        <div class="saa-row saa-ai"><span class="saa-label">AI</span><span class="saa-text">Understands product rules, detects configuration conflicts, explains exceptions</span></div>
+        <div class="saa-row saa-agent"><span class="saa-label">Agent</span><span class="saa-text">Validates configurations, retrieves rules, routes exceptions for review</span></div>
       </div>
       <div class="solution-outcome-v3"><span>Business outcome</span><strong>Governed product rules, stronger validation, and more consistent configuration output.</strong></div>
       <a href="solutions/enterprise-product-configuration.html">View the work →</a>
@@ -1139,8 +1141,9 @@ html[data-theme="light"] .heroX-ai .hx-cube-dots circle{filter:none!important;op
       <div class="solution-icon-wrap"><div class="solution-icon-ring" aria-hidden="true"></div><div class="solution-icon-v3" aria-hidden="true"><i class="ti ti-arrows-exchange"></i></div></div>
       <div class="solution-meta-v3"><span>02</span><span>Integration</span></div>
       <h3>Enterprise Data Integration</h3>
-      <div class="solution-flow-v3">
-        <div><small>01</small><strong>Source audit</strong></div><div><small>02</small><strong>Transformation</strong></div><div><small>03</small><strong>API design</strong></div><div><small>04</small><strong>Target load</strong></div>
+      <div class="solution-aiagent">
+        <div class="saa-row saa-ai"><span class="saa-label">AI</span><span class="saa-text">Interprets schemas, suggests field mappings, identifies datatype and structural mismatches</span></div>
+        <div class="saa-row saa-agent"><span class="saa-label">Agent</span><span class="saa-text">Runs the mapping and validation workflow, monitors exceptions, routes failures</span></div>
       </div>
       <div class="solution-outcome-v3"><span>Business outcome</span><strong>Clear mappings, validation controls, and traceable data movement across enterprise systems.</strong></div>
       <a href="solutions/product-data-integration.html">View the work →</a>
@@ -1148,8 +1151,9 @@ html[data-theme="light"] .heroX-ai .hx-cube-dots circle{filter:none!important;op
       <div class="solution-icon-wrap"><div class="solution-icon-ring" aria-hidden="true"></div><div class="solution-icon-v3" aria-hidden="true"><i class="ti ti-send"></i></div></div>
       <div class="solution-meta-v3"><span>03</span><span>Delivery</span></div>
       <h3>Requirements-to-Release Delivery</h3>
-      <div class="solution-flow-v3">
-        <div><small>01</small><strong>Requirements</strong></div><div><small>02</small><strong>Sprint design</strong></div><div><small>03</small><strong>Build support</strong></div><div><small>04</small><strong>Go-live</strong></div>
+      <div class="solution-aiagent">
+        <div class="saa-row saa-ai"><span class="saa-label">AI</span><span class="saa-text">Analyzes requirements, identifies gaps, missing acceptance criteria, and impacted components</span></div>
+        <div class="saa-row saa-agent"><span class="saa-label">Agent</span><span class="saa-text">Tracks readiness across stories, test evidence, and sign-offs, surfaces blockers</span></div>
       </div>
       <div class="solution-outcome-v3"><span>Business outcome</span><strong>Business decisions, backlog items, test evidence, and release readiness tracked in one thread.</strong></div>
       <a href="solutions/requirements-to-release.html">View the work →</a>
@@ -1157,8 +1161,9 @@ html[data-theme="light"] .heroX-ai .hx-cube-dots circle{filter:none!important;op
       <div class="solution-icon-wrap"><div class="solution-icon-ring" aria-hidden="true"></div><div class="solution-icon-v3" aria-hidden="true"><i class="ti ti-bolt"></i></div></div>
       <div class="solution-meta-v3"><span>04</span><span>Automation</span></div>
       <h3>Business Reporting Automation</h3>
-      <div class="solution-flow-v3">
-        <div><small>01</small><strong>Data extract</strong></div><div><small>02</small><strong>Data QA</strong></div><div><small>03</small><strong>Transformation</strong></div><div><small>04</small><strong>Report output</strong></div>
+      <div class="solution-aiagent">
+        <div class="saa-row saa-ai"><span class="saa-label">AI</span><span class="saa-text">Explains trends, anomalies, and what the validated numbers mean for the business</span></div>
+        <div class="saa-row saa-agent"><span class="saa-label">Agent</span><span class="saa-text">Prepares the recurring reporting workflow, flags exceptions, distributes approved outputs</span></div>
       </div>
       <div class="solution-outcome-v3"><span>Business outcome</span><strong>Less manual reporting effort with repeatable extraction, validation, and output controls.</strong></div>
       <a href="solutions/automated-business-reporting.html">View the work →</a>
@@ -1181,16 +1186,6 @@ html[data-theme="light"] .heroX-ai .hx-cube-dots circle{filter:none!important;op
       <div class="solution-outcome-v3"><span>Business outcome</span><strong>Controlled migration through source assessment, mapping, validation, reconciliation, and sign-off.</strong></div>
       <a href="solutions/enterprise-data-migration.html">View the work →</a>
     </article>
-      </div>
-    </section>
-
-    <section class="section container sh-progs sh-below in" id="approach-preview">
-      <header class="section-heading reveal"><div><div class="eyebrow">How I work</div><h2>Discovery to delivery, without losing the thread.</h2></div><p>Discovery, analysis, design, validation, and release. All structured to keep the original business need visible through every stage.</p></header>
-      <div class="effects-grid">
-        <article class="effect-card interactive reveal" data-tilt><div class="hw-bar" aria-hidden="true"></div><div class="hw-top"><span class="hw-num">01</span><i class="ti ti-zoom-question hw-ico" aria-hidden="true"></i></div><span>Discovery</span><h3>Define the problem before designing the solution</h3><p>Capture business context, surface conflicting assumptions, and identify the decisions that need to be made before design begins.</p></article>
-        <article class="effect-card interactive reveal" data-tilt><div class="hw-bar" aria-hidden="true"></div><div class="hw-top"><span class="hw-num">02</span><i class="ti ti-chart-bar hw-ico" aria-hidden="true"></i></div><span>Analysis</span><h3>Structure complexity into workable logic</h3><p>Break down processes, data flows, rules, and exceptions. Produce specs, maps, and acceptance criteria that build teams can actually use.</p></article>
-        <article class="effect-card interactive reveal" data-tilt><div class="hw-bar" aria-hidden="true"></div><div class="hw-top"><span class="hw-num">03</span><i class="ti ti-rocket hw-ico" aria-hidden="true"></i></div><span>Delivery</span><h3>Keep business intent intact through build</h3><p>Translate requirements into sprint-ready items. Support design decisions and keep cross-functional teams aligned through code complete.</p></article>
-        <article class="effect-card interactive reveal" data-tilt><div class="hw-bar" aria-hidden="true"></div><div class="hw-top"><span class="hw-num">04</span><i class="ti ti-shield-check hw-ico" aria-hidden="true"></i></div><span>Assurance</span><h3>Verify readiness before the release window</h3><p>Coordinate testing, defect resolution, and stakeholder sign-off. Make sure the release is clean before the handoff window opens.</p></article>
       </div>
     </section>
 
@@ -1448,8 +1443,8 @@ html[data-theme="light"] .heroX-ai .hx-cube-dots circle{filter:none!important;op
 <script>
 (function(){
   var responses={
-    recruiter:'10+ years of enterprise program delivery across business analysis, systems integration, product management, and release planning. Programs led from requirements through production. Work spans SAP, Azure DevOps, Oracle, and Power Platform. Now targeting AI Transformation Lead, Senior BA, and Technical Product Manager roles where full-lifecycle operational experience is the foundation.',
-    ai:'My AI transformation angle comes from the operational side. I understand how enterprise processes actually work. The gaps in data ownership, the edge cases in business rules, the adoption resistance — most AI programs fail there, not at the model layer. My focus is on mapping those exact gaps before deployment begins.',
+    recruiter:'10+ years across enterprise systems, business analysis and technical product delivery, with experience spanning requirements, integration, data, UAT and release governance. My current focus is applying that enterprise foundation to automation, AI-enabled workflows and controlled agentic delivery.',
+    ai:'My approach starts with the enterprise process, rules, data and controls. Deterministic logic handles known rules, AI supports interpretation where ambiguity exists, agents coordinate actions, and humans retain approval for consequential decisions.',
     programs:'One strong example is an enterprise product configuration framework delivered end to end. Seven phases: requirement intake, data modeling, business rule design, validation logic, functional architecture, delivery assurance, and order-ready output. I owned the full specification and led the program through to UAT sign-off.',
     diff:'Most business analysts hand off once the requirements document is written. I stay through delivery, UAT, and hypercare. I keep the original business need traceable from the first stakeholder session to the last acceptance sign-off.'
   };

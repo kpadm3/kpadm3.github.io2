@@ -74,6 +74,10 @@ body{
   color:#b8cce0;
   font-size:.64rem;font-weight:750;
 }
+.tl-bullets{list-style:none;margin:0 0 11px;padding:0;display:flex;flex-direction:column;gap:6px}
+.tl-bullets li{display:flex;gap:8px;align-items:flex-start;color:#9fb0c3;font-size:.72rem;line-height:1.55}
+.tl-bullets li::before{content:'›';color:var(--case-cyan);flex-shrink:0;font-weight:700;margin-top:1px}
+html[data-theme="light"] .tl-bullets li{color:#3a5a74}
 
 /* Sidebar */
 .exp-sidebar{display:flex;flex-direction:column;gap:14px}
@@ -170,6 +174,7 @@ html[data-theme="light"] .nav-soc-btn:hover{border-color:rgba(8,145,178,.4);colo
   <div class="container nav-row">
     <a class="brand nav-positioning" href="index.html" aria-label="Home">Process <span>×</span> People <span>×</span> AI <span>×</span> Agents</a>
     <nav class="nav-links" aria-label="Primary navigation">
+      <a href="index.html">Home</a>
       <a href="index.html#foundation">Solutions</a>
       <a href="experience.html" class="active">Experience</a>
       <a href="framework.html">Framework</a>
@@ -178,7 +183,7 @@ html[data-theme="light"] .nav-soc-btn:hover{border-color:rgba(8,145,178,.4);colo
     <div class="nav-social">
       <a href="https://www.linkedin.com/in/krishna-s-a046a9176/" class="nav-soc-btn" aria-label="LinkedIn" target="_blank" rel="noopener noreferrer"><i class="ti ti-brand-linkedin" aria-hidden="true"></i></a>
       <a href="https://github.com/kpadm3" class="nav-soc-btn" aria-label="GitHub" target="_blank" rel="noopener noreferrer"><i class="ti ti-brand-github" aria-hidden="true"></i></a>
-      <a href="mailto:pskrishna204@gmail.com" class="nav-soc-btn" aria-label="Email"><i class="ti ti-mail" aria-hidden="true"></i></a>
+      <a href="contact.html" class="nav-soc-btn" aria-label="Contact"><i class="ti ti-mail" aria-hidden="true"></i></a>
       <span class="theme-header-host" aria-label="Theme control"></span>
     </div>
   </div>
@@ -188,16 +193,16 @@ html[data-theme="light"] .nav-soc-btn:hover{border-color:rgba(8,145,178,.4);colo
 
   <main>
     <section class="page-hero reveal-case">
-      <div class="page-kicker">Enterprise Delivery Experience</div>
-      <h1 class="page-title">Career Evolution</h1>
-      <p class="page-lead">A journey of growth, impact, and increasing responsibility. From analyst to technical product manager, across enterprise systems, integrations, data, and cross-functional delivery.</p>
+      <div class="page-kicker">Enterprise Transformation Experience</div>
+      <h1 class="page-title">From Enterprise Systems to Technical Product Delivery</h1>
+      <p class="page-lead">10+ years working across enterprise systems, requirements, integration, data, validation and release delivery. Connecting business needs with technical execution and increasingly applying automation and AI-enabled workflow design.</p>
     </section>
 
     <div class="exp-stats reveal-case">
-      <div class="exp-stat"><strong data-count="10" data-suffix="+">10+</strong><span>Years of business analysis and product delivery</span></div>
-      <div class="exp-stat"><strong data-count="25" data-suffix="+">25+</strong><span>Enterprise programs and initiative streams</span></div>
-      <div class="exp-stat"><strong data-count="4">4</strong><span>Core delivery specializations</span></div>
-      <div class="exp-stat"><strong data-count="5">5</strong><span>Client and project engagements</span></div>
+      <div class="exp-stat"><strong>10+</strong><span>Years of enterprise delivery experience</span></div>
+      <div class="exp-stat"><strong>Business → Technology</strong><span>Requirements through implementation</span></div>
+      <div class="exp-stat"><strong>Systems + Data</strong><span>Integration, migration and validation</span></div>
+      <div class="exp-stat"><strong>Delivery Ownership</strong><span>UAT, readiness and release</span></div>
     </div>
 
     <div class="exp-layout">
@@ -214,9 +219,14 @@ html[data-theme="light"] .nav-soc-btn:hover{border-color:rgba(8,145,178,.4);colo
             <div class="tl-body">
               <h3 class="tl-role">IT Business Analyst and Project Lead</h3>
               <div class="tl-company">Global Technology and Engineering Company</div>
-              <p class="tl-desc">Own the end-to-end requirements lifecycle for enterprise product and systems delivery. Define scope, author user stories, and coordinate UAT and regression validation across multiple release cycles annually. Bridge engineering, pricing, sales, and supply chain teams around shared product and configuration data.</p>
+              <p class="tl-desc">Lead requirements and delivery across enterprise product, configuration and systems initiatives, connecting engineering, product, pricing, sales and supply-chain stakeholders.</p>
+              <ul class="tl-bullets">
+                <li>Own requirements, user stories, acceptance criteria and cross-system dependency analysis from discovery through release.</li>
+                <li>Coordinate UAT, regression validation, evidence, stakeholder sign-offs and production readiness across recurring release cycles.</li>
+                <li>Work across ERP, PLM, product data, configuration and integration processes to identify gaps, improve controls and reduce manual delivery effort.</li>
+              </ul>
               <div class="tl-tags">
-                <span>Requirements Ownership</span><span>ERP and PLM</span><span>Systems Integration</span><span>UAT</span><span>Agile Delivery</span>
+                <span>Technical Product Delivery</span><span>Enterprise Systems</span><span>Requirements</span><span>Integration</span><span>UAT</span><span>Release Governance</span>
               </div>
             </div>
           </div>
@@ -230,9 +240,9 @@ html[data-theme="light"] .nav-soc-btn:hover{border-color:rgba(8,145,178,.4);colo
             <div class="tl-body">
               <h3 class="tl-role">Programmer Analyst</h3>
               <div class="tl-company">Global Telecommunications Company</div>
-              <p class="tl-desc">Gathered requirements and analyzed platform behavior, system defects, and integration issues across enterprise applications. Led root-cause investigation, maintained issue tracking and reporting for management and technical leads, and supported pre-release validation across multiple platform environments.</p>
+              <p class="tl-desc">Analyzed enterprise application behavior, integration issues and production defects. Supported root-cause investigation, maintained issue tracking and management reporting, and contributed to pre-release validation across multiple platform environments.</p>
               <div class="tl-tags">
-                <span>Telecom Systems</span><span>Requirements</span><span>Defect Analysis</span><span>Root Cause Analysis</span>
+                <span>Systems Analysis</span><span>Root Cause</span><span>Integration</span><span>Release Validation</span>
               </div>
             </div>
           </div>
@@ -246,7 +256,7 @@ html[data-theme="light"] .nav-soc-btn:hover{border-color:rgba(8,145,178,.4);colo
             <div class="tl-body">
               <h3 class="tl-role">Programmer Analyst</h3>
               <div class="tl-company">Global Manufacturing and Engineering Company</div>
-              <p class="tl-desc">Owned requirements and story creation for supplier portal, access management, and transactional system enhancements. Contributed to enterprise data migration documentation and supported quarterly release readiness and sign-off.</p>
+              <p class="tl-desc">Owned requirements and story creation for supplier portal, access management and transactional system enhancements. Contributed to enterprise data migration documentation and supported quarterly release readiness and sign-off.</p>
               <div class="tl-tags">
                 <span>Requirements</span><span>Supplier Systems</span><span>Data Migration</span><span>Release Readiness</span>
               </div>
@@ -262,9 +272,9 @@ html[data-theme="light"] .nav-soc-btn:hover{border-color:rgba(8,145,178,.4);colo
             <div class="tl-body">
               <h3 class="tl-role">Programmer Analyst</h3>
               <div class="tl-company">IT Services Firm</div>
-              <p class="tl-desc">Developed ER diagrams, data models, and workflow documentation to support requirements clarity, solution design, and technical handoff. Managed SharePoint-based workflow and access processes, improving document control, version tracking, and compliance for distributed project teams.</p>
+              <p class="tl-desc">Developed ER diagrams, data models and workflow documentation to support requirements clarity, solution design and technical handoff. Managed SharePoint-based workflow and document control processes for distributed project teams.</p>
               <div class="tl-tags">
-                <span>Data Modeling</span><span>ER Diagrams</span><span>Workflow Documentation</span><span>SharePoint</span>
+                <span>Data Modeling</span><span>Workflow Documentation</span><span>SharePoint</span>
               </div>
             </div>
           </div>
@@ -278,7 +288,7 @@ html[data-theme="light"] .nav-soc-btn:hover{border-color:rgba(8,145,178,.4);colo
             <div class="tl-body">
               <h3 class="tl-role">IT Administrator</h3>
               <div class="tl-company">IT Infrastructure & Services Company</div>
-              <p class="tl-desc">Administered enterprise IT infrastructure including hardware, software, and network systems. Maintained system uptime, managed configuration documentation, and delivered user support across the organisation.</p>
+              <p class="tl-desc">Administered enterprise IT infrastructure including hardware, software and network systems. Maintained system uptime, managed configuration documentation and delivered user support across the organization.</p>
               <div class="tl-tags">
                 <span>IT Administration</span><span>Infrastructure</span><span>User Support</span>
               </div>
@@ -292,14 +302,14 @@ html[data-theme="light"] .nav-soc-btn:hover{border-color:rgba(8,145,178,.4);colo
         <section class="sidebar-panel glass-panel reveal-case">
           <h2 class="sidebar-heading">Core Capabilities</h2>
           <div class="cap-grid">
-            <div class="cap-tile"><i class="ti ti-file-description" aria-hidden="true"></i><span>Requirements Engineering</span></div>
-            <div class="cap-tile"><i class="ti ti-git-branch" aria-hidden="true"></i><span>Process Modeling</span></div>
-            <div class="cap-tile"><i class="ti ti-layout" aria-hidden="true"></i><span>Functional Design</span></div>
-            <div class="cap-tile"><i class="ti ti-chart-dots-3" aria-hidden="true"></i><span>Data Analysis</span></div>
-            <div class="cap-tile"><i class="ti ti-arrows-exchange" aria-hidden="true"></i><span>System Integration</span></div>
-            <div class="cap-tile"><i class="ti ti-checklist" aria-hidden="true"></i><span>Testing & Validation</span></div>
-            <div class="cap-tile"><i class="ti ti-users-group" aria-hidden="true"></i><span>UAT & Training</span></div>
-            <div class="cap-tile"><i class="ti ti-rocket" aria-hidden="true"></i><span>Release & Support</span></div>
+            <div class="cap-tile"><i class="ti ti-building-skyscraper" aria-hidden="true"></i><span>Enterprise Transformation</span></div>
+            <div class="cap-tile"><i class="ti ti-rocket" aria-hidden="true"></i><span>Technical Product Delivery</span></div>
+            <div class="cap-tile"><i class="ti ti-file-description" aria-hidden="true"></i><span>Requirements & Process Design</span></div>
+            <div class="cap-tile"><i class="ti ti-arrows-exchange" aria-hidden="true"></i><span>Systems Integration</span></div>
+            <div class="cap-tile"><i class="ti ti-database" aria-hidden="true"></i><span>Data & Migration</span></div>
+            <div class="cap-tile"><i class="ti ti-checklist" aria-hidden="true"></i><span>Testing & UAT</span></div>
+            <div class="cap-tile"><i class="ti ti-shield-check" aria-hidden="true"></i><span>Release Governance</span></div>
+            <div class="cap-tile"><i class="ti ti-robot" aria-hidden="true"></i><span>Automation & AI-Enabled Workflow Design</span></div>
           </div>
         </section>
       </aside>
@@ -328,29 +338,6 @@ html[data-theme="light"] .nav-soc-btn:hover{border-color:rgba(8,145,178,.4);colo
   }, { threshold: 0.08, rootMargin: "0px 0px -20px 0px" });
   items.forEach(i => obs.observe(i));
   setTimeout(() => items.forEach(i => i.classList.add("visible")), 1200);
-})();
-(function(){
-  const counters=document.querySelectorAll('[data-count]');
-  if(!counters.length)return;
-  const obs=new IntersectionObserver(entries=>{
-    entries.forEach(entry=>{
-      if(!entry.isIntersecting)return;
-      const el=entry.target;
-      const target=parseInt(el.dataset.count);
-      const suffix=el.dataset.suffix||'';
-      const dur=1400;
-      const start=performance.now();
-      function frame(now){
-        const p=Math.min((now-start)/dur,1);
-        const ease=1-Math.pow(1-p,3);
-        el.textContent=Math.round(ease*target)+suffix;
-        if(p<1)requestAnimationFrame(frame);
-      }
-      requestAnimationFrame(frame);
-      obs.unobserve(el);
-    });
-  },{threshold:0.6});
-  counters.forEach(c=>obs.observe(c));
 })();
 </script>
 </body>
