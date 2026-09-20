@@ -1190,7 +1190,8 @@ html[data-theme="light"] .heroX-valuebox{
 .heroX-ai .hx-cube-dots .hx-dot-left{fill:#24c7eb}
 .heroX-ai .hx-cube-dots .hx-dot-right{fill:#7777ff}
 .heroX-ai .hx-cube-dots circle{opacity:.65}
-.heroX-ai .hx-cube-edges path{opacity:.12}
+.heroX-ai .hx-cube-edges{display:none!important}
+.heroX-ai .hx-cube-edges path{opacity:0!important}
 
 html[data-theme="light"] .heroX-intro h1{color:#17364d!important}
 html[data-theme="light"] .heroX-role{color:#537187!important}
@@ -1640,10 +1641,17 @@ html[data-theme="light"] .heroX-ai .hx-cube-dots circle{opacity:.52}
 
 
 <style id="heroX-cap-tooltips">
-.heroX-caps span{position:relative;cursor:help;outline:none}
+.heroX-caps span{position:relative;cursor:help;outline:none;transition:color .24s ease,opacity .24s ease,text-shadow .24s ease,background .24s ease,border-color .24s ease,box-shadow .24s ease}
 .heroX-caps span::after{content:attr(data-tip);position:absolute;left:50%;bottom:calc(100% + 10px);transform:translate(-50%,4px);width:max-content;max-width:260px;padding:7px 10px;border:1px solid rgba(125,238,255,.18);border-radius:7px;background:rgba(8,16,29,.96);color:#dceaf3;font-size:10px;font-weight:500;line-height:1.35;letter-spacing:.01em;text-transform:none;white-space:normal;box-shadow:0 8px 22px rgba(0,0,0,.22);opacity:0;visibility:hidden;pointer-events:none;transition:opacity .16s ease,transform .16s ease,visibility .16s ease;z-index:20}
+.heroX-caps span::before{content:"";position:absolute;left:50%;bottom:calc(100% + 5px);width:9px;height:9px;transform:translateX(-50%) rotate(45deg);background:rgba(8,16,29,.96);border-right:1px solid rgba(125,238,255,.18);border-bottom:1px solid rgba(125,238,255,.18);opacity:0;visibility:hidden;pointer-events:none;transition:opacity .16s ease,visibility .16s ease;z-index:21}
 .heroX-caps span:hover::after,.heroX-caps span:focus-visible::after{opacity:1;visibility:visible;transform:translate(-50%,0)}
-.heroX-caps span:hover,.heroX-caps span:focus-visible{color:#7deeff}
+.heroX-caps span:hover::before,.heroX-caps span:focus-visible::before{opacity:1;visibility:visible}
+.heroX-caps span:hover,.heroX-caps span:focus-visible,.heroX-caps span.hx-cap-active{color:#7deeff}
+.heroX-caps span.hx-cap-active{opacity:1;text-shadow:0 0 10px rgba(89,239,255,.28)}
+html[data-theme="light"] .heroX-caps span{background:rgba(249,253,255,.92)!important;color:#5a788b!important;border-color:rgba(20,145,178,.28)!important;box-shadow:0 2px 7px rgba(25,72,98,.035)!important}
+html[data-theme="light"] .heroX-caps span:hover,html[data-theme="light"] .heroX-caps span:focus-visible,html[data-theme="light"] .heroX-caps span.hx-cap-active{background:#f5fcff!important;color:#17627b!important;border-color:rgba(8,145,178,.58)!important;box-shadow:0 3px 10px rgba(18,119,151,.10)!important;text-shadow:none!important}
+html[data-theme="light"] .heroX-caps span::after{background:rgba(255,255,255,.98);color:#294c64;border-color:rgba(17,142,172,.24);box-shadow:0 8px 22px rgba(25,72,98,.13)}
+html[data-theme="light"] .heroX-caps span::before{background:rgba(255,255,255,.98);border-right-color:rgba(17,142,172,.24);border-bottom-color:rgba(17,142,172,.24)}
 @media(max-width:700px){.heroX-caps span::after{max-width:190px;font-size:9px}}
 </style>
 
@@ -1710,12 +1718,12 @@ html[data-theme="light"] .heroX-enterprise article small{font-size:9px!important
 .heroX-valuebox article div small{display:block!important;margin-top:5px!important;font-size:8.4px!important;line-height:1.15!important;letter-spacing:0!important;white-space:nowrap!important;font-style:normal!important}
 html[data-theme="light"] .heroX-valuebox article div small{color:#56778d!important}
 
-/* Existing cube geometry stays intact. Light mode gains contrast and a contained AI halo only. */
+/* Intelligence Fabric keeps the existing lifecycle while light mode gets a contained AI halo. */
 html[data-theme="light"] .heroX-ai .hx-dotcube{
   background:radial-gradient(ellipse at center,rgba(32,188,216,.115) 0%,rgba(94,109,232,.045) 38%,rgba(255,255,255,0) 69%)!important;
   filter:drop-shadow(0 8px 14px rgba(31,139,171,.09))!important;
 }
-html[data-theme="light"] .heroX-ai .hx-cube-edges path{fill:none!important;stroke:#118eac!important;opacity:.23!important}
+html[data-theme="light"] .heroX-ai .hx-cube-edges path{fill:none!important;opacity:0!important}
 html[data-theme="light"] .heroX-ai .hx-cube-dots .hx-dot-top{fill:#0eb4cf!important}
 html[data-theme="light"] .heroX-ai .hx-cube-dots .hx-dot-left{fill:#079fc3!important}
 html[data-theme="light"] .heroX-ai .hx-cube-dots .hx-dot-right{fill:#696be8!important}
@@ -1765,18 +1773,15 @@ html[data-theme="light"] .heroX-enterprise article.hx-scan::after{background:lin
   var reduced=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   var drawRaf=0,lifeRaf=0,startTime=0,particlePool=[],activeState={enterprise:null,agents:null,values:null},cubeMode='reset',capIndex=-1;
 
-  // Flatter, wider perspective: same three-face dotted cube, viewed more from above.
-  var T={x:280,y:52},L={x:112,y:92},C={x:280,y:132},R={x:448,y:92};
-  var LB={x:112,y:157},B={x:280,y:202},RB={x:448,y:157};
+  // Intelligence Fabric: wider, deeper three-face field with a stronger sense of depth.
+  // Shared seam coordinates are generated once so corners never become dark from stacked dots.
+  var T={x:280,y:42},L={x:92,y:88},C={x:280,y:132},R={x:468,y:88};
+  var LB={x:92,y:185},B={x:280,y:232},RB={x:468,y:185};
 
-  if(edgeGrp){
-    edgeGrp.innerHTML=
-      '<path d="M280 52 L112 92 L280 132 L448 92 Z"/>'+
-      '<path d="M112 92 L112 157 L280 202 L280 132"/>'+
-      '<path d="M448 92 L448 157 L280 202"/>';
-  }
+  if(edgeGrp)edgeGrp.textContent='';
 
   grp.textContent='';
+  var fabricPoints=new Set();
 
   function bilerp(a,b,c,d,u,v){
     return{x:(1-u)*(1-v)*a.x+u*(1-v)*b.x+u*v*c.x+(1-u)*v*d.x,
@@ -1785,14 +1790,17 @@ html[data-theme="light"] .heroX-enterprise article.hx-scan::after{background:lin
   function face(cls,a,b,c,d,faceIndex){
     for(var row=0;row<N;row++)for(var col=0;col<N;col++){
       var u=col/(N-1),v=row/(N-1),p=bilerp(a,b,c,d,u,v);
+      var px=p.x.toFixed(2),py=p.y.toFixed(2),key=px+','+py;
+      if(fabricPoints.has(key))continue;
+      fabricPoints.add(key);
       var edge=row===0||col===0||row===N-1||col===N-1;
       var el=document.createElementNS(NS,'circle');
       el.setAttribute('class',cls);
-      el.setAttribute('cx',p.x.toFixed(2));
-      el.setAttribute('cy',p.y.toFixed(2));
-      el.setAttribute('r',edge?1.34:1.08);
+      el.setAttribute('cx',px);
+      el.setAttribute('cy',py);
+      el.setAttribute('r',edge?1.22:1.08);
       grp.appendChild(el);
-      dots.push({el:el,baseY:p.y,nx:(p.x-112)/336,face:faceIndex,baseOpacity:parseFloat(getComputedStyle(el).opacity)||1});
+      dots.push({el:el,baseY:p.y,nx:(p.x-92)/376,face:faceIndex,baseOpacity:parseFloat(getComputedStyle(el).opacity)||1});
     }
   }
   face('hx-dot-top',T,R,C,L,0);
@@ -1911,7 +1919,7 @@ html[data-theme="light"] .heroX-enterprise article.hx-scan::after{background:lin
   function resetCube(){
     if(cubeMode==='reset')return;
     dots.forEach(function(d){d.el.setAttribute('cy',d.baseY.toFixed(2));d.el.style.opacity=String(d.baseOpacity);});
-    capEls.forEach(function(el){el.style.opacity='.58';el.style.color='';el.style.textShadow='none';});
+    capEls.forEach(function(el){el.classList.remove('hx-cap-active');el.style.opacity='';el.style.color='';el.style.textShadow='';});
     cubeMode='reset';capIndex=-1;
   }
   function wave(p){
@@ -1929,7 +1937,7 @@ html[data-theme="light"] .heroX-enterprise article.hx-scan::after{background:lin
     if(capEls.length===5){
       var active=Math.min(4,Math.floor(p*5));
       if(active!==capIndex){
-        capEls.forEach(function(el,i){var on=i===active;el.style.opacity=on?'1':'.58';el.style.color=on?'#7deeff':'';el.style.textShadow=on?'0 0 10px rgba(89,239,255,.28)':'none';});
+        capEls.forEach(function(el,i){el.classList.toggle('hx-cap-active',i===active);});
         capIndex=active;
       }
     }
