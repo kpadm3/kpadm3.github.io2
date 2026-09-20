@@ -1299,19 +1299,18 @@ html[data-theme="light"] .heroX-ai .hx-cube-wave-dots{filter:drop-shadow(0 0 2px
 }
 .hx-flow-token.blue{stroke:#4da1ff}.hx-flow-token.purple{stroke:#9877ff}.hx-flow-token.teal{stroke:#2de0ce}
 
-/* Cube wave v16: JavaScript paints a moving band directly onto the SVG dots.
-   This avoids browser inconsistencies with CSS transforms/animations on SVG circles. */
+/* Cube wave v17 — visual design unchanged; only dot illumination is animated in JavaScript. */
 .heroX-ai .hx-cube-dots circle{
   fill:#2dcbe3!important;
-  opacity:.25;
-  filter:drop-shadow(0 0 1px rgba(45,203,227,.34));
+  opacity:.36!important;
+  filter:drop-shadow(0 0 1.2px rgba(45,203,227,.42))!important;
+  animation:none!important
 }
 .heroX-ai .hx-cube-wave-dots circle{
   opacity:0;
   transform:none!important;
   animation:none!important;
-  transition:none!important;
-  will-change:opacity,fill;
+  transition:none!important
 }
 .heroX-ai .hx-cube-wave-dots{opacity:1!important;filter:none!important}
 .heroX-ai .hx-cube-edges path{opacity:.12!important}
@@ -1796,7 +1795,7 @@ html[data-theme="light"] .heroX-ai .hx-cube-wave-dots{filter:drop-shadow(0 0 2px
 })();
 </script>
 
-<!-- HERO X DOTTED CUBE WAVE v16 -->
+<!-- HERO X DOTTED CUBE WAVE v17 -->
 <script>
 (function(){
   var svg=document.querySelector('.heroX .hx-dotcube');
@@ -1804,21 +1803,19 @@ html[data-theme="light"] .heroX-ai .hx-cube-wave-dots{filter:drop-shadow(0 0 2px
   if(!svg||!base)return;
 
   var NS='http://www.w3.org/2000/svg',N=15;
-  var old=svg.querySelector('.hx-cube-wave-dots');
-  if(old)old.remove();
-  var oldDefs=svg.querySelector('.hx-cube-wave-defs');
-  if(oldDefs)oldDefs.remove();
+  var old=svg.querySelector('.hx-cube-wave-dots');if(old)old.remove();
+  var oldDefs=svg.querySelector('.hx-cube-wave-defs');if(oldDefs)oldDefs.remove();
 
   var wave=document.createElementNS(NS,'g');
   wave.setAttribute('class','hx-cube-wave-dots');
   base.insertAdjacentElement('afterend',wave);
-
   var points=[];
+
   function bilerp(a,b,c,d,u,v){
     return{x:(1-u)*(1-v)*a.x+u*(1-v)*b.x+u*v*c.x+(1-u)*v*d.x,
            y:(1-u)*(1-v)*a.y+u*(1-v)*b.y+u*v*c.y+(1-u)*v*d.y};
   }
-  function face(cls,a,b,c,d,bias){
+  function face(cls,a,b,c,d){
     for(var row=0;row<N;row++){
       for(var col=0;col<N;col++){
         var u=col/(N-1),v=row/(N-1),p=bilerp(a,b,c,d,u,v);
@@ -1832,12 +1829,11 @@ html[data-theme="light"] .heroX-ai .hx-cube-wave-dots{filter:drop-shadow(0 0 2px
 
         var w=document.createElementNS(NS,'circle');
         w.setAttribute('cx',p.x.toFixed(2));w.setAttribute('cy',p.y.toFixed(2));
-        w.setAttribute('r',edge?'2.45':'2.05');
+        w.setAttribute('r',edge?'2.0':'1.72');
         wave.appendChild(w);
 
-        // Diagonal coordinate. The band moves left -> right and slightly downward.
-        var nx=(p.x-145)/270,ny=(p.y-30)/190;
-        points.push({el:w,phase:(nx*.76+ny*.24+bias)%1});
+        // One continuous left-to-right diagonal coordinate across the original cube.
+        points.push({el:w,pos:((p.x-145)/270)*.82+((p.y-30)/190)*.18});
       }
     }
   }
@@ -1845,48 +1841,46 @@ html[data-theme="light"] .heroX-ai .hx-cube-wave-dots{filter:drop-shadow(0 0 2px
   base.textContent='';
   var T={x:280,y:30},L={x:145,y:88},C={x:280,y:145},R={x:415,y:88};
   var LB={x:145,y:163},B={x:280,y:220},RB={x:415,y:163};
-  face('hx-dot-top',T,R,C,L,0);
-  face('hx-dot-left',L,C,B,LB,.035);
-  face('hx-dot-right',C,R,RB,B,.07);
+  face('hx-dot-top',T,R,C,L);
+  face('hx-dot-left',L,C,B,LB);
+  face('hx-dot-right',C,R,RB,B);
 
-  var palette=[
-    [89,239,255],
-    [77,161,255],
-    [155,119,255],
-    [63,224,206]
-  ];
   var reduced=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  var start=performance.now(),duration=4300;
+  var started=performance.now(),duration=3600;
 
-  function colorAt(t){
-    var x=Math.max(0,Math.min(.999,t))*3;
-    var i=Math.floor(x),f=x-i,a=palette[i],b=palette[Math.min(3,i+1)];
-    return 'rgb('+Math.round(a[0]+(b[0]-a[0])*f)+','+
-                  Math.round(a[1]+(b[1]-a[1])*f)+','+
-                  Math.round(a[2]+(b[2]-a[2])*f)+')';
+  function mix(a,b,t){return Math.round(a+(b-a)*t)}
+  function waveColor(t){
+    var stops=[[89,239,255],[77,161,255],[155,119,255],[63,224,206]];
+    var x=Math.max(0,Math.min(.999,t))*3,i=Math.floor(x),q=x-i;
+    var a=stops[i],b=stops[Math.min(3,i+1)];
+    return 'rgb('+mix(a[0],b[0],q)+','+mix(a[1],b[1],q)+','+mix(a[2],b[2],q)+')';
   }
-  function render(now){
-    var travel=reduced?.48:((now-start)%duration)/duration;
+
+  function paint(now){
+    // Sweep fully off the left edge to fully off the right edge, then repeat.
+    var travel=reduced?.52:(((now-started)%duration)/duration)*1.45-.22;
+    var width=.16;
+
     points.forEach(function(p){
-      // Circular distance from each point to the moving wave center.
-      var d=Math.abs(p.phase-travel);d=Math.min(d,1-d);
-      // Broad enough to read as a wave, narrow enough to visibly travel.
-      var strength=Math.max(0,1-d/.17);
+      var delta=p.pos-travel;
+      var distance=Math.abs(delta);
+      var strength=Math.max(0,1-distance/width);
+      // Smooth, luminous band rather than random dot pulsing.
       strength=strength*strength*(3-2*strength);
-      if(strength>.015){
-        var local=(.5+(p.phase-travel)*2)%1;if(local<0)local+=1;
-        var col=colorAt(local);
+      if(strength>.01){
+        var across=Math.max(0,Math.min(1,(delta+width)/(width*2)));
+        var col=waveColor(across);
         p.el.style.fill=col;
-        p.el.style.opacity=(.05+.95*strength).toFixed(3);
-        p.el.style.filter='drop-shadow(0 0 '+(1+5*strength).toFixed(1)+'px '+col+')';
-        p.el.setAttribute('r',(2.0+1.35*strength).toFixed(2));
+        p.el.style.opacity=(.04+.96*strength).toFixed(3);
+        p.el.style.filter='drop-shadow(0 0 '+(1+4.2*strength).toFixed(1)+'px '+col+')';
       }else{
         p.el.style.opacity='0';
+        p.el.style.filter='none';
       }
     });
-    if(!reduced)requestAnimationFrame(render);
+    if(!reduced)requestAnimationFrame(paint);
   }
-  requestAnimationFrame(render);
+  requestAnimationFrame(paint);
 })();
 </script>
 
