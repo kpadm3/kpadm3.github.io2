@@ -513,3 +513,8 @@ html[data-theme="light"] .solution-icon-v3{
 html[data-theme="light"] .solution-card-v3:hover .solution-icon-v3{
   box-shadow:0 0 22px color-mix(in srgb,var(--project) 14%,transparent);
 }
+
+/* Targeted CTA readability/light-mode correction */
+.button{font-weight:600}
+html[data-theme="light"] .button{background:linear-gradient(90deg,#0891b2,#4ba8ff);color:#fff;border-color:transparent}
+html[data-theme="light"] .button.secondary{background:#fff;color:#0d1f35;border-color:#bfd2e3}
