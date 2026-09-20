@@ -1397,12 +1397,16 @@ html[data-theme="light"] .hx-junction circle{filter:drop-shadow(0 0 4px rgba(0,1
       var valueIn=values.map(function(row){return center(row.querySelector('.hx-value-port'));});
       function addValuePath(fromIndex,toIndex,cls){
         var a=agentOut[fromIndex], b=valueIn[toIndex];
-        var laneLeft=a.x+Math.max(18,(b.x-a.x)*.24);
-        var laneRight=b.x-Math.max(18,(b.x-a.x)*.24);
+        var gap=b.x-a.x;
+        // Match the approved reference: short horizontal departure/arrival
+        // with a smooth S-curve crossover concentrated in the center.
+        var exitX=a.x+Math.max(12,gap*.18);
+        var entryX=b.x-Math.max(12,gap*.18);
+        var midX=(exitX+entryX)/2;
         var d='M '+a.x+' '+a.y+
-          ' C '+laneLeft+' '+a.y+', '+laneLeft+' '+a.y+', '+laneLeft+' '+a.y+
-          ' C '+laneLeft+' '+a.y+', '+laneRight+' '+b.y+', '+laneRight+' '+b.y+
-          ' C '+laneRight+' '+b.y+', '+laneRight+' '+b.y+', '+b.x+' '+b.y;
+          ' C '+exitX+' '+a.y+', '+exitX+' '+a.y+', '+exitX+' '+a.y+
+          ' C '+midX+' '+a.y+', '+midX+' '+b.y+', '+entryX+' '+b.y+
+          ' C '+entryX+' '+b.y+', '+entryX+' '+b.y+', '+b.x+' '+b.y;
         var p=document.createElementNS(NS,'path');
         p.setAttribute('d',d);
         p.setAttribute('class','hx-dynamic-wire '+(cls||''));
