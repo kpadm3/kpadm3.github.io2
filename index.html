@@ -1391,15 +1391,32 @@ html[data-theme="light"] .hx-junction circle{filter:drop-shadow(0 0 4px rgba(0,1
         var a={x:rightX,y:cy+offsets[i]}, b=center(card.querySelector('.hx-in-port'));
         addPath(a,b,outColors[i],true,-i*.6);
       });
-      agents.forEach(function(card,i){
-        var a=center(card.querySelector(':scope > span:not(.hx-in-port)')), b=center(values[i].querySelector('.hx-value-port'));
-        addPath(a,b,outColors[i],false,0);
-      });
-      // Reference-style restrained cross-flow fan-out.
-      addPath(center(agents[0].querySelector(':scope > span:not(.hx-in-port)')),center(values[2].querySelector('.hx-value-port')),'',false,0);
-      addPath(center(agents[1].querySelector(':scope > span:not(.hx-in-port)')),center(values[3].querySelector('.hx-value-port')),'purple',false,0);
-      addPath(center(agents[2].querySelector(':scope > span:not(.hx-in-port)')),center(values[0].querySelector('.hx-value-port')),'purple',false,0);
-      addPath(center(agents[3].querySelector(':scope > span:not(.hx-in-port)')),center(values[1].querySelector('.hx-value-port')),'teal',false,0);
+      // Agent-to-value routing mirrors the approved reference: short clean
+      // departure, controlled crossover in the middle, clean arrival at ports.
+      var agentOut=agents.map(function(card){return center(card.querySelector(':scope > span:not(.hx-in-port)'));});
+      var valueIn=values.map(function(row){return center(row.querySelector('.hx-value-port'));});
+      function addValuePath(fromIndex,toIndex,cls){
+        var a=agentOut[fromIndex], b=valueIn[toIndex];
+        var laneLeft=a.x+Math.max(18,(b.x-a.x)*.24);
+        var laneRight=b.x-Math.max(18,(b.x-a.x)*.24);
+        var d='M '+a.x+' '+a.y+
+          ' C '+laneLeft+' '+a.y+', '+laneLeft+' '+a.y+', '+laneLeft+' '+a.y+
+          ' C '+laneLeft+' '+a.y+', '+laneRight+' '+b.y+', '+laneRight+' '+b.y+
+          ' C '+laneRight+' '+b.y+', '+laneRight+' '+b.y+', '+b.x+' '+b.y;
+        var p=document.createElementNS(NS,'path');
+        p.setAttribute('d',d);
+        p.setAttribute('class','hx-dynamic-wire '+(cls||''));
+        svg.appendChild(p);
+      }
+      // Four primary routes plus the four reference cross-connections.
+      addValuePath(0,0,'');
+      addValuePath(1,1,'purple');
+      addValuePath(2,2,'');
+      addValuePath(3,3,'teal');
+      addValuePath(0,2,'');
+      addValuePath(1,3,'purple');
+      addValuePath(2,0,'');
+      addValuePath(3,1,'teal');
     });
   }
   draw();
