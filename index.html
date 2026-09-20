@@ -836,7 +836,7 @@ html[data-theme="light"] .hx-junction circle{filter:drop-shadow(0 0 4px rgba(0,1
 /* HERO X DYNAMIC FLOW ROUTING v5 */
 .heroX-links{overflow:visible}
 .hx-dynamic-wire{fill:none;stroke:#42ddf6;stroke-width:2.15;stroke-linecap:round;stroke-linejoin:round;filter:url(#hxg);opacity:.94}
-.hx-dynamic-wire.purple{stroke:#9877ff}.hx-dynamic-wire.teal{stroke:#2de0ce}
+.hx-dynamic-wire.purple{stroke:#9877ff}.hx-dynamic-wire.teal{stroke:#2de0ce}.hx-value-wire{stroke-width:1.65;opacity:.92;filter:drop-shadow(0 0 2px currentColor)}
 .hx-dynamic-runner{fill:#e8fdff;filter:url(#hxg)}
 @media(prefers-reduced-motion:reduce){.hx-dynamic-runner{display:none}}
 </style>
@@ -1398,18 +1398,20 @@ html[data-theme="light"] .hx-junction circle{filter:drop-shadow(0 0 4px rgba(0,1
       function addValuePath(fromIndex,toIndex,cls){
         var a=agentOut[fromIndex], b=valueIn[toIndex];
         var gap=b.x-a.x;
-        // Match the approved reference: short horizontal departure/arrival
-        // with a smooth S-curve crossover concentrated in the center.
-        var exitX=a.x+Math.max(12,gap*.18);
-        var entryX=b.x-Math.max(12,gap*.18);
-        var midX=(exitX+entryX)/2;
+        // Approved reference geometry: keep both ends calm and push the
+        // crossover into a narrow central corridor.
+        var exitX=a.x+Math.max(10,gap*.14);
+        var entryX=b.x-Math.max(10,gap*.14);
+        var midX=(a.x+b.x)/2;
+        var spread=Math.min(12,Math.max(6,gap*.07));
+        var crossA=midX-spread, crossB=midX+spread;
         var d='M '+a.x+' '+a.y+
           ' C '+exitX+' '+a.y+', '+exitX+' '+a.y+', '+exitX+' '+a.y+
-          ' C '+midX+' '+a.y+', '+midX+' '+b.y+', '+entryX+' '+b.y+
+          ' C '+crossA+' '+a.y+', '+crossA+' '+b.y+', '+crossB+' '+b.y+
           ' C '+entryX+' '+b.y+', '+entryX+' '+b.y+', '+b.x+' '+b.y;
         var p=document.createElementNS(NS,'path');
         p.setAttribute('d',d);
-        p.setAttribute('class','hx-dynamic-wire '+(cls||''));
+        p.setAttribute('class','hx-dynamic-wire hx-value-wire '+(cls||''));
         svg.appendChild(p);
       }
       // Four primary routes plus the four reference cross-connections.
