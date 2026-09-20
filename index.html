@@ -1299,7 +1299,7 @@ html[data-theme="light"] .heroX-ai .hx-cube-wave-dots{filter:drop-shadow(0 0 2px
 }
 .hx-flow-token.blue{stroke:#4da1ff}.hx-flow-token.purple{stroke:#9877ff}.hx-flow-token.teal{stroke:#2de0ce}
 
-/* Cube wave v17 — visual design unchanged; only dot illumination is animated in JavaScript. */
+/* Cube wave v18 — same cube geometry/dot design; wave only changes dot color + brightness. */
 .heroX-ai .hx-cube-dots circle{
   fill:#2dcbe3!important;
   opacity:.36!important;
@@ -1310,7 +1310,8 @@ html[data-theme="light"] .heroX-ai .hx-cube-wave-dots{filter:drop-shadow(0 0 2px
   opacity:0;
   transform:none!important;
   animation:none!important;
-  transition:none!important
+  transition:none!important;
+  pointer-events:none
 }
 .heroX-ai .hx-cube-wave-dots{opacity:1!important;filter:none!important}
 .heroX-ai .hx-cube-edges path{opacity:.12!important}
@@ -1355,8 +1356,8 @@ html[data-theme="light"] .heroX-ai .hx-cube-wave-dots{filter:drop-shadow(0 0 2px
   <div class="heroX-intro">
     <h1>KRISHNA PADMANABHAN</h1>
     <div class="heroX-role">ENTERPRISE TRANSFORMATION · DELIVERY LEADERSHIP · AI-ENABLED DELIVERY</div>
-    <div class="heroX-tagline">Enterprise delivery is the <em>AI edge.</em></div>
-    <p>AI transformation succeeds when process, data, systems and people are ready to move with it. I lead that connection from enterprise complexity through implementation, adoption and operational value.</p>
+    <div class="heroX-tagline">Enterprise AI for <em>Real Outcomes</em></div>
+    <p>From fragmented complexity to unified performance. I help organizations design, build and adopt AI solutions that deliver measurable value.</p>
   </div>
 
   <div class="heroX-map">
@@ -1795,92 +1796,99 @@ html[data-theme="light"] .heroX-ai .hx-cube-wave-dots{filter:drop-shadow(0 0 2px
 })();
 </script>
 
-<!-- HERO X DOTTED CUBE WAVE v17 -->
+<!-- HERO X DOTTED CUBE WAVE v18 -->
 <script>
 (function(){
   var svg=document.querySelector('.heroX .hx-dotcube');
   var base=svg&&svg.querySelector('.hx-cube-dots');
   if(!svg||!base)return;
 
-  var NS='http://www.w3.org/2000/svg',N=15;
+  var NS='http://www.w3.org/2000/svg';
   var old=svg.querySelector('.hx-cube-wave-dots');if(old)old.remove();
   var oldDefs=svg.querySelector('.hx-cube-wave-defs');if(oldDefs)oldDefs.remove();
 
-  var wave=document.createElementNS(NS,'g');
-  wave.setAttribute('class','hx-cube-wave-dots');
-  base.insertAdjacentElement('afterend',wave);
+  // IMPORTANT: do not rebuild or resize the cube.
+  // Clone the exact existing dots so the approved cube design stays pixel-for-pixel aligned.
+  var overlay=document.createElementNS(NS,'g');
+  overlay.setAttribute('class','hx-cube-wave-dots');
+  base.insertAdjacentElement('afterend',overlay);
+
+  var source=Array.from(base.querySelectorAll('circle'));
   var points=[];
+  var minX=Infinity,maxX=-Infinity,minY=Infinity,maxY=-Infinity;
 
-  function bilerp(a,b,c,d,u,v){
-    return{x:(1-u)*(1-v)*a.x+u*(1-v)*b.x+u*v*c.x+(1-u)*v*d.x,
-           y:(1-u)*(1-v)*a.y+u*(1-v)*b.y+u*v*c.y+(1-u)*v*d.y};
-  }
-  function face(cls,a,b,c,d){
-    for(var row=0;row<N;row++){
-      for(var col=0;col<N;col++){
-        var u=col/(N-1),v=row/(N-1),p=bilerp(a,b,c,d,u,v);
-        var edge=row===0||col===0||row===N-1||col===N-1;
+  source.forEach(function(dot){
+    var x=parseFloat(dot.getAttribute('cx')),y=parseFloat(dot.getAttribute('cy'));
+    if(!isFinite(x)||!isFinite(y))return;
+    minX=Math.min(minX,x);maxX=Math.max(maxX,x);
+    minY=Math.min(minY,y);maxY=Math.max(maxY,y);
+  });
 
-        var dot=document.createElementNS(NS,'circle');
-        dot.setAttribute('class',cls);
-        dot.setAttribute('cx',p.x.toFixed(2));dot.setAttribute('cy',p.y.toFixed(2));
-        dot.setAttribute('r',edge?'1.48':'1.22');
-        base.appendChild(dot);
+  source.forEach(function(dot){
+    var x=parseFloat(dot.getAttribute('cx')),y=parseFloat(dot.getAttribute('cy'));
+    if(!isFinite(x)||!isFinite(y))return;
+    var w=dot.cloneNode(false);
+    // Same radius as the original dot: no swelling/pulsing/redesign.
+    w.removeAttribute('class');
+    w.style.opacity='0';
+    overlay.appendChild(w);
 
-        var w=document.createElementNS(NS,'circle');
-        w.setAttribute('cx',p.x.toFixed(2));w.setAttribute('cy',p.y.toFixed(2));
-        w.setAttribute('r',edge?'2.0':'1.72');
-        wave.appendChild(w);
-
-        // One continuous left-to-right diagonal coordinate across the original cube.
-        points.push({el:w,pos:((p.x-145)/270)*.82+((p.y-30)/190)*.18});
-      }
-    }
-  }
-
-  base.textContent='';
-  var T={x:280,y:30},L={x:145,y:88},C={x:280,y:145},R={x:415,y:88};
-  var LB={x:145,y:163},B={x:280,y:220},RB={x:415,y:163};
-  face('hx-dot-top',T,R,C,L);
-  face('hx-dot-left',L,C,B,LB);
-  face('hx-dot-right',C,R,RB,B);
+    var nx=(x-minX)/(maxX-minX||1);
+    var ny=(y-minY)/(maxY-minY||1);
+    // Slight diagonal tilt makes the dotted front read across all three cube faces.
+    points.push({el:w,pos:nx*.86+ny*.14});
+  });
 
   var reduced=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  var started=performance.now(),duration=3600;
+  var start=performance.now();
+  var duration=4200;
+  var band=.24;
 
+  var stops=[
+    {p:0.00,c:[89,239,255]},   // cyan leading edge
+    {p:0.34,c:[77,161,255]},   // blue
+    {p:0.67,c:[155,119,255]},  // violet
+    {p:1.00,c:[63,224,206]}    // teal trailing edge
+  ];
   function mix(a,b,t){return Math.round(a+(b-a)*t)}
-  function waveColor(t){
-    var stops=[[89,239,255],[77,161,255],[155,119,255],[63,224,206]];
-    var x=Math.max(0,Math.min(.999,t))*3,i=Math.floor(x),q=x-i;
-    var a=stops[i],b=stops[Math.min(3,i+1)];
-    return 'rgb('+mix(a[0],b[0],q)+','+mix(a[1],b[1],q)+','+mix(a[2],b[2],q)+')';
+  function colorAt(t){
+    t=Math.max(0,Math.min(1,t));
+    for(var i=0;i<stops.length-1;i++){
+      if(t<=stops[i+1].p){
+        var a=stops[i],b=stops[i+1],q=(t-a.p)/(b.p-a.p);
+        return 'rgb('+mix(a.c[0],b.c[0],q)+','+mix(a.c[1],b.c[1],q)+','+mix(a.c[2],b.c[2],q)+')';
+      }
+    }
+    return 'rgb(63,224,206)';
   }
 
-  function paint(now){
-    // Sweep fully off the left edge to fully off the right edge, then repeat.
-    var travel=reduced?.52:(((now-started)%duration)/duration)*1.45-.22;
-    var width=.16;
+  function render(now){
+    // Continuous sweep. Short off-cube margins prevent a visible jump at reset.
+    var t=reduced?.52:((now-start)%duration)/duration;
+    var center=-band+(1+band*2)*t;
 
     points.forEach(function(p){
-      var delta=p.pos-travel;
-      var distance=Math.abs(delta);
-      var strength=Math.max(0,1-distance/width);
-      // Smooth, luminous band rather than random dot pulsing.
-      strength=strength*strength*(3-2*strength);
-      if(strength>.01){
-        var across=Math.max(0,Math.min(1,(delta+width)/(width*2)));
-        var col=waveColor(across);
-        p.el.style.fill=col;
-        p.el.style.opacity=(.04+.96*strength).toFixed(3);
-        p.el.style.filter='drop-shadow(0 0 '+(1+4.2*strength).toFixed(1)+'px '+col+')';
-      }else{
+      var d=p.pos-center;
+      var ad=Math.abs(d);
+      if(ad>=band){
         p.el.style.opacity='0';
         p.el.style.filter='none';
+        return;
       }
+
+      // Smooth broad dotted wave. Original dots underneath always remain visible.
+      var strength=1-ad/band;
+      strength=strength*strength*(3-2*strength);
+      var across=(d+band)/(band*2);
+      var col=colorAt(across);
+      p.el.style.fill=col;
+      p.el.style.opacity=(.12+.88*strength).toFixed(3);
+      p.el.style.filter='drop-shadow(0 0 '+(1.2+3.2*strength).toFixed(1)+'px '+col+')';
     });
-    if(!reduced)requestAnimationFrame(paint);
+
+    if(!reduced)requestAnimationFrame(render);
   }
-  requestAnimationFrame(paint);
+  requestAnimationFrame(render);
 })();
 </script>
 
