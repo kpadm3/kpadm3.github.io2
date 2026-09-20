@@ -1375,7 +1375,7 @@ html[data-theme="light"] .heroX-ai .hx-cube-dots circle{opacity:.52}
           <g class="hx-cube-dots"></g>
         </svg>
       </div>
-      <div class="heroX-caps"><span>CONTEXT</span><span>REASONING</span><span>ORCHESTRATION</span><span>GOVERNANCE</span><span>CONTROL</span></div>
+      <div class="heroX-caps"><span tabindex="0" data-tip="Understands enterprise data, knowledge and business rules">CONTEXT</span><span tabindex="0" data-tip="Interprets ambiguity and evaluates evidence">REASONING</span><span tabindex="0" data-tip="Coordinates agents, workflows and system actions">ORCHESTRATION</span><span tabindex="0" data-tip="Applies policies, approvals and traceability">GOVERNANCE</span><span tabindex="0" data-tip="Keeps critical decisions within defined human boundaries">CONTROL</span></div>
     </section>
 
     <section class="heroX-zone heroX-agents">
@@ -1754,6 +1754,15 @@ html[data-theme="light"] .heroX-ai .hx-cube-dots circle{opacity:.52}
   if(inp)inp.addEventListener('keydown',function(e){if(e.key==='Enter')window.cwSendCustom();});
 })();
 </script>
+
+
+<style id="heroX-cap-tooltips">
+.heroX-caps span{position:relative;cursor:help;outline:none}
+.heroX-caps span::after{content:attr(data-tip);position:absolute;left:50%;bottom:calc(100% + 10px);transform:translate(-50%,4px);width:max-content;max-width:260px;padding:7px 10px;border:1px solid rgba(125,238,255,.18);border-radius:7px;background:rgba(8,16,29,.96);color:#dceaf3;font-size:10px;font-weight:500;line-height:1.35;letter-spacing:.01em;text-transform:none;white-space:normal;box-shadow:0 8px 22px rgba(0,0,0,.22);opacity:0;visibility:hidden;pointer-events:none;transition:opacity .16s ease,transform .16s ease,visibility .16s ease;z-index:20}
+.heroX-caps span:hover::after,.heroX-caps span:focus-visible::after{opacity:1;visibility:visible;transform:translate(-50%,0)}
+.heroX-caps span:hover,.heroX-caps span:focus-visible{color:#7deeff}
+@media(max-width:700px){.heroX-caps span::after{max-width:190px;font-size:9px}}
+</style>
 
 <!-- HERO X DOTTED CUBE WAVE -->
 <script>
