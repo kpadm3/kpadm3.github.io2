@@ -23,11 +23,11 @@ html[data-theme="light"] {
 }
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 body { font-family: 'Inter', system-ui, sans-serif; background: var(--bg); color: var(--text); font-size: 14px; line-height: 1.6; }
-.p3-content { max-width: 1200px; margin: 0 auto; padding: 88px 32px 60px; }
+.p3-content { max-width: 1200px; margin: 0 auto; padding: 32px 32px 60px; }
 .back-nav { display: inline-flex; align-items: center; gap: 7px; color: var(--muted); font-size: .72rem; font-weight: 700; letter-spacing: .07em; text-transform: uppercase; text-decoration: none; margin-bottom: 36px; transition: color .18s; }
 .back-nav:hover { color: var(--accent); }
 .back-nav::before { content: '←'; font-size: .9rem; }
-.hero { margin-bottom: 32px; }
+.hero { margin-bottom: 20px; }
 .hero-eyebrow { display: flex; align-items: center; gap: 10px; margin-bottom: 12px; }
 .hero-num { font-size: .62rem; font-weight: 900; color: var(--accent); letter-spacing: .1em; text-transform: uppercase; border: 1px solid var(--accent-border); padding: 3px 9px; border-radius: 4px; }
 .hero h1 { font-size: clamp(1.45rem,3.5vw,2rem); font-weight: 800; letter-spacing: -.025em; line-height: 1.15; margin-bottom: 10px; text-wrap: balance; }
@@ -54,7 +54,7 @@ body { font-family: 'Inter', system-ui, sans-serif; background: var(--bg); color
 .agent-card .aaa-label { background: rgba(53,212,241,.1); color: #35d4f1; border: 1px solid rgba(53,212,241,.25); }
 .human-card .aaa-label { background: rgba(124,140,255,.1); color: #7c8cff; border: 1px solid rgba(124,140,255,.25); }
 .aaa-text { font-size: .71rem; color: var(--soft); line-height: 1.5; }
-.stack-row { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; margin-bottom: 28px; }
+.stack-row { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; margin-bottom: 14px; }
 .stack-label { font-size: .6rem; font-weight: 800; text-transform: uppercase; letter-spacing: .08em; color: var(--muted); white-space: nowrap; }
 .stack-chip { font-size: .65rem; font-weight: 600; color: var(--soft); padding: 3px 9px; border-radius: 4px; border: 1px solid var(--line); background: var(--panel); }
 .arch-flow { display: flex; flex-wrap: wrap; align-items: center; gap: 6px; margin-bottom: 28px; padding: 14px 16px; border: 1px solid var(--line); border-radius: 10px; background: var(--panel); }
@@ -116,19 +116,44 @@ details[open] summary { color: var(--accent); border-bottom: 1px solid var(--lin
 </header>
 <main>
 <div class="p3-content">
+
 <a class="back-nav" href="../index.html#foundation">Enterprise Programs</a>
+
 <div class="hero">
   <div class="hero-eyebrow"><span class="hero-num">04 · Reporting</span></div>
   <h1>Business Reporting Automation</h1>
   <p class="hero-lead">Repeatable reporting that combines validated data, controlled automation and AI-assisted insight.</p>
 </div>
-<div class="glance-grid">
-  <div class="glance-item"><span class="glance-label">Business problem</span><span class="glance-value">Recurring reports depend on manual extracts, spreadsheet transformations, validation and commentary, creating delays and inconsistent output</span></div>
-  <div class="glance-item"><span class="glance-label">My role</span><span class="glance-value">Sr. Business Analyst / Technical Product Manager</span></div>
-  <div class="glance-item"><span class="glance-label">Current environment</span><span class="glance-value">SAP exports · Excel / Power Query · SharePoint · recurring business reports</span></div>
-  <div class="glance-item"><span class="glance-label">Outcome</span><span class="glance-value">Less manual effort, more consistent reporting and faster review of exceptions and changes</span></div>
+<div class="stack-row">
+  <span class="stack-label">Target stack</span>
+  <span class="stack-chip">SharePoint</span><span class="stack-chip">Power Automate</span>
+  <span class="stack-chip">AI Builder</span><span class="stack-chip">Copilot Studio</span>
 </div>
-<div class="divider"></div>
+<div class="value-row" style="margin-bottom:28px">
+  <span class="value-chip">Less manual effort</span><span class="value-chip">Faster insight</span>
+  <span class="value-chip">Consistent outputs</span><span class="value-chip">Traceable review</span>
+</div>
+
+<div class="sol-two-col">
+  <div>
+    <div class="sol-col-label">At a glance</div>
+    <div class="glance-grid" style="margin-bottom:0">
+      <div class="glance-item"><span class="glance-label">Business problem</span><span class="glance-value">Recurring reports depend on manual extracts, spreadsheet transformations, validation and commentary, creating delays and inconsistent output</span></div>
+      <div class="glance-item"><span class="glance-label">My role</span><span class="glance-value">Sr. Business Analyst / Technical Product Manager</span></div>
+      <div class="glance-item"><span class="glance-label">Current environment</span><span class="glance-value">SAP exports · Excel / Power Query · SharePoint · recurring business reports</span></div>
+      <div class="glance-item"><span class="glance-label">Outcome</span><span class="glance-value">Less manual effort, more consistent reporting and faster review of exceptions and changes</span></div>
+    </div>
+  </div>
+  <div>
+    <div class="sol-col-label">AI / Agent / Human</div>
+    <div class="aaa-grid" style="margin-bottom:0;grid-template-columns:1fr">
+      <div class="aaa-card ai-card"><span class="aaa-label">AI</span><p class="aaa-text">Explains validated trends, significant changes and exceptions in approved reporting data.</p></div>
+      <div class="aaa-card agent-card"><span class="aaa-label">Agent</span><p class="aaa-text">Orchestrates the reporting workflow, flags exceptions, routes outputs for review and triggers revised reporting when approved data changes.</p></div>
+      <div class="aaa-card human-card"><span class="aaa-label">Human</span><p class="aaa-text">Analysts review AI commentary and approve distribution. Overrides and reasons are captured.</p></div>
+    </div>
+  </div>
+</div>
+
 <div class="section-label">Current workflow</div>
 <div class="flow-strip">
   <div class="flow-step"><small>01</small>Data extract</div>
@@ -138,43 +163,34 @@ details[open] summary { color: var(--accent); border-bottom: 1px solid var(--lin
   <div class="flow-step"><small>05</small>Review</div>
   <div class="flow-step"><small>06</small>Distribution</div>
 </div>
-<div class="section-label">What I owned</div>
-<div class="owned-list">
-  <span class="owned-tag">Reporting requirements</span><span class="owned-tag">Source-to-output process</span>
-  <span class="owned-tag">Validation rules</span><span class="owned-tag">Exception thresholds</span>
-  <span class="owned-tag">Transformation requirements</span><span class="owned-tag">Output structure</span>
-  <span class="owned-tag">Review workflow</span><span class="owned-tag">Acceptance criteria</span>
-  <span class="owned-tag">UAT</span><span class="owned-tag">AI use-case definition</span>
-  <span class="owned-tag">AI output requirements</span>
+
+<div class="sol-two-col-wide">
+  <div>
+    <div class="sol-col-label">What I owned</div>
+    <div class="owned-list" style="margin-bottom:0">
+      <span class="owned-tag">Reporting requirements</span><span class="owned-tag">Source-to-output process</span>
+      <span class="owned-tag">Validation rules</span><span class="owned-tag">Exception thresholds</span>
+      <span class="owned-tag">Transformation requirements</span><span class="owned-tag">Output structure</span>
+      <span class="owned-tag">Review workflow</span><span class="owned-tag">Acceptance criteria</span>
+      <span class="owned-tag">UAT</span><span class="owned-tag">AI use-case definition</span>
+      <span class="owned-tag">AI output requirements</span>
+    </div>
+  </div>
+  <div>
+    <div class="sol-col-label">Target architecture</div>
+    <div class="arch-flow" style="margin-bottom:0">
+      <span class="arch-step">SAP export</span><span class="arch-arrow">→</span>
+      <span class="arch-step">SharePoint</span><span class="arch-arrow">→</span>
+      <span class="arch-step">Validation + reporting rules</span><span class="arch-arrow">→</span>
+      <span class="arch-step">Power Automate</span><span class="arch-arrow">→</span>
+      <span class="arch-step hi">AI Builder / Copilot</span><span class="arch-arrow">→</span>
+      <span class="arch-step">Commentary + exception review</span><span class="arch-arrow">→</span>
+      <span class="arch-step hi">Human approval</span><span class="arch-arrow">→</span>
+      <span class="arch-step">Distribution + log</span>
+    </div>
+  </div>
 </div>
-<div class="divider"></div>
-<div class="section-label">AI / Agent / Human</div>
-<div class="aaa-grid">
-  <div class="aaa-card ai-card"><span class="aaa-label">AI</span><p class="aaa-text">Explains validated trends, significant changes and exceptions in approved reporting data.</p></div>
-  <div class="aaa-card agent-card"><span class="aaa-label">Agent</span><p class="aaa-text">Orchestrates the reporting workflow, flags exceptions, routes outputs for review and triggers revised reporting when approved data changes.</p></div>
-  <div class="aaa-card human-card"><span class="aaa-label">Human</span><p class="aaa-text">Analysts review AI commentary and approve distribution. Overrides and reasons are captured.</p></div>
-</div>
-<div class="stack-row">
-  <span class="stack-label">Target stack</span>
-  <span class="stack-chip">SharePoint</span><span class="stack-chip">Power Automate</span>
-  <span class="stack-chip">AI Builder</span><span class="stack-chip">Copilot Studio</span>
-</div>
-<div class="section-label">Target architecture</div>
-<div class="arch-flow">
-  <span class="arch-step">SAP export</span><span class="arch-arrow">→</span>
-  <span class="arch-step">SharePoint</span><span class="arch-arrow">→</span>
-  <span class="arch-step">Validation + reporting rules</span><span class="arch-arrow">→</span>
-  <span class="arch-step">Power Automate</span><span class="arch-arrow">→</span>
-  <span class="arch-step hi">AI Builder / Copilot</span><span class="arch-arrow">→</span>
-  <span class="arch-step">Commentary + exception review</span><span class="arch-arrow">→</span>
-  <span class="arch-step hi">Human approval</span><span class="arch-arrow">→</span>
-  <span class="arch-step">Distribution + log</span>
-</div>
-<div class="section-label">Business value</div>
-<div class="value-row">
-  <span class="value-chip">Less manual effort</span><span class="value-chip">Faster insight</span>
-  <span class="value-chip">Consistent outputs</span><span class="value-chip">Traceable review</span>
-</div>
+
 <details>
   <summary>Technical design</summary>
   <div class="details-inner">
@@ -203,6 +219,7 @@ details[open] summary { color: var(--accent); border-bottom: 1px solid var(--lin
     </div>
   </div>
 </details>
+
 </div>
 </main>
 <script src="../assets/js/site.js"></script>

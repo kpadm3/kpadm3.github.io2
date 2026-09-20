@@ -11,26 +11,19 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap">
 <style>
 :root {
-  --bg: #04101d;
-  --panel: #081828;
-  --accent: #35d4f1;
-  --accent-dim: rgba(53,212,241,.18);
-  --accent-border: rgba(53,212,241,.28);
-  --line: rgba(53,212,241,.14);
-  --text: #d5e6f2;
-  --muted: #7090ae;
-  --soft: #a8c0d4;
-  --good: #46d39a;
-  --warn: #f4c95d;
+  --bg: #04101d; --panel: #081828;
+  --accent: #7c8cff; --accent-dim: rgba(124,140,255,.15);
+  --accent-border: rgba(124,140,255,.32); --line: rgba(124,140,255,.14);
+  --text: #d5e6f2; --muted: #7090ae; --soft: #a8c0d4;
+  --good: #46d39a; --warn: #f4c95d;
 }
 html[data-theme="light"] {
-  --bg: #f0f4f8; --panel: #ffffff; --text: #1a2c3e;
-  --muted: #456280; --soft: #2a4560;
-  --line: rgba(53,212,241,.22); --accent-dim: rgba(53,212,241,.12); --accent-border: rgba(53,212,241,.4);
+  --bg: #f0f4f8; --panel: #ffffff; --text: #1a2c3e; --muted: #456280; --soft: #2a4560;
+  --line: rgba(124,140,255,.22); --accent-dim: rgba(124,140,255,.12); --accent-border: rgba(124,140,255,.4);
 }
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 body { font-family: 'Inter', system-ui, sans-serif; background: var(--bg); color: var(--text); font-size: 14px; line-height: 1.6; }
-.p3-content { max-width: 1200px; margin: 0 auto; padding: 88px 32px 60px; }
+.p3-content { max-width: 1200px; margin: 0 auto; padding: 32px 32px 60px; }
 .back-nav { display: inline-flex; align-items: center; gap: 7px; color: var(--muted); font-size: .72rem; font-weight: 700; letter-spacing: .07em; text-transform: uppercase; text-decoration: none; margin-bottom: 36px; transition: color .18s; }
 .back-nav:hover { color: var(--accent); }
 .back-nav::before { content: '←'; font-size: .9rem; }
@@ -39,8 +32,7 @@ body { font-family: 'Inter', system-ui, sans-serif; background: var(--bg); color
 .hero-num { font-size: .62rem; font-weight: 900; color: var(--accent); letter-spacing: .1em; text-transform: uppercase; border: 1px solid var(--accent-border); padding: 3px 9px; border-radius: 4px; }
 .hero h1 { font-size: clamp(1.45rem,3.5vw,2rem); font-weight: 800; letter-spacing: -.025em; line-height: 1.15; margin-bottom: 10px; text-wrap: balance; }
 .hero-lead { font-size: .84rem; color: var(--muted); line-height: 1.55; max-width: 560px; }
-.divider { height: 1px; background: var(--line); margin: 28px 0; }
-.glance-grid { display: grid; grid-template-columns: repeat(2,1fr); gap: 10px; margin-bottom: 32px; }
+.glance-grid { display: grid; grid-template-columns: repeat(2,1fr); gap: 10px; }
 .glance-item { padding: 13px 15px; border: 1px solid var(--line); border-radius: 10px; background: var(--panel); }
 .glance-label { display: block; font-size: .58rem; font-weight: 800; text-transform: uppercase; letter-spacing: .09em; color: var(--accent); margin-bottom: 5px; }
 .glance-value { font-size: .76rem; color: var(--soft); line-height: 1.4; }
@@ -51,20 +43,20 @@ body { font-family: 'Inter', system-ui, sans-serif; background: var(--bg); color
 .flow-step:first-child { border-radius: 8px 0 0 8px; }
 .flow-step:last-child { border-radius: 0 8px 8px 0; }
 .flow-step small { display: block; font-size: .55rem; color: var(--accent); font-weight: 800; margin-bottom: 3px; letter-spacing: .06em; }
-.owned-list { display: flex; flex-wrap: wrap; gap: 7px; margin-bottom: 32px; }
+.owned-list { display: flex; flex-wrap: wrap; gap: 7px; }
 .owned-tag { font-size: .67rem; font-weight: 600; color: var(--soft); padding: 4px 10px; border-radius: 5px; border: 1px solid var(--line); background: var(--panel); }
-.aaa-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 10px; margin-bottom: 16px; }
+.aaa-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 10px; }
 .aaa-card { padding: 15px 14px; border: 1px solid var(--line); border-radius: 12px; background: var(--panel); }
 .aaa-card.ai-card { border-color: var(--accent-border); }
 .aaa-label { display: inline-block; font-size: .55rem; font-weight: 900; letter-spacing: .1em; text-transform: uppercase; padding: 2px 8px; border-radius: 3px; margin-bottom: 8px; }
 .ai-card .aaa-label { background: var(--accent-dim); color: var(--accent); }
-.agent-card .aaa-label { background: rgba(124,140,255,.15); color: #9ea8ff; border: 1px solid rgba(124,140,255,.25); }
+.agent-card .aaa-label { background: rgba(53,212,241,.1); color: #35d4f1; border: 1px solid rgba(53,212,241,.25); }
 .human-card .aaa-label { background: rgba(70,211,154,.1); color: #46d39a; border: 1px solid rgba(70,211,154,.25); }
 .aaa-text { font-size: .71rem; color: var(--soft); line-height: 1.5; }
 .stack-row { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; margin-bottom: 28px; }
 .stack-label { font-size: .6rem; font-weight: 800; text-transform: uppercase; letter-spacing: .08em; color: var(--muted); white-space: nowrap; }
 .stack-chip { font-size: .65rem; font-weight: 600; color: var(--soft); padding: 3px 9px; border-radius: 4px; border: 1px solid var(--line); background: var(--panel); }
-.arch-flow { display: flex; flex-wrap: wrap; align-items: center; gap: 6px; margin-bottom: 28px; padding: 14px 16px; border: 1px solid var(--line); border-radius: 10px; background: var(--panel); }
+.arch-flow { display: flex; flex-wrap: wrap; align-items: center; gap: 6px; padding: 14px 16px; border: 1px solid var(--line); border-radius: 10px; background: var(--panel); }
 .arch-step { font-size: .65rem; font-weight: 700; color: var(--soft); padding: 4px 9px; border-radius: 5px; background: rgba(255,255,255,.04); border: 1px solid var(--line); white-space: nowrap; }
 .arch-step.hi { color: var(--accent); border-color: var(--accent-border); background: var(--accent-dim); }
 .arch-arrow { color: var(--muted); font-size: .75rem; }
@@ -84,7 +76,7 @@ details[open] summary { color: var(--accent); border-bottom: 1px solid var(--lin
 .sc-badge { font-size: .55rem; font-weight: 800; letter-spacing: .07em; text-transform: uppercase; padding: 3px 8px; border-radius: 4px; white-space: nowrap; align-self: start; }
 .sc-badge.pass { background: rgba(70,211,154,.12); color: var(--good); }
 .sc-badge.warn { background: rgba(244,201,93,.12); color: var(--warn); }
-.sc-badge.review { background: rgba(53,212,241,.1); color: var(--accent); }
+.sc-badge.review { background: rgba(244,201,93,.12); color: var(--warn); }
 .controls-list { display: flex; flex-direction: column; gap: 7px; }
 .control-item { display: flex; gap: 10px; align-items: flex-start; font-size: .72rem; color: var(--soft); line-height: 1.45; }
 .control-item::before { content: '›'; color: var(--accent); flex-shrink: 0; font-weight: 700; margin-top: 1px; }
@@ -100,7 +92,6 @@ details[open] summary { color: var(--accent); border-bottom: 1px solid var(--lin
 <body>
 <div class="ambient ambient-a" aria-hidden="true"></div>
 <div class="ambient ambient-b" aria-hidden="true"></div>
-
 <header class="site-header" data-header>
   <div class="container nav-row">
     <a class="brand nav-positioning" href="../index.html" aria-label="Home">Process <span>×</span> People <span>×</span> AI <span>×</span> Agents</a>
@@ -119,12 +110,11 @@ details[open] summary { color: var(--accent); border-bottom: 1px solid var(--lin
     </div>
   </div>
 </header>
-
 <main>
 <div class="p3-content">
 
+<div id="sec-overview">
 <a class="back-nav" href="../index.html#foundation">Enterprise Programs</a>
-
 <div class="hero">
   <div class="hero-eyebrow">
     <span class="hero-num">01 · Configuration</span>
@@ -132,28 +122,62 @@ details[open] summary { color: var(--accent); border-bottom: 1px solid var(--lin
   <h1>Enterprise Product Configuration</h1>
   <p class="hero-lead">Governed product configuration connecting business rules, validation and traceable decisions.</p>
 </div>
+<div class="stack-row">
+  <span class="stack-label">Target stack</span>
+  <span class="stack-chip">Enterprise LLM</span>
+  <span class="stack-chip">Power Automate</span>
+  <span class="stack-chip">SharePoint</span>
+</div>
+<div class="value-row">
+  <span class="value-chip">Governed product rules</span>
+  <span class="value-chip">Faster validation</span>
+  <span class="value-chip">Reduced manual interpretation</span>
+  <span class="value-chip">Traceable decisions</span>
+</div>
+</div>
 
-<div class="glance-grid">
-  <div class="glance-item">
-    <span class="glance-label">Business problem</span>
-    <span class="glance-value">Rules spread across spreadsheets, product documents and SAP exports lead to inconsistent configuration outcomes</span>
+<div id="sec-ai" class="sol-two-col" style="margin-bottom:24px">
+  <div>
+    <div class="sol-col-label">At a Glance</div>
+    <div class="glance-grid">
+      <div class="glance-item">
+        <span class="glance-label">Business problem</span>
+        <span class="glance-value">Rules spread across spreadsheets, product documents and SAP exports lead to inconsistent configuration outcomes</span>
+      </div>
+      <div class="glance-item">
+        <span class="glance-label">My role</span>
+        <span class="glance-value">Sr. Business Analyst / Technical Product Manager</span>
+      </div>
+      <div class="glance-item">
+        <span class="glance-label">Current environment</span>
+        <span class="glance-value">SAP exports · product rules · SharePoint</span>
+      </div>
+      <div class="glance-item">
+        <span class="glance-label">Outcome</span>
+        <span class="glance-value">Governed product rules, stronger validation, consistent output and traceable decisions</span>
+      </div>
+    </div>
   </div>
-  <div class="glance-item">
-    <span class="glance-label">My role</span>
-    <span class="glance-value">Sr. Business Analyst / Technical Product Manager</span>
-  </div>
-  <div class="glance-item">
-    <span class="glance-label">Current environment</span>
-    <span class="glance-value">SAP exports · product rules · SharePoint</span>
-  </div>
-  <div class="glance-item">
-    <span class="glance-label">Outcome</span>
-    <span class="glance-value">Governed product rules, stronger validation, consistent output and traceable decisions</span>
+  <div>
+    <div class="sol-col-label">AI / Agent / Human</div>
+    <div class="aaa-grid">
+      <div class="aaa-card ai-card">
+        <span class="aaa-label">AI</span>
+        <p class="aaa-text">Reads product rules, identifies configuration conflicts and explains what caused each exception. Past approved exceptions are referenced in future checks.</p>
+      </div>
+      <div class="aaa-card agent-card">
+        <span class="aaa-label">Agent</span>
+        <p class="aaa-text">Orchestrates validation, routes exceptions to the right owner and logs approved decisions for future review.</p>
+      </div>
+      <div class="aaa-card human-card">
+        <span class="aaa-label">Human</span>
+        <p class="aaa-text">Product owners approve ambiguous configurations. Overrides are allowed and every decision with its reason is captured.</p>
+      </div>
+    </div>
   </div>
 </div>
 
-<div class="divider"></div>
-
+<div id="sec-workflow">
 <div class="section-label">Current workflow</div>
 <div class="flow-strip">
   <div class="flow-step"><small>01</small>Stakeholder need</div>
@@ -161,65 +185,39 @@ details[open] summary { color: var(--accent); border-bottom: 1px solid var(--lin
   <div class="flow-step"><small>03</small>Product catalog</div>
   <div class="flow-step"><small>04</small>Output QA</div>
 </div>
-
-<div class="section-label">What I owned</div>
-<div class="owned-list">
-  <span class="owned-tag">Rule classification</span>
-  <span class="owned-tag">Process design</span>
-  <span class="owned-tag">Validation criteria</span>
-  <span class="owned-tag">Acceptance criteria</span>
-  <span class="owned-tag">UAT</span>
-  <span class="owned-tag">Release governance</span>
-  <span class="owned-tag">AI use-case definition</span>
-  <span class="owned-tag">AI output requirements</span>
-  <span class="owned-tag">Exception workflow design</span>
-  <span class="owned-tag">Human-control requirements</span>
 </div>
 
-<div class="divider"></div>
-
-<div class="section-label">AI / Agent / Human</div>
-<div class="aaa-grid">
-  <div class="aaa-card ai-card">
-    <span class="aaa-label">AI</span>
-    <p class="aaa-text">Reads product rules, identifies configuration conflicts and explains what caused each exception. Past approved exceptions are referenced in future checks.</p>
+<div id="sec-ownership" class="sol-two-col-wide" style="margin-top:20px;margin-bottom:20px">
+  <div>
+    <div class="sol-col-label">What I Owned</div>
+    <div class="owned-list">
+      <span class="owned-tag">Rule classification</span>
+      <span class="owned-tag">Process design</span>
+      <span class="owned-tag">Validation criteria</span>
+      <span class="owned-tag">Acceptance criteria</span>
+      <span class="owned-tag">UAT</span>
+      <span class="owned-tag">Release governance</span>
+      <span class="owned-tag">AI use-case definition</span>
+      <span class="owned-tag">AI output requirements</span>
+      <span class="owned-tag">Exception workflow design</span>
+      <span class="owned-tag">Human-control requirements</span>
+    </div>
   </div>
-  <div class="aaa-card agent-card">
-    <span class="aaa-label">Agent</span>
-    <p class="aaa-text">Orchestrates validation, routes exceptions to the right owner and logs approved decisions for future review.</p>
+  <div id="sec-arch">
+    <div class="sol-col-label">Target Architecture</div>
+    <div class="arch-flow">
+      <span class="arch-step">SAP export</span><span class="arch-arrow">→</span>
+      <span class="arch-step">SharePoint</span><span class="arch-arrow">→</span>
+      <span class="arch-step">Deterministic rules</span><span class="arch-arrow">→</span>
+      <span class="arch-step hi">Enterprise LLM</span><span class="arch-arrow">→</span>
+      <span class="arch-step">Agent routes</span><span class="arch-arrow">→</span>
+      <span class="arch-step">Human approval</span><span class="arch-arrow">→</span>
+      <span class="arch-step">Decision logged</span>
+    </div>
   </div>
-  <div class="aaa-card human-card">
-    <span class="aaa-label">Human</span>
-    <p class="aaa-text">Product owners approve ambiguous configurations. Overrides are allowed and every decision with its reason is captured.</p>
-  </div>
 </div>
 
-<div class="stack-row">
-  <span class="stack-label">Target stack</span>
-  <span class="stack-chip">Enterprise LLM</span>
-  <span class="stack-chip">Power Automate</span>
-  <span class="stack-chip">SharePoint</span>
-</div>
-
-<div class="section-label">Target architecture</div>
-<div class="arch-flow">
-  <span class="arch-step">SAP export</span><span class="arch-arrow">→</span>
-  <span class="arch-step">SharePoint</span><span class="arch-arrow">→</span>
-  <span class="arch-step">Deterministic rules</span><span class="arch-arrow">→</span>
-  <span class="arch-step hi">Enterprise LLM</span><span class="arch-arrow">→</span>
-  <span class="arch-step">Agent routes</span><span class="arch-arrow">→</span>
-  <span class="arch-step">Human approval</span><span class="arch-arrow">→</span>
-  <span class="arch-step">Decision logged</span>
-</div>
-
-<div class="section-label">Business value</div>
-<div class="value-row">
-  <span class="value-chip">Governed product rules</span>
-  <span class="value-chip">Faster validation</span>
-  <span class="value-chip">Reduced manual interpretation</span>
-  <span class="value-chip">Traceable decisions</span>
-</div>
-
+<div id="sec-tech">
 <details>
   <summary>Technical design</summary>
   <div class="details-inner">
@@ -262,6 +260,7 @@ details[open] summary { color: var(--accent); border-bottom: 1px solid var(--lin
 
   </div>
 </details>
+</div>
 
 </div>
 </main>

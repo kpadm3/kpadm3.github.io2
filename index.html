@@ -394,7 +394,7 @@ html[data-theme="light"] .sp-hero::after{opacity:.1}
 @keyframes refOrb{0%,100%{opacity:.45;transform:scale(.82)}50%{opacity:1;transform:scale(1.18)}}
 @keyframes refCoreBreath{0%,100%{filter:drop-shadow(0 0 18px rgba(34,211,238,.18))}50%{filter:drop-shadow(0 0 34px rgba(34,211,238,.34))}}
 @media(min-width:1201px){
-  .sp-hero{min-height:calc(100vh - 54px)!important;padding:38px 42px 18px!important;background:radial-gradient(ellipse at 68% 18%,rgba(0,100,180,.18),transparent 42%),linear-gradient(180deg,#03111f 0%,#06192b 100%)!important}
+  .sp-hero{min-height:clamp(560px,68vh,720px)!important;padding:22px 42px 12px!important;background:radial-gradient(ellipse at 68% 18%,rgba(0,100,180,.18),transparent 42%),linear-gradient(180deg,#03111f 0%,#06192b 100%)!important}
   .sp-hero-grid{grid-template-columns:27% minmax(0,73%)!important;gap:28px!important;align-items:center!important}
   .sp-hero-main{border-right:0!important;padding:0 14px 0 0!important;min-height:0!important;align-self:center}
   .sp-hero-identity{margin-bottom:28px!important}.sp-hero-name{font-size:.72rem!important;color:#42d8ed!important;letter-spacing:.22em!important}.sp-hero-role-line{font-size:.61rem!important;color:#dceaf6!important;letter-spacing:.2em!important}
@@ -661,11 +661,11 @@ html[data-theme="light"] .sp-scroll-arrow{border-color:#35d4f1!important;color:#
 
 /* ===== HERO X: clean rebuild from approved reference ===== */
 @keyframes hxspin{to{transform:rotate(360deg)}}@keyframes hxspin2{to{transform:rotate(-360deg)}}@keyframes hxpulse{0%,100%{opacity:.5}50%{opacity:1}}
-.heroX{position:relative;box-sizing:border-box;min-height:calc(100vh - 54px);padding:28px 38px 16px;background:radial-gradient(ellipse at 58% 18%,rgba(0,92,170,.18),transparent 42%),linear-gradient(180deg,#03111f,#06182a);color:#eef7ff;overflow:hidden}
+.heroX{position:relative;box-sizing:border-box;min-height:clamp(560px,68vh,720px);padding:28px 38px 16px;background:radial-gradient(ellipse at 58% 18%,rgba(0,92,170,.18),transparent 42%),linear-gradient(180deg,#03111f,#06182a);color:#eef7ff;overflow:hidden}
 .heroX *{box-sizing:border-box}.heroX-intro{display:grid;grid-template-columns:360px minmax(520px,1fr) minmax(390px,500px);gap:34px;align-items:center;min-height:100px;margin-bottom:15px}
 .heroX-name{font-size:15px;letter-spacing:.22em;font-weight:700;color:#35dff3}.heroX-role{margin-top:9px;font-size:10px;letter-spacing:.22em;font-weight:700;color:#e5eef7}.heroX-rule{width:62px;height:2px;margin-top:18px;background:#2fd8ea}
 .heroX-intro h1{margin:0;font-size:clamp(34px,3vw,55px);line-height:1.06;font-weight:300;letter-spacing:-.03em;white-space:nowrap}.heroX-intro h1 em{font-style:normal;color:#22d4f1}.heroX-intro p{margin:0;padding-left:28px;border-left:1px solid rgba(85,183,236,.7);font-size:13px;line-height:1.55;color:#b5c6d6}
-.heroX-map{position:relative;height:458px;border:1px solid rgba(47,173,226,.38);border-radius:13px;background:linear-gradient(135deg,rgba(4,28,49,.92),rgba(4,43,69,.62));display:grid;grid-template-columns:26% 34% 26% 14%;overflow:hidden}
+.heroX-map{position:relative;height:380px;border:1px solid rgba(47,173,226,.38);border-radius:13px;background:linear-gradient(135deg,rgba(4,28,49,.92),rgba(4,43,69,.62));display:grid;grid-template-columns:26% 34% 26% 14%;overflow:hidden}
 .heroX-zone{position:relative;z-index:2;padding:19px 22px 52px;border-right:1px solid rgba(71,163,211,.12)}.heroX-zone:last-of-type{border-right:0}.heroX-zone header{height:58px}.heroX-zone header>b{display:block;font-size:12px;letter-spacing:.13em;color:#52e1f4}.heroX-zone header small{display:block;margin-top:7px;font-size:10px;color:#91a8bb}
 .heroX-enterprise article,.heroX-agents article{position:relative;height:62px;margin:8px 0;display:grid;grid-template-columns:48px 1fr;align-items:center;padding:0 15px;border:1px solid rgba(55,177,237,.62);border-radius:11px;background:linear-gradient(90deg,rgba(5,36,61,.98),rgba(8,46,76,.83));box-shadow:inset 0 0 20px rgba(31,163,225,.04)}
 .heroX-enterprise article.violet,.heroX-agents article.violet{border-color:rgba(147,112,255,.72)}.heroX-agents article.teal{border-color:rgba(44,225,205,.72)}
@@ -773,12 +773,12 @@ html[data-theme="light"] .heroX-pillars{border-top-color:rgba(8,145,178,.22)!imp
 /* HERO X PIXEL MATCH v3 */
 /* Desktop geometry matched to approved 1788x864 reference */
 @media(min-width:1201px){
-.heroX{min-height:804px!important;height:calc(100vh - 60px)!important;max-height:900px!important;padding:31px 39px 0!important}
+.heroX{min-height:clamp(580px,65vh,720px)!important;max-height:720px!important;padding:31px 39px 0!important}
 .heroX-intro{grid-template-columns:420px 1fr 500px!important;gap:36px!important;min-height:100px!important;margin:0 12px 15px!important}
 .heroX-name{font-size:15px!important}.heroX-role{font-size:10px!important}.heroX-rule{margin-top:17px!important}
 .heroX-intro h1{font-size:52px!important;line-height:1.03!important;text-align:left!important}
 .heroX-intro p{font-size:13px!important;line-height:1.55!important;padding-left:28px!important}
-.heroX-map{height:458px!important;grid-template-columns:24% 31% 24% 21%!important;border-radius:13px!important}
+.heroX-map{height:380px!important;grid-template-columns:24% 31% 24% 21%!important;border-radius:13px!important}
 .heroX-zone{padding:19px 25px 52px!important}.heroX-zone header{height:56px!important}
 .heroX-zone header>b{font-size:12px!important}.heroX-zone header small{font-size:10px!important}
 .heroX-enterprise article,.heroX-agents article{height:70px!important;margin:8px 0!important;padding:0 18px!important;grid-template-columns:62px 1fr!important;border-radius:12px!important}

@@ -61,7 +61,7 @@ a{color:inherit;text-decoration:none}a:hover{color:var(--accent)}button{font:inh
   0%, 100% { background-position: 0% center; }
   50% { background-position: 100% center; }
 }
-.solution-heading-v3{margin-top:76px}
+.solution-heading-v3{margin-top:24px}
 .solution-grid-v3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
 .solution-card-v3{--project:var(--accent);--mx:50%;--my:50%;position:relative;isolation:isolate;overflow:hidden;min-height:390px;display:flex;flex-direction:column;padding:22px;border:1px solid var(--line);border-radius:17px;background:radial-gradient(circle at 90% 8%,color-mix(in srgb,var(--project) 15%,transparent),transparent 34%),linear-gradient(145deg,#0e1e33,#081321);opacity:1!important;transform:none!important;transition:transform .25s cubic-bezier(.22,1,.36,1),border-color .22s ease,box-shadow .22s ease}
 .solution-card-v3::before{content:"";position:absolute;inset:0;z-index:-1;background:radial-gradient(340px circle at var(--mx) var(--my),color-mix(in srgb,var(--project) 18%,transparent),transparent 68%);opacity:0;transition:opacity .22s ease}
@@ -90,7 +90,7 @@ a{color:inherit;text-decoration:none}a:hover{color:var(--accent)}button{font:inh
 #foundation{padding-top:64px}
 
 .solution-card-v3{
-  min-height:410px;
+  min-height:340px;
   transition:
     transform .28s cubic-bezier(.22,1,.36,1),
     border-color .24s ease,
@@ -367,4 +367,54 @@ html[data-theme="light"] .footer-brand strong{color:#0d1f35}
 html[data-theme="light"] .footer-brand span{color:#607898}
 html[data-theme="light"] .footer-col h4{color:#8090a5}
 html[data-theme="light"] .footer-col a{color:#607898}
+
+/* Context nav — inner pages */
+.ctx-nav{position:sticky;top:70px;z-index:90;background:rgba(5,11,20,.92);backdrop-filter:blur(14px);border-bottom:1px solid var(--line);padding:0;transition:.2s ease}
+html[data-theme="light"] .ctx-nav{background:rgba(240,245,251,.92);border-bottom-color:rgba(192,213,232,.75)}
+.ctx-nav-inner{display:flex;align-items:center;gap:0;overflow-x:auto;scrollbar-width:none;-ms-overflow-style:none;max-width:1200px;margin:0 auto;padding:0 32px}
+.ctx-nav-inner::-webkit-scrollbar{display:none}
+.ctx-nav-item{flex-shrink:0;padding:9px 14px;font-size:.72rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);border-bottom:2px solid transparent;cursor:pointer;transition:color .18s,border-color .18s;white-space:nowrap;background:none;border-top:none;border-left:none;border-right:none;font-family:inherit}
+.ctx-nav-item:hover{color:var(--text)}
+.ctx-nav-item.active{color:var(--accent);border-bottom-color:var(--accent)}
+.ctx-nav-back{flex-shrink:0;padding:9px 14px 9px 0;font-size:.72rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);cursor:pointer;white-space:nowrap;text-decoration:none;display:flex;align-items:center;gap:5px;border-right:1px solid var(--line);margin-right:4px;transition:color .18s}
+.ctx-nav-back:hover{color:var(--accent)}
+.ctx-nav-title{flex-shrink:0;padding:9px 14px 9px 4px;font-size:.72rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--soft);border-right:1px solid var(--line);margin-right:4px;white-space:nowrap}
+@media(max-width:768px){.ctx-nav-inner{padding:0 16px}.ctx-nav-item{padding:8px 10px;font-size:.68rem}}
+
+/* Solution page layout */
+.sol-exec-header{display:grid;grid-template-columns:1fr auto;gap:24px;align-items:start;margin-bottom:28px}
+.sol-exec-meta{display:flex;flex-direction:column;gap:12px}
+.sol-exec-chips{display:flex;flex-direction:column;gap:10px;min-width:220px;max-width:320px}
+.sol-two-col{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-bottom:20px}
+.sol-two-col-wide{display:grid;grid-template-columns:1.1fr 0.9fr;gap:20px;margin-bottom:20px}
+.sol-col-label{font-size:.65rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin-bottom:8px}
+@media(max-width:820px){.sol-exec-header{grid-template-columns:1fr}.sol-exec-chips{min-width:0;max-width:none}.sol-two-col,.sol-two-col-wide{grid-template-columns:1fr}}
+
+/* Experience compact career grid */
+.career-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:4px}
+.career-item{background:var(--panel);border:1px solid var(--line);border-radius:var(--radius-sm);padding:14px 16px}
+.career-item-top{display:flex;align-items:baseline;justify-content:space-between;gap:8px;margin-bottom:4px}
+.career-role{font-size:.8rem;font-weight:700;color:var(--text)}
+.career-date{font-size:.67rem;color:var(--muted);white-space:nowrap;flex-shrink:0}
+.career-org{font-size:.7rem;color:var(--muted);margin-bottom:6px}
+.career-desc{font-size:.72rem;color:var(--soft);line-height:1.5}
+.career-tags{display:flex;flex-wrap:wrap;gap:4px;margin-top:6px}
+.career-tag{font-size:.62rem;font-weight:600;letter-spacing:.04em;padding:2px 7px;border:1px solid var(--line);border-radius:20px;color:var(--muted)}
+@media(max-width:768px){.career-grid{grid-template-columns:1fr}}
+
+/* Framework stepper */
+.fw-stepper{display:flex;flex-direction:column;gap:0}
+.fw-steps-rail{display:grid;grid-template-columns:repeat(5,1fr);gap:0;border-bottom:2px solid var(--line);margin-bottom:0}
+.fw-step-btn{background:none;border:none;border-bottom:2px solid transparent;margin-bottom:-2px;padding:14px 12px 12px;cursor:pointer;text-align:left;font-family:inherit;transition:color .18s,border-color .18s;display:flex;flex-direction:column;gap:4px}
+.fw-step-btn:hover .fw-step-name{color:var(--text)}
+.fw-step-btn.active{border-bottom-color:var(--accent)}
+.fw-step-btn.active .fw-step-num{color:var(--accent)}
+.fw-step-btn.active .fw-step-name{color:var(--text)}
+.fw-step-num{font-size:.65rem;font-weight:700;letter-spacing:.08em;color:var(--muted)}
+.fw-step-name{font-size:.75rem;font-weight:700;color:var(--muted);line-height:1.3}
+.fw-desc-panel{padding:18px 16px;background:var(--panel);border:1px solid var(--line);border-top:none;border-radius:0 0 var(--radius-sm) var(--radius-sm);min-height:80px}
+.fw-desc-panel p{font-size:.78rem;color:var(--soft);line-height:1.6;margin:0}
+.fw-desc-item{display:none}
+.fw-desc-item.active{display:block}
+@media(max-width:700px){.fw-steps-rail{grid-template-columns:1fr;border-bottom:none}.fw-step-btn{border-bottom:none;border-left:2px solid transparent;padding:10px 14px;margin-bottom:0}.fw-step-btn.active{border-left-color:var(--accent);border-bottom:none;margin-bottom:0}.fw-desc-panel{border-radius:0 0 var(--radius-sm) var(--radius-sm);border-top:1px solid var(--line)}}
 

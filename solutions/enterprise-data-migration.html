@@ -22,11 +22,11 @@ html[data-theme="light"] {
   --line:rgba(239,109,168,.18); --accent-dim:rgba(239,109,168,.10); --accent-border:rgba(239,109,168,.35);
 }
 body { font-family:'Inter',system-ui,sans-serif; background:var(--bg); color:var(--text); font-size:14px; line-height:1.6; }
-.p3-content { max-width:1200px; margin:0 auto; padding:88px 32px 60px; }
+.p3-content { max-width:1200px; margin:0 auto; padding:32px 32px 60px; }
 .back-nav { display:inline-flex; align-items:center; gap:7px; color:var(--muted); font-size:.72rem; font-weight:700; letter-spacing:.07em; text-transform:uppercase; text-decoration:none; margin-bottom:36px; transition:color .18s; }
 .back-nav:hover { color:var(--accent); }
 .back-nav::before { content:'←'; font-size:.9rem; }
-.hero { margin-bottom:32px; }
+.hero { margin-bottom:20px; }
 .hero-eyebrow { display:flex; align-items:center; gap:10px; margin-bottom:12px; }
 .hero-num { font-size:.62rem; font-weight:900; color:var(--accent); letter-spacing:.1em; text-transform:uppercase; border:1px solid var(--accent-border); padding:3px 9px; border-radius:4px; }
 .hero h1 { font-size:clamp(1.45rem,3.5vw,2rem); font-weight:800; letter-spacing:-.025em; line-height:1.15; margin-bottom:10px; text-wrap:balance; }
@@ -53,7 +53,7 @@ body { font-family:'Inter',system-ui,sans-serif; background:var(--bg); color:var
 .agent-card .aaa-label { background:rgba(53,212,241,.1); color:#35d4f1; border:1px solid rgba(53,212,241,.25); }
 .human-card .aaa-label { background:rgba(70,211,154,.1); color:#46d39a; border:1px solid rgba(70,211,154,.25); }
 .aaa-text { font-size:.71rem; color:var(--soft); line-height:1.5; }
-.stack-row { display:flex; align-items:center; gap:8px; flex-wrap:wrap; margin-bottom:28px; }
+.stack-row { display:flex; align-items:center; gap:8px; flex-wrap:wrap; margin-bottom:14px; }
 .stack-label { font-size:.6rem; font-weight:800; text-transform:uppercase; letter-spacing:.08em; color:var(--muted); white-space:nowrap; }
 .stack-chip { font-size:.65rem; font-weight:600; color:var(--soft); padding:3px 9px; border-radius:4px; border:1px solid var(--line); background:var(--panel); }
 .arch-flow { display:flex; flex-wrap:wrap; align-items:center; gap:6px; margin-bottom:28px; padding:14px 16px; border:1px solid var(--line); border-radius:10px; background:var(--panel); }
@@ -95,7 +95,6 @@ details[open] summary { color:var(--accent); border-bottom:1px solid var(--line)
 <body>
 <div class="ambient ambient-a" aria-hidden="true"></div>
 <div class="ambient ambient-b" aria-hidden="true"></div>
-
 <header class="site-header" data-header>
   <div class="container nav-row">
     <a class="brand nav-positioning" href="../index.html" aria-label="Home">Process <span>×</span> People <span>×</span> AI <span>×</span> Agents</a>
@@ -114,7 +113,6 @@ details[open] summary { color:var(--accent); border-bottom:1px solid var(--line)
     </div>
   </div>
 </header>
-
 <main>
 <div class="p3-content">
 
@@ -127,27 +125,59 @@ details[open] summary { color:var(--accent); border-bottom:1px solid var(--line)
   <h1>Enterprise Data Migration</h1>
   <p class="hero-lead">Controlled source-to-target migration with governed mappings, reconciliation and cutover readiness.</p>
 </div>
-
-<div class="glance-grid">
-  <div class="glance-item">
-    <span class="glance-label">Business problem</span>
-    <span class="glance-value">Inconsistent source data, unclear mappings and reconciliation gaps can create significant risk before cutover</span>
-  </div>
-  <div class="glance-item">
-    <span class="glance-label">My role</span>
-    <span class="glance-value">Sr. Business Analyst / Technical Product Manager</span>
-  </div>
-  <div class="glance-item">
-    <span class="glance-label">Current environment</span>
-    <span class="glance-value">SAP / legacy exports · mapping specifications · validation evidence · SharePoint</span>
-  </div>
-  <div class="glance-item">
-    <span class="glance-label">Outcome</span>
-    <span class="glance-value">Lower migration risk, clearer ownership, stronger reconciliation and controlled cutover</span>
-  </div>
+<div class="stack-row">
+  <span class="stack-label">Target stack</span>
+  <span class="stack-chip">Python</span>
+  <span class="stack-chip">Enterprise LLM</span>
+  <span class="stack-chip">SharePoint</span>
+</div>
+<div class="value-row" style="margin-bottom:28px">
+  <span class="value-chip">Lower migration risk</span>
+  <span class="value-chip">Faster exception handling</span>
+  <span class="value-chip">Stronger reconciliation</span>
+  <span class="value-chip">Controlled cutover</span>
 </div>
 
-<div class="divider"></div>
+<div class="sol-two-col">
+  <div>
+    <div class="sol-col-label">At a glance</div>
+    <div class="glance-grid" style="margin-bottom:0">
+      <div class="glance-item">
+        <span class="glance-label">Business problem</span>
+        <span class="glance-value">Inconsistent source data, unclear mappings and reconciliation gaps can create significant risk before cutover</span>
+      </div>
+      <div class="glance-item">
+        <span class="glance-label">My role</span>
+        <span class="glance-value">Sr. Business Analyst / Technical Product Manager</span>
+      </div>
+      <div class="glance-item">
+        <span class="glance-label">Current environment</span>
+        <span class="glance-value">SAP / legacy exports · mapping specifications · validation evidence · SharePoint</span>
+      </div>
+      <div class="glance-item">
+        <span class="glance-label">Outcome</span>
+        <span class="glance-value">Lower migration risk, clearer ownership, stronger reconciliation and controlled cutover</span>
+      </div>
+    </div>
+  </div>
+  <div>
+    <div class="sol-col-label">AI / Agent / Human</div>
+    <div class="aaa-grid" style="margin-bottom:0;grid-template-columns:1fr">
+      <div class="aaa-card ai-card">
+        <span class="aaa-label">AI</span>
+        <p class="aaa-text">Interprets ambiguous mappings, explains reconciliation failures and groups related migration exceptions for review.</p>
+      </div>
+      <div class="aaa-card agent-card">
+        <span class="aaa-label">Agent</span>
+        <p class="aaa-text">Orchestrates exception handling, routes issues to the right owners and tracks unresolved items through migration readiness.</p>
+      </div>
+      <div class="aaa-card human-card">
+        <span class="aaa-label">Human</span>
+        <p class="aaa-text">Business and data owners approve mappings, exceptions and overrides. Final cutover sign-off remains human.</p>
+      </div>
+    </div>
+  </div>
+</div>
 
 <div class="section-label">Current workflow</div>
 <div class="flow-strip">
@@ -159,71 +189,42 @@ details[open] summary { color:var(--accent); border-bottom:1px solid var(--line)
   <div class="flow-step"><small>06</small>Cutover</div>
 </div>
 
-<div class="section-label">What I owned</div>
-<div class="owned-list">
-  <span class="owned-tag">Mapping requirements</span>
-  <span class="owned-tag">Business rules</span>
-  <span class="owned-tag">Source profiling criteria</span>
-  <span class="owned-tag">Duplicate criteria</span>
-  <span class="owned-tag">Reconciliation rules</span>
-  <span class="owned-tag">Exception categories</span>
-  <span class="owned-tag">Ownership model</span>
-  <span class="owned-tag">Cutover-readiness criteria</span>
-  <span class="owned-tag">Acceptance criteria</span>
-  <span class="owned-tag">UAT</span>
-  <span class="owned-tag">AI use-case definition</span>
-  <span class="owned-tag">AI output requirements</span>
-</div>
-
-<div class="divider"></div>
-
-<div class="section-label">AI / Agent / Human</div>
-<div class="aaa-grid">
-  <div class="aaa-card ai-card">
-    <span class="aaa-label">AI</span>
-    <p class="aaa-text">Interprets ambiguous mappings, explains reconciliation failures and groups related migration exceptions for review.</p>
+<div class="sol-two-col-wide">
+  <div>
+    <div class="sol-col-label">What I owned</div>
+    <div class="owned-list" style="margin-bottom:0">
+      <span class="owned-tag">Mapping requirements</span>
+      <span class="owned-tag">Business rules</span>
+      <span class="owned-tag">Source profiling criteria</span>
+      <span class="owned-tag">Duplicate criteria</span>
+      <span class="owned-tag">Reconciliation rules</span>
+      <span class="owned-tag">Exception categories</span>
+      <span class="owned-tag">Ownership model</span>
+      <span class="owned-tag">Cutover-readiness criteria</span>
+      <span class="owned-tag">Acceptance criteria</span>
+      <span class="owned-tag">UAT</span>
+      <span class="owned-tag">AI use-case definition</span>
+      <span class="owned-tag">AI output requirements</span>
+    </div>
   </div>
-  <div class="aaa-card agent-card">
-    <span class="aaa-label">Agent</span>
-    <p class="aaa-text">Orchestrates exception handling, routes issues to the right owners and tracks unresolved items through migration readiness.</p>
+  <div>
+    <div class="sol-col-label">Target architecture</div>
+    <div class="arch-flow" style="margin-bottom:0">
+      <span class="arch-step">SAP / legacy export</span><span class="arch-arrow">→</span>
+      <span class="arch-step">SharePoint</span><span class="arch-arrow">→</span>
+      <span class="arch-step hi">Python profiling + validation</span><span class="arch-arrow">→</span>
+      <span class="arch-step hi">Enterprise LLM</span><span class="arch-arrow">→</span>
+      <span class="arch-step">Exception queue</span><span class="arch-arrow">→</span>
+      <span class="arch-step">Owner review</span><span class="arch-arrow">→</span>
+      <span class="arch-step">Human approval</span><span class="arch-arrow">→</span>
+      <span class="arch-step">Reconciliation evidence + cutover decision logged</span>
+    </div>
   </div>
-  <div class="aaa-card human-card">
-    <span class="aaa-label">Human</span>
-    <p class="aaa-text">Business and data owners approve mappings, exceptions and overrides. Final cutover sign-off remains human.</p>
-  </div>
-</div>
-
-<div class="stack-row">
-  <span class="stack-label">Target stack</span>
-  <span class="stack-chip">Python</span>
-  <span class="stack-chip">Enterprise LLM</span>
-  <span class="stack-chip">SharePoint</span>
-</div>
-
-<div class="section-label">Target architecture</div>
-<div class="arch-flow">
-  <span class="arch-step">SAP / legacy export</span><span class="arch-arrow">→</span>
-  <span class="arch-step">SharePoint</span><span class="arch-arrow">→</span>
-  <span class="arch-step hi">Python profiling + validation</span><span class="arch-arrow">→</span>
-  <span class="arch-step hi">Enterprise LLM</span><span class="arch-arrow">→</span>
-  <span class="arch-step">Exception queue</span><span class="arch-arrow">→</span>
-  <span class="arch-step">Owner review</span><span class="arch-arrow">→</span>
-  <span class="arch-step">Human approval</span><span class="arch-arrow">→</span>
-  <span class="arch-step">Reconciliation evidence + cutover decision logged</span>
-</div>
-
-<div class="section-label">Business value</div>
-<div class="value-row">
-  <span class="value-chip">Lower migration risk</span>
-  <span class="value-chip">Faster exception handling</span>
-  <span class="value-chip">Stronger reconciliation</span>
-  <span class="value-chip">Controlled cutover</span>
 </div>
 
 <details>
   <summary>Technical design</summary>
   <div class="details-inner">
-
     <div>
       <div class="section-label" style="margin-bottom:10px">MVP scenarios</div>
       <div class="scenarios">
@@ -264,7 +265,6 @@ details[open] summary { color:var(--accent); border-bottom:1px solid var(--line)
         </div>
       </div>
     </div>
-
     <div>
       <div class="section-label" style="margin-bottom:10px">Controls and governance</div>
       <div class="controls-list">
@@ -277,18 +277,15 @@ details[open] summary { color:var(--accent); border-bottom:1px solid var(--line)
         <div class="control-item">Final reconciliation and cutover sign-off remain human decisions.</div>
       </div>
     </div>
-
     <div>
       <div class="section-label" style="margin-bottom:8px">Implementation note</div>
       <p style="font-size:.72rem;color:var(--soft);line-height:1.55;">Azure OpenAI can provide the managed LLM layer for this design. The workflow, deterministic controls, human approvals and orchestration are designed to remain portable to equivalent enterprise LLM platforms.</p>
     </div>
-
   </div>
 </details>
 
 </div>
 </main>
-
 <script src="../assets/js/site.js"></script>
 </body>
 </html>

@@ -23,7 +23,7 @@ html[data-theme="light"] {
 }
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 body { font-family: 'Inter', system-ui, sans-serif; background: var(--bg); color: var(--text); font-size: 14px; line-height: 1.6; }
-.p3-content { max-width: 1200px; margin: 0 auto; padding: 88px 32px 60px; }
+.p3-content { max-width: 1200px; margin: 0 auto; padding: 32px 32px 60px; }
 .back-nav { display: inline-flex; align-items: center; gap: 7px; color: var(--muted); font-size: .72rem; font-weight: 700; letter-spacing: .07em; text-transform: uppercase; text-decoration: none; margin-bottom: 36px; transition: color .18s; }
 .back-nav:hover { color: var(--accent); }
 .back-nav::before { content: '←'; font-size: .9rem; }
@@ -33,7 +33,7 @@ body { font-family: 'Inter', system-ui, sans-serif; background: var(--bg); color
 .hero h1 { font-size: clamp(1.45rem,3.5vw,2rem); font-weight: 800; letter-spacing: -.025em; line-height: 1.15; margin-bottom: 10px; text-wrap: balance; }
 .hero-lead { font-size: .84rem; color: var(--muted); line-height: 1.55; max-width: 560px; }
 .divider { height: 1px; background: var(--line); margin: 28px 0; }
-.glance-grid { display: grid; grid-template-columns: repeat(2,1fr); gap: 10px; margin-bottom: 32px; }
+.glance-grid { display: grid; grid-template-columns: repeat(2,1fr); gap: 10px; }
 .glance-item { padding: 13px 15px; border: 1px solid var(--line); border-radius: 10px; background: var(--panel); }
 .glance-label { display: block; font-size: .58rem; font-weight: 800; text-transform: uppercase; letter-spacing: .09em; color: var(--accent); margin-bottom: 5px; }
 .glance-value { font-size: .76rem; color: var(--soft); line-height: 1.4; }
@@ -44,9 +44,9 @@ body { font-family: 'Inter', system-ui, sans-serif; background: var(--bg); color
 .flow-step:first-child { border-radius: 8px 0 0 8px; }
 .flow-step:last-child { border-radius: 0 8px 8px 0; }
 .flow-step small { display: block; font-size: .55rem; color: var(--accent); font-weight: 800; margin-bottom: 3px; letter-spacing: .06em; }
-.owned-list { display: flex; flex-wrap: wrap; gap: 7px; margin-bottom: 32px; }
+.owned-list { display: flex; flex-wrap: wrap; gap: 7px; }
 .owned-tag { font-size: .67rem; font-weight: 600; color: var(--soft); padding: 4px 10px; border-radius: 5px; border: 1px solid var(--line); background: var(--panel); }
-.aaa-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 10px; margin-bottom: 16px; }
+.aaa-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 10px; }
 .aaa-card { padding: 15px 14px; border: 1px solid var(--line); border-radius: 12px; background: var(--panel); }
 .aaa-card.ai-card { border-color: var(--accent-border); }
 .aaa-label { display: inline-block; font-size: .55rem; font-weight: 900; letter-spacing: .1em; text-transform: uppercase; padding: 2px 8px; border-radius: 3px; margin-bottom: 8px; }
@@ -57,7 +57,7 @@ body { font-family: 'Inter', system-ui, sans-serif; background: var(--bg); color
 .stack-row { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; margin-bottom: 28px; }
 .stack-label { font-size: .6rem; font-weight: 800; text-transform: uppercase; letter-spacing: .08em; color: var(--muted); white-space: nowrap; }
 .stack-chip { font-size: .65rem; font-weight: 600; color: var(--soft); padding: 3px 9px; border-radius: 4px; border: 1px solid var(--line); background: var(--panel); }
-.arch-flow { display: flex; flex-wrap: wrap; align-items: center; gap: 6px; margin-bottom: 28px; padding: 14px 16px; border: 1px solid var(--line); border-radius: 10px; background: var(--panel); }
+.arch-flow { display: flex; flex-wrap: wrap; align-items: center; gap: 6px; padding: 14px 16px; border: 1px solid var(--line); border-radius: 10px; background: var(--panel); }
 .arch-step { font-size: .65rem; font-weight: 700; color: var(--soft); padding: 4px 9px; border-radius: 5px; background: rgba(255,255,255,.04); border: 1px solid var(--line); white-space: nowrap; }
 .arch-step.hi { color: var(--accent); border-color: var(--accent-border); background: var(--accent-dim); }
 .arch-arrow { color: var(--muted); font-size: .75rem; }
@@ -113,19 +113,45 @@ details[open] summary { color: var(--accent); border-bottom: 1px solid var(--lin
 </header>
 <main>
 <div class="p3-content">
+
+<div id="sec-overview">
 <a class="back-nav" href="../index.html#foundation">Enterprise Programs</a>
 <div class="hero">
   <div class="hero-eyebrow"><span class="hero-num">02 · Integration</span></div>
   <h1>Enterprise Data Integration</h1>
   <p class="hero-lead">Structured source-to-target integration connecting field mappings, transformation rules and validation controls.</p>
 </div>
-<div class="glance-grid">
-  <div class="glance-item"><span class="glance-label">Business problem</span><span class="glance-value">Source and target systems use different field names, structures and rules, creating mapping ambiguity and downstream integration risk</span></div>
-  <div class="glance-item"><span class="glance-label">My role</span><span class="glance-value">Sr. Business Analyst / Technical Product Manager</span></div>
-  <div class="glance-item"><span class="glance-label">Current environment</span><span class="glance-value">SAP exports · source/target schemas · mapping specifications · SharePoint</span></div>
-  <div class="glance-item"><span class="glance-label">Outcome</span><span class="glance-value">Clear mappings, stronger validation, fewer integration gaps and traceable decisions</span></div>
+<div class="stack-row">
+  <span class="stack-label">Target stack</span>
+  <span class="stack-chip">Python</span><span class="stack-chip">Enterprise LLM</span><span class="stack-chip">SharePoint</span>
 </div>
-<div class="divider"></div>
+<div class="value-row">
+  <span class="value-chip">Faster mapping analysis</span><span class="value-chip">Fewer integration gaps</span>
+  <span class="value-chip">Consistent field definitions</span><span class="value-chip">Traceable decisions</span>
+</div>
+</div>
+
+<div id="sec-ai" class="sol-two-col" style="margin-bottom:24px">
+  <div>
+    <div class="sol-col-label">At a Glance</div>
+    <div class="glance-grid">
+      <div class="glance-item"><span class="glance-label">Business problem</span><span class="glance-value">Source and target systems use different field names, structures and rules, creating mapping ambiguity and downstream integration risk</span></div>
+      <div class="glance-item"><span class="glance-label">My role</span><span class="glance-value">Sr. Business Analyst / Technical Product Manager</span></div>
+      <div class="glance-item"><span class="glance-label">Current environment</span><span class="glance-value">SAP exports · source/target schemas · mapping specifications · SharePoint</span></div>
+      <div class="glance-item"><span class="glance-label">Outcome</span><span class="glance-value">Clear mappings, stronger validation, fewer integration gaps and traceable decisions</span></div>
+    </div>
+  </div>
+  <div>
+    <div class="sol-col-label">AI / Agent / Human</div>
+    <div class="aaa-grid">
+      <div class="aaa-card ai-card"><span class="aaa-label">AI</span><p class="aaa-text">Reads source and target field meaning, recommends mappings for ambiguous fields and explains why a match is suggested.</p></div>
+      <div class="aaa-card agent-card"><span class="aaa-label">Agent</span><p class="aaa-text">Orchestrates the mapping review workflow, routes unresolved mappings for review and logs approved mapping decisions for future reference.</p></div>
+      <div class="aaa-card human-card"><span class="aaa-label">Human</span><p class="aaa-text">Integration and business SMEs approve uncertain mappings and transformations. Overrides and reasons are captured.</p></div>
+    </div>
+  </div>
+</div>
+
+<div id="sec-workflow">
 <div class="section-label">Current workflow</div>
 <div class="flow-strip">
   <div class="flow-step"><small>01</small>Source analysis</div>
@@ -134,40 +160,34 @@ details[open] summary { color: var(--accent); border-bottom: 1px solid var(--lin
   <div class="flow-step"><small>04</small>Validation</div>
   <div class="flow-step"><small>05</small>Target handoff</div>
 </div>
-<div class="section-label">What I owned</div>
-<div class="owned-list">
-  <span class="owned-tag">Mapping requirements</span><span class="owned-tag">Source/target definitions</span>
-  <span class="owned-tag">Business field meaning</span><span class="owned-tag">Transformation rules</span>
-  <span class="owned-tag">Validation criteria</span><span class="owned-tag">Exception criteria</span>
-  <span class="owned-tag">Acceptance criteria</span><span class="owned-tag">UAT</span>
-  <span class="owned-tag">AI use-case definition</span><span class="owned-tag">AI output requirements</span>
 </div>
-<div class="divider"></div>
-<div class="section-label">AI / Agent / Human</div>
-<div class="aaa-grid">
-  <div class="aaa-card ai-card"><span class="aaa-label">AI</span><p class="aaa-text">Reads source and target field meaning, recommends mappings for ambiguous fields and explains why a match is suggested.</p></div>
-  <div class="aaa-card agent-card"><span class="aaa-label">Agent</span><p class="aaa-text">Orchestrates the mapping review workflow, routes unresolved mappings for review and logs approved mapping decisions for future reference.</p></div>
-  <div class="aaa-card human-card"><span class="aaa-label">Human</span><p class="aaa-text">Integration and business SMEs approve uncertain mappings and transformations. Overrides and reasons are captured.</p></div>
+
+<div id="sec-ownership" class="sol-two-col-wide" style="margin-top:20px;margin-bottom:20px">
+  <div>
+    <div class="sol-col-label">What I Owned</div>
+    <div class="owned-list">
+      <span class="owned-tag">Mapping requirements</span><span class="owned-tag">Source/target definitions</span>
+      <span class="owned-tag">Business field meaning</span><span class="owned-tag">Transformation rules</span>
+      <span class="owned-tag">Validation criteria</span><span class="owned-tag">Exception criteria</span>
+      <span class="owned-tag">Acceptance criteria</span><span class="owned-tag">UAT</span>
+      <span class="owned-tag">AI use-case definition</span><span class="owned-tag">AI output requirements</span>
+    </div>
+  </div>
+  <div id="sec-arch">
+    <div class="sol-col-label">Target Architecture</div>
+    <div class="arch-flow">
+      <span class="arch-step">SAP export</span><span class="arch-arrow">→</span>
+      <span class="arch-step">SharePoint</span><span class="arch-arrow">→</span>
+      <span class="arch-step">Python checks</span><span class="arch-arrow">→</span>
+      <span class="arch-step hi">Enterprise LLM</span><span class="arch-arrow">→</span>
+      <span class="arch-step">Review queue</span><span class="arch-arrow">→</span>
+      <span class="arch-step">Human approval</span><span class="arch-arrow">→</span>
+      <span class="arch-step">Mapping logged</span>
+    </div>
+  </div>
 </div>
-<div class="stack-row">
-  <span class="stack-label">Target stack</span>
-  <span class="stack-chip">Python</span><span class="stack-chip">Enterprise LLM</span><span class="stack-chip">SharePoint</span>
-</div>
-<div class="section-label">Target architecture</div>
-<div class="arch-flow">
-  <span class="arch-step">SAP export</span><span class="arch-arrow">→</span>
-  <span class="arch-step">SharePoint</span><span class="arch-arrow">→</span>
-  <span class="arch-step">Python checks</span><span class="arch-arrow">→</span>
-  <span class="arch-step hi">Enterprise LLM</span><span class="arch-arrow">→</span>
-  <span class="arch-step">Review queue</span><span class="arch-arrow">→</span>
-  <span class="arch-step">Human approval</span><span class="arch-arrow">→</span>
-  <span class="arch-step">Mapping logged</span>
-</div>
-<div class="section-label">Business value</div>
-<div class="value-row">
-  <span class="value-chip">Faster mapping analysis</span><span class="value-chip">Fewer integration gaps</span>
-  <span class="value-chip">Consistent field definitions</span><span class="value-chip">Traceable decisions</span>
-</div>
+
+<div id="sec-tech">
 <details>
   <summary>Technical design</summary>
   <div class="details-inner">
@@ -197,6 +217,8 @@ details[open] summary { color: var(--accent); border-bottom: 1px solid var(--lin
     </div>
   </div>
 </details>
+</div>
+
 </div>
 </main>
 <script src="../assets/js/site.js"></script>
