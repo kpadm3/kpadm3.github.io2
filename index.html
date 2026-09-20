@@ -1286,9 +1286,10 @@ html[data-theme="light"] .heroX-ai .hx-cube-dots circle{opacity:.52}
 
 
 /* Lifecycle layer heading alignment */
-.heroX-map .heroX-zone>header{height:58px;display:flex;flex-direction:column;justify-content:flex-start;align-items:flex-start;text-align:left}
+.heroX-map .heroX-zone>header{height:66px;display:flex;flex-direction:column;justify-content:flex-start;align-items:center;text-align:center;padding-top:4px;box-sizing:border-box}
 .heroX-map .heroX-zone>header>b{margin:0;line-height:1.2}
-.heroX-map .heroX-zone>header>small{margin-top:7px;line-height:1.25}
+.heroX-map .heroX-zone>header>small{margin-top:8px;line-height:1.25}
+@media(max-width:1200px){.heroX-map .heroX-zone>header{height:auto;min-height:58px;padding-top:0}}
 </style>
 <script>(() => { const s = localStorage.getItem('kp-theme'); const t = s || (matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark'); document.documentElement.setAttribute('data-theme', t); })();</script>
 </head>
@@ -1322,7 +1323,6 @@ html[data-theme="light"] .heroX-ai .hx-cube-dots circle{opacity:.52}
     <h1>KRISHNA PADMANABHAN</h1>
     <div class="heroX-role">ENTERPRISE AI TRANSFORMATION · STRATEGY & CAPABILITY DELIVERY · AI-ENABLED PRODUCT LEADERSHIP</div>
     <div class="heroX-tagline">From Enterprise Architecture to <em>Intelligent Execution</em></div>
-    <p>From fragmented complexity to unified performance. I help organizations design, build and adopt AI solutions that deliver measurable value.</p>
   </div>
 
   <div class="heroX-map">
@@ -1362,7 +1362,7 @@ html[data-theme="light"] .heroX-ai .hx-cube-dots circle{opacity:.52}
 </svg>
 
     <section class="heroX-zone heroX-enterprise">
-      <header><b>Enterprise Architecture</b><small>THE FOUNDATION FOR AI</small></header>
+      <header><b>Enterprise Architecture Layer</b><small>THE FOUNDATION FOR AI</small></header>
       <article><i class="ti ti-file-description"></i><div><b>PROCESS</b><small>Workflows · Rules · Dependencies · Exceptions</small></div></article>
       <article><i class="ti ti-database"></i><div><b>SYSTEMS</b><small>ERP · CRM · PLM · Platforms · Integrations</small></div></article>
       <article><i class="ti ti-files"></i><div><b>DATA + KNOWLEDGE</b><small>Data · Documents · Knowledge · Context</small></div></article>
@@ -1370,7 +1370,7 @@ html[data-theme="light"] .heroX-ai .hx-cube-dots circle{opacity:.52}
     </section>
 
     <section class="heroX-zone heroX-ai">
-      <header><b>AI transformation layer</b><small>INTELLIGENCE IN ACTION</small></header>
+      <header><b>AI Transformation Layer</b><small>INTELLIGENCE IN ACTION</small></header>
       <div class="heroX-core">
         <svg class="hx-dotcube" viewBox="0 0 560 250" aria-hidden="true">
           <g class="hx-cube-edges">
@@ -1385,7 +1385,7 @@ html[data-theme="light"] .heroX-ai .hx-cube-dots circle{opacity:.52}
     </section>
 
     <section class="heroX-zone heroX-agents">
-      <header><b>Specialized agents</b><small>DOMAIN EXPERTISE AT WORK</small></header>
+      <header><b>Agent Execution Layer</b><small>DOMAIN EXPERTISE AT WORK</small></header>
       <article><i class="ti ti-settings-2"></i><div><b>PROCESS AGENT</b><small>OPTIMIZE &amp; EXECUTE</small></div></article>
       <article class="violet"><i class="ti ti-book-2"></i><div><b>KNOWLEDGE AGENT</b><small>FIND &amp; SYNTHESIZE</small></div></article>
       <article class="violet"><i class="ti ti-player-play"></i><div><b>ACTION AGENT</b><small>TAKE &amp; COORDINATE</small></div></article>
@@ -1393,7 +1393,7 @@ html[data-theme="light"] .heroX-ai .hx-cube-dots circle{opacity:.52}
     </section>
 
     <section class="heroX-zone heroX-value">
-      <header><b>Operational value</b><small>REAL OUTCOMES. LASTING IMPACT.</small></header>
+      <header><b>Operational Value Layer</b><small>REAL OUTCOMES. LASTING IMPACT.</small></header>
       <div class="heroX-valuebox">
         <article><i class="ti ti-bolt"></i><div><b>HIGHER EFFICIENCY</b><small>DO MORE WITH LESS</small></div></article>
         <article class="violet"><i class="ti ti-chart-bar"></i><div><b>FASTER INSIGHTS</b><small>TURN INFORMATION INTO ACTION</small></div></article>
@@ -1765,7 +1765,7 @@ html[data-theme="light"] .heroX-enterprise article.hx-scan::after{background:lin
   var values=Array.from(hero.querySelectorAll('.heroX-valuebox article'));
   if(enterprise.length!==4||agents.length!==4||values.length!==4)return;
 
-  var NS='http://www.w3.org/2000/svg',N=21,dots=[],paths={incoming:[],outgoing:[],value:[]};
+  var NS='http://www.w3.org/2000/svg',N=23,dots=[],paths={incoming:[],outgoing:[],value:[]};
   var scenarios=[
     {inputs:[0,1,2,3],agents:[0,1,2,3],values:[0,1,2,3]}
   ];
@@ -1800,7 +1800,7 @@ html[data-theme="light"] .heroX-enterprise article.hx-scan::after{background:lin
       el.setAttribute('cy',py);
       el.setAttribute('r',edge?1.22:1.08);
       grp.appendChild(el);
-      dots.push({el:el,baseY:p.y,nx:(p.x-92)/376,face:faceIndex,baseOpacity:parseFloat(getComputedStyle(el).opacity)||1});
+      dots.push({el:el,baseY:p.y,nx:(p.x-92)/376,face:faceIndex,baseOpacity:parseFloat(getComputedStyle(el).opacity)||1,baseFill:getComputedStyle(el).fill});
     }
   }
   face('hx-dot-top',T,R,C,L,0);
@@ -1918,7 +1918,7 @@ html[data-theme="light"] .heroX-enterprise article.hx-scan::after{background:lin
   }
   function resetCube(){
     if(cubeMode==='reset')return;
-    dots.forEach(function(d){d.el.setAttribute('cy',d.baseY.toFixed(2));d.el.style.opacity=String(d.baseOpacity);});
+    dots.forEach(function(d){d.el.setAttribute('cy',d.baseY.toFixed(2));d.el.style.opacity=String(d.baseOpacity);d.el.style.fill='';});
     capEls.forEach(function(el){el.classList.remove('hx-cap-active');el.style.opacity='';el.style.color='';el.style.textShadow='';});
     cubeMode='reset';capIndex=-1;
   }
@@ -1932,6 +1932,12 @@ html[data-theme="light"] .heroX-enterprise article.hx-scan::after{background:lin
       var dy=-15.5*crest*depth;
       d.el.setAttribute('cy',(d.baseY+dy).toFixed(2));
       d.el.style.opacity=String(Math.min(1,d.baseOpacity+crest*.10));
+      // Carry the four Architecture stream colors through the dotted fabric with the travelling crest.
+      // Color is confined to the fabric: dots return to their native face color immediately after it passes.
+      var streamColors=['#42ddf6','#4da1ff','#9877ff','#2de0ce'];
+      var band=Math.min(3,Math.floor(((d.el.cx.baseVal.value-92)/376)*4));
+      var colorMix=Math.max(0,Math.min(1,(crest-.10)/.90));
+      d.el.style.fill=colorMix>.02?streamColors[band]:'';
     });
     cubeMode='wave';
     if(capEls.length===5){
