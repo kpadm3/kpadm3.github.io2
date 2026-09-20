@@ -513,32 +513,3 @@ html[data-theme="light"] .solution-icon-v3{
 html[data-theme="light"] .solution-card-v3:hover .solution-icon-v3{
   box-shadow:0 0 22px color-mix(in srgb,var(--project) 14%,transparent);
 }
-
-/* Readability guardrails — typography only; no layout geometry changes */
-:root{--type-body-sm:.86rem;--type-support:.82rem;--type-label:.78rem}
-.nav-links a{font-weight:600}
-.eyebrow,.section-label{font-size:.78rem!important;font-weight:700!important}
-.solution-meta-v3{font-size:.76rem!important;font-weight:700!important}
-.solution-flow-v3 small{font-size:.70rem!important;font-weight:700!important}
-.solution-flow-v3 strong{font-size:.78rem!important;font-weight:500!important}
-.solution-outcome-v3 span{font-size:.74rem!important;font-weight:700!important}
-.solution-outcome-v3 strong{font-size:.82rem!important;font-weight:600!important}
-.solution-card-v3>a{font-size:.80rem!important;font-weight:600!important}
-.ctx-nav-item,.ctx-nav-back,.ctx-nav-title{font-size:.76rem!important;font-weight:600!important}
-.page-kicker,.earlier-heading,.sidebar-heading,.timeline-heading,.panel-heading{font-weight:700!important}
-.tl-company{font-size:.82rem!important;font-weight:600!important}
-.tl-desc,.cap-item{font-size:.84rem!important;font-weight:400!important}
-.tl-date-range,.tl-date-label{font-size:.76rem!important;font-weight:500!important}
-.tl-tags span{font-size:.72rem!important;font-weight:500!important}
-.section-intro p,.framework-step p,.how-card p,.practice-item span,.case-note{font-size:.82rem!important;font-weight:400!important}
-.contact-item-label{font-size:.76rem!important;font-weight:700!important}
-.contact-item-value{font-size:.84rem!important;font-weight:500!important}
-.contact-item-sub,.footer-brand span,.footer-col a,.footer-bottom{font-size:.76rem!important;font-weight:400!important}
-.contact-layout .button{font-weight:600!important}
-.hero-num,.glance-label,.section-label,.flow-step small,.aaa-label,.sc-num,.sc-badge{font-size:.72rem!important;font-weight:700!important}
-.flow-step,.owned-tag,.aaa-text,.stack-chip,.arch-step,.sc-text,.control-item{font-size:.78rem!important;font-weight:500!important}
-details summary{font-size:.74rem!important;font-weight:700!important}
-html[data-theme="light"] .button{background:#dff6fb!important;border-color:#8edce8!important;color:#07566a!important;box-shadow:0 8px 20px rgba(13,31,53,.08)!important;font-weight:600!important}
-html[data-theme="light"] .button:hover{background:#cceff6!important;border-color:#57c8da!important;color:#063f50!important}
-html[data-theme="light"] .button.secondary{background:#fff!important;border-color:#bfd2e3!important;color:#27445f!important;box-shadow:none!important}
-html[data-theme="light"] .button.secondary:hover{background:#f4f8fd!important;border-color:#8fb1cb!important;color:#173650!important}
