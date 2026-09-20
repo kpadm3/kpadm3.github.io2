@@ -467,3 +467,14 @@ body .solution-card-v3.is-active .card-cta{
   body .solution-card-v3 .card-cta{opacity:1}
 }
 
+
+
+/* === LIGHT MODE — solution icon tiles === */
+html[data-theme="light"] .solution-icon-v3{
+  background:color-mix(in srgb,var(--project) 10%,#ffffff);
+  border-color:color-mix(in srgb,var(--project) 42%,#d7e3ee);
+  color:var(--project);
+}
+html[data-theme="light"] .solution-card-v3:hover .solution-icon-v3{
+  box-shadow:0 0 22px color-mix(in srgb,var(--project) 14%,transparent);
+}
