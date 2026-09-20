@@ -5,6 +5,7 @@
   --accent:#35d4f1;--accent-2:#8c70ff;--success:#43d9ac;
   --max:1540px;--radius:18px;--radius-sm:12px;
   --shadow:0 28px 70px rgba(0,0,0,.36);
+  --type-body-sm:.82rem;--type-support:.76rem;--type-label:.70rem;
   --space-1:8px;--space-2:12px;--space-3:18px;--space-4:24px;--space-5:36px;--space-6:56px;--space-7:84px;
 }
 *{box-sizing:border-box}
