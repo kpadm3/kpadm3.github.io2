@@ -987,6 +987,90 @@ html[data-theme="light"] .heroX-ai .hx-cube-dots circle{filter:none!important;op
 .hx-dynamic-wire.purple{stroke:#9877ff}.hx-dynamic-wire.teal{stroke:#2de0ce}.hx-value-wire{stroke-width:1.65;opacity:.92;filter:drop-shadow(0 0 2px currentColor)}.hx-value-runner{opacity:.88}.hx-value-runner.purple{fill:#c8baff}.hx-value-runner.teal{fill:#b8fff5}
 .hx-dynamic-runner{fill:#e8fdff;filter:url(#hxg)}
 @media(prefers-reduced-motion:reduce){.hx-dynamic-runner{display:none}}
+
+/* HERO X CLEAN FLOW OVERRIDES */
+.heroX:before,
+.heroX:after{display:none!important}
+
+.heroX-map{
+  border:0!important;
+  border-radius:0!important;
+  background:transparent!important;
+  box-shadow:none!important;
+  overflow:visible!important
+}
+.heroX-map:before{display:none!important}
+
+.heroX-map .heroX-zone,
+.heroX-zone{
+  border-right:0!important;
+  background:transparent!important
+}
+
+.heroX-enterprise article,
+.heroX-agents article{
+  border:0!important;
+  box-shadow:none!important;
+  animation:none!important;
+  background:linear-gradient(90deg,rgba(5,36,61,.58),rgba(8,46,76,.34))!important
+}
+.heroX-enterprise article:before,
+.heroX-agents article:before,
+.heroX-valuebox article:before{display:none!important}
+
+.heroX-valuebox{
+  border:0!important;
+  background:transparent!important;
+  box-shadow:none!important;
+  overflow:visible!important
+}
+.heroX-valuebox article{
+  border-bottom:0!important;
+  background:rgba(4,45,61,.30);
+  border-radius:10px;
+  margin:7px 0
+}
+
+.heroX-scale{display:none!important}
+
+.heroX-pillars{
+  border-top:0!important
+}
+.heroX-pillars:after{display:none!important}
+.heroX-pillars article{
+  border-right:0!important
+}
+
+.heroX-scroll{display:none!important}
+
+.heroX-links{
+  height:100%!important;
+  filter:drop-shadow(0 0 4px rgba(45,213,245,.22))
+}
+
+/* Keep only the meaningful transformation connectors as structural lines. */
+.hx-path path{
+  stroke-width:2!important;
+  stroke-dasharray:18 7 3 7
+}
+
+html[data-theme="light"] .heroX-map,
+html[data-theme="light"] .heroX-map .heroX-zone{
+  background:transparent!important;
+  border-color:transparent!important;
+  box-shadow:none!important
+}
+html[data-theme="light"] .heroX-enterprise article,
+html[data-theme="light"] .heroX-agents article{
+  border:0!important;
+  box-shadow:none!important
+}
+html[data-theme="light"] .heroX-valuebox{
+  border:0!important;
+  background:transparent!important;
+  box-shadow:none!important
+}
+
 </style>
 <script>(() => { const s = localStorage.getItem('kp-theme'); const t = s || (matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark'); document.documentElement.setAttribute('data-theme', t); })();</script>
 </head>
