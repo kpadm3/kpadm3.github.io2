@@ -761,7 +761,7 @@ html[data-theme="light"] .heroX-pillars{border-top-color:rgba(8,145,178,.22)!imp
 .heroX-name{font-size:15px!important}.heroX-role{font-size:10px!important}.heroX-rule{margin-top:17px!important}
 .heroX-intro h1{font-size:52px!important;line-height:1.03!important;text-align:left!important}
 .heroX-intro p{font-size:13px!important;line-height:1.55!important;padding-left:28px!important}
-.heroX-map{height:458px!important;grid-template-columns:24% 34% 26% 16%!important;border-radius:13px!important}
+.heroX-map{height:458px!important;grid-template-columns:24% 34% 24% 18%!important;border-radius:13px!important}
 .heroX-zone{padding:19px 25px 52px!important}.heroX-zone header{height:56px!important}
 .heroX-zone header>b{font-size:12px!important}.heroX-zone header small{font-size:10px!important}
 .heroX-enterprise article,.heroX-agents article{height:70px!important;margin:8px 0!important;padding:0 18px!important;grid-template-columns:62px 1fr!important;border-radius:12px!important}
@@ -836,7 +836,7 @@ html[data-theme="light"] .hx-junction circle{filter:drop-shadow(0 0 4px rgba(0,1
 /* HERO X DYNAMIC FLOW ROUTING v5 */
 .heroX-links{overflow:visible}
 .hx-dynamic-wire{fill:none;stroke:#42ddf6;stroke-width:2.15;stroke-linecap:round;stroke-linejoin:round;filter:url(#hxg);opacity:.94}
-.hx-dynamic-wire.purple{stroke:#9877ff}.hx-dynamic-wire.teal{stroke:#2de0ce}.hx-value-wire{stroke-width:1.65;opacity:.92;filter:drop-shadow(0 0 2px currentColor)}
+.hx-dynamic-wire.purple{stroke:#9877ff}.hx-dynamic-wire.teal{stroke:#2de0ce}.hx-value-wire{stroke-width:1.65;opacity:.92;filter:drop-shadow(0 0 2px currentColor)}.hx-value-runner{opacity:.88}.hx-value-runner.purple{fill:#c8baff}.hx-value-runner.teal{fill:#b8fff5}
 .hx-dynamic-runner{fill:#e8fdff;filter:url(#hxg)}
 @media(prefers-reduced-motion:reduce){.hx-dynamic-runner{display:none}}
 </style>
@@ -1395,7 +1395,7 @@ html[data-theme="light"] .hx-junction circle{filter:drop-shadow(0 0 4px rgba(0,1
       // departure, controlled crossover in the middle, clean arrival at ports.
       var agentOut=agents.map(function(card){return center(card.querySelector(':scope > span:not(.hx-in-port)'));});
       var valueIn=values.map(function(row){return center(row.querySelector('.hx-value-port'));});
-      function addValuePath(fromIndex,toIndex,cls){
+      function addValuePath(fromIndex,toIndex,cls,runner,delay){
         var a=agentOut[fromIndex], b=valueIn[toIndex];
         var gap=b.x-a.x;
         // Approved reference geometry: keep both ends calm and push the
@@ -1413,16 +1413,28 @@ html[data-theme="light"] .hx-junction circle{filter:drop-shadow(0 0 4px rgba(0,1
         p.setAttribute('d',d);
         p.setAttribute('class','hx-dynamic-wire hx-value-wire '+(cls||''));
         svg.appendChild(p);
+        if(runner&&!window.matchMedia('(prefers-reduced-motion: reduce)').matches){
+          var dot=document.createElementNS(NS,'circle');
+          dot.setAttribute('r','1.9');
+          dot.setAttribute('class','hx-dynamic-runner hx-value-runner '+(cls||''));
+          var am=document.createElementNS(NS,'animateMotion');
+          am.setAttribute('dur','5.4s');
+          am.setAttribute('repeatCount','indefinite');
+          am.setAttribute('path',d);
+          am.setAttribute('begin',(delay||0)+'s');
+          dot.appendChild(am);
+          svg.appendChild(dot);
+        }
       }
       // Four primary routes plus the four reference cross-connections.
-      addValuePath(0,0,'');
-      addValuePath(1,1,'purple');
-      addValuePath(2,2,'');
-      addValuePath(3,3,'teal');
-      addValuePath(0,2,'');
-      addValuePath(1,3,'purple');
-      addValuePath(2,0,'');
-      addValuePath(3,1,'teal');
+      addValuePath(0,0,'',true,-0.1);
+      addValuePath(1,1,'purple',true,-0.8);
+      addValuePath(2,2,'',true,-1.5);
+      addValuePath(3,3,'teal',true,-2.2);
+      addValuePath(0,2,'',false,0);
+      addValuePath(1,3,'purple',false,0);
+      addValuePath(2,0,'',false,0);
+      addValuePath(3,1,'teal',false,0);
     });
   }
   draw();
