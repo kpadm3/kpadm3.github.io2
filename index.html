@@ -1247,6 +1247,97 @@ html[data-theme="light"] .heroX-ai .hx-cube-wave-dots{filter:drop-shadow(0 0 2px
   .hx-signal-pulse{animation:none!important}
 }
 
+
+/* HERO X RELIABLE FLOW + CUBE WAVE v15 */
+/* Keep the connector canvas large enough for all four rows and never clip the routes. */
+.heroX-map{min-height:430px!important;height:auto!important;overflow:visible!important}
+.heroX-links{
+  position:absolute!important;
+  inset:0!important;
+  width:100%!important;
+  height:100%!important;
+  min-height:430px!important;
+  overflow:visible!important;
+  z-index:5!important;
+  pointer-events:none!important
+}
+.heroX-zone{z-index:2!important}
+.heroX-enterprise article,.heroX-agents article,.heroX-valuebox article{z-index:6!important}
+
+/* Static rails stay visible even if motion is disabled; color identifies each stream. */
+.hx-flow-path{
+  fill:none!important;
+  stroke:#42ddf6;
+  stroke-width:2.15;
+  stroke-linecap:round;
+  stroke-linejoin:round;
+  opacity:.82;
+  vector-effect:non-scaling-stroke;
+  filter:drop-shadow(0 0 2px rgba(66,221,246,.72)) drop-shadow(0 0 6px rgba(66,221,246,.18))
+}
+.hx-flow-path.blue{stroke:#4da1ff}
+.hx-flow-path.purple{stroke:#9877ff}
+.hx-flow-path.teal{stroke:#2de0ce}
+.hx-flow-path.secondary{stroke-width:1.35;opacity:.42}
+
+/* Moving "intelligence" packets. */
+.hx-flow-comet{
+  fill:#e9fdff;
+  stroke:#72efff;
+  stroke-width:.7;
+  vector-effect:non-scaling-stroke;
+  filter:drop-shadow(0 0 4px #63ebff) drop-shadow(0 0 9px rgba(99,235,255,.78))
+}
+.hx-flow-comet.blue{fill:#e5efff;stroke:#4da1ff;filter:drop-shadow(0 0 5px #4da1ff)}
+.hx-flow-comet.purple{fill:#e9e0ff;stroke:#9877ff;filter:drop-shadow(0 0 5px #9877ff)}
+.hx-flow-comet.teal{fill:#dcfff9;stroke:#2de0ce;filter:drop-shadow(0 0 5px #2de0ce)}
+.hx-flow-token{
+  fill:#ffffff;
+  stroke-width:.8;
+  vector-effect:non-scaling-stroke;
+  filter:drop-shadow(0 0 4px rgba(255,255,255,.82))
+}
+.hx-flow-token.blue{stroke:#4da1ff}.hx-flow-token.purple{stroke:#9877ff}.hx-flow-token.teal{stroke:#2de0ce}
+
+/* Reliable cube wave: CSS drives each dot; no animated SVG gradient dependency. */
+@keyframes hxDotWave{
+  0%,100%{opacity:.10;transform:scale(.72);color:#2bbbd5}
+  20%{opacity:.18;transform:scale(.82);color:#35cde8}
+  36%{opacity:.98;transform:scale(1.42);color:#59efff}
+  45%{opacity:1;transform:scale(1.34);color:#4da1ff}
+  54%{opacity:1;transform:scale(1.30);color:#9b7cff}
+  64%{opacity:.96;transform:scale(1.22);color:#3fe0ce}
+  78%{opacity:.28;transform:scale(.92);color:#52e9ff}
+  90%{opacity:.12;transform:scale(.78);color:#35cde8}
+}
+.heroX-ai .hx-cube-dots circle{
+  fill:#2dcbe3!important;
+  opacity:.36!important;
+  filter:drop-shadow(0 0 1.2px rgba(45,203,227,.42))!important;
+  animation:none!important
+}
+.heroX-ai .hx-cube-wave-dots circle{
+  fill:currentColor!important;
+  color:#35cde8;
+  opacity:.1;
+  transform-box:fill-box;
+  transform-origin:center;
+  animation:hxDotWave 4.2s linear infinite!important;
+  animation-delay:var(--wave-delay,0s)!important;
+  will-change:transform,opacity;
+  filter:drop-shadow(0 0 4px currentColor)!important
+}
+.heroX-ai .hx-cube-wave-dots{opacity:1!important;filter:none!important}
+.heroX-ai .hx-cube-edges path{opacity:.12!important}
+
+@media(max-width:1200px){
+  .heroX-map{min-height:0!important}
+  .heroX-links{display:none!important}
+}
+@media(prefers-reduced-motion:reduce){
+  .heroX-ai .hx-cube-wave-dots circle{animation:none!important;opacity:.35!important;transform:none!important}
+}
+
 </style>
 <script>(() => { const s = localStorage.getItem('kp-theme'); const t = s || (matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark'); document.documentElement.setAttribute('data-theme', t); })();</script>
 </head>
@@ -1719,82 +1810,18 @@ html[data-theme="light"] .heroX-ai .hx-cube-wave-dots{filter:drop-shadow(0 0 2px
 })();
 </script>
 
-<!-- HERO X DOTTED CUBE WAVE v14 -->
+<!-- HERO X DOTTED CUBE WAVE v15 -->
 <script>
 (function(){
   var svg=document.querySelector('.heroX .hx-dotcube');
-  var base=document.querySelector('.heroX .hx-cube-dots');
+  var base=svg&&svg.querySelector('.hx-cube-dots');
   if(!svg||!base)return;
+  var NS='http://www.w3.org/2000/svg', N=15, DURATION=4.2;
 
-  var NS='http://www.w3.org/2000/svg';
-  var N=15;
-
-  // Remove any previous generated wave overlay/defs from hot reloads.
-  var oldWave=svg.querySelector('.hx-cube-wave-dots');
-  if(oldWave)oldWave.remove();
+  var old=svg.querySelector('.hx-cube-wave-dots');
+  if(old)old.remove();
   var oldDefs=svg.querySelector('.hx-cube-wave-defs');
   if(oldDefs)oldDefs.remove();
-
-  var defs=document.createElementNS(NS,'defs');
-  defs.setAttribute('class','hx-cube-wave-defs');
-
-  var grad=document.createElementNS(NS,'linearGradient');
-  grad.setAttribute('id','hxCubeWaveGradient');
-  grad.setAttribute('gradientUnits','userSpaceOnUse');
-  grad.setAttribute('x1','-220');
-  grad.setAttribute('y1','220');
-  grad.setAttribute('x2','20');
-  grad.setAttribute('y2','0');
-
-  [
-    ['0%','#35cde8','0'],
-    ['18%','#35cde8','.10'],
-    ['32%','#59efff','.95'],
-    ['46%','#4da1ff','1'],
-    ['58%','#9b7cff','1'],
-    ['70%','#3fe0ce','.95'],
-    ['84%','#52e9ff','.22'],
-    ['100%','#35cde8','0']
-  ].forEach(function(s){
-    var stop=document.createElementNS(NS,'stop');
-    stop.setAttribute('offset',s[0]);
-    stop.setAttribute('stop-color',s[1]);
-    stop.setAttribute('stop-opacity',s[2]);
-    grad.appendChild(stop);
-  });
-
-  var ax1=document.createElementNS(NS,'animate');
-  ax1.setAttribute('attributeName','x1');
-  ax1.setAttribute('values','-220;470');
-  ax1.setAttribute('dur','4.2s');
-  ax1.setAttribute('repeatCount','indefinite');
-  grad.appendChild(ax1);
-
-  var ax2=document.createElementNS(NS,'animate');
-  ax2.setAttribute('attributeName','x2');
-  ax2.setAttribute('values','20;710');
-  ax2.setAttribute('dur','4.2s');
-  ax2.setAttribute('repeatCount','indefinite');
-  grad.appendChild(ax2);
-
-  var glow=document.createElementNS(NS,'filter');
-  glow.setAttribute('id','hxCubeWaveGlow');
-  glow.setAttribute('x','-80%');
-  glow.setAttribute('y','-80%');
-  glow.setAttribute('width','260%');
-  glow.setAttribute('height','260%');
-  var blur=document.createElementNS(NS,'feGaussianBlur');
-  blur.setAttribute('stdDeviation','1.7');
-  blur.setAttribute('result','blur');
-  glow.appendChild(blur);
-  var merge=document.createElementNS(NS,'feMerge');
-  var m1=document.createElementNS(NS,'feMergeNode');m1.setAttribute('in','blur');
-  var m2=document.createElementNS(NS,'feMergeNode');m2.setAttribute('in','SourceGraphic');
-  merge.appendChild(m1);merge.appendChild(m2);glow.appendChild(merge);
-
-  defs.appendChild(grad);
-  defs.appendChild(glow);
-  svg.insertBefore(defs,svg.firstChild);
 
   var wave=document.createElementNS(NS,'g');
   wave.setAttribute('class','hx-cube-wave-dots');
@@ -1802,149 +1829,137 @@ html[data-theme="light"] .heroX-ai .hx-cube-wave-dots{filter:drop-shadow(0 0 2px
 
   function bilerp(a,b,c,d,u,v){
     return {
-      x:(1-u)*(1-v)*a.x + u*(1-v)*b.x + u*v*c.x + (1-u)*v*d.x,
-      y:(1-u)*(1-v)*a.y + u*(1-v)*b.y + u*v*c.y + (1-u)*v*d.y
+      x:(1-u)*(1-v)*a.x+u*(1-v)*b.x+u*v*c.x+(1-u)*v*d.x,
+      y:(1-u)*(1-v)*a.y+u*(1-v)*b.y+u*v*c.y+(1-u)*v*d.y
     };
   }
-
-  function face(cls,a,b,c,d){
+  function face(cls,a,b,c,d,bias){
     for(var row=0;row<N;row++){
       for(var col=0;col<N;col++){
-        var u=col/(N-1), v=row/(N-1);
-        var p=bilerp(a,b,c,d,u,v);
+        var u=col/(N-1),v=row/(N-1),p=bilerp(a,b,c,d,u,v);
+        var edge=row===0||col===0||row===N-1||col===N-1;
 
         var dot=document.createElementNS(NS,'circle');
         dot.setAttribute('class',cls);
         dot.setAttribute('cx',p.x.toFixed(2));
         dot.setAttribute('cy',p.y.toFixed(2));
-        dot.setAttribute('r',((row===0||col===0||row===N-1||col===N-1)?1.5:1.23).toFixed(2));
+        dot.setAttribute('r',edge?'1.48':'1.22');
         base.appendChild(dot);
 
-        // Wave overlay only needs one matching point; animated gradient supplies the motion.
         var w=document.createElementNS(NS,'circle');
         w.setAttribute('cx',p.x.toFixed(2));
         w.setAttribute('cy',p.y.toFixed(2));
-        w.setAttribute('r',((row===0||col===0||row===N-1||col===N-1)?2.0:1.72).toFixed(2));
+        w.setAttribute('r',edge?'2.05':'1.72');
+
+        // Phase follows x with a small y bend: a coherent diagonal wave travels through the cube.
+        var x=(p.x-145)/270;
+        var y=(p.y-30)/190;
+        var phase=(x*.78+y*.22+bias)%1;
+        w.style.setProperty('--wave-delay',(-phase*DURATION).toFixed(3)+'s');
         wave.appendChild(w);
       }
     }
   }
 
   base.textContent='';
-  var T={x:280,y:30}, L={x:145,y:88}, C={x:280,y:145}, R={x:415,y:88};
-  var LB={x:145,y:163}, B={x:280,y:220}, RB={x:415,y:163};
-
-  face('hx-dot-top',T,R,C,L);
-  face('hx-dot-left',L,C,B,LB);
-  face('hx-dot-right',C,R,RB,B);
+  var T={x:280,y:30},L={x:145,y:88},C={x:280,y:145},R={x:415,y:88};
+  var LB={x:145,y:163},B={x:280,y:220},RB={x:415,y:163};
+  face('hx-dot-top',T,R,C,L,0);
+  face('hx-dot-left',L,C,B,LB,.04);
+  face('hx-dot-right',C,R,RB,B,.08);
 })();
 </script>
 
-<!-- HERO X DYNAMIC FLOW ROUTING v6 -->
+<!-- HERO X DYNAMIC FLOW ROUTING v7 -->
 <script>
 (function(){
   var hero=document.querySelector('.heroX');
-  if(!hero||hero.dataset.dynamicFlow==='1')return;
-  hero.dataset.dynamicFlow='1';
+  var map=hero&&hero.querySelector('.heroX-map');
+  var svg=hero&&hero.querySelector('.heroX-links');
+  if(!hero||!map||!svg)return;
 
-  var map=hero.querySelector('.heroX-map');
-  var svg=hero.querySelector('.heroX-links');
   var enterprise=Array.from(hero.querySelectorAll('.heroX-enterprise article'));
   var agents=Array.from(hero.querySelectorAll('.heroX-agents article'));
   var values=Array.from(hero.querySelectorAll('.heroX-valuebox article'));
-  if(!map||!svg||enterprise.length<4||agents.length<4||values.length<4)return;
+  if(enterprise.length!==4||agents.length!==4||values.length!==4)return;
 
-  agents.forEach(function(card){
-    if(!card.querySelector('.hx-in-port')){
-      var p=document.createElement('span');
-      p.className='hx-in-port';
-      p.setAttribute('aria-hidden','true');
-      card.appendChild(p);
-    }
-  });
-  values.forEach(function(row){
-    if(!row.querySelector('.hx-value-port')){
-      var p=document.createElement('span');
-      p.className='hx-value-port';
-      p.setAttribute('aria-hidden','true');
-      row.appendChild(p);
-    }
-  });
-
-  var style=document.createElement('style');
-  style.textContent=
-    '.heroX-agents article .hx-in-port,.heroX-valuebox article .hx-value-port{position:absolute;left:-6px;top:50%;transform:translateY(-50%);width:10px;height:10px;border-radius:50%;background:#43e5fb;box-shadow:0 0 8px #43e5fb,0 0 15px rgba(67,229,251,.55);z-index:7}'+
-    '.heroX-agents article:nth-of-type(2) .hx-in-port{background:#4da1ff;box-shadow:0 0 9px #4da1ff}'+
-    '.heroX-agents article.violet .hx-in-port{background:#9877ff;box-shadow:0 0 9px #9877ff}'+
-    '.heroX-agents article.teal .hx-in-port{background:#2de0ce;box-shadow:0 0 9px #2de0ce}'+
-    '.heroX-valuebox article{position:relative}'+
-    '.heroX-valuebox article:nth-child(2) .hx-value-port{background:#4da1ff;box-shadow:0 0 9px #4da1ff}'+
-    '.heroX-valuebox article:nth-child(3) .hx-value-port{background:#9877ff;box-shadow:0 0 9px #9877ff}'+
-    '.heroX-valuebox article:nth-child(4) .hx-value-port{background:#2de0ce;box-shadow:0 0 9px #2de0ce}';
-  document.head.appendChild(style);
-
-  var NS='http://www.w3.org/2000/svg', raf=0;
+  var NS='http://www.w3.org/2000/svg',raf=0;
+  var colors=['','blue','purple','teal'];
   var reduced=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-  function center(el){
-    var r=el.getBoundingClientRect(), m=map.getBoundingClientRect();
-    return {x:r.left+r.width/2-m.left,y:r.top+r.height/2-m.top};
-  }
-
-  function addMotionShape(d,cls,delay,dur,secondary){
-    if(reduced)return;
-
-    // Glowing energy pulse / comet.
-    var pulse=document.createElementNS(NS,'ellipse');
-    pulse.setAttribute('rx',secondary?'3.2':'5.4');
-    pulse.setAttribute('ry',secondary?'1.25':'1.8');
-    pulse.setAttribute('class','hx-signal-pulse '+(cls||''));
-    var pm=document.createElementNS(NS,'animateMotion');
-    pm.setAttribute('dur',(dur||4.8)+'s');
-    pm.setAttribute('repeatCount','indefinite');
-    pm.setAttribute('path',d);
-    pm.setAttribute('begin',(delay||0)+'s');
-    pm.setAttribute('rotate','auto');
-    pulse.appendChild(pm);
-    svg.appendChild(pulse);
-
-    // Tiny geometric AI/data token, offset from the pulse.
-    var token=document.createElementNS(NS,'path');
-    token.setAttribute('d',secondary?'M0 -2.5 L2.5 0 L0 2.5 L-2.5 0 Z':'M0 -3.6 L3.6 0 L0 3.6 L-3.6 0 Z');
-    token.setAttribute('class','hx-signal-particle '+(cls||''));
-    var tm=document.createElementNS(NS,'animateMotion');
-    tm.setAttribute('dur',((dur||4.8)*1.08)+'s');
-    tm.setAttribute('repeatCount','indefinite');
-    tm.setAttribute('path',d);
-    tm.setAttribute('begin',((delay||0)-1.15)+'s');
-    tm.setAttribute('rotate','auto');
-    token.appendChild(tm);
-    svg.appendChild(token);
-
-    if(!secondary){
-      var pulse2=document.createElementNS(NS,'ellipse');
-      pulse2.setAttribute('rx','3.2');
-      pulse2.setAttribute('ry','1.1');
-      pulse2.setAttribute('class','hx-signal-pulse '+(cls||''));
-      var pm2=document.createElementNS(NS,'animateMotion');
-      pm2.setAttribute('dur',((dur||4.8)*1.08)+'s');
-      pm2.setAttribute('repeatCount','indefinite');
-      pm2.setAttribute('path',d);
-      pm2.setAttribute('begin',((delay||0)-2.15)+'s');
-      pm2.setAttribute('rotate','auto');
-      pulse2.appendChild(pm2);
-      svg.appendChild(pulse2);
+  function ensurePort(el,cls,left){
+    var p=el.querySelector('.'+cls);
+    if(!p){
+      p=document.createElement('span');
+      p.className=cls;
+      p.setAttribute('aria-hidden','true');
+      el.appendChild(p);
     }
+    Object.assign(p.style,{
+      position:'absolute',
+      top:'50%',
+      left:left?'-6px':'auto',
+      right:left?'auto':'-6px',
+      transform:'translateY(-50%)',
+      width:'10px',height:'10px',borderRadius:'50%',
+      background:'#43e5fb',boxShadow:'0 0 9px #43e5fb',
+      zIndex:'9'
+    });
+    return p;
   }
 
-  function addPath(a,b,cls,delay){
-    var dx=Math.max(26,(b.x-a.x)*.46);
-    var d='M '+a.x+' '+a.y+' C '+(a.x+dx)+' '+a.y+', '+(b.x-dx)+' '+b.y+', '+b.x+' '+b.y;
+  enterprise.forEach(function(card){ensurePort(card,'hx-out-port',false);});
+  agents.forEach(function(card){ensurePort(card,'hx-in-port',true);ensurePort(card,'hx-out-port',false);});
+  values.forEach(function(card){ensurePort(card,'hx-value-port',true);});
+
+  function point(el){
+    var r=el.getBoundingClientRect(),m=map.getBoundingClientRect();
+    return{x:r.left+r.width/2-m.left,y:r.top+r.height/2-m.top};
+  }
+  function pathEl(d,cls,secondary){
     var p=document.createElementNS(NS,'path');
     p.setAttribute('d',d);
-    p.setAttribute('class','hx-dynamic-wire '+(cls||''));
+    p.setAttribute('class','hx-flow-path '+(secondary?'secondary ':'')+(cls||''));
     svg.appendChild(p);
-    addMotionShape(d,cls,delay,4.5,false);
+    return p;
+  }
+  function mover(d,cls,delay,secondary){
+    if(reduced)return;
+    var comet=document.createElementNS(NS,'ellipse');
+    comet.setAttribute('rx',secondary?'3':'5.2');
+    comet.setAttribute('ry',secondary?'1.1':'1.75');
+    comet.setAttribute('class','hx-flow-comet '+(cls||''));
+    var am=document.createElementNS(NS,'animateMotion');
+    am.setAttribute('dur',secondary?'6.2s':'4.5s');
+    am.setAttribute('repeatCount','indefinite');
+    am.setAttribute('begin',delay+'s');
+    am.setAttribute('path',d);
+    am.setAttribute('rotate','auto');
+    comet.appendChild(am);svg.appendChild(comet);
+
+    var token=document.createElementNS(NS,'path');
+    token.setAttribute('d',secondary?'M0 -2.4 L2.4 0 L0 2.4 L-2.4 0 Z':'M0 -3.4 L3.4 0 L0 3.4 L-3.4 0 Z');
+    token.setAttribute('class','hx-flow-token '+(cls||''));
+    var tm=document.createElementNS(NS,'animateMotion');
+    tm.setAttribute('dur',secondary?'6.7s':'5.0s');
+    tm.setAttribute('repeatCount','indefinite');
+    tm.setAttribute('begin',(delay-1.35)+'s');
+    tm.setAttribute('path',d);
+    tm.setAttribute('rotate','auto');
+    token.appendChild(tm);svg.appendChild(token);
+  }
+  function simple(a,b,cls,delay){
+    var dx=Math.max(30,(b.x-a.x)*.46);
+    var d='M '+a.x+' '+a.y+' C '+(a.x+dx)+' '+a.y+', '+(b.x-dx)+' '+b.y+', '+b.x+' '+b.y;
+    pathEl(d,cls,false);mover(d,cls,delay,false);
+  }
+  function routed(a,b,cls,delay,secondary){
+    var gap=Math.max(60,b.x-a.x),mid=(a.x+b.x)/2;
+    var lift=secondary?(b.y-a.y)*.28:(b.y-a.y)*.14;
+    var d='M '+a.x+' '+a.y+
+      ' C '+(a.x+gap*.18)+' '+a.y+', '+(mid-gap*.18)+' '+(a.y+lift)+', '+mid+' '+((a.y+b.y)/2)+
+      ' C '+(mid+gap*.18)+' '+(b.y-lift)+', '+(b.x-gap*.18)+' '+b.y+', '+b.x+' '+b.y;
+    pathEl(d,cls,secondary);mover(d,cls,delay,secondary);
   }
 
   function draw(){
@@ -1952,83 +1967,49 @@ html[data-theme="light"] .heroX-ai .hx-cube-wave-dots{filter:drop-shadow(0 0 2px
     raf=requestAnimationFrame(function(){
       if(window.innerWidth<=1200)return;
 
-      var mapRect=map.getBoundingClientRect();
-      svg.setAttribute('viewBox','0 0 '+mapRect.width+' '+mapRect.height);
+      svg.querySelectorAll('.hx-path,.hx-junction,.hx-flow-path,.hx-flow-comet,.hx-flow-token,.hx-dynamic-wire,.hx-signal-pulse,.hx-signal-particle')
+        .forEach(function(n){n.remove();});
+
+      var mr=map.getBoundingClientRect();
+      svg.setAttribute('viewBox','0 0 '+mr.width+' '+mr.height);
       svg.setAttribute('preserveAspectRatio','none');
 
-      Array.from(svg.querySelectorAll(
-        '.hx-path,.hx-junction,.hx-dynamic-wire,.hx-signal-pulse,.hx-signal-particle'
-      )).forEach(function(n){n.remove();});
-
-      var core=hero.querySelector('.heroX-core');
-      var cr=core.getBoundingClientRect(), mm=map.getBoundingClientRect();
       var cube=hero.querySelector('.hx-dotcube');
-      var cubeRect=cube?cube.getBoundingClientRect():cr;
+      var cr=cube.getBoundingClientRect();
+      var left={x:cr.left-mr.left+cr.width*.27,y:cr.top-mr.top+cr.height*.50};
+      var right={x:cr.left-mr.left+cr.width*.73,y:cr.top-mr.top+cr.height*.50};
+      var offsets=[-15,-5,5,15];
 
-      var leftX=cubeRect.left-mm.left+cubeRect.width*.255;
-      var rightX=cubeRect.left-mm.left+cubeRect.width*.745;
-      var cy=cubeRect.top+cubeRect.height*.50-mm.top;
-      var offsets=[-13,-4,5,14];
-      var colors=['','blue','purple','teal'];
-
-      // Enterprise context flowing into the AI layer.
+      // Enterprise → AI
       enterprise.forEach(function(card,i){
-        var port=card.querySelector(':scope > span');
-        addPath(center(port),{x:leftX,y:cy+offsets[i]},colors[i],-i*.58);
+        simple(point(card.querySelector('.hx-out-port')),{x:left.x,y:left.y+offsets[i]},colors[i],-i*.55);
       });
-
-      // Processed intelligence leaving the AI layer toward specialized agents.
+      // AI → Agents
       agents.forEach(function(card,i){
-        addPath({x:rightX,y:cy+offsets[i]},center(card.querySelector('.hx-in-port')),colors[i],-.35-i*.62);
+        simple({x:right.x,y:right.y+offsets[i]},point(card.querySelector('.hx-in-port')),colors[i],-.35-i*.58);
       });
 
-      // Controlled tangled routing: agents can contribute to multiple outcomes.
-      var agentOut=agents.map(function(card){
-        return center(card.querySelector(':scope > span:not(.hx-in-port)'));
-      });
-      var valueIn=values.map(function(row){
-        return center(row.querySelector('.hx-value-port'));
-      });
+      var ao=agents.map(function(card){return point(card.querySelector('.hx-out-port'));});
+      var vi=values.map(function(card){return point(card.querySelector('.hx-value-port'));});
 
-      function addValuePath(fromIndex,toIndex,cls,delay,secondary){
-        var a=agentOut[fromIndex], b=valueIn[toIndex];
-        var gap=b.x-a.x;
-        var exitX=a.x+Math.max(22,gap*.18);
-        var entryX=b.x-Math.max(22,gap*.18);
-        var midX=(a.x+b.x)/2;
-        var bend=(b.y-a.y)*.22;
-        var d='M '+a.x+' '+a.y+
-          ' C '+exitX+' '+a.y+', '+(midX-gap*.18)+' '+(a.y+bend)+', '+midX+' '+((a.y+b.y)/2)+
-          ' C '+(midX+gap*.18)+' '+(b.y-bend)+', '+entryX+' '+b.y+', '+b.x+' '+b.y;
+      // Primary Agent → Value routes.
+      routed(ao[0],vi[0],'',-.1,false);
+      routed(ao[1],vi[1],'blue',-.8,false);
+      routed(ao[2],vi[2],'purple',-1.5,false);
+      routed(ao[3],vi[3],'teal',-2.2,false);
 
-        var p=document.createElementNS(NS,'path');
-        p.setAttribute('d',d);
-        p.setAttribute('class','hx-dynamic-wire hx-value-wire '+(secondary?'secondary ':'')+(cls||''));
-        svg.appendChild(p);
-
-        addMotionShape(d,cls,delay,secondary?6.1:5.0,secondary);
-      }
-
-      // Primary routes.
-      addValuePath(0,0,'',-.1,false);
-      addValuePath(1,1,'blue',-.8,false);
-      addValuePath(2,2,'purple',-1.5,false);
-      addValuePath(3,3,'teal',-2.2,false);
-
-      // Secondary cross-routes recreate the richer earlier "networked outcome" feel.
-      addValuePath(0,2,'',-2.7,true);
-      addValuePath(1,3,'blue',-3.2,true);
-      addValuePath(2,0,'purple',-3.7,true);
-      addValuePath(3,1,'teal',-4.2,true);
+      // Controlled cross-routing from the earlier richer design.
+      routed(ao[0],vi[2],'',-2.7,true);
+      routed(ao[1],vi[3],'blue',-3.2,true);
+      routed(ao[2],vi[0],'purple',-3.7,true);
+      routed(ao[3],vi[1],'teal',-4.2,true);
     });
   }
 
   draw();
-  if('ResizeObserver' in window){
-    new ResizeObserver(draw).observe(map);
-  }else{
-    window.addEventListener('resize',draw,{passive:true});
-  }
+  window.addEventListener('load',draw,{once:true});
+  window.addEventListener('resize',draw,{passive:true});
+  if('ResizeObserver' in window)new ResizeObserver(draw).observe(map);
 })();
 </script>
 
