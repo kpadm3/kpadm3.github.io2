@@ -813,7 +813,7 @@ html[data-theme="light"] .heroX-pillars{border-top-color:rgba(8,145,178,.22)!imp
 .heroX-enterprise article,.heroX-agents article{background:linear-gradient(90deg,rgba(5,31,54,.98),rgba(6,47,78,.88))!important}
 .heroX-enterprise article:before,.heroX-agents article:before,.heroX-valuebox article:before{opacity:.45!important}
 .heroX-valuebox{background:linear-gradient(180deg,rgba(3,65,77,.46),rgba(3,26,42,.7))!important}
-.heroX:after{height:185px!important;bottom:-54px!important;opacity:.42!important;background-size:16px 11px,100% 100%!important}
+.heroX:after{height:185px!important;bottom:0!important;opacity:.42!important;background-size:16px 11px,100% 100%!important}
 .heroX-pillars{z-index:4!important}.heroX-scroll{z-index:6!important}
 /* Dark reference is exact target. Light mode preserves geometry/effects with a coherent light palette. */
 html[data-theme="light"] .heroX:after{opacity:.18!important}
@@ -963,30 +963,365 @@ html[data-theme="light"] .heroX-ai .hx-terrain-back path,html[data-theme="light"
 html[data-theme="light"] .heroX-ai .hx-uniform-rows path,html[data-theme="light"] .heroX-ai .hx-uniform-cols path{stroke:#078eaa!important}
 @media(prefers-reduced-motion:reduce){.heroX-ai .hx-flow-nodes circle{animation:none!important}}
 
-/* AI DOTTED ISOMETRIC CUBE v10 */
-@keyframes hxCubeBreathe{0%,100%{filter:drop-shadow(0 0 7px rgba(42,222,244,.18));transform:translate(-50%,-50%) scale(1)}50%{filter:drop-shadow(0 0 12px rgba(42,222,244,.27));transform:translate(-50%,-50%) scale(1.012)}}
-@keyframes hxCubeDot{0%,100%{opacity:.64}50%{opacity:1}}
-.heroX-ai .heroX-core{position:relative!important;width:100%!important;height:250px!important;margin:-4px auto -2px!important;display:grid!important;place-items:center!important;background:transparent!important;background-image:none!important;border:0!important;border-radius:0!important;box-shadow:none!important;filter:none!important;animation:none!important;overflow:visible!important}
-.heroX-ai .heroX-core:before,.heroX-ai .heroX-core:after,.heroX-ai .hx-flowmesh,.heroX-ai .hx-mesh,.heroX-ai .hx-ring,.heroX-ai .hx-vector-field,.heroX-ai .hx-vector-nodes,.heroX-ai .hx-coretext{display:none!important;content:none!important}
-.heroX-ai .hx-dotcube{position:absolute!important;z-index:2!important;left:50%!important;top:50%!important;width:min(500px,116%)!important;height:250px!important;overflow:visible!important;transform:translate(-50%,-50%)!important;animation:hxCubeBreathe 6s ease-in-out infinite!important}
-.heroX-ai .hx-cube-edges path{fill:none!important;stroke:#36dff2!important;stroke-width:.7!important;opacity:.20!important;vector-effect:non-scaling-stroke}
-.heroX-ai .hx-cube-dots circle{fill:#50eaff!important;opacity:.82!important;filter:drop-shadow(0 0 2.4px #50eaff)!important;animation:hxCubeDot 3.8s ease-in-out infinite!important}
-.heroX-ai .hx-cube-dots .hx-dot-top{fill:#4deaff!important}
-.heroX-ai .hx-cube-dots .hx-dot-left{fill:#25c9f0!important}
-.heroX-ai .hx-cube-dots .hx-dot-right{fill:#7777ff!important}
-.heroX-ai .hx-cube-dots circle:nth-child(13n){fill:#a27cff!important;filter:drop-shadow(0 0 3px #a27cff)!important}
-.heroX-ai .hx-cube-dots circle:nth-child(17n){fill:#3fe0ce!important;filter:drop-shadow(0 0 3px #3fe0ce)!important}
-.heroX-ai .heroX-caps{position:relative!important;z-index:6!important;margin-top:-2px!important}
-html[data-theme="light"] .heroX-ai .hx-cube-edges path{stroke:#087f9b!important;opacity:.24!important}
-html[data-theme="light"] .heroX-ai .hx-cube-dots circle{filter:none!important;opacity:.76!important}
-@media(prefers-reduced-motion:reduce){.heroX-ai .hx-dotcube,.heroX-ai .hx-cube-dots circle{animation:none!important}}
-
 /* HERO X DYNAMIC FLOW ROUTING v5 */
 .heroX-links{overflow:visible}
 .hx-dynamic-wire{fill:none;stroke:#42ddf6;stroke-width:2.15;stroke-linecap:round;stroke-linejoin:round;filter:url(#hxg);opacity:.94}
 .hx-dynamic-wire.purple{stroke:#9877ff}.hx-dynamic-wire.teal{stroke:#2de0ce}.hx-value-wire{stroke-width:1.65;opacity:.92;filter:drop-shadow(0 0 2px currentColor)}.hx-value-runner{opacity:.88}.hx-value-runner.purple{fill:#c8baff}.hx-value-runner.teal{fill:#b8fff5}
 .hx-dynamic-runner{fill:#e8fdff;filter:url(#hxg)}
 @media(prefers-reduced-motion:reduce){.hx-dynamic-runner{display:none}}
+
+/* HERO X CLEAN FLOW OVERRIDES */
+
+.heroX-map{
+  border:0!important;
+  border-radius:0!important;
+  background:transparent!important;
+  box-shadow:none!important;
+  overflow:visible!important
+}
+.heroX-map:before{display:none!important}
+
+.heroX-map .heroX-zone,
+.heroX-zone{
+  border-right:0!important;
+  background:transparent!important
+}
+
+.heroX-enterprise article,
+.heroX-agents article{
+  border:0!important;
+  box-shadow:none!important;
+  animation:none!important;
+  background:linear-gradient(90deg,rgba(5,36,61,.58),rgba(8,46,76,.34))!important
+}
+.heroX-enterprise article:before,
+.heroX-agents article:before,
+.heroX-valuebox article:before{display:none!important}
+
+.heroX-valuebox{
+  border:0!important;
+  background:transparent!important;
+  box-shadow:none!important;
+  overflow:visible!important
+}
+.heroX-valuebox article{
+  border-bottom:0!important;
+  background:rgba(4,45,61,.30);
+  border-radius:10px;
+  margin:7px 0
+}
+
+.heroX-scale{display:none!important}
+
+.heroX-pillars{
+  border-top:0!important
+}
+.heroX-pillars:after{display:none!important}
+.heroX-pillars article{
+  border-right:0!important
+}
+
+.heroX-scroll{display:none!important}
+
+.heroX-links{
+  height:100%!important;
+  filter:drop-shadow(0 0 4px rgba(45,213,245,.22))
+}
+
+/* Keep only the meaningful transformation connectors as structural lines. */
+.hx-path path{
+  stroke-width:2!important;
+  stroke-dasharray:18 7 3 7
+}
+
+html[data-theme="light"] .heroX-map,
+html[data-theme="light"] .heroX-map .heroX-zone{
+  background:transparent!important;
+  border-color:transparent!important;
+  box-shadow:none!important
+}
+html[data-theme="light"] .heroX-enterprise article,
+html[data-theme="light"] .heroX-agents article{
+  border:0!important;
+  box-shadow:none!important
+}
+html[data-theme="light"] .heroX-valuebox{
+  border:0!important;
+  background:transparent!important;
+  box-shadow:none!important
+}
+
+
+/* HERO X REFINED FLOW + NAME + CUBE WAVE v14 */
+.heroX{padding:22px 38px 14px!important}
+.heroX-intro{
+  display:flex!important;
+  flex-direction:column!important;
+  align-items:center!important;
+  justify-content:center!important;
+  gap:0!important;
+  min-height:0!important;
+  margin:0 0 14px!important;
+  text-align:center!important
+}
+.heroX-intro h1{
+  margin:0!important;
+  font-size:clamp(36px,3.6vw,62px)!important;
+  line-height:1.05!important;
+  font-weight:200!important;
+  letter-spacing:.13em!important;
+  white-space:normal!important;
+  color:#eef7ff!important
+}
+.heroX-role{
+  margin-top:10px!important;
+  font-size:10px!important;
+  line-height:1.45!important;
+  letter-spacing:.20em!important;
+  font-weight:700!important;
+  color:#8faac0!important
+}
+.heroX-tagline{
+  margin-top:11px;
+  font-size:clamp(17px,1.35vw,23px);
+  line-height:1.2;
+  font-weight:300;
+  letter-spacing:-.015em;
+  color:#dbe8f3
+}
+.heroX-tagline em{font-style:normal;color:#22d4f1}
+.heroX-intro p{
+  max-width:820px!important;
+  margin:8px auto 0!important;
+  padding:0!important;
+  border:0!important;
+  font-size:11px!important;
+  line-height:1.55!important;
+  text-align:center!important;
+  color:#8fa9bd!important
+}
+
+/* Restore individual cards only. The giant architecture frame/grid stays removed. */
+.heroX-enterprise article,
+.heroX-agents article{
+  border:1px solid rgba(65,181,229,.28)!important;
+  border-radius:11px!important;
+  background:linear-gradient(90deg,rgba(5,36,61,.78),rgba(8,46,76,.52))!important;
+  box-shadow:inset 0 0 18px rgba(31,163,225,.035),0 7px 18px rgba(0,0,0,.10)!important
+}
+.heroX-enterprise article.violet,
+.heroX-agents article.violet{border-color:rgba(147,112,255,.38)!important}
+.heroX-agents article.teal{border-color:rgba(44,225,205,.38)!important}
+
+.heroX-valuebox article{
+  border:1px solid rgba(45,224,206,.28)!important;
+  border-radius:11px!important;
+  background:linear-gradient(90deg,rgba(4,50,65,.52),rgba(4,37,57,.38))!important;
+  box-shadow:inset 0 0 16px rgba(45,224,206,.025),0 7px 18px rgba(0,0,0,.08)!important;
+  margin:7px 0!important
+}
+.heroX-valuebox article:nth-child(2){border-color:rgba(152,119,255,.32)!important}
+
+/* Desktop routing corridor: preserves card widths but gives crossover lines room to breathe. */
+@media(min-width:1201px){
+  .heroX-map{
+    grid-template-columns:24% 32% 22% 6% 16%!important;
+    column-gap:0!important
+  }
+  .heroX-enterprise{grid-column:1}
+  .heroX-ai{grid-column:2}
+  .heroX-agents{grid-column:3}
+  .heroX-value{grid-column:5}
+}
+
+/* Connector paths are SOLID. Motion comes from the pulses/tokens, not from dashed wiring. */
+@keyframes hxSignalPulse{
+  0%,100%{opacity:.48;transform:scale(.92)}
+  50%{opacity:1;transform:scale(1.18)}
+}
+.heroX-links{z-index:3!important}
+.hx-dynamic-wire{
+  fill:none!important;
+  stroke:#42ddf6!important;
+  stroke-width:2.15!important;
+  stroke-linecap:round!important;
+  stroke-linejoin:round!important;
+  stroke-dasharray:none!important;
+  animation:none!important;
+  opacity:.92!important;
+  filter:drop-shadow(0 0 2px rgba(66,221,246,.72)) drop-shadow(0 0 6px rgba(66,221,246,.18))
+}
+.hx-dynamic-wire.blue{
+  stroke:#4da1ff!important;
+  filter:drop-shadow(0 0 2px rgba(77,161,255,.72)) drop-shadow(0 0 6px rgba(77,161,255,.18))
+}
+.hx-dynamic-wire.purple{
+  stroke:#9877ff!important;
+  filter:drop-shadow(0 0 2px rgba(152,119,255,.72)) drop-shadow(0 0 6px rgba(152,119,255,.18))
+}
+.hx-dynamic-wire.teal{
+  stroke:#2de0ce!important;
+  filter:drop-shadow(0 0 2px rgba(45,224,206,.72)) drop-shadow(0 0 6px rgba(45,224,206,.18))
+}
+.hx-value-wire{stroke-width:1.8!important;opacity:.88!important}
+.hx-value-wire.secondary{
+  stroke-width:1.35!important;
+  opacity:.58!important;
+  stroke-dasharray:none!important;
+  animation:none!important
+}
+.hx-signal-pulse{
+  fill:#d7fbff!important;
+  opacity:1;
+  filter:drop-shadow(0 0 5px #63ebff) drop-shadow(0 0 11px rgba(99,235,255,.82));
+  animation:hxSignalPulse 1.25s ease-in-out infinite
+}
+.hx-signal-pulse.blue{fill:#dceaff!important;filter:drop-shadow(0 0 5px #4da1ff) drop-shadow(0 0 10px rgba(77,161,255,.75))}
+.hx-signal-pulse.purple{fill:#e5dcff!important;filter:drop-shadow(0 0 5px #9877ff) drop-shadow(0 0 10px rgba(152,119,255,.75))}
+.hx-signal-pulse.teal{fill:#d8fff9!important;filter:drop-shadow(0 0 5px #2de0ce) drop-shadow(0 0 10px rgba(45,224,206,.75))}
+.hx-signal-particle{
+  fill:#f4feff!important;
+  stroke:#75ebff!important;
+  stroke-width:.8!important;
+  filter:drop-shadow(0 0 5px rgba(98,233,255,1))
+}
+.hx-signal-particle.blue{fill:#e6efff!important;stroke:#4da1ff!important}
+.hx-signal-particle.purple{fill:#ebe4ff!important;stroke:#9877ff!important}
+.hx-signal-particle.teal{fill:#e2fff9!important;stroke:#2de0ce!important}
+
+/* Base cube remains readable while a separate animated gradient band sweeps through its dots. */
+.heroX-ai .hx-cube-dots circle{
+  animation:none!important;
+  filter:none!important;
+  opacity:.62!important
+}
+.heroX-ai .hx-cube-dots .hx-dot-top{fill:#45e7f7!important}
+.heroX-ai .hx-cube-dots .hx-dot-left{fill:#24c7eb!important}
+.heroX-ai .hx-cube-dots .hx-dot-right{fill:#7777ff!important}
+.heroX-ai .hx-cube-wave-dots{
+  opacity:1;
+  pointer-events:none;
+  filter:drop-shadow(0 0 3px rgba(89,239,255,.60))
+}
+.heroX-ai .hx-cube-wave-dots circle{
+  fill:url(#hxCubeWaveGradient)!important;
+  opacity:1!important;
+  animation:none!important;
+  filter:url(#hxCubeWaveGlow)!important
+}
+.heroX-ai .hx-cube-edges path{opacity:.10!important}
+
+html[data-theme="light"] .heroX-intro h1{color:#17364d!important}
+html[data-theme="light"] .heroX-role{color:#537187!important}
+html[data-theme="light"] .heroX-tagline{color:#294c64!important}
+html[data-theme="light"] .heroX-tagline em{color:#078eaa!important}
+html[data-theme="light"] .heroX-intro p{color:#54758b!important}
+html[data-theme="light"] .heroX-enterprise article,
+html[data-theme="light"] .heroX-agents article{
+  background:rgba(255,255,255,.58)!important;
+  border-color:rgba(8,145,178,.22)!important;
+  box-shadow:0 7px 18px rgba(13,31,53,.055)!important
+}
+html[data-theme="light"] .heroX-valuebox article{
+  background:rgba(255,255,255,.52)!important;
+  border-color:rgba(8,145,178,.20)!important;
+  box-shadow:0 7px 18px rgba(13,31,53,.045)!important
+}
+html[data-theme="light"] .heroX-ai .hx-cube-dots circle{opacity:.52!important}
+html[data-theme="light"] .heroX-ai .hx-cube-wave-dots{filter:drop-shadow(0 0 2px rgba(8,145,178,.45))}
+
+@media(max-width:1200px){
+  .heroX-intro h1{font-size:clamp(32px,6vw,52px)!important}
+  .heroX-role{font-size:9px!important}
+  .heroX-tagline{font-size:18px}
+}
+@media(max-width:720px){
+  .heroX{padding:22px 20px 12px!important}
+  .heroX-intro h1{font-size:clamp(30px,10vw,44px)!important;letter-spacing:.08em!important}
+  .heroX-role{letter-spacing:.12em!important}
+  .heroX-intro p{font-size:10.5px!important}
+}
+@media(prefers-reduced-motion:reduce){
+  .hx-signal-pulse{animation:none!important}
+}
+
+
+/* HERO X RELIABLE FLOW + CUBE WAVE v15 */
+/* Keep the connector canvas large enough for all four rows and never clip the routes. */
+.heroX-map{min-height:430px!important;height:auto!important;overflow:visible!important}
+.heroX-links{
+  position:absolute!important;
+  inset:0!important;
+  width:100%!important;
+  height:100%!important;
+  min-height:430px!important;
+  overflow:visible!important;
+  z-index:5!important;
+  pointer-events:none!important
+}
+.heroX-zone{z-index:2!important}
+.heroX-enterprise article,.heroX-agents article,.heroX-valuebox article{z-index:6!important}
+
+/* Static rails stay visible even if motion is disabled; color identifies each stream. */
+.hx-flow-path{
+  fill:none!important;
+  stroke:#42ddf6;
+  stroke-width:2.15;
+  stroke-linecap:round;
+  stroke-linejoin:round;
+  opacity:.82;
+  vector-effect:non-scaling-stroke;
+  filter:drop-shadow(0 0 2px rgba(66,221,246,.72)) drop-shadow(0 0 6px rgba(66,221,246,.18))
+}
+.hx-flow-path.blue{stroke:#4da1ff}
+.hx-flow-path.purple{stroke:#9877ff}
+.hx-flow-path.teal{stroke:#2de0ce}
+.hx-flow-path.secondary{stroke-width:1.35;opacity:.42}
+
+/* Moving "intelligence" packets. */
+.hx-flow-comet{
+  fill:#e9fdff;
+  stroke:#72efff;
+  stroke-width:.7;
+  vector-effect:non-scaling-stroke;
+  filter:drop-shadow(0 0 4px #63ebff) drop-shadow(0 0 9px rgba(99,235,255,.78))
+}
+.hx-flow-comet.blue{fill:#e5efff;stroke:#4da1ff;filter:drop-shadow(0 0 5px #4da1ff)}
+.hx-flow-comet.purple{fill:#e9e0ff;stroke:#9877ff;filter:drop-shadow(0 0 5px #9877ff)}
+.hx-flow-comet.teal{fill:#dcfff9;stroke:#2de0ce;filter:drop-shadow(0 0 5px #2de0ce)}
+.hx-flow-token{
+  fill:#ffffff;
+  stroke-width:.8;
+  vector-effect:non-scaling-stroke;
+  filter:drop-shadow(0 0 4px rgba(255,255,255,.82))
+}
+.hx-flow-token.blue{stroke:#4da1ff}.hx-flow-token.purple{stroke:#9877ff}.hx-flow-token.teal{stroke:#2de0ce}
+
+/* Cube wave v18 — same cube geometry/dot design; wave only changes dot color + brightness. */
+.heroX-ai .hx-cube-dots circle{
+  fill:#2dcbe3!important;
+  opacity:.36!important;
+  filter:drop-shadow(0 0 1.2px rgba(45,203,227,.42))!important;
+  animation:none!important
+}
+.heroX-ai .hx-cube-wave-dots circle{
+  opacity:0;
+  transform:none!important;
+  animation:none!important;
+  transition:none!important;
+  pointer-events:none
+}
+.heroX-ai .hx-cube-wave-dots{opacity:1!important;filter:none!important}
+.heroX-ai .hx-cube-edges path{opacity:.12!important}
+
+@media(max-width:1200px){
+  .heroX-map{min-height:0!important}
+  .heroX-links{display:none!important}
+}
+@media(prefers-reduced-motion:reduce){
+  .heroX-ai .hx-cube-wave-dots circle{animation:none!important;transform:none!important}
+}
+
 </style>
 <script>(() => { const s = localStorage.getItem('kp-theme'); const t = s || (matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark'); document.documentElement.setAttribute('data-theme', t); })();</script>
 </head>
@@ -1017,12 +1352,9 @@ html[data-theme="light"] .heroX-ai .hx-cube-dots circle{filter:none!important;op
   <main id="top">
     <section class="heroX" aria-label="Krishna Padmanabhan portfolio introduction">
   <div class="heroX-intro">
-    <div class="heroX-id">
-      <div class="heroX-name">KRISHNA PADMANABHAN</div>
-      <div class="heroX-role">ENTERPRISE TRANSFORMATION · DELIVERY LEADERSHIP · AI-ENABLED DELIVERY</div>
-      <div class="heroX-rule"></div>
-    </div>
-    <h1>Enterprise AI for <em>Real Outcomes.</em></h1>
+    <h1>KRISHNA PADMANABHAN</h1>
+    <div class="heroX-role">ENTERPRISE TRANSFORMATION · DELIVERY LEADERSHIP · AI-ENABLED DELIVERY</div>
+    <div class="heroX-tagline">Enterprise AI for <em>Real Outcomes</em></div>
     <p>From fragmented complexity to unified performance. I help organizations design, build and adopt AI solutions that deliver measurable value.</p>
   </div>
 
@@ -1079,7 +1411,7 @@ html[data-theme="light"] .heroX-ai .hx-cube-dots circle{filter:none!important;op
             <path d="M145 88 L145 163 L280 220 L280 145"/>
             <path d="M415 88 L415 163 L280 220"/>
           </g>
-          <g class="hx-cube-dots"><circle class="hx-dot-top" cx="280.0" cy="30.0" r="2.25"/><circle class="hx-dot-left" cx="145.0" cy="88.0" r="2.25"/><circle class="hx-dot-right" cx="280.0" cy="145.0" r="2.25"/><circle class="hx-dot-top" cx="267.7" cy="35.3" r="1.65"/><circle class="hx-dot-left" cx="145.0" cy="94.8" r="1.65"/><circle class="hx-dot-right" cx="280.0" cy="151.8" r="1.65"/><circle class="hx-dot-top" cx="255.5" cy="40.5" r="1.65"/><circle class="hx-dot-left" cx="145.0" cy="101.6" r="1.65"/><circle class="hx-dot-right" cx="280.0" cy="158.6" r="1.65"/><circle class="hx-dot-top" cx="243.2" cy="45.8" r="1.65"/><circle class="hx-dot-left" cx="145.0" cy="108.5" r="1.65"/><circle class="hx-dot-right" cx="280.0" cy="165.5" r="1.65"/><circle class="hx-dot-top" cx="230.9" cy="51.1" r="1.65"/><circle class="hx-dot-left" cx="145.0" cy="115.3" r="1.65"/><circle class="hx-dot-right" cx="280.0" cy="172.3" r="1.65"/><circle class="hx-dot-top" cx="218.6" cy="56.4" r="1.65"/><circle class="hx-dot-left" cx="145.0" cy="122.1" r="1.65"/><circle class="hx-dot-right" cx="280.0" cy="179.1" r="1.65"/><circle class="hx-dot-top" cx="206.4" cy="61.6" r="1.65"/><circle class="hx-dot-left" cx="145.0" cy="128.9" r="1.65"/><circle class="hx-dot-right" cx="280.0" cy="185.9" r="1.65"/><circle class="hx-dot-top" cx="194.1" cy="66.9" r="2.25"/><circle class="hx-dot-left" cx="145.0" cy="135.7" r="2.25"/><circle class="hx-dot-right" cx="280.0" cy="192.7" r="2.25"/><circle class="hx-dot-top" cx="181.8" cy="72.2" r="1.65"/><circle class="hx-dot-left" cx="145.0" cy="142.5" r="1.65"/><circle class="hx-dot-right" cx="280.0" cy="199.5" r="1.65"/><circle class="hx-dot-top" cx="169.5" cy="77.5" r="1.65"/><circle class="hx-dot-left" cx="145.0" cy="149.4" r="1.65"/><circle class="hx-dot-right" cx="280.0" cy="206.4" r="1.65"/><circle class="hx-dot-top" cx="157.3" cy="82.7" r="1.65"/><circle class="hx-dot-left" cx="145.0" cy="156.2" r="1.65"/><circle class="hx-dot-right" cx="280.0" cy="213.2" r="1.65"/><circle class="hx-dot-top" cx="145.0" cy="88.0" r="1.65"/><circle class="hx-dot-left" cx="145.0" cy="163.0" r="1.65"/><circle class="hx-dot-right" cx="280.0" cy="220.0" r="1.65"/><circle class="hx-dot-top" cx="292.3" cy="35.3" r="1.65"/><circle class="hx-dot-left" cx="157.3" cy="93.2" r="1.65"/><circle class="hx-dot-right" cx="292.3" cy="139.8" r="1.65"/><circle class="hx-dot-top" cx="280.0" cy="40.5" r="1.65"/><circle class="hx-dot-left" cx="157.3" cy="100.0" r="1.65"/><circle class="hx-dot-right" cx="292.3" cy="146.6" r="1.65"/><circle class="hx-dot-top" cx="267.7" cy="45.8" r="1.65"/><circle class="hx-dot-left" cx="157.3" cy="106.8" r="1.65"/><circle class="hx-dot-right" cx="292.3" cy="153.5" r="1.65"/><circle class="hx-dot-top" cx="255.5" cy="51.1" r="1.65"/><circle class="hx-dot-left" cx="157.3" cy="113.6" r="1.65"/><circle class="hx-dot-right" cx="292.3" cy="160.3" r="1.65"/><circle class="hx-dot-top" cx="243.2" cy="56.4" r="1.65"/><circle class="hx-dot-left" cx="157.3" cy="120.5" r="1.65"/><circle class="hx-dot-right" cx="292.3" cy="167.1" r="1.65"/><circle class="hx-dot-top" cx="230.9" cy="61.6" r="1.65"/><circle class="hx-dot-left" cx="157.3" cy="127.3" r="1.65"/><circle class="hx-dot-right" cx="292.3" cy="173.9" r="1.65"/><circle class="hx-dot-top" cx="218.6" cy="66.9" r="2.25"/><circle class="hx-dot-left" cx="157.3" cy="134.1" r="2.25"/><circle class="hx-dot-right" cx="292.3" cy="180.7" r="2.25"/><circle class="hx-dot-top" cx="206.4" cy="72.2" r="1.65"/><circle class="hx-dot-left" cx="157.3" cy="140.9" r="1.65"/><circle class="hx-dot-right" cx="292.3" cy="187.5" r="1.65"/><circle class="hx-dot-top" cx="194.1" cy="77.5" r="1.65"/><circle class="hx-dot-left" cx="157.3" cy="147.7" r="1.65"/><circle class="hx-dot-right" cx="292.3" cy="194.4" r="1.65"/><circle class="hx-dot-top" cx="181.8" cy="82.7" r="1.65"/><circle class="hx-dot-left" cx="157.3" cy="154.5" r="1.65"/><circle class="hx-dot-right" cx="292.3" cy="201.2" r="1.65"/><circle class="hx-dot-top" cx="169.5" cy="88.0" r="1.65"/><circle class="hx-dot-left" cx="157.3" cy="161.4" r="1.65"/><circle class="hx-dot-right" cx="292.3" cy="208.0" r="1.65"/><circle class="hx-dot-top" cx="157.3" cy="93.3" r="1.65"/><circle class="hx-dot-left" cx="157.3" cy="168.2" r="1.65"/><circle class="hx-dot-right" cx="292.3" cy="214.8" r="1.65"/><circle class="hx-dot-top" cx="304.5" cy="40.5" r="1.65"/><circle class="hx-dot-left" cx="169.5" cy="98.4" r="1.65"/><circle class="hx-dot-right" cx="304.5" cy="134.6" r="1.65"/><circle class="hx-dot-top" cx="292.3" cy="45.8" r="1.65"/><circle class="hx-dot-left" cx="169.5" cy="105.2" r="1.65"/><circle class="hx-dot-right" cx="304.5" cy="141.5" r="1.65"/><circle class="hx-dot-top" cx="280.0" cy="51.1" r="1.65"/><circle class="hx-dot-left" cx="169.5" cy="112.0" r="1.65"/><circle class="hx-dot-right" cx="304.5" cy="148.3" r="1.65"/><circle class="hx-dot-top" cx="267.7" cy="56.4" r="1.65"/><circle class="hx-dot-left" cx="169.5" cy="118.8" r="1.65"/><circle class="hx-dot-right" cx="304.5" cy="155.1" r="1.65"/><circle class="hx-dot-top" cx="255.5" cy="61.6" r="1.65"/><circle class="hx-dot-left" cx="169.5" cy="125.6" r="1.65"/><circle class="hx-dot-right" cx="304.5" cy="161.9" r="1.65"/><circle class="hx-dot-top" cx="243.2" cy="66.9" r="2.25"/><circle class="hx-dot-left" cx="169.5" cy="132.5" r="2.25"/><circle class="hx-dot-right" cx="304.5" cy="168.7" r="2.25"/><circle class="hx-dot-top" cx="230.9" cy="72.2" r="1.65"/><circle class="hx-dot-left" cx="169.5" cy="139.3" r="1.65"/><circle class="hx-dot-right" cx="304.5" cy="175.5" r="1.65"/><circle class="hx-dot-top" cx="218.6" cy="77.5" r="1.65"/><circle class="hx-dot-left" cx="169.5" cy="146.1" r="1.65"/><circle class="hx-dot-right" cx="304.5" cy="182.4" r="1.65"/><circle class="hx-dot-top" cx="206.4" cy="82.7" r="1.65"/><circle class="hx-dot-left" cx="169.5" cy="152.9" r="1.65"/><circle class="hx-dot-right" cx="304.5" cy="189.2" r="1.65"/><circle class="hx-dot-top" cx="194.1" cy="88.0" r="1.65"/><circle class="hx-dot-left" cx="169.5" cy="159.7" r="1.65"/><circle class="hx-dot-right" cx="304.5" cy="196.0" r="1.65"/><circle class="hx-dot-top" cx="181.8" cy="93.3" r="1.65"/><circle class="hx-dot-left" cx="169.5" cy="166.5" r="1.65"/><circle class="hx-dot-right" cx="304.5" cy="202.8" r="1.65"/><circle class="hx-dot-top" cx="169.5" cy="98.5" r="1.65"/><circle class="hx-dot-left" cx="169.5" cy="173.4" r="1.65"/><circle class="hx-dot-right" cx="304.5" cy="209.6" r="1.65"/><circle class="hx-dot-top" cx="316.8" cy="45.8" r="1.65"/><circle class="hx-dot-left" cx="181.8" cy="103.5" r="1.65"/><circle class="hx-dot-right" cx="316.8" cy="129.5" r="1.65"/><circle class="hx-dot-top" cx="304.5" cy="51.1" r="1.65"/><circle class="hx-dot-left" cx="181.8" cy="110.4" r="1.65"/><circle class="hx-dot-right" cx="316.8" cy="136.3" r="1.65"/><circle class="hx-dot-top" cx="292.3" cy="56.4" r="1.65"/><circle class="hx-dot-left" cx="181.8" cy="117.2" r="1.65"/><circle class="hx-dot-right" cx="316.8" cy="143.1" r="1.65"/><circle class="hx-dot-top" cx="280.0" cy="61.6" r="1.65"/><circle class="hx-dot-left" cx="181.8" cy="124.0" r="1.65"/><circle class="hx-dot-right" cx="316.8" cy="149.9" r="1.65"/><circle class="hx-dot-top" cx="267.7" cy="66.9" r="2.25"/><circle class="hx-dot-left" cx="181.8" cy="130.8" r="2.25"/><circle class="hx-dot-right" cx="316.8" cy="156.7" r="2.25"/><circle class="hx-dot-top" cx="255.5" cy="72.2" r="1.65"/><circle class="hx-dot-left" cx="181.8" cy="137.6" r="1.65"/><circle class="hx-dot-right" cx="316.8" cy="163.5" r="1.65"/><circle class="hx-dot-top" cx="243.2" cy="77.5" r="1.65"/><circle class="hx-dot-left" cx="181.8" cy="144.5" r="1.65"/><circle class="hx-dot-right" cx="316.8" cy="170.4" r="1.65"/><circle class="hx-dot-top" cx="230.9" cy="82.7" r="1.65"/><circle class="hx-dot-left" cx="181.8" cy="151.3" r="1.65"/><circle class="hx-dot-right" cx="316.8" cy="177.2" r="1.65"/><circle class="hx-dot-top" cx="218.6" cy="88.0" r="1.65"/><circle class="hx-dot-left" cx="181.8" cy="158.1" r="1.65"/><circle class="hx-dot-right" cx="316.8" cy="184.0" r="1.65"/><circle class="hx-dot-top" cx="206.4" cy="93.3" r="1.65"/><circle class="hx-dot-left" cx="181.8" cy="164.9" r="1.65"/><circle class="hx-dot-right" cx="316.8" cy="190.8" r="1.65"/><circle class="hx-dot-top" cx="194.1" cy="98.5" r="1.65"/><circle class="hx-dot-left" cx="181.8" cy="171.7" r="1.65"/><circle class="hx-dot-right" cx="316.8" cy="197.6" r="1.65"/><circle class="hx-dot-top" cx="181.8" cy="103.8" r="2.25"/><circle class="hx-dot-left" cx="181.8" cy="178.5" r="2.25"/><circle class="hx-dot-right" cx="316.8" cy="204.5" r="2.25"/><circle class="hx-dot-top" cx="329.1" cy="51.1" r="1.65"/><circle class="hx-dot-left" cx="194.1" cy="108.7" r="1.65"/><circle class="hx-dot-right" cx="329.1" cy="124.3" r="1.65"/><circle class="hx-dot-top" cx="316.8" cy="56.4" r="1.65"/><circle class="hx-dot-left" cx="194.1" cy="115.5" r="1.65"/><circle class="hx-dot-right" cx="329.1" cy="131.1" r="1.65"/><circle class="hx-dot-top" cx="304.5" cy="61.6" r="1.65"/><circle class="hx-dot-left" cx="194.1" cy="122.4" r="1.65"/><circle class="hx-dot-right" cx="329.1" cy="137.9" r="1.65"/><circle class="hx-dot-top" cx="292.3" cy="66.9" r="2.25"/><circle class="hx-dot-left" cx="194.1" cy="129.2" r="2.25"/><circle class="hx-dot-right" cx="329.1" cy="144.7" r="2.25"/><circle class="hx-dot-top" cx="280.0" cy="72.2" r="1.65"/><circle class="hx-dot-left" cx="194.1" cy="136.0" r="1.65"/><circle class="hx-dot-right" cx="329.1" cy="151.5" r="1.65"/><circle class="hx-dot-top" cx="267.7" cy="77.5" r="1.65"/><circle class="hx-dot-left" cx="194.1" cy="142.8" r="1.65"/><circle class="hx-dot-right" cx="329.1" cy="158.4" r="1.65"/><circle class="hx-dot-top" cx="255.5" cy="82.7" r="1.65"/><circle class="hx-dot-left" cx="194.1" cy="149.6" r="1.65"/><circle class="hx-dot-right" cx="329.1" cy="165.2" r="1.65"/><circle class="hx-dot-top" cx="243.2" cy="88.0" r="1.65"/><circle class="hx-dot-left" cx="194.1" cy="156.5" r="1.65"/><circle class="hx-dot-right" cx="329.1" cy="172.0" r="1.65"/><circle class="hx-dot-top" cx="230.9" cy="93.3" r="1.65"/><circle class="hx-dot-left" cx="194.1" cy="163.3" r="1.65"/><circle class="hx-dot-right" cx="329.1" cy="178.8" r="1.65"/><circle class="hx-dot-top" cx="218.6" cy="98.5" r="1.65"/><circle class="hx-dot-left" cx="194.1" cy="170.1" r="1.65"/><circle class="hx-dot-right" cx="329.1" cy="185.6" r="1.65"/><circle class="hx-dot-top" cx="206.4" cy="103.8" r="2.25"/><circle class="hx-dot-left" cx="194.1" cy="176.9" r="2.25"/><circle class="hx-dot-right" cx="329.1" cy="192.5" r="2.25"/><circle class="hx-dot-top" cx="194.1" cy="109.1" r="1.65"/><circle class="hx-dot-left" cx="194.1" cy="183.7" r="1.65"/><circle class="hx-dot-right" cx="329.1" cy="199.3" r="1.65"/><circle class="hx-dot-top" cx="341.4" cy="56.4" r="1.65"/><circle class="hx-dot-left" cx="206.4" cy="113.9" r="1.65"/><circle class="hx-dot-right" cx="341.4" cy="119.1" r="1.65"/><circle class="hx-dot-top" cx="329.1" cy="61.6" r="1.65"/><circle class="hx-dot-left" cx="206.4" cy="120.7" r="1.65"/><circle class="hx-dot-right" cx="341.4" cy="125.9" r="1.65"/><circle class="hx-dot-top" cx="316.8" cy="66.9" r="2.25"/><circle class="hx-dot-left" cx="206.4" cy="127.5" r="2.25"/><circle class="hx-dot-right" cx="341.4" cy="132.7" r="2.25"/><circle class="hx-dot-top" cx="304.5" cy="72.2" r="1.65"/><circle class="hx-dot-left" cx="206.4" cy="134.4" r="1.65"/><circle class="hx-dot-right" cx="341.4" cy="139.5" r="1.65"/><circle class="hx-dot-top" cx="292.3" cy="77.5" r="1.65"/><circle class="hx-dot-left" cx="206.4" cy="141.2" r="1.65"/><circle class="hx-dot-right" cx="341.4" cy="146.4" r="1.65"/><circle class="hx-dot-top" cx="280.0" cy="82.7" r="1.65"/><circle class="hx-dot-left" cx="206.4" cy="148.0" r="1.65"/><circle class="hx-dot-right" cx="341.4" cy="153.2" r="1.65"/><circle class="hx-dot-top" cx="267.7" cy="88.0" r="1.65"/><circle class="hx-dot-left" cx="206.4" cy="154.8" r="1.65"/><circle class="hx-dot-right" cx="341.4" cy="160.0" r="1.65"/><circle class="hx-dot-top" cx="255.5" cy="93.3" r="1.65"/><circle class="hx-dot-left" cx="206.4" cy="161.6" r="1.65"/><circle class="hx-dot-right" cx="341.4" cy="166.8" r="1.65"/><circle class="hx-dot-top" cx="243.2" cy="98.5" r="1.65"/><circle class="hx-dot-left" cx="206.4" cy="168.5" r="1.65"/><circle class="hx-dot-right" cx="341.4" cy="173.6" r="1.65"/><circle class="hx-dot-top" cx="230.9" cy="103.8" r="2.25"/><circle class="hx-dot-left" cx="206.4" cy="175.3" r="2.25"/><circle class="hx-dot-right" cx="341.4" cy="180.5" r="2.25"/><circle class="hx-dot-top" cx="218.6" cy="109.1" r="1.65"/><circle class="hx-dot-left" cx="206.4" cy="182.1" r="1.65"/><circle class="hx-dot-right" cx="341.4" cy="187.3" r="1.65"/><circle class="hx-dot-top" cx="206.4" cy="114.4" r="1.65"/><circle class="hx-dot-left" cx="206.4" cy="188.9" r="1.65"/><circle class="hx-dot-right" cx="341.4" cy="194.1" r="1.65"/><circle class="hx-dot-top" cx="353.6" cy="61.6" r="1.65"/><circle class="hx-dot-left" cx="218.6" cy="119.1" r="1.65"/><circle class="hx-dot-right" cx="353.6" cy="113.9" r="1.65"/><circle class="hx-dot-top" cx="341.4" cy="66.9" r="2.25"/><circle class="hx-dot-left" cx="218.6" cy="125.9" r="2.25"/><circle class="hx-dot-right" cx="353.6" cy="120.7" r="2.25"/><circle class="hx-dot-top" cx="329.1" cy="72.2" r="1.65"/><circle class="hx-dot-left" cx="218.6" cy="132.7" r="1.65"/><circle class="hx-dot-right" cx="353.6" cy="127.5" r="1.65"/><circle class="hx-dot-top" cx="316.8" cy="77.5" r="1.65"/><circle class="hx-dot-left" cx="218.6" cy="139.5" r="1.65"/><circle class="hx-dot-right" cx="353.6" cy="134.4" r="1.65"/><circle class="hx-dot-top" cx="304.5" cy="82.7" r="1.65"/><circle class="hx-dot-left" cx="218.6" cy="146.4" r="1.65"/><circle class="hx-dot-right" cx="353.6" cy="141.2" r="1.65"/><circle class="hx-dot-top" cx="292.3" cy="88.0" r="1.65"/><circle class="hx-dot-left" cx="218.6" cy="153.2" r="1.65"/><circle class="hx-dot-right" cx="353.6" cy="148.0" r="1.65"/><circle class="hx-dot-top" cx="280.0" cy="93.3" r="1.65"/><circle class="hx-dot-left" cx="218.6" cy="160.0" r="1.65"/><circle class="hx-dot-right" cx="353.6" cy="154.8" r="1.65"/><circle class="hx-dot-top" cx="267.7" cy="98.5" r="1.65"/><circle class="hx-dot-left" cx="218.6" cy="166.8" r="1.65"/><circle class="hx-dot-right" cx="353.6" cy="161.6" r="1.65"/><circle class="hx-dot-top" cx="255.5" cy="103.8" r="2.25"/><circle class="hx-dot-left" cx="218.6" cy="173.6" r="2.25"/><circle class="hx-dot-right" cx="353.6" cy="168.5" r="2.25"/><circle class="hx-dot-top" cx="243.2" cy="109.1" r="1.65"/><circle class="hx-dot-left" cx="218.6" cy="180.5" r="1.65"/><circle class="hx-dot-right" cx="353.6" cy="175.3" r="1.65"/><circle class="hx-dot-top" cx="230.9" cy="114.4" r="1.65"/><circle class="hx-dot-left" cx="218.6" cy="187.3" r="1.65"/><circle class="hx-dot-right" cx="353.6" cy="182.1" r="1.65"/><circle class="hx-dot-top" cx="218.6" cy="119.6" r="1.65"/><circle class="hx-dot-left" cx="218.6" cy="194.1" r="1.65"/><circle class="hx-dot-right" cx="353.6" cy="188.9" r="1.65"/><circle class="hx-dot-top" cx="365.9" cy="66.9" r="2.25"/><circle class="hx-dot-left" cx="230.9" cy="124.3" r="2.25"/><circle class="hx-dot-right" cx="365.9" cy="108.7" r="2.25"/><circle class="hx-dot-top" cx="353.6" cy="72.2" r="1.65"/><circle class="hx-dot-left" cx="230.9" cy="131.1" r="1.65"/><circle class="hx-dot-right" cx="365.9" cy="115.5" r="1.65"/><circle class="hx-dot-top" cx="341.4" cy="77.5" r="1.65"/><circle class="hx-dot-left" cx="230.9" cy="137.9" r="1.65"/><circle class="hx-dot-right" cx="365.9" cy="122.4" r="1.65"/><circle class="hx-dot-top" cx="329.1" cy="82.7" r="1.65"/><circle class="hx-dot-left" cx="230.9" cy="144.7" r="1.65"/><circle class="hx-dot-right" cx="365.9" cy="129.2" r="1.65"/><circle class="hx-dot-top" cx="316.8" cy="88.0" r="1.65"/><circle class="hx-dot-left" cx="230.9" cy="151.5" r="1.65"/><circle class="hx-dot-right" cx="365.9" cy="136.0" r="1.65"/><circle class="hx-dot-top" cx="304.5" cy="93.3" r="1.65"/><circle class="hx-dot-left" cx="230.9" cy="158.4" r="1.65"/><circle class="hx-dot-right" cx="365.9" cy="142.8" r="1.65"/><circle class="hx-dot-top" cx="292.3" cy="98.5" r="1.65"/><circle class="hx-dot-left" cx="230.9" cy="165.2" r="1.65"/><circle class="hx-dot-right" cx="365.9" cy="149.6" r="1.65"/><circle class="hx-dot-top" cx="280.0" cy="103.8" r="2.25"/><circle class="hx-dot-left" cx="230.9" cy="172.0" r="2.25"/><circle class="hx-dot-right" cx="365.9" cy="156.5" r="2.25"/><circle class="hx-dot-top" cx="267.7" cy="109.1" r="1.65"/><circle class="hx-dot-left" cx="230.9" cy="178.8" r="1.65"/><circle class="hx-dot-right" cx="365.9" cy="163.3" r="1.65"/><circle class="hx-dot-top" cx="255.5" cy="114.4" r="1.65"/><circle class="hx-dot-left" cx="230.9" cy="185.6" r="1.65"/><circle class="hx-dot-right" cx="365.9" cy="170.1" r="1.65"/><circle class="hx-dot-top" cx="243.2" cy="119.6" r="1.65"/><circle class="hx-dot-left" cx="230.9" cy="192.5" r="1.65"/><circle class="hx-dot-right" cx="365.9" cy="176.9" r="1.65"/><circle class="hx-dot-top" cx="230.9" cy="124.9" r="1.65"/><circle class="hx-dot-left" cx="230.9" cy="199.3" r="1.65"/><circle class="hx-dot-right" cx="365.9" cy="183.7" r="1.65"/><circle class="hx-dot-top" cx="378.2" cy="72.2" r="1.65"/><circle class="hx-dot-left" cx="243.2" cy="129.5" r="1.65"/><circle class="hx-dot-right" cx="378.2" cy="103.5" r="1.65"/><circle class="hx-dot-top" cx="365.9" cy="77.5" r="1.65"/><circle class="hx-dot-left" cx="243.2" cy="136.3" r="1.65"/><circle class="hx-dot-right" cx="378.2" cy="110.4" r="1.65"/><circle class="hx-dot-top" cx="353.6" cy="82.7" r="1.65"/><circle class="hx-dot-left" cx="243.2" cy="143.1" r="1.65"/><circle class="hx-dot-right" cx="378.2" cy="117.2" r="1.65"/><circle class="hx-dot-top" cx="341.4" cy="88.0" r="1.65"/><circle class="hx-dot-left" cx="243.2" cy="149.9" r="1.65"/><circle class="hx-dot-right" cx="378.2" cy="124.0" r="1.65"/><circle class="hx-dot-top" cx="329.1" cy="93.3" r="1.65"/><circle class="hx-dot-left" cx="243.2" cy="156.7" r="1.65"/><circle class="hx-dot-right" cx="378.2" cy="130.8" r="1.65"/><circle class="hx-dot-top" cx="316.8" cy="98.5" r="1.65"/><circle class="hx-dot-left" cx="243.2" cy="163.5" r="1.65"/><circle class="hx-dot-right" cx="378.2" cy="137.6" r="1.65"/><circle class="hx-dot-top" cx="304.5" cy="103.8" r="2.25"/><circle class="hx-dot-left" cx="243.2" cy="170.4" r="2.25"/><circle class="hx-dot-right" cx="378.2" cy="144.5" r="2.25"/><circle class="hx-dot-top" cx="292.3" cy="109.1" r="1.65"/><circle class="hx-dot-left" cx="243.2" cy="177.2" r="1.65"/><circle class="hx-dot-right" cx="378.2" cy="151.3" r="1.65"/><circle class="hx-dot-top" cx="280.0" cy="114.4" r="1.65"/><circle class="hx-dot-left" cx="243.2" cy="184.0" r="1.65"/><circle class="hx-dot-right" cx="378.2" cy="158.1" r="1.65"/><circle class="hx-dot-top" cx="267.7" cy="119.6" r="1.65"/><circle class="hx-dot-left" cx="243.2" cy="190.8" r="1.65"/><circle class="hx-dot-right" cx="378.2" cy="164.9" r="1.65"/><circle class="hx-dot-top" cx="255.5" cy="124.9" r="1.65"/><circle class="hx-dot-left" cx="243.2" cy="197.6" r="1.65"/><circle class="hx-dot-right" cx="378.2" cy="171.7" r="1.65"/><circle class="hx-dot-top" cx="243.2" cy="130.2" r="1.65"/><circle class="hx-dot-left" cx="243.2" cy="204.5" r="1.65"/><circle class="hx-dot-right" cx="378.2" cy="178.5" r="1.65"/><circle class="hx-dot-top" cx="390.5" cy="77.5" r="1.65"/><circle class="hx-dot-left" cx="255.5" cy="134.6" r="1.65"/><circle class="hx-dot-right" cx="390.5" cy="98.4" r="1.65"/><circle class="hx-dot-top" cx="378.2" cy="82.7" r="1.65"/><circle class="hx-dot-left" cx="255.5" cy="141.5" r="1.65"/><circle class="hx-dot-right" cx="390.5" cy="105.2" r="1.65"/><circle class="hx-dot-top" cx="365.9" cy="88.0" r="1.65"/><circle class="hx-dot-left" cx="255.5" cy="148.3" r="1.65"/><circle class="hx-dot-right" cx="390.5" cy="112.0" r="1.65"/><circle class="hx-dot-top" cx="353.6" cy="93.3" r="1.65"/><circle class="hx-dot-left" cx="255.5" cy="155.1" r="1.65"/><circle class="hx-dot-right" cx="390.5" cy="118.8" r="1.65"/><circle class="hx-dot-top" cx="341.4" cy="98.5" r="1.65"/><circle class="hx-dot-left" cx="255.5" cy="161.9" r="1.65"/><circle class="hx-dot-right" cx="390.5" cy="125.6" r="1.65"/><circle class="hx-dot-top" cx="329.1" cy="103.8" r="2.25"/><circle class="hx-dot-left" cx="255.5" cy="168.7" r="2.25"/><circle class="hx-dot-right" cx="390.5" cy="132.5" r="2.25"/><circle class="hx-dot-top" cx="316.8" cy="109.1" r="1.65"/><circle class="hx-dot-left" cx="255.5" cy="175.5" r="1.65"/><circle class="hx-dot-right" cx="390.5" cy="139.3" r="1.65"/><circle class="hx-dot-top" cx="304.5" cy="114.4" r="1.65"/><circle class="hx-dot-left" cx="255.5" cy="182.4" r="1.65"/><circle class="hx-dot-right" cx="390.5" cy="146.1" r="1.65"/><circle class="hx-dot-top" cx="292.3" cy="119.6" r="1.65"/><circle class="hx-dot-left" cx="255.5" cy="189.2" r="1.65"/><circle class="hx-dot-right" cx="390.5" cy="152.9" r="1.65"/><circle class="hx-dot-top" cx="280.0" cy="124.9" r="1.65"/><circle class="hx-dot-left" cx="255.5" cy="196.0" r="1.65"/><circle class="hx-dot-right" cx="390.5" cy="159.7" r="1.65"/><circle class="hx-dot-top" cx="267.7" cy="130.2" r="1.65"/><circle class="hx-dot-left" cx="255.5" cy="202.8" r="1.65"/><circle class="hx-dot-right" cx="390.5" cy="166.5" r="1.65"/><circle class="hx-dot-top" cx="255.5" cy="135.5" r="1.65"/><circle class="hx-dot-left" cx="255.5" cy="209.6" r="1.65"/><circle class="hx-dot-right" cx="390.5" cy="173.4" r="1.65"/><circle class="hx-dot-top" cx="402.7" cy="82.7" r="1.65"/><circle class="hx-dot-left" cx="267.7" cy="139.8" r="1.65"/><circle class="hx-dot-right" cx="402.7" cy="93.2" r="1.65"/><circle class="hx-dot-top" cx="390.5" cy="88.0" r="1.65"/><circle class="hx-dot-left" cx="267.7" cy="146.6" r="1.65"/><circle class="hx-dot-right" cx="402.7" cy="100.0" r="1.65"/><circle class="hx-dot-top" cx="378.2" cy="93.3" r="1.65"/><circle class="hx-dot-left" cx="267.7" cy="153.5" r="1.65"/><circle class="hx-dot-right" cx="402.7" cy="106.8" r="1.65"/><circle class="hx-dot-top" cx="365.9" cy="98.5" r="1.65"/><circle class="hx-dot-left" cx="267.7" cy="160.3" r="1.65"/><circle class="hx-dot-right" cx="402.7" cy="113.6" r="1.65"/><circle class="hx-dot-top" cx="353.6" cy="103.8" r="2.25"/><circle class="hx-dot-left" cx="267.7" cy="167.1" r="2.25"/><circle class="hx-dot-right" cx="402.7" cy="120.5" r="2.25"/><circle class="hx-dot-top" cx="341.4" cy="109.1" r="1.65"/><circle class="hx-dot-left" cx="267.7" cy="173.9" r="1.65"/><circle class="hx-dot-right" cx="402.7" cy="127.3" r="1.65"/><circle class="hx-dot-top" cx="329.1" cy="114.4" r="1.65"/><circle class="hx-dot-left" cx="267.7" cy="180.7" r="1.65"/><circle class="hx-dot-right" cx="402.7" cy="134.1" r="1.65"/><circle class="hx-dot-top" cx="316.8" cy="119.6" r="1.65"/><circle class="hx-dot-left" cx="267.7" cy="187.5" r="1.65"/><circle class="hx-dot-right" cx="402.7" cy="140.9" r="1.65"/><circle class="hx-dot-top" cx="304.5" cy="124.9" r="1.65"/><circle class="hx-dot-left" cx="267.7" cy="194.4" r="1.65"/><circle class="hx-dot-right" cx="402.7" cy="147.7" r="1.65"/><circle class="hx-dot-top" cx="292.3" cy="130.2" r="1.65"/><circle class="hx-dot-left" cx="267.7" cy="201.2" r="1.65"/><circle class="hx-dot-right" cx="402.7" cy="154.5" r="1.65"/><circle class="hx-dot-top" cx="280.0" cy="135.5" r="1.65"/><circle class="hx-dot-left" cx="267.7" cy="208.0" r="1.65"/><circle class="hx-dot-right" cx="402.7" cy="161.4" r="1.65"/><circle class="hx-dot-top" cx="267.7" cy="140.7" r="2.25"/><circle class="hx-dot-left" cx="267.7" cy="214.8" r="2.25"/><circle class="hx-dot-right" cx="402.7" cy="168.2" r="2.25"/><circle class="hx-dot-top" cx="415.0" cy="88.0" r="1.65"/><circle class="hx-dot-left" cx="280.0" cy="145.0" r="1.65"/><circle class="hx-dot-right" cx="415.0" cy="88.0" r="1.65"/><circle class="hx-dot-top" cx="402.7" cy="93.3" r="1.65"/><circle class="hx-dot-left" cx="280.0" cy="151.8" r="1.65"/><circle class="hx-dot-right" cx="415.0" cy="94.8" r="1.65"/><circle class="hx-dot-top" cx="390.5" cy="98.5" r="1.65"/><circle class="hx-dot-left" cx="280.0" cy="158.6" r="1.65"/><circle class="hx-dot-right" cx="415.0" cy="101.6" r="1.65"/><circle class="hx-dot-top" cx="378.2" cy="103.8" r="2.25"/><circle class="hx-dot-left" cx="280.0" cy="165.5" r="2.25"/><circle class="hx-dot-right" cx="415.0" cy="108.5" r="2.25"/><circle class="hx-dot-top" cx="365.9" cy="109.1" r="1.65"/><circle class="hx-dot-left" cx="280.0" cy="172.3" r="1.65"/><circle class="hx-dot-right" cx="415.0" cy="115.3" r="1.65"/><circle class="hx-dot-top" cx="353.6" cy="114.4" r="1.65"/><circle class="hx-dot-left" cx="280.0" cy="179.1" r="1.65"/><circle class="hx-dot-right" cx="415.0" cy="122.1" r="1.65"/><circle class="hx-dot-top" cx="341.4" cy="119.6" r="1.65"/><circle class="hx-dot-left" cx="280.0" cy="185.9" r="1.65"/><circle class="hx-dot-right" cx="415.0" cy="128.9" r="1.65"/><circle class="hx-dot-top" cx="329.1" cy="124.9" r="1.65"/><circle class="hx-dot-left" cx="280.0" cy="192.7" r="1.65"/><circle class="hx-dot-right" cx="415.0" cy="135.7" r="1.65"/><circle class="hx-dot-top" cx="316.8" cy="130.2" r="1.65"/><circle class="hx-dot-left" cx="280.0" cy="199.5" r="1.65"/><circle class="hx-dot-right" cx="415.0" cy="142.5" r="1.65"/><circle class="hx-dot-top" cx="304.5" cy="135.5" r="1.65"/><circle class="hx-dot-left" cx="280.0" cy="206.4" r="1.65"/><circle class="hx-dot-right" cx="415.0" cy="149.4" r="1.65"/><circle class="hx-dot-top" cx="292.3" cy="140.7" r="2.25"/><circle class="hx-dot-left" cx="280.0" cy="213.2" r="2.25"/><circle class="hx-dot-right" cx="415.0" cy="156.2" r="2.25"/><circle class="hx-dot-top" cx="280.0" cy="146.0" r="1.65"/><circle class="hx-dot-left" cx="280.0" cy="220.0" r="1.65"/><circle class="hx-dot-right" cx="415.0" cy="163.0" r="1.65"/></g>
+          <g class="hx-cube-dots"></g>
         </svg>
       </div>
       <div class="heroX-caps"><span>CONTEXT</span><span>REASONING</span><span>ORCHESTRATION</span><span>GOVERNANCE</span><span>CONTROL</span></div>
@@ -1106,13 +1438,7 @@ html[data-theme="light"] .heroX-ai .hx-cube-dots circle{filter:none!important;op
     <div class="heroX-scale"><span>COMPLEXITY</span><div><i></i><i></i><i></i><i></i></div><span>SCALE</span></div>
   </div>
 
-  <div class="heroX-pillars">
-    <article><i class="ti ti-layers-subtract"></i><div><b>PROCESS INTELLIGENCE</b><span>Understand how the business runs before designing change.</span></div></article>
-    <article><i class="ti ti-target-arrow"></i><div><b>DELIVERY CONTINUITY</b><span>Keep delivery connected from strategy to adoption.</span></div></article>
-    <article><i class="ti ti-users"></i><div><b>TRANSLATION FLUENCY</b><span>Connect business needs with technical execution.</span></div></article>
-  </div>
-  <button class="heroX-scroll" type="button" onclick="document.getElementById('foundation').scrollIntoView({behavior:'smooth'})"><span>⌄</span><small>SCROLL TO EXPLORE</small></button>
-</section>
+  </section>
 <section class="section container sh-progs in" id="foundation">
       <header class="section-heading solution-heading-v3">
         <div>
@@ -1192,7 +1518,6 @@ html[data-theme="light"] .heroX-ai .hx-cube-dots circle{filter:none!important;op
         <div>
           <div class="eyebrow">Open to the right opportunity</div>
           <h2>Looking for an enterprise delivery lead who connects business requirements to technical delivery?</h2>
-          <p>I bring enterprise systems experience, structured analysis, and a direct focus on outcomes.</p>
         </div>
         <div class="hero-actions">
           <a class="button magnetic" href="contact.html">Start a conversation</a>
@@ -1468,128 +1793,256 @@ html[data-theme="light"] .heroX-ai .hx-cube-dots circle{filter:none!important;op
   if(inp)inp.addEventListener('keydown',function(e){if(e.key==='Enter')window.cwSendCustom();});
 })();
 </script>
-<!-- HERO X DYNAMIC FLOW ROUTING v5 -->
+
+<!-- HERO X DOTTED CUBE + WAVE v19 -->
+<script>
+(function(){
+  var svg=document.querySelector('.heroX .hx-dotcube');
+  var base=svg&&svg.querySelector('.hx-cube-dots');
+  if(!svg||!base)return;
+
+  var NS='http://www.w3.org/2000/svg',N=15;
+  var old=svg.querySelector('.hx-cube-wave-dots');if(old)old.remove();
+
+  // Recreate the APPROVED dotted cube geometry exactly as before.
+  base.textContent='';
+  var overlay=document.createElementNS(NS,'g');
+  overlay.setAttribute('class','hx-cube-wave-dots');
+  base.insertAdjacentElement('afterend',overlay);
+  var points=[];
+
+  function bilerp(a,b,c,d,u,v){
+    return {
+      x:(1-u)*(1-v)*a.x+u*(1-v)*b.x+u*v*c.x+(1-u)*v*d.x,
+      y:(1-u)*(1-v)*a.y+u*(1-v)*b.y+u*v*c.y+(1-u)*v*d.y
+    };
+  }
+
+  function face(cls,a,b,c,d){
+    for(var row=0;row<N;row++){
+      for(var col=0;col<N;col++){
+        var u=col/(N-1),v=row/(N-1),p=bilerp(a,b,c,d,u,v);
+        var edge=row===0||col===0||row===N-1||col===N-1;
+        var radius=edge?1.48:1.22;
+
+        // Base dot: original cube remains visible at all times.
+        var dot=document.createElementNS(NS,'circle');
+        dot.setAttribute('class',cls);
+        dot.setAttribute('cx',p.x.toFixed(2));
+        dot.setAttribute('cy',p.y.toFixed(2));
+        dot.setAttribute('r',radius);
+        base.appendChild(dot);
+
+        // Wave dot: exact same position AND exact same radius. It only changes color/brightness.
+        var w=document.createElementNS(NS,'circle');
+        w.setAttribute('cx',p.x.toFixed(2));
+        w.setAttribute('cy',p.y.toFixed(2));
+        w.setAttribute('r',radius);
+        w.style.opacity='0';
+        overlay.appendChild(w);
+
+        var nx=(p.x-145)/270;
+        var ny=(p.y-30)/190;
+        points.push({el:w,pos:nx*.86+ny*.14});
+      }
+    }
+  }
+
+  var T={x:280,y:30},L={x:145,y:88},C={x:280,y:145},R={x:415,y:88};
+  var LB={x:145,y:163},B={x:280,y:220},RB={x:415,y:163};
+  face('hx-dot-top',T,R,C,L);
+  face('hx-dot-left',L,C,B,LB);
+  face('hx-dot-right',C,R,RB,B);
+
+  var reduced=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var started=performance.now(),duration=3900,band=.22;
+  var stops=[
+    {p:0,c:[89,239,255]},
+    {p:.34,c:[77,161,255]},
+    {p:.67,c:[155,119,255]},
+    {p:1,c:[63,224,206]}
+  ];
+
+  function mix(a,b,t){return Math.round(a+(b-a)*t)}
+  function colorAt(t){
+    t=Math.max(0,Math.min(1,t));
+    for(var i=0;i<stops.length-1;i++){
+      if(t<=stops[i+1].p){
+        var a=stops[i],b=stops[i+1],q=(t-a.p)/(b.p-a.p);
+        return 'rgb('+mix(a.c[0],b.c[0],q)+','+mix(a.c[1],b.c[1],q)+','+mix(a.c[2],b.c[2],q)+')';
+      }
+    }
+    return 'rgb(63,224,206)';
+  }
+
+  function render(now){
+    var t=reduced?.52:((now-started)%duration)/duration;
+    var center=-band+(1+band*2)*t;
+
+    points.forEach(function(p){
+      var d=p.pos-center,ad=Math.abs(d);
+      if(ad>=band){
+        p.el.style.opacity='0';
+        p.el.style.filter='none';
+        return;
+      }
+      var strength=1-ad/band;
+      strength=strength*strength*(3-2*strength);
+      var across=(d+band)/(band*2);
+      var col=colorAt(across);
+      p.el.style.fill=col;
+      p.el.style.opacity=(.16+.84*strength).toFixed(3);
+      p.el.style.filter='drop-shadow(0 0 '+(1+3.6*strength).toFixed(1)+'px '+col+')';
+    });
+
+    if(!reduced)requestAnimationFrame(render);
+  }
+  requestAnimationFrame(render);
+})();
+</script>
+
+<!-- HERO X DYNAMIC FLOW ROUTING v7 -->
 <script>
 (function(){
   var hero=document.querySelector('.heroX');
-  if(!hero||hero.dataset.dynamicFlow==='1')return;
-  hero.dataset.dynamicFlow='1';
-  var map=hero.querySelector('.heroX-map');
-  var svg=hero.querySelector('.heroX-links');
+  var map=hero&&hero.querySelector('.heroX-map');
+  var svg=hero&&hero.querySelector('.heroX-links');
+  if(!hero||!map||!svg)return;
+
   var enterprise=Array.from(hero.querySelectorAll('.heroX-enterprise article'));
   var agents=Array.from(hero.querySelectorAll('.heroX-agents article'));
   var values=Array.from(hero.querySelectorAll('.heroX-valuebox article'));
-  if(!map||!svg||enterprise.length<4||agents.length<4||values.length<4)return;
+  if(enterprise.length!==4||agents.length!==4||values.length!==4)return;
 
-  // Add true receiving ports without changing card copy/layout.
-  agents.forEach(function(card,i){
-    if(!card.querySelector('.hx-in-port')){
-      var p=document.createElement('span');
-      p.className='hx-in-port';
+  var NS='http://www.w3.org/2000/svg',raf=0;
+  var colors=['','blue','purple','teal'];
+  var reduced=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  function ensurePort(el,cls,left){
+    var p=el.querySelector('.'+cls);
+    if(!p){
+      p=document.createElement('span');
+      p.className=cls;
       p.setAttribute('aria-hidden','true');
-      card.appendChild(p);
+      el.appendChild(p);
     }
-  });
-  values.forEach(function(row,i){
-    if(!row.querySelector('.hx-value-port')){
-      var p=document.createElement('span');
-      p.className='hx-value-port';
-      p.setAttribute('aria-hidden','true');
-      row.appendChild(p);
-    }
-  });
-
-  var style=document.createElement('style');
-  style.textContent='.heroX-agents article .hx-in-port,.heroX-valuebox article .hx-value-port{position:absolute;left:-6px;top:50%;transform:translateY(-50%);width:10px;height:10px;border-radius:50%;background:#43e5fb;box-shadow:0 0 8px #43e5fb,0 0 15px rgba(67,229,251,.55);z-index:7}.heroX-agents article.violet .hx-in-port{background:#9877ff;box-shadow:0 0 9px #9877ff}.heroX-agents article.teal .hx-in-port{background:#2de0ce;box-shadow:0 0 9px #2de0ce}.heroX-valuebox article{position:relative}.heroX-valuebox article:nth-child(2) .hx-value-port{background:#9877ff;box-shadow:0 0 9px #9877ff}.heroX-valuebox article:nth-child(4) .hx-value-port{background:#2de0ce;box-shadow:0 0 9px #2de0ce}';
-  document.head.appendChild(style);
-
-  var NS='http://www.w3.org/2000/svg', raf=0;
-  function center(el){
-    var r=el.getBoundingClientRect(), m=map.getBoundingClientRect();
-    return {x:r.left+r.width/2-m.left,y:r.top+r.height/2-m.top};
+    Object.assign(p.style,{
+      position:'absolute',
+      top:'50%',
+      left:left?'-6px':'auto',
+      right:left?'auto':'-6px',
+      transform:'translateY(-50%)',
+      width:'10px',height:'10px',borderRadius:'50%',
+      background:'#43e5fb',boxShadow:'0 0 9px #43e5fb',
+      zIndex:'9'
+    });
+    return p;
   }
-  function addPath(a,b,cls,runner,delay){
-    var dx=Math.max(26,(b.x-a.x)*.46);
-    var d='M '+a.x+' '+a.y+' C '+(a.x+dx)+' '+a.y+', '+(b.x-dx)+' '+b.y+', '+b.x+' '+b.y;
+
+  enterprise.forEach(function(card){ensurePort(card,'hx-out-port',false);});
+  agents.forEach(function(card){ensurePort(card,'hx-in-port',true);ensurePort(card,'hx-out-port',false);});
+  values.forEach(function(card){ensurePort(card,'hx-value-port',true);});
+
+  function point(el){
+    var r=el.getBoundingClientRect(),m=map.getBoundingClientRect();
+    return{x:r.left+r.width/2-m.left,y:r.top+r.height/2-m.top};
+  }
+  function pathEl(d,cls,secondary){
     var p=document.createElementNS(NS,'path');
-    p.setAttribute('d',d);p.setAttribute('class','hx-dynamic-wire '+(cls||''));svg.appendChild(p);
-    if(runner&&!window.matchMedia('(prefers-reduced-motion: reduce)').matches){
-      var dot=document.createElementNS(NS,'circle');dot.setAttribute('r','2.3');dot.setAttribute('class','hx-dynamic-runner');
-      var am=document.createElementNS(NS,'animateMotion');am.setAttribute('dur','4.6s');am.setAttribute('repeatCount','indefinite');am.setAttribute('path',d);am.setAttribute('begin',(delay||0)+'s');
-      dot.appendChild(am);svg.appendChild(dot);
-    }
+    p.setAttribute('d',d);
+    p.setAttribute('class','hx-flow-path '+(secondary?'secondary ':'')+(cls||''));
+    svg.appendChild(p);
+    return p;
   }
+  function mover(d,cls,delay,secondary){
+    if(reduced)return;
+    var comet=document.createElementNS(NS,'ellipse');
+    comet.setAttribute('rx',secondary?'3':'5.2');
+    comet.setAttribute('ry',secondary?'1.1':'1.75');
+    comet.setAttribute('class','hx-flow-comet '+(cls||''));
+    var am=document.createElementNS(NS,'animateMotion');
+    am.setAttribute('dur',secondary?'6.2s':'4.5s');
+    am.setAttribute('repeatCount','indefinite');
+    am.setAttribute('begin',delay+'s');
+    am.setAttribute('path',d);
+    am.setAttribute('rotate','auto');
+    comet.appendChild(am);svg.appendChild(comet);
+
+    var token=document.createElementNS(NS,'path');
+    token.setAttribute('d',secondary?'M0 -2.4 L2.4 0 L0 2.4 L-2.4 0 Z':'M0 -3.4 L3.4 0 L0 3.4 L-3.4 0 Z');
+    token.setAttribute('class','hx-flow-token '+(cls||''));
+    var tm=document.createElementNS(NS,'animateMotion');
+    tm.setAttribute('dur',secondary?'6.7s':'5.0s');
+    tm.setAttribute('repeatCount','indefinite');
+    tm.setAttribute('begin',(delay-1.35)+'s');
+    tm.setAttribute('path',d);
+    tm.setAttribute('rotate','auto');
+    token.appendChild(tm);svg.appendChild(token);
+  }
+  function simple(a,b,cls,delay){
+    var dx=Math.max(30,(b.x-a.x)*.46);
+    var d='M '+a.x+' '+a.y+' C '+(a.x+dx)+' '+a.y+', '+(b.x-dx)+' '+b.y+', '+b.x+' '+b.y;
+    pathEl(d,cls,false);mover(d,cls,delay,false);
+  }
+  function routed(a,b,cls,delay,secondary){
+    var gap=Math.max(60,b.x-a.x),mid=(a.x+b.x)/2;
+    var lift=secondary?(b.y-a.y)*.28:(b.y-a.y)*.14;
+    var d='M '+a.x+' '+a.y+
+      ' C '+(a.x+gap*.18)+' '+a.y+', '+(mid-gap*.18)+' '+(a.y+lift)+', '+mid+' '+((a.y+b.y)/2)+
+      ' C '+(mid+gap*.18)+' '+(b.y-lift)+', '+(b.x-gap*.18)+' '+b.y+', '+b.x+' '+b.y;
+    pathEl(d,cls,secondary);mover(d,cls,delay,secondary);
+  }
+
   function draw(){
     cancelAnimationFrame(raf);
     raf=requestAnimationFrame(function(){
       if(window.innerWidth<=1200)return;
+
+      svg.querySelectorAll('.hx-path,.hx-junction,.hx-flow-path,.hx-flow-comet,.hx-flow-token,.hx-dynamic-wire,.hx-signal-pulse,.hx-signal-particle')
+        .forEach(function(n){n.remove();});
+
       var mr=map.getBoundingClientRect();
-      svg.setAttribute('viewBox','0 0 '+mr.width+' '+400);
+      svg.setAttribute('viewBox','0 0 '+mr.width+' '+mr.height);
       svg.setAttribute('preserveAspectRatio','none');
-      Array.from(svg.querySelectorAll('.hx-path,.hx-junction,.hx-dynamic-wire,.hx-dynamic-runner')).forEach(function(n){n.remove();});
 
-      var core=hero.querySelector('.heroX-core'), cr=core.getBoundingClientRect(), mm=map.getBoundingClientRect();
-      var cube=hero.querySelector('.hx-dotcube'), mr=cube?cube.getBoundingClientRect():cr;
-      var leftX=mr.left-mm.left+mr.width*.255, rightX=mr.left-mm.left+mr.width*.745, cy=mr.top+mr.height*.50-mm.top;
-      var offsets=[-13,-4,5,14], colors=['','', '', 'purple'];
-      var outColors=['','purple','purple','teal'];
+      var cube=hero.querySelector('.hx-dotcube');
+      var cr=cube.getBoundingClientRect();
+      var left={x:cr.left-mr.left+cr.width*.27,y:cr.top-mr.top+cr.height*.50};
+      var right={x:cr.left-mr.left+cr.width*.73,y:cr.top-mr.top+cr.height*.50};
+      var offsets=[-15,-5,5,15];
 
+      // Enterprise → AI
       enterprise.forEach(function(card,i){
-        var port=card.querySelector(':scope > span'), a=center(port), b={x:leftX,y:cy+offsets[i]};
-        addPath(a,b,colors[i],true,-i*.55);
+        simple(point(card.querySelector('.hx-out-port')),{x:left.x,y:left.y+offsets[i]},colors[i],-i*.55);
       });
+      // AI → Agents
       agents.forEach(function(card,i){
-        var a={x:rightX,y:cy+offsets[i]}, b=center(card.querySelector('.hx-in-port'));
-        addPath(a,b,outColors[i],true,-i*.6);
+        simple({x:right.x,y:right.y+offsets[i]},point(card.querySelector('.hx-in-port')),colors[i],-.35-i*.58);
       });
-      // Agent-to-value routing mirrors the approved reference: short clean
-      // departure, controlled crossover in the middle, clean arrival at ports.
-      var agentOut=agents.map(function(card){return center(card.querySelector(':scope > span:not(.hx-in-port)'));});
-      var valueIn=values.map(function(row){return center(row.querySelector('.hx-value-port'));});
-      function addValuePath(fromIndex,toIndex,cls,runner,delay){
-        var a=agentOut[fromIndex], b=valueIn[toIndex];
-        var gap=b.x-a.x;
-        // Approved reference geometry: keep both ends calm and push the
-        // crossover into a narrow central corridor.
-        var exitX=a.x+Math.max(18,gap*.16);
-        var entryX=b.x-Math.max(18,gap*.16);
-        var midX=(a.x+b.x)/2;
-        // Wide reference-style S curve: horizontal at both ports, with the
-        // bend/crossover using the extra corridor we created.
-        var d='M '+a.x+' '+a.y+
-          ' C '+exitX+' '+a.y+', '+(midX-gap*.12)+' '+a.y+', '+midX+' '+((a.y+b.y)/2)+
-          ' C '+(midX+gap*.12)+' '+b.y+', '+entryX+' '+b.y+', '+b.x+' '+b.y;
-        var p=document.createElementNS(NS,'path');
-        p.setAttribute('d',d);
-        p.setAttribute('class','hx-dynamic-wire hx-value-wire '+(cls||''));
-        svg.appendChild(p);
-        if(runner&&!window.matchMedia('(prefers-reduced-motion: reduce)').matches){
-          var dot=document.createElementNS(NS,'circle');
-          dot.setAttribute('r','1.9');
-          dot.setAttribute('class','hx-dynamic-runner hx-value-runner '+(cls||''));
-          var am=document.createElementNS(NS,'animateMotion');
-          am.setAttribute('dur','5.4s');
-          am.setAttribute('repeatCount','indefinite');
-          am.setAttribute('path',d);
-          am.setAttribute('begin',(delay||0)+'s');
-          dot.appendChild(am);
-          svg.appendChild(dot);
-        }
-      }
-      // Four primary routes plus the four reference cross-connections.
-      addValuePath(0,0,'',true,-0.1);
-      addValuePath(1,1,'purple',true,-0.8);
-      addValuePath(2,2,'',true,-1.5);
-      addValuePath(3,3,'teal',true,-2.2);
-      addValuePath(0,2,'',false,0);
-      addValuePath(1,3,'purple',false,0);
-      addValuePath(2,0,'',false,0);
-      addValuePath(3,1,'teal',false,0);
+
+      var ao=agents.map(function(card){return point(card.querySelector('.hx-out-port'));});
+      var vi=values.map(function(card){return point(card.querySelector('.hx-value-port'));});
+
+      // Primary Agent → Value routes.
+      routed(ao[0],vi[0],'',-.1,false);
+      routed(ao[1],vi[1],'blue',-.8,false);
+      routed(ao[2],vi[2],'purple',-1.5,false);
+      routed(ao[3],vi[3],'teal',-2.2,false);
+
+      // Controlled cross-routing from the earlier richer design.
+      routed(ao[0],vi[2],'',-2.7,true);
+      routed(ao[1],vi[3],'blue',-3.2,true);
+      routed(ao[2],vi[0],'purple',-3.7,true);
+      routed(ao[3],vi[1],'teal',-4.2,true);
     });
   }
+
   draw();
-  if('ResizeObserver' in window){new ResizeObserver(draw).observe(map);}else{window.addEventListener('resize',draw,{passive:true});}
+  window.addEventListener('load',draw,{once:true});
+  window.addEventListener('resize',draw,{passive:true});
+  if('ResizeObserver' in window)new ResizeObserver(draw).observe(map);
 })();
 </script>
+
 </body>
 </html>
