@@ -289,6 +289,38 @@ html[data-theme="light"] .sp-pillar-title{color:#0d1f30}
 @media(max-width:1200px){.e2a-stage{grid-template-columns:minmax(165px,1fr) 28px minmax(180px,1.1fr) 28px minmax(170px,1fr) 28px minmax(135px,.85fr);padding:20px 18px 16px}.e2a-core{width:155px;height:155px}}
 @media(max-width:900px){.e2a-stage{grid-template-columns:1fr;gap:14px}.e2a-flow{width:2px;height:25px;margin:0 auto}.e2a-wire{width:1px;height:100%;left:50%;top:0}.e2a-core{width:180px;height:180px}.e2a-zone-head{min-height:auto}}
 
+
+/* ── Reference-match finishing pass ── */
+@media (min-width:1201px){
+  .sp-hero{padding:46px 64px 32px;min-height:calc(100vh - 64px)}
+  .sp-hero-grid{grid-template-columns:minmax(300px,28%) minmax(0,1fr);gap:48px;align-items:stretch}
+  .sp-hero-main{padding:10px 40px 0 0;justify-content:flex-start}
+  .sp-hero-identity{margin-bottom:30px}
+  .sp-headline{font-size:clamp(2.7rem,3.35vw,4.05rem);line-height:1.045;margin-bottom:22px}
+  .sp-sub{max-width:420px;font-size:.8rem;line-height:1.85}
+  .sp-hero-visual{min-width:0;padding-top:2px}
+  .sp-hero-visual .e2a-wide{width:100%;min-width:0}
+  .sp-hero-pillars{margin-top:30px;padding-bottom:28px}
+  .sp-hero-pillar{min-height:92px;padding-top:20px}
+  .sp-scroll{bottom:12px}
+}
+@media (min-width:1500px){
+  .sp-hero{padding-left:72px;padding-right:72px}
+  .sp-hero-grid{gap:56px}
+  .sp-sub{max-width:450px}
+}
+.e2a-wide{position:relative;overflow:hidden}
+.e2a-stage{position:relative;isolation:isolate}
+.e2a-stage::before{content:"";position:absolute;inset:10% 7%;z-index:-1;pointer-events:none;background:radial-gradient(circle at 50% 50%,rgba(53,212,241,.09),transparent 42%)}
+.e2a-zone{position:relative}
+.e2a-core{filter:drop-shadow(0 0 18px rgba(53,212,241,.08))}
+.e2a-capabilities span{white-space:nowrap}
+.e2a-scale{margin-top:12px}
+html[data-theme="light"] .e2a-stage::before{background:radial-gradient(circle at 50% 50%,rgba(8,145,178,.08),transparent 42%)}
+@media (prefers-reduced-motion:reduce){
+  .sp-scroll{animation:none}
+}
+
 </style>
 <script>if(localStorage.getItem('kp-theme')==='light')document.documentElement.setAttribute('data-theme','light');</script>
 </head>
