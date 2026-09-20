@@ -369,6 +369,45 @@ background-size:18px 12px,100% 100%;transform:perspective(300px) rotateX(62deg) 
 html[data-theme="light"] .sp-hero::after{opacity:.1}
 @media(max-width:1200px){.sp-hero::after{display:none}.e2a-wide{padding:18px!important}}
 
+
+/* ── Reference effects pass v2 ── */
+@keyframes pathDash{to{stroke-dashoffset:-42}}
+@keyframes pathPulse{0%,100%{opacity:.45}50%{opacity:1}}
+@keyframes nodePulse{0%,100%{transform:scale(.85);opacity:.55}50%{transform:scale(1.25);opacity:1}}
+@media (min-width:1201px){
+  .e2a-stage{
+    display:grid!important;
+    grid-template-columns:minmax(205px,1.18fr) 72px minmax(245px,1.42fr) 72px minmax(220px,1.22fr) 72px minmax(170px,.95fr)!important;
+    align-items:center!important;
+    gap:0!important;
+  }
+  .e2a-zone{padding:0!important;border-right:0!important}
+  .e2a-ai{padding:0 8px!important}
+  .e2a-core{width:190px!important;height:190px!important}
+}
+.e2a-flow{position:relative!important;height:250px!important;overflow:visible!important}
+.e2a-wire{display:none!important}
+.e2a-flow-svg{position:absolute;inset:0;width:100%;height:100%;overflow:visible;filter:drop-shadow(0 0 4px rgba(50,211,245,.5))}
+.e2a-flow-svg path{fill:none;stroke-width:1.45;stroke-linecap:round;stroke-dasharray:4 7;animation:pathDash 4.8s linear infinite,pathPulse 3.4s ease-in-out infinite}
+.e2a-flow-svg path:nth-child(2){animation-delay:-.8s}.e2a-flow-svg path:nth-child(3){animation-delay:-1.6s}.e2a-flow-svg path:nth-child(4){animation-delay:-2.4s}
+.flow-cyan{stroke:#35d4f1}.flow-blue{stroke:#62a8ff}.flow-violet{stroke:#9a7cff}.flow-teal{stroke:#42e2d0}
+.e2a-flow-node{position:absolute;width:7px;height:7px;border-radius:50%;background:#67efff;box-shadow:0 0 7px #67efff,0 0 15px rgba(53,212,241,.8);animation:nodePulse 2.4s ease-in-out infinite}
+.e2a-flow-node.n1{left:8%;top:24%}.e2a-flow-node.n2{left:18%;top:42%;animation-delay:.4s}.e2a-flow-node.n3{right:18%;top:56%;animation-delay:.8s}.e2a-flow-node.n4{right:7%;top:72%;animation-delay:1.2s}
+.e2a-icon,.e2a-agent-icon,.e2a-value-icon{font-size:0!important}
+.e2a-icon i,.e2a-agent-icon i,.e2a-value-icon i{font-size:18px!important;line-height:1;color:inherit}
+.e2a-agent-icon i{font-size:19px!important}.e2a-value-icon i{font-size:20px!important}
+.e2a-input,.e2a-agent{box-shadow:inset 0 0 20px rgba(31,150,220,.045),0 0 0 1px rgba(53,212,241,.025)!important}
+.e2a-input:hover,.e2a-agent:hover{border-color:rgba(80,225,255,.7)!important;box-shadow:0 0 18px rgba(35,185,240,.12),inset 0 0 24px rgba(35,185,240,.07)!important}
+.e2a-agent.agent-knowledge,.e2a-agent.agent-action{border-color:rgba(143,112,255,.5)!important}
+.e2a-agent.agent-validation{border-color:rgba(66,226,208,.5)!important}
+.e2a-core{background:radial-gradient(circle,rgba(17,91,132,.22) 0%,rgba(5,29,49,.08) 58%,transparent 72%)!important}
+.e2a-core-glow{position:absolute;inset:42px;border-radius:50%;background:radial-gradient(circle,rgba(53,212,241,.16),transparent 70%);box-shadow:0 0 30px rgba(53,212,241,.14);animation:coreBreath 4s ease-in-out infinite}
+.e2a-ring.ring-outer{box-shadow:0 0 22px rgba(53,212,241,.08)}
+.e2a-capabilities span{box-shadow:inset 0 0 12px rgba(53,212,241,.035)}
+.e2a-value{opacity:1!important;filter:none!important}
+.e2a-outcome{transition:background .25s ease,box-shadow .25s ease}
+.e2a-outcome:hover{background:rgba(31,188,210,.055);box-shadow:inset 0 0 18px rgba(31,188,210,.045)}
+
 </style>
 <script>if(localStorage.getItem('kp-theme')==='light')document.documentElement.setAttribute('data-theme','light');</script>
 </head>
@@ -421,31 +460,35 @@ html[data-theme="light"] .sp-hero::after{opacity:.1}
                   <small>Complex systems. Real constraints. Big opportunity.</small>
                 </div>
                 <article class="e2a-input">
-                  <div class="e2a-icon">⬡</div>
+                  <div class="e2a-icon"><i class="ti ti-list-details" aria-hidden="true"></i></div>
                   <div><strong>PROCESS</strong><small>Workflows · Handoffs · Exceptions</small></div>
                   <div class="e2a-port"></div>
                 </article>
                 <article class="e2a-input" style="animation-delay:.3s">
-                  <div class="e2a-icon">⬢</div>
+                  <div class="e2a-icon"><i class="ti ti-database" aria-hidden="true"></i></div>
                   <div><strong>SYSTEMS</strong><small>ERP · CRM · Enterprise Platforms</small></div>
                   <div class="e2a-port"></div>
                 </article>
                 <article class="e2a-input" style="animation-delay:.6s">
-                  <div class="e2a-icon">◈</div>
+                  <div class="e2a-icon"><i class="ti ti-file-text" aria-hidden="true"></i></div>
                   <div><strong>DATA + KNOWLEDGE</strong><small>Documents · Data · Business Context</small></div>
                   <div class="e2a-port"></div>
                 </article>
                 <article class="e2a-input" style="animation-delay:.9s">
-                  <div class="e2a-icon">◉</div>
+                  <div class="e2a-icon"><i class="ti ti-users" aria-hidden="true"></i></div>
                   <div><strong>PEOPLE + DECISIONS</strong><small>Approvals · Judgment · Escalations</small></div>
                   <div class="e2a-port"></div>
                 </article>
               </section>
 
               <div class="e2a-flow" aria-hidden="true">
-                <div class="e2a-wire"></div>
-                <span class="e2a-orb orb-a"></span>
-                <span class="e2a-orb orb-b"></span>
+                <svg class="e2a-flow-svg" viewBox="0 0 100 250" preserveAspectRatio="none">
+                  <path class="flow-cyan" d="M0 48 C42 48 42 102 100 112"/>
+                  <path class="flow-blue" d="M0 96 C46 96 48 112 100 119"/>
+                  <path class="flow-violet" d="M0 150 C46 150 48 132 100 126"/>
+                  <path class="flow-teal" d="M0 202 C42 202 42 146 100 133"/>
+                </svg>
+                <span class="e2a-flow-node n1"></span><span class="e2a-flow-node n2"></span><span class="e2a-flow-node n3"></span><span class="e2a-flow-node n4"></span>
               </div>
 
               <section class="e2a-zone e2a-ai" aria-label="AI transformation engine">
@@ -472,9 +515,13 @@ html[data-theme="light"] .sp-hero::after{opacity:.1}
               </section>
 
               <div class="e2a-flow" aria-hidden="true">
-                <div class="e2a-wire"></div>
-                <span class="e2a-orb orb-c"></span>
-                <span class="e2a-orb orb-d"></span>
+                <svg class="e2a-flow-svg" viewBox="0 0 100 250" preserveAspectRatio="none">
+                  <path class="flow-cyan" d="M0 112 C54 105 54 48 100 48"/>
+                  <path class="flow-violet" d="M0 119 C54 116 54 96 100 96"/>
+                  <path class="flow-blue" d="M0 126 C54 134 54 150 100 150"/>
+                  <path class="flow-teal" d="M0 133 C54 145 54 202 100 202"/>
+                </svg>
+                <span class="e2a-flow-node n1"></span><span class="e2a-flow-node n2"></span><span class="e2a-flow-node n3"></span><span class="e2a-flow-node n4"></span>
               </div>
 
               <section class="e2a-zone e2a-agents" aria-label="Specialized AI agents">
@@ -484,22 +531,22 @@ html[data-theme="light"] .sp-hero::after{opacity:.1}
                 </div>
                 <div class="e2a-agent-stack">
                   <div class="e2a-agent agent-process">
-                    <div class="e2a-agent-icon">⚙</div>
+                    <div class="e2a-agent-icon"><i class="ti ti-settings" aria-hidden="true"></i></div>
                     <div class="e2a-agent-copy"><strong>PROCESS AGENT</strong><span>ANALYZING</span><small>Flow · Exceptions</small></div>
                     <i></i>
                   </div>
                   <div class="e2a-agent agent-knowledge">
-                    <div class="e2a-agent-icon">◎</div>
+                    <div class="e2a-agent-icon"><i class="ti ti-book" aria-hidden="true"></i></div>
                     <div class="e2a-agent-copy"><strong>KNOWLEDGE AGENT</strong><span>RETRIEVING</span><small>Context · Evidence</small></div>
                     <i></i>
                   </div>
                   <div class="e2a-agent agent-action">
-                    <div class="e2a-agent-icon">▶</div>
+                    <div class="e2a-agent-icon"><i class="ti ti-player-play" aria-hidden="true"></i></div>
                     <div class="e2a-agent-copy"><strong>ACTION AGENT</strong><span>EXECUTING</span><small>Tasks · System Actions</small></div>
                     <i></i>
                   </div>
                   <div class="e2a-agent agent-validation">
-                    <div class="e2a-agent-icon">✓</div>
+                    <div class="e2a-agent-icon"><i class="ti ti-shield-check" aria-hidden="true"></i></div>
                     <div class="e2a-agent-copy"><strong>VALIDATION AGENT</strong><span>VERIFYING</span><small>Quality · Controls</small></div>
                     <i></i>
                   </div>
@@ -507,9 +554,13 @@ html[data-theme="light"] .sp-hero::after{opacity:.1}
               </section>
 
               <div class="e2a-flow" aria-hidden="true">
-                <div class="e2a-wire"></div>
-                <span class="e2a-orb orb-e"></span>
-                <span class="e2a-orb orb-f"></span>
+                <svg class="e2a-flow-svg" viewBox="0 0 100 250" preserveAspectRatio="none">
+                  <path class="flow-cyan" d="M0 112 C54 105 54 48 100 48"/>
+                  <path class="flow-violet" d="M0 119 C54 116 54 96 100 96"/>
+                  <path class="flow-blue" d="M0 126 C54 134 54 150 100 150"/>
+                  <path class="flow-teal" d="M0 133 C54 145 54 202 100 202"/>
+                </svg>
+                <span class="e2a-flow-node n1"></span><span class="e2a-flow-node n2"></span><span class="e2a-flow-node n3"></span><span class="e2a-flow-node n4"></span>
               </div>
 
               <section class="e2a-zone e2a-value" aria-label="Operational outcomes">
@@ -519,19 +570,19 @@ html[data-theme="light"] .sp-hero::after{opacity:.1}
                 </div>
                 <div class="e2a-outcomes">
                   <div class="e2a-outcome outcome-1">
-                    <div class="e2a-value-icon">⚡</div>
+                    <div class="e2a-value-icon"><i class="ti ti-bolt" aria-hidden="true"></i></div>
                     <div><span>FASTER</span><strong>DECISIONS</strong></div>
                   </div>
                   <div class="e2a-outcome outcome-2">
-                    <div class="e2a-value-icon">◈</div>
+                    <div class="e2a-value-icon"><i class="ti ti-chart-bar" aria-hidden="true"></i></div>
                     <div><span>LESS</span><strong>MANUAL WORK</strong></div>
                   </div>
                   <div class="e2a-outcome outcome-3">
-                    <div class="e2a-value-icon">⬡</div>
+                    <div class="e2a-value-icon"><i class="ti ti-share-3" aria-hidden="true"></i></div>
                     <div><span>CONNECTED</span><strong>EXECUTION</strong></div>
                   </div>
                   <div class="e2a-outcome outcome-4">
-                    <div class="e2a-value-icon">⬢</div>
+                    <div class="e2a-value-icon"><i class="ti ti-target-arrow" aria-hidden="true"></i></div>
                     <div><span>CONTROLLED</span><strong>SCALE</strong></div>
                   </div>
                 </div>
