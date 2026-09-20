@@ -408,6 +408,36 @@ html[data-theme="light"] .sp-hero::after{opacity:.1}
 .e2a-outcome{transition:background .25s ease,box-shadow .25s ease}
 .e2a-outcome:hover{background:rgba(31,188,210,.055);box-shadow:inset 0 0 18px rgba(31,188,210,.045)}
 
+
+/* ── Clean reference rebuild v3 ── */
+@keyframes refDash{to{stroke-dashoffset:-48}}
+@keyframes refSpin{to{transform:rotate(360deg)}}
+@keyframes refSpinBack{to{transform:rotate(-360deg)}}
+@keyframes refPulse{0%,100%{opacity:.45;transform:scale(.85)}50%{opacity:1;transform:scale(1.2)}}
+@media(min-width:1201px){
+  .e2a-wide{padding:0!important;border:0!important;background:none!important;box-shadow:none!important;overflow:visible!important}
+  .ref-pipeline{height:390px;display:grid;grid-template-columns:25% 30% 25% 20%;position:relative;border:1px solid rgba(55,178,224,.22);border-radius:13px;background:linear-gradient(135deg,rgba(8,29,49,.88),rgba(6,42,69,.48));overflow:hidden}
+  .ref-zone{position:relative;z-index:2;padding:26px 20px 20px}
+  .ref-zone+.ref-zone{border-left:1px solid rgba(72,159,211,.12)}
+  .ref-head{height:52px}.ref-head strong{display:block;font-size:10px;letter-spacing:.11em;color:#59e2f5}.ref-head small{display:block;margin-top:7px;font-size:7px;color:#7895aa}
+  .ref-card,.ref-agent{height:47px;margin:8px 0;display:grid;align-items:center;border-radius:8px;background:linear-gradient(90deg,rgba(8,40,65,.95),rgba(9,48,78,.75));position:relative}
+  .ref-card{grid-template-columns:34px 1fr;padding:0 10px;border:1px solid rgba(72,177,235,.46)}
+  .ref-card>i,.ref-agent>i{font-size:19px;color:#66dcff}.ref-card b,.ref-agent b{display:block;font-size:8px;color:#edf7ff;letter-spacing:.02em}.ref-card small,.ref-agent small{display:block;margin-top:3px;font-size:6px;color:#7895aa}
+  .ref-card>span,.ref-agent>span{position:absolute;right:-4px;top:50%;width:8px;height:8px;border-radius:50%;background:#40e6f6;box-shadow:0 0 9px #40e6f6;animation:refPulse 2.3s ease-in-out infinite}
+  .ref-ai{text-align:center}.ref-core{width:190px;height:190px;margin:5px auto 7px;position:relative;display:grid;place-items:center}
+  .ref-ring{position:absolute;border-radius:50%;border:1px solid rgba(53,212,241,.38);inset:20px}.ref-ring.r1{inset:0;border-style:dashed;animation:refSpin 18s linear infinite}.ref-ring.r2{inset:15px;border-color:rgba(66,147,255,.42);animation:refSpinBack 15s linear infinite}.ref-ring.r3{inset:32px;border-width:2px;border-color:rgba(53,212,241,.52);box-shadow:0 0 22px rgba(53,212,241,.12)}.ref-ring.r4{inset:49px;border-color:rgba(92,174,255,.35)}
+  .ref-core-label{font-size:10px;font-weight:800;line-height:1.25;color:#f1f8ff;text-shadow:0 0 15px rgba(53,212,241,.35)}
+  .ref-dot{position:absolute;width:6px;height:6px;border-radius:50%;background:#45e8f8;box-shadow:0 0 9px #45e8f8}.ref-dot.d1{top:14px;left:92px}.ref-dot.d2{right:24px;top:62px}.ref-dot.d3{left:35px;bottom:40px}
+  .ref-caps{display:flex;justify-content:center;gap:6px;flex-wrap:wrap}.ref-caps span{font-size:6px;color:#b9def0;padding:5px 9px;border:1px solid rgba(53,212,241,.34);border-radius:20px;background:rgba(4,34,56,.85)}
+  .ref-agent{grid-template-columns:35px 1fr;padding:0 10px;border:1px solid rgba(82,166,255,.5)}.ref-agent.purple{border-color:rgba(145,111,255,.58)}.ref-agent.teal{border-color:rgba(62,224,207,.52)}
+  .ref-agent em{display:block;margin-top:2px;font-size:6px;font-style:normal;font-weight:800;letter-spacing:.09em;color:#3bdcf3}.ref-agent.purple em{color:#9f83ff}.ref-agent.teal em{color:#48dfcf}.ref-agent.purple>span{background:#9c7cff;box-shadow:0 0 9px #9c7cff}
+  .ref-value-box{border:1px solid rgba(52,219,216,.42);border-radius:14px;overflow:hidden;background:linear-gradient(180deg,rgba(6,76,87,.28),rgba(4,33,49,.38))}
+  .ref-value-box>div{height:59px;display:grid;grid-template-columns:42px 1fr;align-items:center;padding:0 10px;border-bottom:1px solid rgba(53,212,241,.12)}.ref-value-box>div:last-child{border-bottom:0}.ref-value-box i{font-size:21px;color:#43dff0;filter:drop-shadow(0 0 6px rgba(53,212,241,.5))}.ref-value-box p{margin:0}.ref-value-box em,.ref-value-box b{display:block}.ref-value-box em{font-size:7px;font-style:normal;color:#43dff0;letter-spacing:.08em}.ref-value-box b{font-size:9px;margin-top:3px;color:#f0f8ff}
+  .ref-links{position:absolute;inset:0;width:100%;height:100%;z-index:3;pointer-events:none;overflow:visible}.ref-paths path{fill:none;stroke-width:1.5;stroke-linecap:round;stroke-dasharray:5 7;animation:refDash 4.8s linear infinite;filter:url(#refGlow)}.ref-in path{stroke:url(#refCyan)}.ref-out path{stroke:url(#refPurple)}.ref-value path{stroke:url(#refTeal)}
+  .e2a-scale{margin-top:14px!important}
+}
+@media(max-width:1200px){.ref-pipeline{display:grid;grid-template-columns:1fr 1fr;gap:18px}.ref-links{display:none}.ref-zone{padding:18px}.ref-card,.ref-agent{min-height:50px}.ref-core{margin:auto}}
+
 </style>
 <script>if(localStorage.getItem('kp-theme')==='light')document.documentElement.setAttribute('data-theme','light');</script>
 </head>
@@ -452,143 +482,65 @@ html[data-theme="light"] .sp-hero::after{opacity:.1}
         <!-- Right: full-width animated graphic -->
         <div class="sp-hero-visual">
           <div class="e2a-wide" aria-label="Enterprise to Agentic AI Transformation">
-            <div class="e2a-stage">
+            <div class="ref-pipeline" aria-label="Enterprise to Agentic AI Transformation">
+  <svg class="ref-links" viewBox="0 0 1200 390" preserveAspectRatio="none" aria-hidden="true">
+    <defs>
+      <filter id="refGlow"><feGaussianBlur stdDeviation="3" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+      <linearGradient id="refCyan" x1="0" x2="1"><stop stop-color="#35d4f1"/><stop offset="1" stop-color="#62a8ff"/></linearGradient>
+      <linearGradient id="refPurple" x1="0" x2="1"><stop stop-color="#62a8ff"/><stop offset="1" stop-color="#9a7cff"/></linearGradient>
+      <linearGradient id="refTeal" x1="0" x2="1"><stop stop-color="#9a7cff"/><stop offset="1" stop-color="#42e2d0"/></linearGradient>
+    </defs>
+    <g class="ref-paths ref-in">
+      <path d="M245 116 C300 116 300 171 355 176"/><path d="M245 171 C300 171 310 184 355 184"/>
+      <path d="M245 226 C300 226 310 197 355 192"/><path d="M245 281 C300 281 300 207 355 200"/>
+    </g>
+    <g class="ref-paths ref-out">
+      <path d="M580 180 C635 180 635 116 690 116"/><path d="M580 188 C635 188 640 171 690 171"/>
+      <path d="M580 196 C635 196 640 226 690 226"/><path d="M580 204 C635 204 635 281 690 281"/>
+    </g>
+    <g class="ref-paths ref-value">
+      <path d="M920 116 C958 116 958 116 990 116"/><path d="M920 171 C958 171 958 171 990 171"/>
+      <path d="M920 226 C958 226 958 226 990 226"/><path d="M920 281 C958 281 958 281 990 281"/>
+      <path d="M920 116 C970 116 960 281 990 281"/><path d="M920 281 C970 281 960 116 990 116"/>
+    </g>
+  </svg>
 
-              <section class="e2a-zone e2a-enterprise" aria-label="Enterprise inputs">
-                <div class="e2a-zone-head">
-                  <span>ENTERPRISE REALITY</span>
-                  <small>Complex systems. Real constraints. Big opportunity.</small>
-                </div>
-                <article class="e2a-input">
-                  <div class="e2a-icon"><i class="ti ti-list-details" aria-hidden="true"></i></div>
-                  <div><strong>PROCESS</strong><small>Workflows · Handoffs · Exceptions</small></div>
-                  <div class="e2a-port"></div>
-                </article>
-                <article class="e2a-input" style="animation-delay:.3s">
-                  <div class="e2a-icon"><i class="ti ti-database" aria-hidden="true"></i></div>
-                  <div><strong>SYSTEMS</strong><small>ERP · CRM · Enterprise Platforms</small></div>
-                  <div class="e2a-port"></div>
-                </article>
-                <article class="e2a-input" style="animation-delay:.6s">
-                  <div class="e2a-icon"><i class="ti ti-file-text" aria-hidden="true"></i></div>
-                  <div><strong>DATA + KNOWLEDGE</strong><small>Documents · Data · Business Context</small></div>
-                  <div class="e2a-port"></div>
-                </article>
-                <article class="e2a-input" style="animation-delay:.9s">
-                  <div class="e2a-icon"><i class="ti ti-users" aria-hidden="true"></i></div>
-                  <div><strong>PEOPLE + DECISIONS</strong><small>Approvals · Judgment · Escalations</small></div>
-                  <div class="e2a-port"></div>
-                </article>
-              </section>
+  <section class="ref-zone ref-enterprise">
+    <div class="ref-head"><strong>ENTERPRISE REALITY</strong><small>Complex systems. Real constraints. Big opportunity.</small></div>
+    <div class="ref-card"><i class="ti ti-list-details"></i><div><b>PROCESS</b><small>Workflows · Handoffs · Exceptions</small></div><span></span></div>
+    <div class="ref-card"><i class="ti ti-database"></i><div><b>SYSTEMS</b><small>ERP · CRM · Enterprise Platforms</small></div><span></span></div>
+    <div class="ref-card"><i class="ti ti-file-text"></i><div><b>DATA + KNOWLEDGE</b><small>Documents · Data · Business Context</small></div><span></span></div>
+    <div class="ref-card"><i class="ti ti-users"></i><div><b>PEOPLE + DECISIONS</b><small>Approvals · Judgment · Escalations</small></div><span></span></div>
+  </section>
 
-              <div class="e2a-flow" aria-hidden="true">
-                <svg class="e2a-flow-svg" viewBox="0 0 100 250" preserveAspectRatio="none">
-                  <path class="flow-cyan" d="M0 48 C42 48 42 102 100 112"/>
-                  <path class="flow-blue" d="M0 96 C46 96 48 112 100 119"/>
-                  <path class="flow-violet" d="M0 150 C46 150 48 132 100 126"/>
-                  <path class="flow-teal" d="M0 202 C42 202 42 146 100 133"/>
-                </svg>
-                <span class="e2a-flow-node n1"></span><span class="e2a-flow-node n2"></span><span class="e2a-flow-node n3"></span><span class="e2a-flow-node n4"></span>
-              </div>
+  <section class="ref-zone ref-ai">
+    <div class="ref-head"><strong>AI TRANSFORMATION LAYER</strong><small>From complexity to coordinated execution.</small></div>
+    <div class="ref-core">
+      <div class="ref-ring r1"></div><div class="ref-ring r2"></div><div class="ref-ring r3"></div><div class="ref-ring r4"></div>
+      <i class="ref-dot d1"></i><i class="ref-dot d2"></i><i class="ref-dot d3"></i>
+      <div class="ref-core-label">AI-ENABLED<br>TRANSFORMATION</div>
+    </div>
+    <div class="ref-caps"><span>CONTEXT</span><span>REASONING</span><span>ORCHESTRATION</span><span>GOVERNANCE</span><span>CONTROL</span></div>
+  </section>
 
-              <section class="e2a-zone e2a-ai" aria-label="AI transformation engine">
-                <div class="e2a-zone-head">
-                  <span>AI TRANSFORMATION LAYER</span>
-                  <small>From complexity to coordinated execution.</small>
-                </div>
-                <div class="e2a-core">
-                  <div class="e2a-ring ring-outer"></div>
-                  <div class="e2a-ring ring-mid"></div>
-                  <div class="e2a-ring ring-inner"></div>
-                  <div class="e2a-orbit-dot dot-1"></div>
-                  <div class="e2a-orbit-dot dot-2"></div>
-                  <div class="e2a-orbit-dot dot-3"></div>
-                  <div class="e2a-core-glow"></div>
-                  <div class="e2a-core-copy">
-                    <strong>AI-ENABLED</strong>
-                    <strong>TRANSFORMATION</strong>
-                  </div>
-                </div>
-                <div class="e2a-capabilities">
-                  <span>CONTEXT</span><span>REASONING</span><span>ORCHESTRATION</span><span>GOVERNANCE</span><span>CONTROL</span>
-                </div>
-              </section>
+  <section class="ref-zone ref-agents">
+    <div class="ref-head"><strong>SPECIALIZED AGENTS</strong><small>Focused expertise. Real execution.</small></div>
+    <div class="ref-agent cyan"><i class="ti ti-settings"></i><div><b>PROCESS AGENT</b><em>ANALYZING</em><small>Flow · Exceptions</small></div><span></span></div>
+    <div class="ref-agent purple"><i class="ti ti-book"></i><div><b>KNOWLEDGE AGENT</b><em>RETRIEVING</em><small>Context · Evidence</small></div><span></span></div>
+    <div class="ref-agent purple"><i class="ti ti-player-play"></i><div><b>ACTION AGENT</b><em>EXECUTING</em><small>Tasks · System Actions</small></div><span></span></div>
+    <div class="ref-agent teal"><i class="ti ti-shield-check"></i><div><b>VALIDATION AGENT</b><em>VERIFYING</em><small>Quality · Controls</small></div><span></span></div>
+  </section>
 
-              <div class="e2a-flow" aria-hidden="true">
-                <svg class="e2a-flow-svg" viewBox="0 0 100 250" preserveAspectRatio="none">
-                  <path class="flow-cyan" d="M0 112 C54 105 54 48 100 48"/>
-                  <path class="flow-violet" d="M0 119 C54 116 54 96 100 96"/>
-                  <path class="flow-blue" d="M0 126 C54 134 54 150 100 150"/>
-                  <path class="flow-teal" d="M0 133 C54 145 54 202 100 202"/>
-                </svg>
-                <span class="e2a-flow-node n1"></span><span class="e2a-flow-node n2"></span><span class="e2a-flow-node n3"></span><span class="e2a-flow-node n4"></span>
-              </div>
-
-              <section class="e2a-zone e2a-agents" aria-label="Specialized AI agents">
-                <div class="e2a-zone-head">
-                  <span>SPECIALIZED AGENTS</span>
-                  <small>Focused expertise. Real execution.</small>
-                </div>
-                <div class="e2a-agent-stack">
-                  <div class="e2a-agent agent-process">
-                    <div class="e2a-agent-icon"><i class="ti ti-settings" aria-hidden="true"></i></div>
-                    <div class="e2a-agent-copy"><strong>PROCESS AGENT</strong><span>ANALYZING</span><small>Flow · Exceptions</small></div>
-                    <i></i>
-                  </div>
-                  <div class="e2a-agent agent-knowledge">
-                    <div class="e2a-agent-icon"><i class="ti ti-book" aria-hidden="true"></i></div>
-                    <div class="e2a-agent-copy"><strong>KNOWLEDGE AGENT</strong><span>RETRIEVING</span><small>Context · Evidence</small></div>
-                    <i></i>
-                  </div>
-                  <div class="e2a-agent agent-action">
-                    <div class="e2a-agent-icon"><i class="ti ti-player-play" aria-hidden="true"></i></div>
-                    <div class="e2a-agent-copy"><strong>ACTION AGENT</strong><span>EXECUTING</span><small>Tasks · System Actions</small></div>
-                    <i></i>
-                  </div>
-                  <div class="e2a-agent agent-validation">
-                    <div class="e2a-agent-icon"><i class="ti ti-shield-check" aria-hidden="true"></i></div>
-                    <div class="e2a-agent-copy"><strong>VALIDATION AGENT</strong><span>VERIFYING</span><small>Quality · Controls</small></div>
-                    <i></i>
-                  </div>
-                </div>
-              </section>
-
-              <div class="e2a-flow" aria-hidden="true">
-                <svg class="e2a-flow-svg" viewBox="0 0 100 250" preserveAspectRatio="none">
-                  <path class="flow-cyan" d="M0 112 C54 105 54 48 100 48"/>
-                  <path class="flow-violet" d="M0 119 C54 116 54 96 100 96"/>
-                  <path class="flow-blue" d="M0 126 C54 134 54 150 100 150"/>
-                  <path class="flow-teal" d="M0 133 C54 145 54 202 100 202"/>
-                </svg>
-                <span class="e2a-flow-node n1"></span><span class="e2a-flow-node n2"></span><span class="e2a-flow-node n3"></span><span class="e2a-flow-node n4"></span>
-              </div>
-
-              <section class="e2a-zone e2a-value" aria-label="Operational outcomes">
-                <div class="e2a-zone-head">
-                  <span>OPERATIONAL VALUE</span>
-                  <small>Measurable outcomes. Lasting impact.</small>
-                </div>
-                <div class="e2a-outcomes">
-                  <div class="e2a-outcome outcome-1">
-                    <div class="e2a-value-icon"><i class="ti ti-bolt" aria-hidden="true"></i></div>
-                    <div><span>FASTER</span><strong>DECISIONS</strong></div>
-                  </div>
-                  <div class="e2a-outcome outcome-2">
-                    <div class="e2a-value-icon"><i class="ti ti-chart-bar" aria-hidden="true"></i></div>
-                    <div><span>LESS</span><strong>MANUAL WORK</strong></div>
-                  </div>
-                  <div class="e2a-outcome outcome-3">
-                    <div class="e2a-value-icon"><i class="ti ti-share-3" aria-hidden="true"></i></div>
-                    <div><span>CONNECTED</span><strong>EXECUTION</strong></div>
-                  </div>
-                  <div class="e2a-outcome outcome-4">
-                    <div class="e2a-value-icon"><i class="ti ti-target-arrow" aria-hidden="true"></i></div>
-                    <div><span>CONTROLLED</span><strong>SCALE</strong></div>
-                  </div>
-                </div>
-              </section>
-
-            </div>
+  <section class="ref-zone ref-value">
+    <div class="ref-head"><strong>OPERATIONAL VALUE</strong><small>Measurable outcomes. Lasting impact.</small></div>
+    <div class="ref-value-box">
+      <div><i class="ti ti-bolt"></i><p><em>FASTER</em><b>DECISIONS</b></p></div>
+      <div><i class="ti ti-chart-bar"></i><p><em>LESS</em><b>MANUAL WORK</b></p></div>
+      <div><i class="ti ti-share-3"></i><p><em>CONNECTED</em><b>EXECUTION</b></p></div>
+      <div><i class="ti ti-target-arrow"></i><p><em>CONTROLLED</em><b>SCALE</b></p></div>
+    </div>
+  </section>
+</div>
 
             <div class="e2a-scale" aria-hidden="true">
               <span>COMPLEXITY</span>
