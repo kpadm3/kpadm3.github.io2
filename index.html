@@ -752,6 +752,57 @@ html[data-theme="light"] .heroX-scale{color:#58778d!important}
 html[data-theme="light"] .heroX-pillars{border-top-color:rgba(8,145,178,.22)!important}html[data-theme="light"] .heroX-pillars article{border-right-color:rgba(8,145,178,.18)!important}html[data-theme="light"] .heroX-pillars b{color:#087f9e!important}html[data-theme="light"] .heroX-pillars span{color:#496a80!important}html[data-theme="light"] .heroX-scroll{color:#17364d!important}
 @media(prefers-reduced-motion:reduce){.hx-path path,.heroX-core:before,.heroX-core:after,.hx-ring,.heroX-enterprise article:before,.heroX-agents article:before,.heroX-valuebox article:before{animation:none!important}}
 
+
+/* HERO X PIXEL MATCH v3 */
+/* Desktop geometry matched to approved 1788x864 reference */
+@media(min-width:1201px){
+.heroX{min-height:804px!important;height:calc(100vh - 60px)!important;max-height:900px!important;padding:31px 39px 0!important}
+.heroX-intro{grid-template-columns:420px 1fr 500px!important;gap:36px!important;min-height:100px!important;margin:0 12px 15px!important}
+.heroX-name{font-size:15px!important}.heroX-role{font-size:10px!important}.heroX-rule{margin-top:17px!important}
+.heroX-intro h1{font-size:52px!important;line-height:1.03!important;text-align:left!important}
+.heroX-intro p{font-size:13px!important;line-height:1.55!important;padding-left:28px!important}
+.heroX-map{height:458px!important;grid-template-columns:24% 34% 26% 16%!important;border-radius:13px!important}
+.heroX-zone{padding:19px 25px 52px!important}.heroX-zone header{height:56px!important}
+.heroX-zone header>b{font-size:12px!important}.heroX-zone header small{font-size:10px!important}
+.heroX-enterprise article,.heroX-agents article{height:70px!important;margin:8px 0!important;padding:0 18px!important;grid-template-columns:62px 1fr!important;border-radius:12px!important}
+.heroX-enterprise article>i,.heroX-agents article>i{font-size:34px!important}
+.heroX-enterprise article b,.heroX-agents article b{font-size:12px!important}.heroX-enterprise article small,.heroX-agents article small{font-size:10px!important}
+.heroX-agents article em{font-size:9px!important}
+.heroX-enterprise article>span,.heroX-agents article>span{top:30px!important;width:12px!important;height:12px!important}
+.heroX-ai{padding-left:28px!important;padding-right:28px!important}
+.heroX-core{width:278px!important;height:278px!important;margin:-8px auto -1px!important}
+.hx-ring.r2{inset:20px!important}.hx-ring.r3{inset:44px!important}.hx-ring.r4{inset:74px!important}
+.hx-coretext{font-size:15px!important}
+.heroX-caps{max-width:430px!important;gap:8px!important}.heroX-caps span{font-size:9px!important;padding:7px 17px!important}
+.heroX-value{padding-left:28px!important;padding-right:22px!important}
+.heroX-valuebox article{height:70px!important;grid-template-columns:64px 1fr!important;padding:0 14px!important}.heroX-valuebox i{font-size:34px!important}.heroX-valuebox em{font-size:10px!important}.heroX-valuebox b{font-size:12px!important}
+.heroX-links{height:400px!important}
+.heroX-scale{left:28px!important;right:28px!important;bottom:17px!important;grid-template-columns:120px 1fr 60px!important;font-size:9px!important}
+.heroX-pillars{margin-top:15px!important}.heroX-pillars article{min-height:82px!important;padding:10px 84px!important;grid-template-columns:64px 1fr!important}.heroX-pillars i{font-size:35px!important}.heroX-pillars b{font-size:11px!important}.heroX-pillars span{font-size:10px!important}
+.heroX-scroll{bottom:8px!important}.heroX-scroll span{width:49px!important;height:49px!important}.heroX-scroll small{font-size:9px!important;margin-top:4px!important}
+}
+/* SVG coordinates aligned to the new 24/34/26/16 zone boundaries */
+@media(min-width:1201px){
+.heroX-links{overflow:visible}
+}
+/* Reference-grade solid luminous paths, not dashed guide lines */
+.hx-path path{stroke-dasharray:none!important;stroke-width:2.15!important;opacity:.95!important;animation:none!important}
+.hx-in path:nth-child(4),.hx-ag path:nth-child(2){stroke:#9a79ff!important}
+.hx-ag path:nth-child(4),.hx-val path:nth-child(4){stroke:#28dfcf!important}
+.heroX-links{filter:drop-shadow(0 0 4px rgba(42,217,247,.5)) drop-shadow(0 0 10px rgba(42,217,247,.12))!important}
+.heroX-core{background:radial-gradient(circle,rgba(4,37,62,.72) 0 36%,rgba(6,54,83,.25) 37% 55%,transparent 72%)!important}
+.heroX-core:before{background:radial-gradient(circle,transparent 45%,rgba(31,204,245,.16) 57%,transparent 73%)!important}
+.hx-ring.r1{border-color:rgba(25,171,228,.35)!important}.hx-ring.r2{border-color:rgba(31,183,237,.46)!important}.hx-ring.r3{border-color:rgba(39,218,246,.72)!important;box-shadow:0 0 28px rgba(39,218,246,.17)!important}.hx-ring.r4{border-color:rgba(58,143,217,.52)!important}
+.heroX-enterprise article,.heroX-agents article{background:linear-gradient(90deg,rgba(5,31,54,.98),rgba(6,47,78,.88))!important}
+.heroX-enterprise article:before,.heroX-agents article:before,.heroX-valuebox article:before{opacity:.45!important}
+.heroX-valuebox{background:linear-gradient(180deg,rgba(3,65,77,.46),rgba(3,26,42,.7))!important}
+.heroX:after{height:185px!important;bottom:-54px!important;opacity:.42!important;background-size:16px 11px,100% 100%!important}
+.heroX-pillars{z-index:4!important}.heroX-scroll{z-index:6!important}
+/* Dark reference is exact target. Light mode preserves geometry/effects with a coherent light palette. */
+html[data-theme="light"] .heroX:after{opacity:.18!important}
+html[data-theme="light"] .heroX-links{filter:drop-shadow(0 0 3px rgba(8,145,178,.34))!important}
+}
+
 </style>
 <script>if(localStorage.getItem('kp-theme')==='light')document.documentElement.setAttribute('data-theme','light');</script>
 </head>
@@ -798,14 +849,14 @@ html[data-theme="light"] .heroX-pillars{border-top-color:rgba(8,145,178,.22)!imp
         <linearGradient id="hxt" x1="0" x2="1"><stop stop-color="#8c72ff"/><stop offset=".55" stop-color="#29dcff"/><stop offset="1" stop-color="#25e1c8"/></linearGradient>
       </defs>
       <g class="hx-path hx-in">
-        <path d="M335 105 C410 105 435 175 555 181"/><path d="M335 164 C425 164 450 183 555 188"/><path d="M335 223 C425 223 450 199 555 195"/><path d="M335 282 C410 282 435 207 555 202"/>
+        <path d="M365 112 C455 112 470 183 585 188"/><path d="M365 181 C470 181 495 192 585 195"/><path d="M365 250 C470 250 495 207 585 202"/><path d="M365 319 C455 319 470 216 585 209"/>
       </g>
       <g class="hx-path hx-ag">
-        <path d="M820 181 C930 176 930 105 1010 105"/><path d="M820 188 C930 185 940 164 1010 164"/><path d="M820 195 C930 199 940 223 1010 223"/><path d="M820 202 C930 208 930 282 1010 282"/>
+        <path d="M875 188 C960 184 970 112 1030 112"/><path d="M875 195 C970 192 980 181 1030 181"/><path d="M875 202 C970 208 980 250 1030 250"/><path d="M875 209 C960 218 970 319 1030 319"/>
       </g>
       <g class="hx-path hx-val">
-        <path d="M1280 105 C1320 105 1320 105 1360 105"/><path d="M1280 164 C1320 164 1320 164 1360 164"/><path d="M1280 223 C1320 223 1320 223 1360 223"/><path d="M1280 282 C1320 282 1320 282 1360 282"/>
-        <path d="M1280 105 C1330 105 1325 282 1360 282"/><path d="M1280 282 C1330 282 1325 105 1360 105"/>
+        <path d="M1270 112 C1320 112 1325 112 1360 112"/><path d="M1270 181 C1320 181 1325 181 1360 181"/><path d="M1270 250 C1320 250 1325 250 1360 250"/><path d="M1270 319 C1320 319 1325 319 1360 319"/>
+        <path d="M1270 112 C1328 112 1325 319 1360 319"/><path d="M1270 319 C1328 319 1325 112 1360 112"/>
       </g>
     </svg>
 
