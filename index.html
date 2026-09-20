@@ -684,22 +684,22 @@ html[data-theme="light"] .heroX{background:radial-gradient(ellipse at 58% 18%,rg
 @media(max-width:720px){.heroX-map{grid-template-columns:1fr}.heroX-pillars article{border-right:0}.heroX-core{width:220px;height:220px}}
 
 
-/* AI 3D VECTOR MAP CORE */
-@keyframes hxVectorOrbit3d{to{transform:rotateX(66deg) rotateZ(360deg)}}
-@keyframes hxVectorOrbit3dBack{to{transform:rotateX(72deg) rotateZ(-360deg)}}
-@keyframes hxLedPulse{0%,100%{opacity:.42}50%{opacity:1}}
-.heroX-core{perspective:520px;isolation:isolate;background:radial-gradient(circle at 50% 50%,rgba(5,43,69,.94) 0 29%,rgba(4,35,58,.5) 30% 48%,transparent 66%)!important;filter:drop-shadow(0 0 18px rgba(40,205,238,.13))!important}
-.heroX-core .hx-ring{display:none!important}
-.hx-vector-field{position:absolute;left:11%;top:27%;width:78%;height:46%;border-radius:50%;border:1px solid rgba(55,226,247,.6);background:repeating-conic-gradient(from 0deg,rgba(67,230,248,.92) 0 1.4deg,transparent 1.4deg 14deg);-webkit-mask:radial-gradient(ellipse,#0000 0 72%,#000 73% 77%,#0000 78%);mask:radial-gradient(ellipse,#0000 0 72%,#000 73% 77%,#0000 78%);filter:drop-shadow(0 0 4px rgba(52,226,247,.5));opacity:.78;transform-style:preserve-3d;animation:hxVectorOrbit3d 18s linear infinite}
-.hx-vector-field.hx-v2{left:18%;top:32%;width:64%;height:36%;border-color:rgba(145,116,255,.55);background:repeating-conic-gradient(from 18deg,rgba(145,116,255,.88) 0 1.2deg,transparent 1.2deg 18deg);opacity:.55;animation:hxVectorOrbit3dBack 14s linear infinite}
-.hx-vector-nodes{position:absolute;left:10%;top:26%;width:80%;height:48%;border-radius:50%;transform:rotateX(66deg);transform-style:preserve-3d}
-.hx-vector-nodes i{position:absolute;width:5px;height:5px;border-radius:50%;background:#64efff;box-shadow:0 0 8px currentColor;color:#64efff;animation:hxLedPulse 2.8s ease-in-out infinite}
-.hx-vector-nodes i:nth-child(1){left:49%;top:-2%}.hx-vector-nodes i:nth-child(2){left:82%;top:14%;color:#9b7cff;background:#9b7cff;animation-delay:-.4s}.hx-vector-nodes i:nth-child(3){left:98%;top:48%;animation-delay:-.8s}.hx-vector-nodes i:nth-child(4){left:82%;top:82%;color:#2de0ce;background:#2de0ce;animation-delay:-1.2s}.hx-vector-nodes i:nth-child(5){left:49%;top:98%;animation-delay:-1.6s}.hx-vector-nodes i:nth-child(6){left:14%;top:82%;color:#9b7cff;background:#9b7cff;animation-delay:-2s}.hx-vector-nodes i:nth-child(7){left:-2%;top:48%;animation-delay:-2.4s}.hx-vector-nodes i:nth-child(8){left:14%;top:14%;color:#2de0ce;background:#2de0ce;animation-delay:-2.8s}
-.heroX-core:before,.heroX-core:after{content:"";position:absolute;left:21%;width:58%;height:24%;border-radius:50%;pointer-events:none;transform:rotateX(62deg)}
-.heroX-core:before{top:38%;border:1px solid rgba(48,218,244,.34);box-shadow:0 0 14px rgba(48,218,244,.1)}
-.heroX-core:after{top:41%;left:29%;width:42%;height:18%;border:1px solid rgba(77,164,255,.28)}
-.hx-coretext{position:relative;z-index:4}
-@media(prefers-reduced-motion:reduce){.hx-vector-field,.hx-vector-nodes{animation:none!important}.hx-vector-nodes i{animation:none!important}}
+/* AI FLOWING DATA MESH CORE */
+@keyframes hxMeshFloat{0%,100%{transform:translateY(0) scaleY(1)}50%{transform:translateY(-2px) scaleY(1.025)}}
+@keyframes hxMeshPulse{0%,100%{opacity:.58}50%{opacity:1}}
+.heroX-core{position:relative;isolation:isolate;background:none!important;filter:none!important;overflow:visible}
+.heroX-core:before,.heroX-core:after{display:none!important}
+.heroX-core .hx-ring,.hx-vector-field,.hx-vector-nodes{display:none!important}
+.hx-mesh{position:absolute;z-index:1;left:50%;top:50%;width:360px;height:220px;transform:translate(-50%,-50%);overflow:visible;filter:drop-shadow(0 0 7px rgba(44,221,245,.22));animation:hxMeshFloat 7s ease-in-out infinite}
+.hx-mesh-lines path{fill:none;stroke:#2bdcf1;stroke-width:1;stroke-linecap:round;stroke-linejoin:round;opacity:.38}
+.hx-mesh-lines path:nth-child(3n+1){stroke:#38e4d2;opacity:.42}.hx-mesh-lines path:nth-child(4n+2){stroke:#7d72ff;opacity:.28}
+.hx-mesh-dots circle{fill:#59efff;filter:drop-shadow(0 0 3px #59efff);animation:hxMeshPulse 3.6s ease-in-out infinite}
+.hx-mesh-dots circle:nth-child(3n){fill:#9277ff;animation-delay:-1.2s}.hx-mesh-dots circle:nth-child(4n){fill:#42e4d0;animation-delay:-2s}
+.hx-coretext{position:relative;z-index:4;padding:10px 16px;font-size:14px;line-height:1.25;font-weight:800;text-shadow:0 0 14px rgba(53,218,246,.38)}
+html[data-theme="light"] .heroX-core{background:none!important;filter:none!important}
+html[data-theme="light"] .hx-mesh-lines path{stroke:#078eaa;opacity:.42}
+html[data-theme="light"] .hx-mesh-lines path:nth-child(3n+1){stroke:#099e91}.html[data-theme="light"] .hx-mesh-lines path:nth-child(4n+2){stroke:#7160d8}
+@media(prefers-reduced-motion:reduce){.hx-mesh,.hx-mesh-dots circle{animation:none!important}}
 
 /* HERO X EFFECTS PASS */
 @keyframes hxGridDrift{to{background-position:72px 36px,36px 72px}}
@@ -944,7 +944,31 @@ html[data-theme="light"] .hx-junction circle{filter:drop-shadow(0 0 4px rgba(0,1
 
     <section class="heroX-zone heroX-ai">
       <header><b>AI TRANSFORMATION LAYER</b><small>From complexity to coordinated execution.</small></header>
-      <div class="heroX-core"><div class="hx-vector-field" aria-hidden="true"></div><div class="hx-vector-field hx-v2" aria-hidden="true"></div><div class="hx-vector-nodes" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div><div class="hx-coretext">AI-ENABLED<br>TRANSFORMATION</div></div>
+      <div class="heroX-core">
+        <svg class="hx-mesh" viewBox="0 0 360 220" aria-hidden="true">
+          <g class="hx-mesh-lines">
+            <path d="M8 111 C55 72 92 82 132 105 S210 142 258 100 S326 76 352 110"/>
+            <path d="M8 96 C58 54 98 64 138 91 S216 126 258 84 S326 62 352 98"/>
+            <path d="M8 126 C55 91 95 98 134 119 S210 157 260 116 S325 91 352 122"/>
+            <path d="M24 77 C70 39 112 53 150 78 S220 108 250 66 S310 48 338 79"/>
+            <path d="M24 145 C69 111 111 116 151 139 S221 174 254 136 S311 115 338 142"/>
+            <path d="M46 61 C91 35 125 43 163 67 S220 89 242 51 S287 39 316 62"/>
+            <path d="M46 161 C90 137 126 139 164 158 S220 186 244 153 S290 137 316 158"/>
+            <path d="M37 72 C60 91 68 120 50 151"/><path d="M73 50 C96 79 101 132 79 169"/>
+            <path d="M111 45 C129 78 133 143 116 176"/><path d="M151 58 C163 91 166 145 153 166"/>
+            <path d="M191 64 C186 95 186 139 193 160"/><path d="M230 48 C214 83 213 143 232 173"/>
+            <path d="M270 42 C245 78 246 137 274 169"/><path d="M308 57 C281 87 285 126 315 153"/>
+          </g>
+          <g class="hx-mesh-dots">
+            <circle cx="49" cy="85" r="2.4"/><circle cx="78" cy="69" r="2"/><circle cx="111" cy="73" r="2.2"/>
+            <circle cx="145" cy="94" r="2"/><circle cx="180" cy="112" r="2.6"/><circle cx="218" cy="119" r="2"/>
+            <circle cx="253" cy="91" r="2.4"/><circle cx="286" cy="75" r="2"/><circle cx="319" cy="88" r="2.2"/>
+            <circle cx="68" cy="129" r="2"/><circle cx="107" cy="126" r="2.4"/><circle cx="149" cy="139" r="2"/>
+            <circle cx="195" cy="150" r="2.2"/><circle cx="238" cy="137" r="2"/><circle cx="285" cy="121" r="2.4"/>
+          </g>
+        </svg>
+        <div class="hx-coretext">AI-ENABLED<br>TRANSFORMATION</div>
+      </div>
       <div class="heroX-caps"><span>CONTEXT</span><span>REASONING</span><span>ORCHESTRATION</span><span>GOVERNANCE</span><span>CONTROL</span></div>
     </section>
 
