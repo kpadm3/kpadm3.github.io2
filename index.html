@@ -1357,10 +1357,10 @@ html[data-theme="light"] .heroX-ai .hx-cube-dots circle{opacity:.52}
 
     <section class="heroX-zone heroX-enterprise">
       <header><b>Enterprise reality</b><small>Complex systems. Real constraints. Big opportunity.</small></header>
-      <article><i class="ti ti-file-description"></i><div><b>PROCESS</b><small>Workflows · Handoffs · Exceptions</small></div><span></span></article>
-      <article><i class="ti ti-database"></i><div><b>SYSTEMS</b><small>ERP · CRM · Enterprise Platforms</small></div><span></span></article>
-      <article><i class="ti ti-files"></i><div><b>DATA + KNOWLEDGE</b><small>Documents · Data · Business Context</small></div><span></span></article>
-      <article class="violet"><i class="ti ti-users"></i><div><b>PEOPLE + DECISIONS</b><small>Approvals · Judgment · Escalations</small></div><span></span></article>
+      <article><i class="ti ti-file-description"></i><div><b>PROCESS</b><small>Workflows · Handoffs · Exceptions</small></div></article>
+      <article><i class="ti ti-database"></i><div><b>SYSTEMS</b><small>ERP · CRM · Enterprise Platforms</small></div></article>
+      <article><i class="ti ti-files"></i><div><b>DATA + KNOWLEDGE</b><small>Documents · Data · Business Context</small></div></article>
+      <article class="violet"><i class="ti ti-users"></i><div><b>PEOPLE + DECISIONS</b><small>Approvals · Judgment · Escalations</small></div></article>
     </section>
 
     <section class="heroX-zone heroX-ai">
@@ -1380,10 +1380,10 @@ html[data-theme="light"] .heroX-ai .hx-cube-dots circle{opacity:.52}
 
     <section class="heroX-zone heroX-agents">
       <header><b>Specialized agents</b><small>Focused expertise. Real execution.</small></header>
-      <article><i class="ti ti-settings-2"></i><div><b>PROCESS AGENT</b><em>ANALYZING</em><small>Flow · Exceptions</small></div><span></span></article>
-      <article class="violet"><i class="ti ti-book-2"></i><div><b>KNOWLEDGE AGENT</b><em>RETRIEVING</em><small>Context · Evidence</small></div><span></span></article>
-      <article class="violet"><i class="ti ti-player-play"></i><div><b>ACTION AGENT</b><em>EXECUTING</em><small>Tasks · System Actions</small></div><span></span></article>
-      <article class="teal"><i class="ti ti-shield-check"></i><div><b>VALIDATION AGENT</b><em>VERIFYING</em><small>Quality · Controls</small></div><span></span></article>
+      <article><i class="ti ti-settings-2"></i><div><b>PROCESS AGENT</b><em>ANALYZING</em><small>Flow · Exceptions</small></div></article>
+      <article class="violet"><i class="ti ti-book-2"></i><div><b>KNOWLEDGE AGENT</b><em>RETRIEVING</em><small>Context · Evidence</small></div></article>
+      <article class="violet"><i class="ti ti-player-play"></i><div><b>ACTION AGENT</b><em>EXECUTING</em><small>Tasks · System Actions</small></div></article>
+      <article class="teal"><i class="ti ti-shield-check"></i><div><b>VALIDATION AGENT</b><em>VERIFYING</em><small>Quality · Controls</small></div></article>
     </section>
 
     <section class="heroX-zone heroX-value">
@@ -1831,9 +1831,9 @@ html[data-theme="light"] .heroX-ai .hx-cube-dots circle{opacity:.52}
   function ensurePort(el,cls,left){
     var p=el.querySelector('.'+cls);
     if(!p){p=document.createElement('span');p.className=cls;p.setAttribute('aria-hidden','true');el.appendChild(p);}
-    Object.assign(p.style,{position:'absolute',top:'50%',left:left?'4px':'auto',right:left?'auto':'4px',
+    Object.assign(p.style,{position:'absolute',top:'50%',left:left?'5px':'auto',right:left?'auto':'5px',
       transform:'translateY(-50%)',width:'10px',height:'10px',borderRadius:'50%',
-      background:'#43e5fb',boxShadow:'0 0 9px #43e5fb',zIndex:'9',animation:'none'});
+      background:'#43e5fb',border:'2px solid rgba(6,37,61,.96)',boxSizing:'border-box',boxShadow:'0 0 8px #43e5fb',zIndex:'9',animation:'none'});
     return p;
   }
   enterprise.concat(agents,values).forEach(function(card){
@@ -1859,14 +1859,8 @@ html[data-theme="light"] .heroX-ai .hx-cube-dots circle{opacity:.52}
     addPath('M '+a.x+' '+a.y+' C '+(a.x+dx)+' '+a.y+', '+(b.x-dx)+' '+b.y+', '+b.x+' '+b.y,cls,false,bucket,null,null);
   }
   function routed(a,b,cls,secondary,bucket,agentIndex,valueIndex){
-    var gap=Math.max(70,b.x-a.x),mid=(a.x+b.x)/2,delta=b.y-a.y;
-    // Give every route its own visible lane. Even same-row mappings arc instead of reading as straight pipes.
-    var laneBase=[-24,24,-34,34][agentIndex]||24;
-    var lane=secondary?(laneBase+(valueIndex-agentIndex)*18):laneBase;
-    var midY=(a.y+b.y)/2+lane;
-    addPath('M '+a.x+' '+a.y+
-      ' C '+(a.x+gap*.22)+' '+a.y+', '+(mid-gap*.16)+' '+midY+', '+mid+' '+midY+
-      ' C '+(mid+gap*.16)+' '+midY+', '+(b.x-gap*.22)+' '+b.y+', '+b.x+' '+b.y,
+    var dx=Math.max(34,(b.x-a.x)*.44);
+    addPath('M '+a.x+' '+a.y+' C '+(a.x+dx)+' '+a.y+', '+(b.x-dx)+' '+b.y+', '+b.x+' '+b.y,
       cls,secondary,bucket,agentIndex,valueIndex);
   }
 
@@ -1891,15 +1885,16 @@ html[data-theme="light"] .heroX-ai .hx-cube-dots circle{opacity:.52}
 
       var ao=agents.map(function(card){return point(card.querySelector('.hx-out-port'));});
       var vi=values.map(function(card){return point(card.querySelector('.hx-value-port'));});
-      // Primary + controlled cross-routes are all part of the lifecycle.
-      routed(ao[0],vi[0],'',false,paths.value,0,0);
-      routed(ao[1],vi[1],'blue',false,paths.value,1,1);
-      routed(ao[2],vi[2],'purple',false,paths.value,2,2);
-      routed(ao[3],vi[3],'teal',false,paths.value,3,3);
+      // Clean many-to-many cross-row mapping: no agent connects directly to the value on its own row.
+      // Two purposeful outcome routes per agent keep the network readable.
+      routed(ao[0],vi[1],'',false,paths.value,0,1);
       routed(ao[0],vi[2],'',true,paths.value,0,2);
+      routed(ao[1],vi[0],'blue',false,paths.value,1,0);
       routed(ao[1],vi[3],'blue',true,paths.value,1,3);
       routed(ao[2],vi[0],'purple',true,paths.value,2,0);
+      routed(ao[2],vi[1],'purple',false,paths.value,2,1);
       routed(ao[3],vi[1],'teal',true,paths.value,3,1);
+      routed(ao[3],vi[2],'teal',false,paths.value,3,2);
     });
   }
 
