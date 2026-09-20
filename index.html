@@ -761,7 +761,7 @@ html[data-theme="light"] .heroX-pillars{border-top-color:rgba(8,145,178,.22)!imp
 .heroX-name{font-size:15px!important}.heroX-role{font-size:10px!important}.heroX-rule{margin-top:17px!important}
 .heroX-intro h1{font-size:52px!important;line-height:1.03!important;text-align:left!important}
 .heroX-intro p{font-size:13px!important;line-height:1.55!important;padding-left:28px!important}
-.heroX-map{height:458px!important;grid-template-columns:24% 34% 24% 18%!important;border-radius:13px!important}
+.heroX-map{height:458px!important;grid-template-columns:24% 31% 24% 21%!important;border-radius:13px!important}
 .heroX-zone{padding:19px 25px 52px!important}.heroX-zone header{height:56px!important}
 .heroX-zone header>b{font-size:12px!important}.heroX-zone header small{font-size:10px!important}
 .heroX-enterprise article,.heroX-agents article{height:70px!important;margin:8px 0!important;padding:0 18px!important;grid-template-columns:62px 1fr!important;border-radius:12px!important}
@@ -769,7 +769,7 @@ html[data-theme="light"] .heroX-pillars{border-top-color:rgba(8,145,178,.22)!imp
 .heroX-enterprise article b,.heroX-agents article b{font-size:12px!important}.heroX-enterprise article small,.heroX-agents article small{font-size:10px!important}
 .heroX-agents article em{font-size:9px!important}
 .heroX-enterprise article>span,.heroX-agents article>span{top:30px!important;width:12px!important;height:12px!important}
-.heroX-ai{padding-left:28px!important;padding-right:28px!important}
+.heroX-ai{padding-left:28px!important;padding-right:28px!important}\n.heroX-agents{transform:translateX(-24px)!important;width:calc(100% + 24px)!important;padding-right:20px!important}
 .heroX-core{width:278px!important;height:278px!important;margin:-8px auto -1px!important}
 .hx-ring.r2{inset:20px!important}.hx-ring.r3{inset:44px!important}.hx-ring.r4{inset:74px!important}
 .hx-coretext{font-size:15px!important}
@@ -1400,15 +1400,14 @@ html[data-theme="light"] .hx-junction circle{filter:drop-shadow(0 0 4px rgba(0,1
         var gap=b.x-a.x;
         // Approved reference geometry: keep both ends calm and push the
         // crossover into a narrow central corridor.
-        var exitX=a.x+Math.max(10,gap*.14);
-        var entryX=b.x-Math.max(10,gap*.14);
+        var exitX=a.x+Math.max(18,gap*.16);
+        var entryX=b.x-Math.max(18,gap*.16);
         var midX=(a.x+b.x)/2;
-        var spread=Math.min(12,Math.max(6,gap*.07));
-        var crossA=midX-spread, crossB=midX+spread;
+        // Wide reference-style S curve: horizontal at both ports, with the
+        // bend/crossover using the extra corridor we created.
         var d='M '+a.x+' '+a.y+
-          ' C '+exitX+' '+a.y+', '+exitX+' '+a.y+', '+exitX+' '+a.y+
-          ' C '+crossA+' '+a.y+', '+crossA+' '+b.y+', '+crossB+' '+b.y+
-          ' C '+entryX+' '+b.y+', '+entryX+' '+b.y+', '+b.x+' '+b.y;
+          ' C '+exitX+' '+a.y+', '+(midX-gap*.12)+' '+a.y+', '+midX+' '+((a.y+b.y)/2)+
+          ' C '+(midX+gap*.12)+' '+b.y+', '+entryX+' '+b.y+', '+b.x+' '+b.y;
         var p=document.createElementNS(NS,'path');
         p.setAttribute('d',d);
         p.setAttribute('class','hx-dynamic-wire hx-value-wire '+(cls||''));
