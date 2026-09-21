@@ -1055,7 +1055,7 @@ html[data-theme="light"] .heroX-enterprise article.hx-scan::after{background:lin
   var values=Array.from(hero.querySelectorAll('.heroX-valuebox article'));
   if(enterprise.length!==4||agents.length!==4||values.length!==4)return;
 
-  var NS='http://www.w3.org/2000/svg',N=23,dots=[],paths={incoming:[],outgoing:[],value:[]};
+  var NS='http://www.w3.org/2000/svg',N=23,dots=[],paths={incoming:[],outgoing:[],value:[]},valueRoutesByAgent=[[],[],[],[]];
   // Purposeful Agent -> Value fan-out: 4, 3, 2, 1 outcomes.
   // Contiguous targets keep the visible network structured rather than tangled.
   var valueMap=[
@@ -1065,6 +1065,14 @@ html[data-theme="light"] .heroX-enterprise article.hx-scan::after{background:lin
     [3]
   ];
   var colors=['','blue','purple','teal'];
+  var streamColors=['#42ddf6','#4da1ff','#9877ff','#2de0ce'];
+  var darkPalette=[
+    [33,215,244],
+    [77,166,255],
+    [149,121,255],
+    [45,224,206],
+    [33,215,244]
+  ];
   var reduced=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   var drawRaf=0,startTime=0,particlePool=[],visibleParticleCount=0,activeState={enterprise:null,agents:null,values:null},portState={architecture:null,agents:null,values:null},cubeMode='reset',capIndex=-1;
 
@@ -1147,6 +1155,7 @@ html[data-theme="light"] .heroX-enterprise article.hx-scan::after{background:lin
     var dx=Math.max(34,(b.x-a.x)*curve);
     addPath('M '+a.x+' '+a.y+' C '+(a.x+dx)+' '+a.y+', '+(b.x-dx)+' '+b.y+', '+b.x+' '+b.y,
       cls,bucket,agentIndex,valueIndex);
+    valueRoutesByAgent[agentIndex].push(bucket[bucket.length-1]);
   }
 
   function draw(){
@@ -1155,6 +1164,7 @@ html[data-theme="light"] .heroX-enterprise article.hx-scan::after{background:lin
       linkSvg.querySelectorAll('.hx-path,.hx-junction,.hx-flow-path').forEach(function(n){n.remove();});
       hideParticles();
       paths={incoming:[],outgoing:[],value:[]};
+      valueRoutesByAgent=[[],[],[],[]];
       if(window.innerWidth<=1200)return;
 
       var mr=map.getBoundingClientRect();
@@ -1266,18 +1276,10 @@ html[data-theme="light"] .heroX-enterprise article.hx-scan::after{background:lin
     // Fully linear progress removes startup hesitation from the cube wave.
     var easedP=p;
     var center=-.08+easedP*1.16,sigma=.115;
-    var streamColors=['#42ddf6','#4da1ff','#9877ff','#2de0ce'];
     var darkMode=document.documentElement.getAttribute('data-theme')!=='light';
 
     // One smooth travelling color for the dark-mode crest.
     // Opacity stays fixed; only fill changes while the band passes.
-    var darkPalette=[
-      [33,215,244],
-      [77,166,255],
-      [149,121,255],
-      [45,224,206],
-      [33,215,244]
-    ];
     var colorPos=Math.max(0,Math.min(.9999,easedP))*4;
     var colorIndex=Math.floor(colorPos);
     var colorMix=colorPos-colorIndex;
@@ -1408,7 +1410,7 @@ html[data-theme="light"] .heroX-enterprise article.hx-scan::after{background:lin
   // Left-to-right lifecycle: staged enterprise inputs → AI processing → sequential agents → structured value fan-out.
   var TOTAL=10800,IN_END=1900,WAVE_END=4000,AGENT_END=6800,VALUE_END=8600;
   function valueRoutesForAgent(agentIndex){
-    return paths.value.filter(function(route){return route.agent===agentIndex;});
+    return valueRoutesByAgent[agentIndex]||[];
   }
   function lifecycle(now){
     if(!startTime)startTime=now;
