@@ -1,3 +1,3 @@
 User-agent: *
 Allow: /
-Sitemap: https://kpadm3.github.io/kpadm3.github.io2/sitemap.xml
+Sitemap: https://kpadm3.github.io/sitemap.xml
