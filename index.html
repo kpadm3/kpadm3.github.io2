@@ -1805,15 +1805,8 @@ html[data-theme="light"] .heroX-enterprise article.hx-scan::after{background:lin
       var seed=((dotIndex*43+Math.floor(p.x*1.7)+Math.floor(p.y*2.3)+faceIndex*29)%101)/101;
       var ripple=Math.sin(p.y*.115+p.x*.031+faceIndex*1.7)*.055+
                  Math.sin(p.y*.047-p.x*.019+dotIndex*.013)*.035;
-      // Small square-like surface tiles: only a few selected patches move while the cube stays stable.
-      var tileCol=Math.floor(col/4),tileRow=Math.floor(row/4);
-      var tile=faceIndex*36+tileRow*6+tileCol;
-      var movingTile=(faceIndex===0&&(tileRow===1&&tileCol===2||tileRow===3&&tileCol===4))||
-                     (faceIndex===1&&(tileRow===2&&tileCol===1))||
-                     (faceIndex===2&&(tileRow===2&&tileCol===3||tileRow===4&&tileCol===1));
       dots.push({el:el,baseX:p.x,baseY:p.y,nx:nx,face:faceIndex,depth:faceIndex===0?1:(faceIndex===1?.88:.94),
         baseOpacity:parseFloat(getComputedStyle(el).opacity)||1,streamIndex:streamIndex,seed:seed,ripple:ripple,
-        tile:tile,movingTile:movingTile,tileOrder:movingTile?((tileRow+tileCol+faceIndex)%5):-1,
         fillState:-1,lastX:p.x,lastY:p.y,lastOpacity:null});
     }
   }
@@ -1944,7 +1937,7 @@ html[data-theme="light"] .heroX-enterprise article.hx-scan::after{background:lin
     dots.forEach(function(d){
       var dx=d.nx-center;
       // Skip expensive Gaussian work for dots well outside both moving fields.
-      if(Math.abs(dx)>.62&&!d.movingTile){
+      if(Math.abs(dx)>.62){
         if(d.lastX!==d.baseX){d.el.setAttribute('cx',d.baseX.toFixed(2));d.lastX=d.baseX;}
         if(d.lastY!==d.baseY){d.el.setAttribute('cy',d.baseY.toFixed(2));d.lastY=d.baseY;}
         if(d.lastOpacity!==d.baseOpacity){d.el.style.opacity=String(d.baseOpacity);d.lastOpacity=d.baseOpacity;}
@@ -1954,21 +1947,9 @@ html[data-theme="light"] .heroX-enterprise article.hx-scan::after{background:lin
       var z=dx/sigma;
       var crest=Math.exp(-.5*z*z);
 
-      // Tile motion: the cube stays intact while five small square patches reposition independently.
-      var tileMove=0,moveX=0,moveY=0;
-      if(d.movingTile&&p>.28&&p<.86){
-        var delay=d.tileOrder*.045;
-        var local=Math.max(0,Math.min(1,(p-.28-delay)/(.58-delay)));
-        tileMove=Math.sin(local*Math.PI);
-        tileMove=tileMove*tileMove;
-        var tx=[-9,8,10,-8,6][d.tileOrder];
-        var ty=[-7,-8,6,8,-9][d.tileOrder];
-        moveX=tx*tileMove;
-        moveY=ty*tileMove*d.depth;
-      }
-      var nextX=d.baseX+moveX;
-      var nextY=d.baseY-15.5*crest*d.depth+moveY;
-      if(Math.abs(nextX-d.lastX)>.08){d.el.setAttribute('cx',nextX.toFixed(2));d.lastX=nextX;}
+      // Single physical analysis wave: dots lift with the crest, then settle back into the fabric.
+      var nextY=d.baseY-15.5*crest*d.depth;
+      if(d.lastX!==d.baseX){d.el.setAttribute('cx',d.baseX.toFixed(2));d.lastX=d.baseX;}
       if(Math.abs(nextY-d.lastY)>.08){d.el.setAttribute('cy',nextY.toFixed(2));d.lastY=nextY;}
 
       // Organic pattern is precomputed per dot; only the moving field is evaluated here.
