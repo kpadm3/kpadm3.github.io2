@@ -1974,7 +1974,7 @@ html[data-theme="light"] .heroX-enterprise article.hx-scan::after{background:lin
     t=Math.max(0,Math.min(1,t));
     return t*t*(3-2*t);
   }
-  var FLOW_SPEED=1050,FLOW_STAGGER_MS=36;
+  var FLOW_SPEED=820,FLOW_STAGGER_MS=42;
   function particle(spec,progress,index){
     if(!spec||!spec.el||!spec.length)return;
     var el=ensureParticle(index);
@@ -2018,10 +2018,10 @@ html[data-theme="light"] .heroX-enterprise article.hx-scan::after{background:lin
   function wave(p){
     // One physical AI-analysis crest crosses the fabric once per lifecycle.
     // Dark mode keeps every dot at its resting luminance/color; only geometry moves.
-    // Blend linear progress with smoothstep so the crest moves immediately
-    // while retaining the softened motion through the rest of the pass.
-    var easedP=.68*p+.32*smooth01(p);
-    var center=-.18+easedP*1.36,sigma=.115;
+    // Keep the crest moving immediately and consistently across the visible cube.
+    // A very light easing prevents a mechanical feel without creating startup hesitation.
+    var easedP=.90*p+.10*smooth01(p);
+    var center=-.08+easedP*1.16,sigma=.115;
     var streamColors=['#42ddf6','#4da1ff','#9877ff','#2de0ce'];
     var darkMode=document.documentElement.getAttribute('data-theme')!=='light';
 
