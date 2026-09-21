@@ -1,45 +1,5 @@
-/* Shared portfolio shell for detailed solution pages. */
-body.solution-page .site-header{border-bottom:1px solid rgba(36,60,90,.75)!important;background:rgba(5,11,20,.86)!important;backdrop-filter:blur(18px)!important}
-body.solution-page .site-header.is-scrolled{background:rgba(5,11,20,.97)!important;border-bottom-color:rgba(53,212,241,.22)!important}
-body.solution-page .site-header .nav-positioning{color:#35d4f1!important}
-body.solution-page .site-header .nav-positioning span{color:#91a5bb!important}
-body.solution-page .site-header .nav-links a{color:#91a5bb!important}
-body.solution-page .site-header .nav-links a:hover,body.solution-page .site-header .nav-links a.active{color:#f5f8fc!important}
-body.solution-page .site-header .nav-links a.active::after{background:#35d4f1!important}
-body.solution-page .site-header .nav-soc-btn{border-color:#1e3248!important;color:#5a7a94!important}
-body.solution-page .site-header .nav-soc-btn:hover{border-color:rgba(53,212,241,.45)!important;color:#35d4f1!important}
-body.solution-page .page-progress{background:linear-gradient(90deg,#35d4f1,#8c70ff)!important;box-shadow:0 0 18px rgba(53,212,241,.58)!important}
-.solution-site-footer{position:relative;z-index:4;margin-top:24px;border-top:1px solid rgba(36,60,90,.72);background:rgba(4,10,18,.72);backdrop-filter:blur(14px)}
-.solution-footer-main{min-height:88px;display:grid;grid-template-columns:minmax(250px,1fr) auto auto;align-items:center;gap:28px;padding-top:20px;padding-bottom:20px}
-.solution-footer-brand{display:flex;flex-direction:column;gap:5px;min-width:0}
-.solution-footer-brand strong{color:#f5f8fc;font-size:.72rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase}
-.solution-footer-brand span{color:#70879d;font-size:.64rem;line-height:1.45}
-.solution-footer-nav{display:flex;align-items:center;gap:18px;flex-wrap:wrap}
-.solution-footer-nav a{color:#7f95aa;font-size:.68rem;font-weight:600;transition:color .18s ease}
-.solution-footer-nav a:hover,.solution-footer-nav a.active{color:#35d4f1}
-.solution-footer-social{display:flex;align-items:center;gap:7px}
-.solution-footer-social a{width:30px;height:30px;display:grid;place-items:center;border:1px solid #1e3248;border-radius:6px;color:#5a7a94;font-size:15px;transition:border-color .18s ease,color .18s ease,transform .18s ease}
-.solution-footer-social a:hover{color:#35d4f1;border-color:rgba(53,212,241,.45);transform:translateY(-1px)}
-.solution-footer-bottom{display:flex;justify-content:space-between;gap:20px;padding:12px 24px 16px;border-top:1px solid rgba(36,60,90,.44);color:#526b82;font-size:.61rem;line-height:1.45}
-.solution-footer-bottom span:last-child{text-align:right}
-html[data-theme="light"] body.solution-page .site-header{background:rgba(245,250,254,.88)!important;border-bottom-color:rgba(8,145,178,.16)!important}
-html[data-theme="light"] body.solution-page .site-header.is-scrolled{background:rgba(247,251,254,.97)!important;border-bottom-color:rgba(8,145,178,.24)!important}
-html[data-theme="light"] body.solution-page .site-header .nav-positioning{color:#087f9e!important}
-html[data-theme="light"] body.solution-page .site-header .nav-positioning span{color:#668297!important}
-html[data-theme="light"] body.solution-page .site-header .nav-links a{color:#49667c!important}
-html[data-theme="light"] body.solution-page .site-header .nav-links a:hover,html[data-theme="light"] body.solution-page .site-header .nav-links a.active{color:#17364d!important}
-html[data-theme="light"] body.solution-page .site-header .nav-links a.active::after{background:#0891b2!important}
-html[data-theme="light"] body.solution-page .site-header .nav-soc-btn{border-color:rgba(8,145,178,.18)!important;color:#5a7a94!important}
-html[data-theme="light"] body.solution-page .site-header .nav-soc-btn:hover{border-color:rgba(8,145,178,.42)!important;color:#0891b2!important}
-html[data-theme="light"] .solution-site-footer{background:rgba(248,252,255,.86);border-top-color:rgba(8,145,178,.16)}
-html[data-theme="light"] .solution-footer-brand strong{color:#17364d}
-html[data-theme="light"] .solution-footer-brand span,html[data-theme="light"] .solution-footer-nav a{color:#55758a}
-html[data-theme="light"] .solution-footer-nav a:hover,html[data-theme="light"] .solution-footer-nav a.active{color:#0891b2}
-html[data-theme="light"] .solution-footer-social a{color:#55758a;border-color:rgba(8,145,178,.18)}
-html[data-theme="light"] .solution-footer-social a:hover{color:#0891b2;border-color:rgba(8,145,178,.42)}
-html[data-theme="light"] .solution-footer-bottom{color:#688399;border-top-color:rgba(8,145,178,.11)}
-@media(max-width:900px){.solution-footer-main{grid-template-columns:1fr;align-items:start;gap:16px}.solution-footer-bottom{flex-direction:column;gap:4px}.solution-footer-bottom span:last-child{text-align:left}}
-
+/* Shared portfolio shell for detailed solution pages.
+   Header, progress bar and theme controls intentionally inherit the global site.css shell. */
 
 /* =========================================================
    FULL SOLUTION PAGE INTEGRATION

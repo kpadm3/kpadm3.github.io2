@@ -706,9 +706,8 @@ html[data-theme="light"] .hx-mesh-lines path:nth-child(3n+1){stroke:#099e91}html
 @keyframes hxDash{to{stroke-dashoffset:-42}}
 @keyframes hxRail{0%{transform:translateX(-18%);opacity:0}18%,82%{opacity:.9}100%{transform:translateX(118%);opacity:0}}
 @keyframes hxFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-3px)}}
-@keyframes hxWave{to{background-position:90px 0,0 0}}
 .heroX:before{content:"";position:absolute;inset:0;pointer-events:none;opacity:.08;background-image:linear-gradient(rgba(48,214,242,.07) 1px,transparent 1px),linear-gradient(90deg,rgba(48,214,242,.055) 1px,transparent 1px);background-size:72px 72px;mask-image:linear-gradient(to bottom,transparent 3%,#000 25%,transparent 88%);animation:none}
-.heroX:after{content:"";position:absolute;left:-8%;right:-8%;bottom:0;height:220px;pointer-events:none;opacity:.55;background-image:radial-gradient(circle,rgba(53,212,241,1) 2.5px,transparent 4px),linear-gradient(180deg,transparent,rgba(0,173,239,.12));background-size:22px 15px,100% 100%;transform:perspective(340px) rotateX(63deg);transform-origin:bottom;mask-image:linear-gradient(to top,#000 20%,transparent 92%);animation:hxWave 9s linear infinite}
+.heroX:after{content:"";position:absolute;left:-8%;right:-8%;bottom:0;height:220px;pointer-events:none;opacity:.55;background-image:radial-gradient(ellipse at var(--hx-floor-wave-x,-18%) 58%,var(--hx-floor-wave-color,rgba(53,212,241,0)) 0%,rgba(53,212,241,0) 19%),radial-gradient(circle,rgba(53,212,241,1) 2.5px,transparent 4px),linear-gradient(180deg,transparent,rgba(0,173,239,.12));background-size:100% 100%,22px 15px,100% 100%;transform:perspective(340px) rotateX(63deg);transform-origin:bottom;mask-image:linear-gradient(to top,#000 20%,transparent 92%);animation:none}
 .heroX-intro,.heroX-map,.heroX-pillars,.heroX-scroll{position:relative;z-index:2}
 .heroX-map:before{content:"";position:absolute;inset:-25% -10%;z-index:0;pointer-events:none;background:radial-gradient(circle at 46% 47%,rgba(20,167,236,.16),transparent 24%),radial-gradient(circle at 69% 50%,rgba(126,91,255,.10),transparent 24%),radial-gradient(circle at 90% 50%,rgba(31,225,198,.08),transparent 18%);animation:hxAurora 8s ease-in-out infinite}
 .heroX-enterprise article,.heroX-agents article{animation:hxCardGlow 4.2s ease-in-out infinite}.heroX-enterprise article:nth-of-type(2),.heroX-agents article:nth-of-type(2){animation-delay:.55s}.heroX-enterprise article:nth-of-type(3),.heroX-agents article:nth-of-type(3){animation-delay:1.1s}.heroX-enterprise article:nth-of-type(4),.heroX-agents article:nth-of-type(4){animation-delay:1.65s}
@@ -2008,6 +2007,8 @@ html[data-theme="light"] .heroX-enterprise article.hx-scan::after{background:lin
     });
     cubeGradient.setAttribute('gradientTransform','translate(-220 0)');
     cubeWaveStop.setAttribute('stop-color','#18b8dd');
+    hero.style.setProperty('--hx-floor-wave-x','-18%');
+    hero.style.setProperty('--hx-floor-wave-color','rgba(24,184,221,0)');
     capEls.forEach(function(el){el.classList.remove('hx-cap-active');el.style.opacity='';el.style.color='';el.style.textShadow='';});
     cubeMode='reset';capIndex=-1;
   }
@@ -2032,10 +2033,14 @@ html[data-theme="light"] .heroX-enterprise article.hx-scan::after{background:lin
     var colorIndex=Math.floor(colorPos);
     var colorMix=colorPos-colorIndex;
     var ca=darkPalette[colorIndex],cb=darkPalette[colorIndex+1];
-    var travelColor='rgb('+
-      Math.round(ca[0]+(cb[0]-ca[0])*colorMix)+','+
-      Math.round(ca[1]+(cb[1]-ca[1])*colorMix)+','+
-      Math.round(ca[2]+(cb[2]-ca[2])*colorMix)+')';
+    var travelR=Math.round(ca[0]+(cb[0]-ca[0])*colorMix);
+    var travelG=Math.round(ca[1]+(cb[1]-ca[1])*colorMix);
+    var travelB=Math.round(ca[2]+(cb[2]-ca[2])*colorMix);
+    var travelColor='rgb('+travelR+','+travelG+','+travelB+')';
+    var floorX=(-12+easedP*124).toFixed(2)+'%';
+    var floorAlpha=darkMode?.34:.16;
+    hero.style.setProperty('--hx-floor-wave-x',floorX);
+    hero.style.setProperty('--hx-floor-wave-color','rgba('+travelR+','+travelG+','+travelB+','+floorAlpha+')');
     if(darkMode){
       var gradientCenterX=92+center*376;
       cubeGradient.setAttribute('gradientTransform','translate('+gradientCenterX.toFixed(2)+' 0)');
