@@ -596,13 +596,11 @@ html body .heroX .heroX-valuebox .hx-value-port{
 /* Dark-mode cube dots keep one resting luminance.
    The wave still moves and recolors dots, but cannot create near-white brightness spikes. */
 html:not([data-theme="light"]) body .heroX .heroX-ai .hx-cube-dots circle{
+  fill:#18b8dd!important;
   opacity:.65!important;
   filter:none!important;
   stroke:none!important;
 }
-html:not([data-theme="light"]) body .heroX .heroX-ai .hx-cube-dots .hx-dot-top{fill:#5cf0fb}
-html:not([data-theme="light"]) body .heroX .heroX-ai .hx-cube-dots .hx-dot-left{fill:#18b8dd}
-html:not([data-theme="light"]) body .heroX .heroX-ai .hx-cube-dots .hx-dot-right{fill:#268ed8}
 
 html[data-theme="light"] body .heroX .heroX-valuebox article{
   background:rgba(255,255,255,.58)!important;
