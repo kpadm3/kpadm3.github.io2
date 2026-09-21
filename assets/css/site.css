@@ -265,12 +265,6 @@ html[data-theme="light"] .cta-copy p{color:#2a4060}
 /* Shared light-mode heading used by Contact and any sub-page panel heading. */
 html[data-theme="light"] .panel-heading{color:#0891b2}
 
-/* Contact page */
-html[data-theme="light"] .contact-item{background:rgba(255,255,255,.82);border-color:rgba(77,163,255,.2)}
-html[data-theme="light"] a.contact-item:hover{background:rgba(255,255,255,.98);border-color:rgba(77,163,255,.52)}
-html[data-theme="light"] .contact-item-value{color:#0d1f35}
-html[data-theme="light"] .contact-item-sub{color:#8090a5}
-html[data-theme="light"] .contact-icon{border-color:rgba(77,163,255,.35);background:rgba(244,248,253,.85)}
 .sol-two-col{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-bottom:20px}
 .sol-two-col-wide{display:grid;grid-template-columns:1.1fr 0.9fr;gap:20px;margin-bottom:20px}
 .sol-col-label{font-size:.65rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin-bottom:8px}
