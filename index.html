@@ -1190,9 +1190,6 @@ html[data-theme="light"] .heroX-valuebox{
 .heroX-ai .hx-cube-dots .hx-dot-left{fill:#18b8dd}
 .heroX-ai .hx-cube-dots .hx-dot-right{fill:#6868e8}
 .heroX-ai .hx-cube-dots circle{opacity:.65}
-.heroX-ai .hx-cube-dots .hx-dot-top{filter:drop-shadow(0 0 1.5px rgba(92,240,251,.20))}
-.heroX-ai .hx-cube-dots .hx-dot-left{filter:drop-shadow(0 1px 1px rgba(8,72,105,.16))}
-.heroX-ai .hx-cube-dots .hx-dot-right{filter:drop-shadow(0 1px 1px rgba(50,44,130,.18))}
 .heroX-ai .hx-cube-edges{display:none!important}
 .heroX-ai .hx-cube-edges path{opacity:0!important}
 
@@ -1803,7 +1800,14 @@ html[data-theme="light"] .heroX-enterprise article.hx-scan::after{background:lin
       el.setAttribute('cy',py);
       el.setAttribute('r',edge?1.22:1.08);
       grp.appendChild(el);
-      dots.push({el:el,baseY:p.y,nx:(p.x-92)/376,face:faceIndex,baseOpacity:parseFloat(getComputedStyle(el).opacity)||1,baseFill:getComputedStyle(el).fill});
+      var dotIndex=dots.length,nx=(p.x-92)/376;
+      var streamIndex=(dotIndex*7+faceIndex*11+Math.floor(p.x*.071)+Math.floor(p.y*.053))%4;
+      var seed=((dotIndex*43+Math.floor(p.x*1.7)+Math.floor(p.y*2.3)+faceIndex*29)%101)/101;
+      var ripple=Math.sin(p.y*.115+p.x*.031+faceIndex*1.7)*.055+
+                 Math.sin(p.y*.047-p.x*.019+dotIndex*.013)*.035;
+      dots.push({el:el,baseY:p.y,nx:nx,face:faceIndex,depth:faceIndex===0?1:(faceIndex===1?.88:.94),
+        baseOpacity:parseFloat(getComputedStyle(el).opacity)||1,streamIndex:streamIndex,seed:seed,ripple:ripple,
+        fillState:-1,lastY:p.y,lastOpacity:null});
     }
   }
   face('hx-dot-top',T,R,C,L,0);
@@ -1921,7 +1925,7 @@ html[data-theme="light"] .heroX-enterprise article.hx-scan::after{background:lin
   }
   function resetCube(){
     if(cubeMode==='reset')return;
-    dots.forEach(function(d){d.el.setAttribute('cy',d.baseY.toFixed(2));d.el.style.opacity=String(d.baseOpacity);d.el.style.removeProperty('fill');});
+    dots.forEach(function(d){d.el.setAttribute('cy',d.baseY.toFixed(2));d.el.style.opacity=String(d.baseOpacity);d.el.style.removeProperty('fill');d.fillState=-1;d.lastY=d.baseY;d.lastOpacity=null;});
     capEls.forEach(function(el){el.classList.remove('hx-cap-active');el.style.opacity='';el.style.color='';el.style.textShadow='';});
     cubeMode='reset';capIndex=-1;
   }
@@ -1930,28 +1934,33 @@ html[data-theme="light"] .heroX-enterprise article.hx-scan::after{background:lin
     // All four Architecture stream colors participate inside that single pass as stable mixed clusters.
     var center=-.18+p*1.36,sigma=.115;
     var streamColors=['#42ddf6','#4da1ff','#9877ff','#2de0ce'];
-    dots.forEach(function(d,index){
-      var z=(d.nx-center)/sigma;
+    dots.forEach(function(d){
+      var dx=d.nx-center;
+      // Skip expensive Gaussian work for dots well outside both moving fields.
+      if(Math.abs(dx)>.62){
+        if(d.lastY!==d.baseY){d.el.setAttribute('cy',d.baseY.toFixed(2));d.lastY=d.baseY;}
+        if(d.lastOpacity!==d.baseOpacity){d.el.style.opacity=String(d.baseOpacity);d.lastOpacity=d.baseOpacity;}
+        if(d.fillState!==-1){d.el.style.removeProperty('fill');d.fillState=-1;}
+        return;
+      }
+      var z=dx/sigma;
       var crest=Math.exp(-.5*z*z);
-      var depth=d.face===0?1:(d.face===1?.88:.94);
-      var dy=-15.5*crest*depth;
-      d.el.setAttribute('cy',(d.baseY+dy).toFixed(2));
+      var nextY=d.baseY-15.5*crest*d.depth;
+      if(Math.abs(nextY-d.lastY)>.08){d.el.setAttribute('cy',nextY.toFixed(2));d.lastY=nextY;}
 
-      // Stable mixed signal identity with an irregular 2D boundary: no vertical bar or checker pattern.
-      var cx=d.el.cx.baseVal.value,cy=d.baseY;
-      var streamIndex=(index*7+d.face*11+Math.floor(cx*.071)+Math.floor(cy*.053))%4;
-      var seed=((index*43+Math.floor(cx*1.7)+Math.floor(cy*2.3)+d.face*29)%101)/101;
-      var ripple=Math.sin(cy*.115+cx*.031+d.face*1.7)*.055+
-                 Math.sin(cy*.047-cx*.019+index*.013)*.035;
-      var localCenter=center-.035+ripple;
-      var analysisZ=(d.nx-localCenter)/.205;
+      // Organic pattern is precomputed per dot; only the moving field is evaluated here.
+      var analysisZ=(d.nx-(center-.035+d.ripple))/.205;
       var analysis=Math.exp(-.5*analysisZ*analysisZ);
-      var active=analysis>.14&&seed<(.34+analysis*.38);
-      d.el.style.opacity=String(Math.min(1,d.baseOpacity+(active?analysis*.30:crest*.07)));
-      if(active){
-        d.el.style.setProperty('fill',streamColors[streamIndex],'important');
-      }else{
-        d.el.style.removeProperty('fill');
+      var active=analysis>.14&&d.seed<(.34+analysis*.38);
+      var nextOpacity=Math.min(1,d.baseOpacity+(active?analysis*.30:crest*.07));
+      if(d.lastOpacity===null||Math.abs(nextOpacity-d.lastOpacity)>.025){
+        d.el.style.opacity=String(nextOpacity);d.lastOpacity=nextOpacity;
+      }
+      var nextFill=active?d.streamIndex:-1;
+      if(nextFill!==d.fillState){
+        if(nextFill>=0)d.el.style.setProperty('fill',streamColors[nextFill],'important');
+        else d.el.style.removeProperty('fill');
+        d.fillState=nextFill;
       }
     });
     cubeMode='wave';
