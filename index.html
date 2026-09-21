@@ -1186,10 +1186,13 @@ html[data-theme="light"] .heroX-valuebox{
 .hx-signal-particle.purple{fill:#ebe4ff!important;stroke:#9877ff!important}
 .hx-signal-particle.teal{fill:#e2fff9!important;stroke:#2de0ce!important}
 
-.heroX-ai .hx-cube-dots .hx-dot-top{fill:#45e7f7}
-.heroX-ai .hx-cube-dots .hx-dot-left{fill:#24c7eb}
-.heroX-ai .hx-cube-dots .hx-dot-right{fill:#7777ff}
+.heroX-ai .hx-cube-dots .hx-dot-top{fill:#5cf0fb}
+.heroX-ai .hx-cube-dots .hx-dot-left{fill:#18b8dd}
+.heroX-ai .hx-cube-dots .hx-dot-right{fill:#6868e8}
 .heroX-ai .hx-cube-dots circle{opacity:.65}
+.heroX-ai .hx-cube-dots .hx-dot-top{filter:drop-shadow(0 0 1.5px rgba(92,240,251,.20))}
+.heroX-ai .hx-cube-dots .hx-dot-left{filter:drop-shadow(0 1px 1px rgba(8,72,105,.16))}
+.heroX-ai .hx-cube-dots .hx-dot-right{filter:drop-shadow(0 1px 1px rgba(50,44,130,.18))}
 .heroX-ai .hx-cube-edges{display:none!important}
 .heroX-ai .hx-cube-edges path{opacity:0!important}
 
@@ -1934,14 +1937,17 @@ html[data-theme="light"] .heroX-enterprise article.hx-scan::after{background:lin
       var dy=-15.5*crest*depth;
       d.el.setAttribute('cy',(d.baseY+dy).toFixed(2));
 
-      // Stable mixed signal identity: all four Architecture inputs appear inside one visible analysis field.
-      var streamIndex=(index*7+d.face*11+Math.floor(d.nx*17))%4;
-      var signal=((index*37+d.face*19+Math.floor(d.nx*101))%100)/100;
-      // Keep the color field substantially wider than the physical crest so it reads at normal playback speed.
-      var analysisZ=(d.nx-(center-.045))/.27;
+      // Stable mixed signal identity with an irregular 2D boundary: no vertical bar or checker pattern.
+      var cx=d.el.cx.baseVal.value,cy=d.baseY;
+      var streamIndex=(index*7+d.face*11+Math.floor(cx*.071)+Math.floor(cy*.053))%4;
+      var seed=((index*43+Math.floor(cx*1.7)+Math.floor(cy*2.3)+d.face*29)%101)/101;
+      var ripple=Math.sin(cy*.115+cx*.031+d.face*1.7)*.055+
+                 Math.sin(cy*.047-cx*.019+index*.013)*.035;
+      var localCenter=center-.035+ripple;
+      var analysisZ=(d.nx-localCenter)/.205;
       var analysis=Math.exp(-.5*analysisZ*analysisZ);
-      var active=analysis>.16&&signal<(.48+analysis*.34);
-      d.el.style.opacity=String(Math.min(1,d.baseOpacity+(active?analysis*.34:crest*.08)));
+      var active=analysis>.14&&seed<(.34+analysis*.38);
+      d.el.style.opacity=String(Math.min(1,d.baseOpacity+(active?analysis*.30:crest*.07)));
       if(active){
         d.el.style.setProperty('fill',streamColors[streamIndex],'important');
       }else{
