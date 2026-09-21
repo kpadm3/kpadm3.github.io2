@@ -518,3 +518,96 @@ html[data-theme="light"] .solution-card-v3:hover .solution-icon-v3{
 .button{font-weight:600}
 html[data-theme="light"] .button{background:linear-gradient(90deg,#0891b2,#4ba8ff);color:#fff;border-color:transparent}
 html[data-theme="light"] .button.secondary{background:#fff;color:#0d1f35;border-color:#bfd2e3}
+
+/* === HERO FINAL PARITY + CUBE DOT STABILITY === */
+/* Operational Value now uses the exact same desktop card geometry as Architecture / Agents. */
+html body .heroX .heroX-valuebox{
+  border:0!important;
+  border-radius:0!important;
+  background:transparent!important;
+  box-shadow:none!important;
+  overflow:visible!important;
+}
+html body .heroX .heroX-valuebox article{
+  position:relative!important;
+  height:70px!important;
+  margin:8px 0!important;
+  display:grid!important;
+  grid-template-columns:62px 1fr!important;
+  align-items:center!important;
+  padding:0 18px!important;
+  border:1px solid rgba(65,181,229,.28)!important;
+  border-radius:11px!important;
+  background:linear-gradient(90deg,rgba(5,36,61,.78),rgba(8,46,76,.52))!important;
+  box-shadow:inset 0 0 18px rgba(31,163,225,.035),0 7px 18px rgba(0,0,0,.10)!important;
+  overflow:visible!important;
+}
+html body .heroX .heroX-valuebox article.violet{border-color:rgba(147,112,255,.38)!important}
+html body .heroX .heroX-valuebox article.teal{border-color:rgba(44,225,205,.38)!important}
+html body .heroX .heroX-valuebox article>i{font-size:34px!important}
+html body .heroX .heroX-valuebox article div b{
+  display:block!important;
+  margin-top:0!important;
+  font-size:12px!important;
+  line-height:1.15!important;
+  letter-spacing:.03em!important;
+}
+html body .heroX .heroX-valuebox article div small{
+  display:block!important;
+  margin-top:4px!important;
+  font-size:10px!important;
+  line-height:1.2!important;
+  letter-spacing:0!important;
+}
+
+@media(min-width:1201px){
+  html body .heroX .heroX-agents,
+  html body .heroX .heroX-value{
+    padding-left:25px!important;
+    padding-right:25px!important;
+  }
+}
+
+/* One exact square-node specification for every handoff point. */
+html body .heroX .heroX-enterprise .hx-out-port,
+html body .heroX .heroX-agents .hx-in-port,
+html body .heroX .heroX-agents .hx-out-port,
+html body .heroX .heroX-valuebox .hx-value-port{
+  top:50%!important;
+  width:10px!important;
+  height:10px!important;
+  border-radius:3px!important;
+  transform:translateY(-50%)!important;
+  background:rgba(67,229,251,.48)!important;
+  box-shadow:0 0 0 2px rgba(6,37,61,.98),0 0 5px rgba(67,229,251,.35)!important;
+  overflow:visible!important;
+}
+html body .heroX .heroX-enterprise .hx-out-port,
+html body .heroX .heroX-agents .hx-out-port{
+  right:-5px!important;
+  left:auto!important;
+}
+html body .heroX .heroX-agents .hx-in-port,
+html body .heroX .heroX-valuebox .hx-value-port{
+  left:-5px!important;
+  right:auto!important;
+}
+
+/* Dark-mode cube dots keep one resting luminance.
+   The wave still moves and recolors dots, but cannot create near-white brightness spikes. */
+html:not([data-theme="light"]) body .heroX .heroX-ai .hx-cube-dots circle{
+  opacity:.65!important;
+  filter:none!important;
+  stroke:none!important;
+}
+html:not([data-theme="light"]) body .heroX .heroX-ai .hx-cube-dots .hx-dot-top{fill:#5cf0fb}
+html:not([data-theme="light"]) body .heroX .heroX-ai .hx-cube-dots .hx-dot-left{fill:#18b8dd}
+html:not([data-theme="light"]) body .heroX .heroX-ai .hx-cube-dots .hx-dot-right{fill:#268ed8}
+
+html[data-theme="light"] body .heroX .heroX-valuebox article{
+  background:rgba(255,255,255,.58)!important;
+  border-color:rgba(8,145,178,.22)!important;
+  box-shadow:0 7px 18px rgba(13,31,53,.055)!important;
+}
+html[data-theme="light"] body .heroX .heroX-valuebox article.violet{border-color:rgba(147,112,255,.28)!important}
+html[data-theme="light"] body .heroX .heroX-valuebox article.teal{border-color:rgba(44,225,205,.28)!important}
