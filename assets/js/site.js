@@ -25,28 +25,7 @@
     revealItems.forEach((item, index) => { item.style.setProperty('--delay', `${Math.min(index * 34, 200)}ms`); observer.observe(item); });
   } else revealItems.forEach(item => item.classList.add('visible'));
 
-  const cards = all('.interactive');
-  cards.forEach(card => {
-    if (!coarse) {
-      card.addEventListener('pointermove', event => {
-        const rect = card.getBoundingClientRect();
-        const x = event.clientX - rect.left;
-        const y = event.clientY - rect.top;
-        card.style.setProperty('--mx', `${x}px`);
-        card.style.setProperty('--my', `${y}px`);
-        if (card.hasAttribute('data-tilt')) {
-          const rx = ((y / rect.height) - .5) * -4;
-          const ry = ((x / rect.width) - .5) * 5;
-          card.style.transform = `perspective(850px) rotateX(${rx}deg) rotateY(${ry}deg) translateY(-5px)`;
-        }
-      });
-      card.addEventListener('pointerleave', () => card.style.transform = '');
-    }
-    card.addEventListener('click', event => {
-      if (event.target.closest('a,button')) return;
-      card.classList.toggle('is-active');
-    });
-  });
+
 })();
 
 // Magnetic buttons

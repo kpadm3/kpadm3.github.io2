@@ -13,7 +13,6 @@
 .sh-progs{opacity:0;transform:translateY(16px);transition:opacity .7s cubic-bezier(.22,1,.36,1),transform .7s cubic-bezier(.22,1,.36,1)}
 .sh-progs.in{opacity:1;transform:none}
 
-.solution-flow-v3::before{display:none!important}
 .solution-icon-wrap{position:relative;display:inline-flex}
 .solution-icon-ring{position:absolute;inset:-8px;border-radius:50%;border:1px solid var(--project);opacity:0;pointer-events:none}
 @keyframes icon-ring-out{0%{transform:scale(.8);opacity:.7}100%{transform:scale(2.2);opacity:0}}
@@ -842,44 +841,6 @@ html[data-theme="light"] .heroX-ai .hx-cube-dots circle{opacity:.52}
   </div>
 
   <script src="assets/js/site.js"></script>
-  <script>
-  (function(){
-    var tm={};
-    function activate(card){
-      var color=card.style.getPropertyValue('--project');
-      var ring=card.querySelector('.solution-icon-ring');
-      var steps=Array.from(card.querySelectorAll('.solution-flow-v3>div'));
-      if(ring){ring.classList.remove('i-ring');void ring.offsetWidth;ring.classList.add('i-ring');}
-      steps.forEach(function(step,i){
-        var key=card.dataset.pid+'_'+i;
-        tm[key]=setTimeout(function(){
-          step.style.borderColor=color;
-          step.style.background=color+'1a';
-          var sm=step.querySelector('small');if(sm)sm.style.color='#fff';
-          var st=step.querySelector('strong');if(st)st.style.color=color;
-        },i*180);
-      });
-    }
-    function deactivate(card){
-      var steps=Array.from(card.querySelectorAll('.solution-flow-v3>div'));
-      var ring=card.querySelector('.solution-icon-ring');
-      var pid=card.dataset.pid;
-      for(var i=0;i<4;i++){clearTimeout(tm[pid+'_'+i]);}
-      if(ring)ring.classList.remove('i-ring');
-      steps.forEach(function(step){
-        step.style.borderColor='';step.style.background='';
-        var sm=step.querySelector('small');if(sm)sm.style.color='';
-        var st=step.querySelector('strong');if(st)st.style.color='';
-      });
-    }
-    document.querySelectorAll('.solution-card-v3').forEach(function(card,i){
-      card.dataset.pid='sf'+i;
-      card.addEventListener('mouseenter',function(){activate(card);});
-      card.addEventListener('mouseleave',function(){deactivate(card);});
-    });
-  })();
-  </script>
-
 <script>
 (function(){
   function initCards(){
@@ -892,8 +853,10 @@ html[data-theme="light"] .heroX-ai .hx-cube-dots circle{opacity:.52}
       cta.innerHTML='<span>Read the program</span><i class="ti ti-arrow-right" aria-hidden="true"></i>';
       card.appendChild(cta);
       var link=card.querySelector('a');
+      var ring=card.querySelector('.solution-icon-ring');
       var busy=false;
       card.addEventListener('mouseenter',function(){
+        if(ring){ring.classList.remove('i-ring');void ring.offsetWidth;ring.classList.add('i-ring');}
         if(busy)return;busy=true;
         cta.style.opacity='0';
         scan.style.transition='none';
@@ -905,6 +868,7 @@ html[data-theme="light"] .heroX-ai .hx-cube-dots circle{opacity:.52}
         setTimeout(function(){cta.style.opacity='1';busy=false;},560);
       });
       card.addEventListener('mouseleave',function(){
+        if(ring)ring.classList.remove('i-ring');
         cta.style.opacity='0';
         scan.style.opacity='0';
         scan.style.top='-4px';
@@ -1121,9 +1085,7 @@ html[data-theme="light"] .heroX-enterprise article.hx-scan::after{background:lin
   function ensurePort(el,cls,left){
     var p=el.querySelector('.'+cls);
     if(!p){p=document.createElement('span');p.className=cls;p.setAttribute('aria-hidden','true');el.appendChild(p);}
-    Object.assign(p.style,{position:'absolute',top:'50%',left:left?'-2px':'auto',right:left?'auto':'-2px',
-      transform:'translateY(-50%)',width:'4px',height:'14px',borderRadius:'3px',
-      background:'rgba(67,229,251,.48)',border:'0',boxSizing:'border-box',boxShadow:'0 0 0 2px rgba(6,37,61,.98),0 0 5px rgba(67,229,251,.35)',zIndex:'12',animation:'none',overflow:'hidden'});
+    Object.assign(p.style,{position:'absolute',border:'0',boxSizing:'border-box',zIndex:'12',animation:'none'});
     return p;
   }
   enterprise.concat(agents,values).forEach(function(card){
