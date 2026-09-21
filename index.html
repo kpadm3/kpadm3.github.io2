@@ -2014,7 +2014,9 @@ html[data-theme="light"] .heroX-enterprise article.hx-scan::after{background:lin
   function wave(p){
     // One physical AI-analysis crest crosses the fabric once per lifecycle.
     // Dark mode keeps every dot at its resting luminance/color; only geometry moves.
-    var easedP=smooth01(p);
+    // Blend linear progress with smoothstep so the crest moves immediately
+    // while retaining the softened motion through the rest of the pass.
+    var easedP=.68*p+.32*smooth01(p);
     var center=-.18+easedP*1.36,sigma=.115;
     var streamColors=['#42ddf6','#4da1ff','#9877ff','#2de0ce'];
     var darkMode=document.documentElement.getAttribute('data-theme')!=='light';
