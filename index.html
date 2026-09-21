@@ -1110,6 +1110,8 @@ html[data-theme="light"] .heroX-enterprise article.hx-scan::after{background:lin
           routed(ao[agentIndex],vi[valueIndex],colors[agentIndex],paths.value,agentIndex,valueIndex);
         });
       });
+      // Keep pooled particles above rebuilt route paths without re-appending them every frame.
+      particlePool.forEach(function(el){linkSvg.appendChild(el);});
     });
   }
 
@@ -1144,7 +1146,6 @@ html[data-theme="light"] .heroX-enterprise article.hx-scan::after{background:lin
     el.setAttribute('cx',pt.x.toFixed(2));el.setAttribute('cy',pt.y.toFixed(2));
     el.style.opacity=String(.72+.22*Math.sin((linear+index*.17)*Math.PI));
     el.style.display='';
-    linkSvg.appendChild(el);
   }
   function stageParticles(list,p,segmentMs){
     var used=0;
