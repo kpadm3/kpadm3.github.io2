@@ -157,8 +157,8 @@ html[data-theme="light"] .saa-agent .saa-label{background:rgba(0,0,0,.05);color:
 .heroX{position:relative;box-sizing:border-box;min-height:clamp(560px,68vh,720px);background:radial-gradient(ellipse at 58% 18%,rgba(0,92,170,.18),transparent 42%),linear-gradient(180deg,#03111f,#06182a);color:#eef7ff;overflow:hidden}
 .heroX *{box-sizing:border-box}.heroX-intro{grid-template-columns:360px minmax(520px,1fr) minmax(390px,500px);margin-bottom:15px}
 .heroX-intro h1 em{font-style:normal;color:#22d4f1}.heroX-intro p{padding-left:28px;border-left:1px solid rgba(85,183,236,.7);}
-.heroX-map{position:relative;display:grid;grid-template-columns:26% 34% 26% 14%;}
-.heroX-zone{position:relative;padding:19px 22px 52px;border-right:1px solid rgba(71,163,211,.12)}.heroX-zone:last-of-type{border-right:0}.heroX-zone header{height:58px}.heroX-zone header>b{display:block;font-size:12px;letter-spacing:.13em;color:#52e1f4}.heroX-zone header small{display:block;margin-top:7px;font-size:10px;color:#91a8bb}
+
+.heroX-zone header{height:58px}.heroX-zone header>b{display:block;font-size:12px;letter-spacing:.13em;color:#52e1f4}.heroX-zone header small{display:block;margin-top:7px;font-size:10px;color:#91a8bb}
 .heroX-enterprise article,.heroX-agents article{position:relative;height:62px;margin:8px 0;display:grid;grid-template-columns:48px 1fr;align-items:center;padding:0 15px;}
 
 .heroX-enterprise article>i,.heroX-agents article>i{font-size:28px;color:#5bdfff}.heroX-agents article.violet>i{color:#9c7cff}.heroX-agents article.teal>i{color:#35dfca}
@@ -170,8 +170,8 @@ html[data-theme="light"] .saa-agent .saa-label{background:rgba(0,0,0,.05);color:
 
 
 
-@media(max-width:1200px){.heroX{padding:24px 20px}.heroX-intro{grid-template-columns:1fr;gap:16px}.heroX-intro h1{white-space:normal}.heroX-intro p{padding-left:0;border-left:0}.heroX-map{height:auto;grid-template-columns:1fr 1fr}.heroX-zone{padding-bottom:22px}}
-@media(max-width:720px){.heroX-map{grid-template-columns:1fr}}
+@media(max-width:1200px){.heroX{padding:24px 20px}.heroX-intro{grid-template-columns:1fr;gap:16px}.heroX-intro h1{white-space:normal}.heroX-intro p{padding-left:0;border-left:0}}
+
 
 
 
@@ -187,7 +187,7 @@ html[data-theme="light"] .saa-agent .saa-label{background:rgba(0,0,0,.05);color:
 @keyframes hxWave{to{background-position:90px 0,0 0}}
 .heroX:before{content:"";position:absolute;inset:0;pointer-events:none;opacity:.08;background-image:linear-gradient(rgba(48,214,242,.07) 1px,transparent 1px),linear-gradient(90deg,rgba(48,214,242,.055) 1px,transparent 1px);background-size:72px 72px;mask-image:linear-gradient(to bottom,transparent 3%,#000 25%,transparent 88%);animation:none}
 .heroX:after{content:"";position:absolute;left:-8%;right:-8%;pointer-events:none;background-image:radial-gradient(circle,rgba(53,212,241,1) 2.5px,transparent 4px),linear-gradient(180deg,transparent,rgba(0,173,239,.12));transform:perspective(340px) rotateX(63deg);transform-origin:bottom;mask-image:linear-gradient(to top,#000 20%,transparent 92%);animation:hxWave 9s linear infinite}
-.heroX-intro,.heroX-map{position:relative;z-index:2}
+.heroX-intro{position:relative;z-index:2}
 .heroX-caps span{box-shadow:inset 0 0 12px rgba(53,212,241,.04)}.heroX-caps span:hover{transform:translateY(-2px);border-color:#43e2f3;box-shadow:0 0 15px rgba(53,212,241,.18)}
 
 @media(prefers-reduced-motion:reduce){.heroX:after{animation:none!important}}
@@ -221,15 +221,15 @@ html[data-theme="light"] .heroX-valuebox article{border-bottom-color:rgba(8,145,
 .heroX-intro{grid-template-columns:420px 1fr 500px!important;gap:36px!important;min-height:100px!important;margin:0 12px 15px!important}.heroX-role{font-size:10px!important}
 .heroX-intro h1{font-size:52px!important;line-height:1.03!important;text-align:left!important}
 .heroX-intro p{font-size:13px!important;line-height:1.55!important;padding-left:28px!important}
-.heroX-map{height:380px!important;border-radius:13px!important}
-.heroX-zone{padding:19px 25px 52px!important}.heroX-zone header{height:56px!important}
+
+.heroX-zone header{height:56px!important}
 .heroX-zone header>b{font-size:12px!important}.heroX-zone header small{font-size:10px!important}
 .heroX-enterprise article,.heroX-agents article{height:70px!important;margin:8px 0!important;padding:0 18px!important;grid-template-columns:62px 1fr!important;border-radius:12px!important}
 .heroX-enterprise article>i,.heroX-agents article>i{font-size:34px!important}
 .heroX-enterprise article b,.heroX-agents article b{font-size:12px!important}.heroX-enterprise article small,.heroX-agents article small{font-size:10px!important}
 .heroX-agents article em{font-size:9px!important}
 
-.heroX-ai{padding-left:28px!important;padding-right:28px!important}\n.heroX-agents{transform:translateX(-24px)!important;width:calc(100% + 24px)!important;padding-right:20px!important}
+\n.heroX-agents{transform:translateX(-24px)!important;width:calc(100% + 24px)!important;padding-right:20px!important}
 
 .heroX-caps{max-width:430px!important;gap:8px!important}.heroX-caps span{font-size:9px!important;padding:7px 17px!important}
 
@@ -401,24 +401,6 @@ html[data-theme="light"] .heroX-valuebox{
 
 /* Balanced desktop geometry with a dedicated Agent-to-Value routing corridor. */
 @media(min-width:1201px){
-  .heroX-map{
-    grid-template-columns:23% 29% 23% 2% 23%!important;
-    column-gap:0!important
-  }
-  .heroX-enterprise{grid-column:1}
-  .heroX-ai{grid-column:2}
-  .heroX-agents{
-    grid-column:3;
-    transform:none!important;
-    width:auto!important;
-    padding-left:25px!important;
-    padding-right:25px!important
-  }
-  .heroX-value{
-    grid-column:5;
-    padding-left:25px!important;
-    padding-right:25px!important
-  }
   .heroX-valuebox article{
     height:70px!important;
     margin:8px 0!important;
@@ -463,8 +445,57 @@ html[data-theme="light"] .heroX-valuebox article{
 
 
 
+/* HERO X AUTHORITATIVE MAP + ZONE GEOMETRY */
+.heroX-map{
+  position:relative;
+  z-index:2;
+  display:grid;
+  min-height:430px!important;
+  height:auto!important;
+  overflow:visible!important
+}
+.heroX-zone{
+  position:relative;
+  z-index:2!important;
+  padding:19px 22px 52px
+}
+@media(min-width:1201px){
+  .heroX-map{
+    grid-template-columns:23% 29% 23% 2% 23%!important;
+    column-gap:0!important
+  }
+  .heroX-zone{padding:19px 25px 52px!important}
+  .heroX-enterprise{grid-column:1}
+  .heroX-ai{
+    grid-column:2;
+    padding-left:28px!important;
+    padding-right:28px!important
+  }
+  .heroX-agents{
+    grid-column:3;
+    transform:none!important;
+    width:auto!important;
+    padding-left:25px!important;
+    padding-right:25px!important
+  }
+  .heroX-value{
+    grid-column:5;
+    padding-left:25px!important;
+    padding-right:25px!important
+  }
+}
+@media(max-width:1200px){
+  .heroX-map{
+    grid-template-columns:1fr 1fr;
+    min-height:0!important
+  }
+  .heroX-zone{padding-bottom:22px}
+}
+@media(max-width:720px){
+  .heroX-map{grid-template-columns:1fr}
+}
+
 /* Keep the connector canvas large enough for all four rows and never clip the routes. */
-.heroX-map{min-height:430px!important;height:auto!important;overflow:visible!important}
 .heroX-links{
   position:absolute!important;
   inset:0!important;
@@ -475,7 +506,6 @@ html[data-theme="light"] .heroX-valuebox article{
   z-index:5!important;
   pointer-events:none!important
 }
-.heroX-zone{z-index:2!important}
 .heroX-enterprise article,.heroX-agents article,.heroX-valuebox article{z-index:6!important}
 
 /* Static rails stay visible even if motion is disabled; color identifies each stream. */
@@ -508,7 +538,6 @@ html[data-theme="light"] .heroX-valuebox article{
 
 
 @media(max-width:1200px){
-  .heroX-map{min-height:0!important}
   .heroX-links{display:none!important}
 }
 
