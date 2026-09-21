@@ -1408,7 +1408,7 @@ html[data-theme="light"] .heroX-enterprise article.hx-scan::after{background:lin
   }
 
   // Left-to-right lifecycle: staged enterprise inputs → AI processing → sequential agents → structured value fan-out.
-  var TOTAL=10800,IN_END=1900,WAVE_END=4000,AGENT_END=6800,VALUE_END=8600;
+  var IN_END=1900,WAVE_END=4000,AGENT_END=6800,VALUE_END=8600,IDLE_GAP=1000,TOTAL=VALUE_END+IDLE_GAP;
   function valueRoutesForAgent(agentIndex){
     return valueRoutesByAgent[agentIndex]||[];
   }
@@ -1427,7 +1427,7 @@ html[data-theme="light"] .heroX-enterprise article.hx-scan::after{background:lin
       stageParticles(paths.incoming[eidx]?[paths.incoming[eidx]]:[],elocal,IN_END/enterprise.length);
     }else if(t<WAVE_END){
       hideParticles();
-      architectureScan(-1,false);clearPorts();
+      clearPorts();
       clearActive();
       wave((t-IN_END)/(WAVE_END-IN_END));
     }else if(t<AGENT_END){
@@ -1448,7 +1448,7 @@ html[data-theme="light"] .heroX-enterprise article.hx-scan::after{background:lin
       valuePorts(targets);
       stageParticles(valueRoutesForAgent(vidx),vlocal,(VALUE_END-AGENT_END)/agents.length);
     }else{
-      hideParticles();resetCube();clearActive();architectureScan(-1,false);clearPorts();
+      hideParticles();resetCube();clearActive();clearPorts();
     }
     requestAnimationFrame(lifecycle);
   }
