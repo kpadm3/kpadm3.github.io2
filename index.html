@@ -1974,25 +1974,29 @@ html[data-theme="light"] .heroX-enterprise article.hx-scan::after{background:lin
     t=Math.max(0,Math.min(1,t));
     return t*t*(3-2*t);
   }
+  var FLOW_SPEED=1050,FLOW_STAGGER_MS=36;
   function particle(spec,progress,index){
     if(!spec||!spec.el||!spec.length)return;
     var el=ensureParticle(index);
-    // Smoothstep removes the mechanical start/stop while preserving the same route and duration.
-    var eased=smooth01(progress);
+    // Constant distance-based motion keeps connector speed identical across every layer.
+    var linear=Math.max(0,Math.min(1,progress));
     // Keep the particle beneath the card node at both ends to eliminate endpoint flashes.
-    var safe=.018+eased*.964;
+    var safe=.018+linear*.964;
     var pt=spec.el.getPointAtLength(spec.length*safe);
     el.setAttribute('class','hx-life-particle hx-flow-comet '+spec.cls);
     el.setAttribute('cx',pt.x.toFixed(2));el.setAttribute('cy',pt.y.toFixed(2));
     el.setAttribute('r',spec.secondary?'2':'3.2');
-    el.style.opacity=String(.72+.22*Math.sin((eased+index*.17)*Math.PI));
+    el.style.opacity=String(.72+.22*Math.sin((smooth01(linear)+index*.17)*Math.PI));
     el.style.display='';
     linkSvg.appendChild(el);
   }
-  function stageParticles(list,p){
+  function stageParticles(list,p,segmentMs){
     var used=0;
+    var elapsed=Math.max(0,Math.min(1,p))*segmentMs;
     list.forEach(function(spec,i){
-      var stagger=i*.07,local=(p-stagger)/(1-stagger);
+      var delay=i*FLOW_STAGGER_MS;
+      var duration=(spec.length/FLOW_SPEED)*1000;
+      var local=(elapsed-delay)/duration;
       if(local>=0&&local<=1){particle(spec,local,used);used++;}
     });
     for(var i=used;i<particlePool.length;i++)particlePool[i].style.display='none';
@@ -2167,7 +2171,7 @@ html[data-theme="light"] .heroX-enterprise article.hx-scan::after{background:lin
       var elocal=(ep*enterprise.length)-eidx;
       architectureScan(eidx,true);agentPorts(-1,false);valuePorts([]);
       sequentialEnterprise(eidx);
-      stageParticles(paths.incoming[eidx]?[paths.incoming[eidx]]:[],elocal);
+      stageParticles(paths.incoming[eidx]?[paths.incoming[eidx]]:[],elocal,IN_END/enterprise.length);
     }else if(t<WAVE_END){
       hideParticles();
       architectureScan(-1,false);clearPorts();
@@ -2180,7 +2184,7 @@ html[data-theme="light"] .heroX-enterprise article.hx-scan::after{background:lin
       var local=(ap*agents.length)-idx;
       architectureScan(-1,false);agentPorts(idx,true);valuePorts([]);
       sequentialAgent(ap);
-      stageParticles(paths.outgoing[idx]?[paths.outgoing[idx]]:[],local);
+      stageParticles(paths.outgoing[idx]?[paths.outgoing[idx]]:[],local,(AGENT_END-WAVE_END)/agents.length);
     }else if(t<VALUE_END){
       resetCube();
       var vp=(t-AGENT_END)/(VALUE_END-AGENT_END);
@@ -2189,7 +2193,7 @@ html[data-theme="light"] .heroX-enterprise article.hx-scan::after{background:lin
       architectureScan(-1,false);agentPorts(vidx,true);
       var targets=activateValueFan(vidx);
       valuePorts(targets);
-      stageParticles(valueRoutesForAgent(vidx),vlocal);
+      stageParticles(valueRoutesForAgent(vidx),vlocal,(VALUE_END-AGENT_END)/agents.length);
     }else{
       hideParticles();resetCube();clearActive();architectureScan(-1,false);clearPorts();
     }
