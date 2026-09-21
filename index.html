@@ -1995,6 +1995,24 @@ html[data-theme="light"] .heroX-enterprise article.hx-scan::after{background:lin
     var center=-.18+p*1.36,sigma=.115;
     var streamColors=['#42ddf6','#4da1ff','#9877ff','#2de0ce'];
     var darkMode=document.documentElement.getAttribute('data-theme')!=='light';
+
+    // One smooth travelling color for the dark-mode crest.
+    // Opacity stays fixed; only fill changes while the band passes.
+    var darkPalette=[
+      [34,188,218],
+      [72,154,225],
+      [126,111,220],
+      [43,184,173],
+      [34,188,218]
+    ];
+    var colorPos=Math.max(0,Math.min(.9999,p))*4;
+    var colorIndex=Math.floor(colorPos);
+    var colorMix=colorPos-colorIndex;
+    var ca=darkPalette[colorIndex],cb=darkPalette[colorIndex+1];
+    var travelColor='rgb('+
+      Math.round(ca[0]+(cb[0]-ca[0])*colorMix)+','+
+      Math.round(ca[1]+(cb[1]-ca[1])*colorMix)+','+
+      Math.round(ca[2]+(cb[2]-ca[2])*colorMix)+')';
     dots.forEach(function(d){
       var dx=d.nx-center;
       // Skip expensive Gaussian work for dots well outside both moving fields.
@@ -2027,8 +2045,15 @@ html[data-theme="light"] .heroX-enterprise article.hx-scan::after{background:lin
         d.el.style.opacity=String(nextOpacity);d.lastOpacity=nextOpacity;
       }
       if(darkMode){
-        if(d.el.style.getPropertyValue('fill'))d.el.style.removeProperty('fill');
-        d.fillState=-1;
+        // Color travels as one coherent band with the crest.
+        // No random selection, opacity boost, stroke, or filter is introduced.
+        if(crest>.16){
+          d.el.style.setProperty('fill',travelColor,'important');
+          d.fillState=4;
+        }else{
+          if(d.el.style.getPropertyValue('fill'))d.el.style.removeProperty('fill');
+          d.fillState=-1;
+        }
       }else{
         var nextFill=active?d.streamIndex:-1;
         if(nextFill!==d.fillState){
