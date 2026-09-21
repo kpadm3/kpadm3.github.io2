@@ -1117,6 +1117,7 @@ html[data-theme="light"] .heroX-enterprise article.hx-scan::after{background:lin
     if(particlePool[index])return particlePool[index];
     var el=document.createElementNS(NS,'circle');
     el.setAttribute('class','hx-life-particle hx-flow-comet');
+    el._hxClass='hx-life-particle hx-flow-comet';
     el.setAttribute('r','3.2');
     el.style.display='none';
     el.style.pointerEvents='none';
@@ -1138,9 +1139,9 @@ html[data-theme="light"] .heroX-enterprise article.hx-scan::after{background:lin
     // Keep the particle beneath the card node at both ends to eliminate endpoint flashes.
     var safe=.018+linear*.964;
     var pt=spec.el.getPointAtLength(spec.length*safe);
-    el.setAttribute('class','hx-life-particle hx-flow-comet '+spec.cls);
+    var cls='hx-life-particle hx-flow-comet '+spec.cls;
+    if(el._hxClass!==cls){el.setAttribute('class',cls);el._hxClass=cls;}
     el.setAttribute('cx',pt.x.toFixed(2));el.setAttribute('cy',pt.y.toFixed(2));
-    el.setAttribute('r','3.2');
     el.style.opacity=String(.72+.22*Math.sin((linear+index*.17)*Math.PI));
     el.style.display='';
     linkSvg.appendChild(el);
