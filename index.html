@@ -1974,11 +1974,11 @@ html[data-theme="light"] .heroX-enterprise article.hx-scan::after{background:lin
     t=Math.max(0,Math.min(1,t));
     return t*t*(3-2*t);
   }
-  var FLOW_SPEED=820,FLOW_STAGGER_MS=42;
+  var FLOW_DURATION_MS=450,FLOW_STAGGER_MS=42;
   function particle(spec,progress,index){
     if(!spec||!spec.el||!spec.length)return;
     var el=ensureParticle(index);
-    // Constant distance-based motion keeps connector speed identical across every layer.
+    // Linear progress gives every connector the same 450 ms travel time.
     var linear=Math.max(0,Math.min(1,progress));
     // Keep the particle beneath the card node at both ends to eliminate endpoint flashes.
     var safe=.018+linear*.964;
@@ -1986,7 +1986,7 @@ html[data-theme="light"] .heroX-enterprise article.hx-scan::after{background:lin
     el.setAttribute('class','hx-life-particle hx-flow-comet '+spec.cls);
     el.setAttribute('cx',pt.x.toFixed(2));el.setAttribute('cy',pt.y.toFixed(2));
     el.setAttribute('r',spec.secondary?'2':'3.2');
-    el.style.opacity=String(.72+.22*Math.sin((smooth01(linear)+index*.17)*Math.PI));
+    el.style.opacity=String(.72+.22*Math.sin((linear+index*.17)*Math.PI));
     el.style.display='';
     linkSvg.appendChild(el);
   }
@@ -1995,8 +1995,7 @@ html[data-theme="light"] .heroX-enterprise article.hx-scan::after{background:lin
     var elapsed=Math.max(0,Math.min(1,p))*segmentMs;
     list.forEach(function(spec,i){
       var delay=i*FLOW_STAGGER_MS;
-      var duration=(spec.length/FLOW_SPEED)*1000;
-      var local=(elapsed-delay)/duration;
+      var local=(elapsed-delay)/FLOW_DURATION_MS;
       if(local>=0&&local<=1){particle(spec,local,used);used++;}
     });
     for(var i=used;i<particlePool.length;i++)particlePool[i].style.display='none';
@@ -2018,9 +2017,8 @@ html[data-theme="light"] .heroX-enterprise article.hx-scan::after{background:lin
   function wave(p){
     // One physical AI-analysis crest crosses the fabric once per lifecycle.
     // Dark mode keeps every dot at its resting luminance/color; only geometry moves.
-    // Keep the crest moving immediately and consistently across the visible cube.
-    // A very light easing prevents a mechanical feel without creating startup hesitation.
-    var easedP=.90*p+.10*smooth01(p);
+    // Fully linear progress removes startup hesitation from the cube wave.
+    var easedP=p;
     var center=-.08+easedP*1.16,sigma=.115;
     var streamColors=['#42ddf6','#4da1ff','#9877ff','#2de0ce'];
     var darkMode=document.documentElement.getAttribute('data-theme')!=='light';
