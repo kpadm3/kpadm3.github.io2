@@ -621,3 +621,30 @@ html[data-theme="light"] body .heroX .heroX-valuebox article.teal{border-color:r
 .theme-header-host .theme-fab{position:static!important;right:auto!important;bottom:auto!important;z-index:auto!important}
 @media(max-width:1050px){.nav-positioning{font-size:.54rem;letter-spacing:.12em}}
 @media(max-width:720px){.nav-positioning{display:none}.theme-header-host{margin-left:0}}
+
+
+/* Hero capability tooltips must render above the connector SVG. */
+html body .heroX .heroX-ai{
+  z-index:4!important;
+}
+html body .heroX .heroX-ai .heroX-caps{
+  position:relative;
+  z-index:5!important;
+  overflow:visible!important;
+}
+
+/* Light-mode connector ports: replace the dark-mode outline with a clean cyan/light edge. */
+html[data-theme="light"] body .heroX .heroX-enterprise .hx-out-port,
+html[data-theme="light"] body .heroX .heroX-agents .hx-in-port,
+html[data-theme="light"] body .heroX .heroX-agents .hx-out-port,
+html[data-theme="light"] body .heroX .heroX-valuebox .hx-value-port{
+  background:#45bfd5!important;
+  box-shadow:0 0 0 2px rgba(234,245,251,.98),0 0 5px rgba(25,151,183,.38)!important;
+}
+html[data-theme="light"] body .heroX .heroX-enterprise .hx-out-port.hx-port-live,
+html[data-theme="light"] body .heroX .heroX-agents .hx-in-port.hx-port-live,
+html[data-theme="light"] body .heroX .heroX-agents .hx-out-port.hx-port-live,
+html[data-theme="light"] body .heroX .heroX-valuebox .hx-value-port.hx-port-live{
+  background:#00aeca!important;
+  box-shadow:0 0 0 2px rgba(234,245,251,.98),0 0 10px rgba(8,184,210,.76)!important;
+}
