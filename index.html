@@ -1119,16 +1119,32 @@ html[data-theme="light"] .heroX-valuebox{
 }
 .heroX-valuebox article:nth-child(2){border-color:rgba(152,119,255,.32)!important}
 
-/* Desktop routing corridor: preserves card widths but gives crossover lines room to breathe. */
+/* Balanced desktop geometry: Architecture, Agents and Value use identical layer widths. */
 @media(min-width:1201px){
   .heroX-map{
-    grid-template-columns:24% 32% 22% 6% 16%!important;
+    grid-template-columns:24% 28% 24% 24%!important;
     column-gap:0!important
   }
   .heroX-enterprise{grid-column:1}
   .heroX-ai{grid-column:2}
-  .heroX-agents{grid-column:3}
-  .heroX-value{grid-column:5}
+  .heroX-agents{
+    grid-column:3;
+    transform:none!important;
+    width:auto!important;
+    padding-left:25px!important;
+    padding-right:25px!important
+  }
+  .heroX-value{
+    grid-column:4;
+    padding-left:25px!important;
+    padding-right:25px!important
+  }
+  .heroX-valuebox article{
+    height:70px!important;
+    margin:8px 0!important;
+    grid-template-columns:62px 1fr!important;
+    padding:0 18px!important
+  }
 }
 
 /* Connector paths are SOLID. Motion comes from the pulses/tokens, not from dashed wiring. */
@@ -1714,8 +1730,8 @@ html[data-theme="light"] .heroX-enterprise article small{font-size:9px!important
 
 /* Value keeps its native 70px cards / 55px icon column. Only typography is normalized. */
 .heroX-valuebox article div{min-width:0!important}
-.heroX-valuebox article div b{margin-top:0!important;font-size:11px!important;line-height:1.15!important;letter-spacing:0!important;white-space:nowrap!important}
-.heroX-valuebox article div small{display:block!important;margin-top:5px!important;font-size:8.4px!important;line-height:1.15!important;letter-spacing:0!important;white-space:nowrap!important;font-style:normal!important}
+.heroX-valuebox article div b{margin-top:0!important;font-size:12px!important;line-height:1.15!important;letter-spacing:.03em!important;white-space:nowrap!important}
+.heroX-valuebox article div small{display:block!important;margin-top:4px!important;font-size:10px!important;line-height:1.2!important;letter-spacing:0!important;white-space:nowrap!important;font-style:normal!important}
 html[data-theme="light"] .heroX-valuebox article div small{color:#56778d!important}
 
 /* Keep Operational Value input ports as full square handoff nodes. */
