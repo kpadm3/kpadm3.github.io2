@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Enterprise Data Migration | Krishna</title>
-<meta name="description" content="Controlled source-to-target migration with governed mappings, reconciliation and cutover readiness.">
+<title>Enterprise Data Migration | Krishna Padmanabhan</title>
+<meta name="description" content="Enterprise data migration case study combining deterministic profiling and reconciliation, AI-assisted exception analysis, agent routing and human cutover approval.">
 <meta name="theme-color" content="#050b14">
 <link rel="stylesheet" href="../assets/css/site.css">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@3/dist/tabler-icons.min.css">
@@ -77,12 +77,13 @@ html[data-theme="light"]{
   <p class="hero-lead">Controlled source-to-target migration with governed mappings, reconciliation and cutover readiness.</p>
 </div>
 <div class="stack-row">
-  <span class="stack-label">Target stack</span>
+  <span class="stack-label">Proposed extension stack</span>
   <span class="stack-chip">Python</span>
   <span class="stack-chip">Enterprise LLM</span>
   <span class="stack-chip">SharePoint</span>
 </div>
-<div class="value-row" style="margin-bottom:28px">
+<p class="solution-scope-note"><strong>Case scope:</strong> The enterprise process, systems and control foundation reflects hands-on delivery patterns. AI and agent components shown below are proposed design extensions.</p>
+<div class="value-row">
   <span class="value-chip">Lower migration risk</span>
   <span class="value-chip">Faster exception handling</span>
   <span class="value-chip">Stronger reconciliation</span>
@@ -98,15 +99,15 @@ html[data-theme="light"]{
         <span class="glance-value">Inconsistent source data, unclear mappings and reconciliation gaps can create significant risk before cutover</span>
       </div>
       <div class="glance-item">
-        <span class="glance-label">My role</span>
-        <span class="glance-value">Sr. Business Analyst / Technical Product Manager</span>
+        <span class="glance-label">My contribution</span>
+        <span class="glance-value">Mapping requirements · business rules · migration validation · cutover support</span>
       </div>
       <div class="glance-item">
         <span class="glance-label">Current environment</span>
         <span class="glance-value">SAP / legacy exports · mapping specifications · validation evidence · SharePoint</span>
       </div>
       <div class="glance-item">
-        <span class="glance-label">Outcome</span>
+        <span class="glance-label">Business value</span>
         <span class="glance-value">Cleaner migration, clearer ownership and fewer unresolved exceptions at cutover</span>
       </div>
     </div>
@@ -159,7 +160,7 @@ html[data-theme="light"]{
     </div>
   </div>
   <div>
-    <div class="sol-col-label">Target architecture</div>
+    <div class="sol-col-label">Proposed AI-enabled architecture</div>
     <div class="arch-flow" style="margin-bottom:0">
       <span class="arch-step">SAP / legacy export</span><span class="arch-arrow">→</span>
       <span class="arch-step">SharePoint</span><span class="arch-arrow">→</span>
@@ -177,7 +178,7 @@ html[data-theme="light"]{
   <summary>Technical design</summary>
   <div class="details-inner">
     <div>
-      <div class="section-label" style="margin-bottom:10px">MVP scenarios</div>
+      <div class="section-label">MVP scenarios</div>
       <div class="scenarios">
         <div class="scenario">
           <span class="sc-num">Scenario 1</span>
@@ -217,7 +218,7 @@ html[data-theme="light"]{
       </div>
     </div>
     <div>
-      <div class="section-label" style="margin-bottom:10px">Controls and governance</div>
+      <div class="section-label">Controls and governance</div>
       <div class="controls-list">
         <div class="control-item">Profiling, duplicate detection and reconciliation rules remain deterministic.</div>
         <div class="control-item">AI only handles interpretation and unresolved exceptions.</div>
@@ -229,7 +230,7 @@ html[data-theme="light"]{
       </div>
     </div>
     <div>
-      <div class="section-label" style="margin-bottom:8px">Implementation note</div>
+      <div class="section-label">Implementation note</div>
       <p style="font-size:.72rem;color:var(--soft);line-height:1.55;">Azure OpenAI can serve as the managed LLM layer for interpreting migration exceptions and reconciliation failures.</p>
     </div>
   </div>
