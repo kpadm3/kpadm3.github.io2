@@ -457,7 +457,25 @@ html body .heroX .heroX-agents .hx-in-port,html body .heroX .heroX-valuebox .hx-
    The wave still moves and recolors dots,but cannot create near-white brightness spikes. */
 html:not([data-theme="light"]) body .heroX .heroX-ai .hx-cube-dots circle{
   fill:url(#hx-cube-travel-gradient)!important;
-  opacity:.52!important;
+  opacity:.56!important;
+  filter:none!important;
+  stroke:none!important;
+}
+
+/* Light-mode Intelligence Fabric uses explicit face colors.
+   These classes are created dynamically by the lifecycle script, so keep them
+   here even though they do not appear in the static HTML markup. */
+html[data-theme="light"] body .heroX .heroX-ai .hx-cube-dots .hx-dot-top{
+  fill:#18b8dd!important;
+}
+html[data-theme="light"] body .heroX .heroX-ai .hx-cube-dots .hx-dot-left{
+  fill:#08a9c8!important;
+}
+html[data-theme="light"] body .heroX .heroX-ai .hx-cube-dots .hx-dot-right{
+  fill:#6670ea!important;
+}
+html[data-theme="light"] body .heroX .heroX-ai .hx-cube-dots circle{
+  opacity:.78!important;
   filter:none!important;
   stroke:none!important;
 }
