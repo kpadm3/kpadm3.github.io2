@@ -58,8 +58,8 @@ a{color:inherit;text-decoration:none}a:hover{color:var(--accent)}button{font:inh
 .solution-grid-v3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
 .solution-card-v3{--project:var(--accent);--mx:50%;--my:50%;position:relative;isolation:isolate;overflow:hidden;min-height:390px;display:flex;flex-direction:column;padding:22px;border:1px solid var(--line);border-radius:17px;background:radial-gradient(circle at 90% 8%,color-mix(in srgb,var(--project) 15%,transparent),transparent 34%),linear-gradient(145deg,#0e1e33,#081321);opacity:1!important;transform:none!important;transition:transform .25s cubic-bezier(.22,1,.36,1),border-color .22s ease,box-shadow .22s ease}
 .solution-card-v3::before{content:"";position:absolute;inset:0;z-index:-1;background:radial-gradient(340px circle at var(--mx) var(--my),color-mix(in srgb,var(--project) 18%,transparent),transparent 68%);opacity:0;transition:opacity .22s ease}
-.solution-card-v3:hover,.solution-card-v3.is-active{transform:translateY(-8px)!important;border-color:var(--project);box-shadow:0 30px 62px rgba(0,0,0,.36),0 0 0 1px color-mix(in srgb,var(--project) 17%,transparent)}
-.solution-card-v3:hover::before,.solution-card-v3.is-active::before{opacity:1}
+.solution-card-v3:hover{transform:translateY(-8px)!important;border-color:var(--project);box-shadow:0 30px 62px rgba(0,0,0,.36),0 0 0 1px color-mix(in srgb,var(--project) 17%,transparent)}
+.solution-card-v3:hover::before{opacity:1}
 .solution-meta-v3{display:flex;justify-content:space-between;color:var(--project);font-size:.64rem;font-weight:850;text-transform:uppercase;letter-spacing:.09em}
 .solution-card-v3 h3{margin:19px 0 18px;font-size:1.24rem;letter-spacing:-.025em}
 .solution-outcome-v3{padding:13px;border-left:2px solid var(--project);background:rgba(8,19,33,.72)}
@@ -219,7 +219,7 @@ html[data-theme="light"] .cpn-pulsing{animation:cpn-pulse-light 1.1s ease infini
 }
 
 /* Solution card CTA — consistent hover reveal */
-.solution-card-v3:hover .card-cta,.solution-card-v3.is-active .card-cta{opacity:1}
+.solution-card-v3:hover .card-cta{opacity:1}
 
 /* Floating theme pill button */
 
@@ -322,7 +322,7 @@ body .solution-card-v3 .card-cta{
   opacity:0;
   pointer-events:none;
 }
-body .solution-card-v3:hover .card-cta,body .solution-card-v3:focus-within .card-cta,body .solution-card-v3.is-active .card-cta{
+body .solution-card-v3:hover .card-cta,body .solution-card-v3:focus-within .card-cta{
   opacity:1;
 }
 @media(hover:none),(pointer:coarse){
