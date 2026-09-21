@@ -3,15 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Framework | Krishna Padmanabhan</title>
-<meta name="description" content="A five-phase enterprise transformation framework: from understanding enterprise reality through structured rules, automation opportunity, controlled execution and validated delivery.">
+<title>Enterprise AI Transformation Framework | Krishna Padmanabhan</title>
+<meta name="description" content="A five-phase enterprise AI transformation framework connecting enterprise reality, deterministic controls, AI reasoning, specialized agents, human governance and measurable operational value.">
 <meta name="theme-color" content="#050b14">
 <link rel="stylesheet" href="assets/css/site.css">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@3/dist/tabler-icons.min.css">
 <style>
 :root{
   --case-cyan:#35d4f1;
-  --case-panel:rgba(7,18,31,.90);
   --case-border:rgba(53,212,241,.35);
 }
 body{
@@ -82,7 +81,9 @@ body{
 }
 .framework-step p{margin:0;color:#b2c2d4;font-size:.7rem;line-height:1.62}
 
-.how-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+.framework-support-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:14px}
+.framework-support-grid .section-block{margin-top:0}
+.how-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
 .how-card{
   padding:20px 18px;
   border:1px solid rgba(53,212,241,.26);
@@ -102,7 +103,7 @@ body{
 .how-card h3{margin:0 0 8px;color:#edf5fb;font-size:.83rem}
 .how-card p{margin:0;color:#9bafc3;font-size:.7rem;line-height:1.6}
 
-.practice-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}
+.practice-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}
 .practice-item{
   display:flex;align-items:center;gap:12px;
   padding:13px 15px;
@@ -140,17 +141,17 @@ html[data-theme="light"] .principle-bar{background:rgba(8,145,178,.06);border-co
 
 
 @media(max-width:980px){
-  .framework-steps,.how-grid{grid-template-columns:repeat(2,1fr)}
+  .framework-steps{grid-template-columns:repeat(2,1fr)}
+  .framework-support-grid{grid-template-columns:1fr}
   .framework-step:not(:last-child)::after{display:none}
   .case-cta{grid-template-columns:1fr}
   .cta-actions{justify-content:flex-start}
 }
 @media(max-width:620px){
   .case-wrap{padding:16px}
-  .framework-steps,.how-grid{grid-template-columns:1fr}
-  .practice-grid{grid-template-columns:repeat(2,1fr)}
+  .framework-steps,.how-grid,.practice-grid{grid-template-columns:1fr}
   .page-title{font-size:clamp(2.2rem,12vw,3.2rem)}
-  .section-intro{flex-direction:column}
+  .section-intro{flex-direction:column;align-items:flex-start}
 }
 @media(prefers-reduced-motion:reduce){.framework-step{transition:none}}
 .step-icon i{font-size:2rem}
@@ -212,59 +213,59 @@ html[data-theme="light"] .nav-soc-btn:hover{border-color:rgba(8,145,178,.4);colo
 
   <main>
     <section class="page-hero reveal-case">
-      <div class="page-kicker">Enterprise Transformation Framework</div>
-      <h1 class="page-title">From Enterprise Architecture to Controlled AI-Enabled Delivery</h1>
-      <p class="page-lead">I start with the enterprise architecture — processes, rules, systems, data and controls. From there, I determine what should remain deterministic, where AI can reason, where agents can orchestrate work and where human approval must remain.</p>
+      <div class="page-kicker">Enterprise AI Transformation Framework</div>
+      <h1 class="page-title">From Enterprise Reality to Governed AI &amp; Agentic Delivery</h1>
+      <p class="page-lead">I start with how the enterprise actually operates—people, processes, rules, systems, data, controls and failure points. From that foundation, I separate deterministic logic from AI reasoning, define where specialized agents can act, preserve human decision authority and connect the design to measurable operational value.</p>
     </section>
 
     <div class="principle-bar reveal-case">
-      Deterministic logic handles certainty &nbsp;·&nbsp; AI reasons through ambiguity &nbsp;·&nbsp; Agents coordinate action &nbsp;·&nbsp; Humans retain decision authority
+      Systems of record preserve truth &nbsp;·&nbsp; Deterministic logic handles certainty &nbsp;·&nbsp; AI reasons through ambiguity &nbsp;·&nbsp; Agents orchestrate bounded action &nbsp;·&nbsp; Humans retain decision authority
     </div>
 
     <section class="section-block glass-panel reveal-case">
       <div class="section-intro">
-        <h2 class="section-title">Five-Phase Delivery Framework</h2>
-        <p>Every engagement follows the same core structure, adapted to scale with the complexity and automation opportunity of the initiative.</p>
+        <h2 class="section-title">Five-Phase Transformation Framework</h2>
+        <p>A repeatable decision model for moving from enterprise complexity to controlled automation, AI reasoning, agent orchestration and measurable operational outcomes.</p>
       </div>
       <div class="framework-steps">
         <div class="framework-step">
           <div class="step-badge">1</div>
           <div class="step-icon"><i class="ti ti-eye" aria-hidden="true"></i></div>
-          <div class="step-name">Understand the Enterprise Reality</div>
-          <p>Understand the business problem, stakeholders, current process, systems, data, constraints and operational pain points before designing a solution.</p>
+          <div class="step-name">Understand Enterprise Reality</div>
+          <p>Map the business problem, stakeholders, process, systems, data, constraints, dependencies, controls and failure points before proposing technology.</p>
         </div>
         <div class="framework-step">
           <div class="step-badge">2</div>
-          <div class="step-icon"><i class="ti ti-sitemap" aria-hidden="true"></i></div>
-          <div class="step-name">Structure Rules, Data &amp; Controls</div>
-          <p>Translate complexity into requirements, process flows, business rules, data relationships, validation criteria and clear decision boundaries.</p>
+          <div class="step-icon"><i class="ti ti-shield-check" aria-hidden="true"></i></div>
+          <div class="step-name">Define the Deterministic Foundation</div>
+          <p>Translate complexity into requirements, business rules, data relationships, validation criteria, systems of record and explicit control boundaries.</p>
         </div>
         <div class="framework-step">
           <div class="step-badge">3</div>
-          <div class="step-icon"><i class="ti ti-cpu" aria-hidden="true"></i></div>
-          <div class="step-name">Identify the Right Automation</div>
-          <p>Determine what should remain deterministic, where AI can interpret ambiguity, where agents can coordinate actions and where human judgment is required.</p>
+          <div class="step-icon"><i class="ti ti-brain" aria-hidden="true"></i></div>
+          <div class="step-name">Design the AI Transformation Layer</div>
+          <p>Identify where context, reasoning and synthesis create value, define grounding and governance needs, and keep AI inside clear operational boundaries.</p>
         </div>
         <div class="framework-step">
           <div class="step-badge">4</div>
-          <div class="step-icon"><i class="ti ti-layout-kanban" aria-hidden="true"></i></div>
-          <div class="step-name">Design Controlled Execution</div>
-          <p>Define workflows, system interactions, exception handling, ownership, auditability and human-in-the-loop controls before implementation.</p>
+          <div class="step-icon"><i class="ti ti-robot" aria-hidden="true"></i></div>
+          <div class="step-name">Orchestrate Specialized Agents</div>
+          <p>Assign bounded responsibilities, tools, handoffs, exceptions and approval gates so agents coordinate work without bypassing authoritative systems or human controls.</p>
         </div>
         <div class="framework-step">
           <div class="step-badge">5</div>
           <div class="step-icon"><i class="ti ti-circle-check" aria-hidden="true"></i></div>
-          <div class="step-name">Validate &amp; Operationalize</div>
-          <p>Test against real scenarios, validate with stakeholders, run UAT, measure outcomes and support controlled release and continuous improvement.</p>
+          <div class="step-name">Validate Operational Value</div>
+          <p>Test real scenarios, validate with stakeholders, run UAT, measure business and control outcomes, release deliberately and improve from production evidence.</p>
         </div>
       </div>
     </section>
 
-    <div class="sol-two-col" style="margin-top:14px">
+    <div class="framework-support-grid">
     <section class="section-block glass-panel reveal-case">
       <div class="section-intro">
         <h2 class="section-title">How I Work</h2>
-        <p>Consistent working principles that apply across every initiative regardless of domain, scale, or delivery model.</p>
+        <p>Four principles keep transformation grounded in the enterprise instead of turning AI into a technology-first experiment.</p>
       </div>
       <div class="how-grid">
         <article class="how-card">
@@ -274,44 +275,44 @@ html[data-theme="light"] .nav-soc-btn:hover{border-color:rgba(8,145,178,.4);colo
         </article>
         <article class="how-card">
           <div class="how-icon"><i class="ti ti-chart-bar" aria-hidden="true"></i></div>
-          <h3>Structured Analysis</h3>
-          <p>Turn processes, rules, data and dependencies into explicit, traceable logic that teams can implement and validate.</p>
+          <h3>Architecture-Aware</h3>
+          <p>Trace processes across systems, data, dependencies and authoritative sources so proposed automation fits the real operating environment.</p>
         </article>
         <article class="how-card">
           <div class="how-icon"><i class="ti ti-shield-lock" aria-hidden="true"></i></div>
-          <h3>Governed Automation</h3>
-          <p>Separate deterministic rules, AI reasoning, agent actions and human decisions so automation remains explainable and controlled.</p>
+          <h3>Governance by Design</h3>
+          <p>Separate deterministic rules, AI reasoning, agent actions and human approvals so authority, exceptions and auditability are explicit from the start.</p>
         </article>
         <article class="how-card">
           <div class="how-icon"><i class="ti ti-target" aria-hidden="true"></i></div>
-          <h3>Outcome &amp; Evidence</h3>
-          <p>Validate through real scenarios, measurable results, human approval and traceable evidence rather than relying on assumed success.</p>
+          <h3>Evidence-Driven Delivery</h3>
+          <p>Validate through real scenarios, measurable outcomes, stakeholder approval and traceable evidence rather than assumed technical success.</p>
         </article>
       </div>
     </section>
 
     <section class="section-block glass-panel reveal-case">
       <div class="section-intro">
-        <h2 class="section-title">Analysis & Solution Practices</h2>
-        <p>Core techniques and practices applied throughout the delivery lifecycle to produce traceable, quality outcomes.</p>
+        <h2 class="section-title">Analysis &amp; Solution Practices</h2>
+        <p>The practical disciplines behind the framework—from enterprise discovery and control design through AI/agent assessment, validation and release.</p>
       </div>
       <div class="practice-grid">
         <div class="practice-item"><div class="practice-sym"><i class="ti ti-arrow-right" aria-hidden="true"></i></div><span>Stakeholder &amp; Process Discovery</span></div>
         <div class="practice-item"><div class="practice-sym"><i class="ti ti-arrow-right" aria-hidden="true"></i></div><span>Requirements &amp; Business Rules</span></div>
-        <div class="practice-item"><div class="practice-sym"><i class="ti ti-arrow-right" aria-hidden="true"></i></div><span>Data &amp; System Mapping</span></div>
-        <div class="practice-item"><div class="practice-sym"><i class="ti ti-arrow-right" aria-hidden="true"></i></div><span>Deterministic Validation</span></div>
-        <div class="practice-item"><div class="practice-sym"><i class="ti ti-arrow-right" aria-hidden="true"></i></div><span>AI / Agent Opportunity Assessment</span></div>
-        <div class="practice-item"><div class="practice-sym"><i class="ti ti-arrow-right" aria-hidden="true"></i></div><span>Human-in-the-Loop Design</span></div>
-        <div class="practice-item"><div class="practice-sym"><i class="ti ti-arrow-right" aria-hidden="true"></i></div><span>Testing &amp; UAT</span></div>
-        <div class="practice-item"><div class="practice-sym"><i class="ti ti-arrow-right" aria-hidden="true"></i></div><span>Release &amp; Continuous Improvement</span></div>
+        <div class="practice-item"><div class="practice-sym"><i class="ti ti-arrow-right" aria-hidden="true"></i></div><span>System &amp; Data Mapping</span></div>
+        <div class="practice-item"><div class="practice-sym"><i class="ti ti-arrow-right" aria-hidden="true"></i></div><span>Deterministic Control Design</span></div>
+        <div class="practice-item"><div class="practice-sym"><i class="ti ti-arrow-right" aria-hidden="true"></i></div><span>AI Reasoning Assessment</span></div>
+        <div class="practice-item"><div class="practice-sym"><i class="ti ti-arrow-right" aria-hidden="true"></i></div><span>Agent Orchestration Design</span></div>
+        <div class="practice-item"><div class="practice-sym"><i class="ti ti-arrow-right" aria-hidden="true"></i></div><span>Human-in-the-Loop Governance</span></div>
+        <div class="practice-item"><div class="practice-sym"><i class="ti ti-arrow-right" aria-hidden="true"></i></div><span>UAT, Release &amp; Measurement</span></div>
       </div>
     </section>
     </div>
 
     <div class="case-cta glass-panel reveal-case">
       <div class="cta-copy">
-        <h2>Want to see this framework applied to a real delivery?</h2>
-        <p>See how this approach is applied across real initiatives, from requirements through measurable outcomes.</p>
+        <h2>See the framework applied to real enterprise problems</h2>
+        <p>Explore the solution portfolio to see how enterprise context, controls, automation and AI-enabled design translate into practical delivery patterns.</p>
       </div>
       <div class="cta-actions">
         <a class="button magnetic" href="contact.html">Start a Conversation</a>

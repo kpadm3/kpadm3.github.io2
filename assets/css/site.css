@@ -265,18 +265,6 @@ html[data-theme="light"] .cta-copy p{color:#2a4060}
 /* Shared light-mode heading used by Contact and any sub-page panel heading. */
 html[data-theme="light"] .panel-heading{color:#0891b2}
 
-/* Framework page */
-html[data-theme="light"] .framework-step{background:radial-gradient(circle at 50% 0,color-mix(in srgb,var(--case-cyan) 7%,transparent),transparent 36%),linear-gradient(180deg,#ffffff,#f4f8fd);border-color:color-mix(in srgb,var(--case-cyan) 22%,rgba(192,213,232,.65))}
-html[data-theme="light"] .framework-step p{color:#607898}
-html[data-theme="light"] .how-card{background:rgba(255,255,255,.82);border-color:rgba(155,124,255,.22)}
-html[data-theme="light"] .how-card:hover{background:rgba(255,255,255,.98);border-color:rgba(155,124,255,.5)}
-html[data-theme="light"] .how-card h3{color:#0d1f35}
-html[data-theme="light"] .how-card p{color:#607898}
-html[data-theme="light"] .how-icon{border-color:rgba(155,124,255,.35);background:rgba(248,246,255,.9)}
-html[data-theme="light"] .practice-item{background:rgba(255,255,255,.75);border-color:rgba(155,124,255,.18)}
-html[data-theme="light"] .practice-item:hover{border-color:rgba(155,124,255,.45)}
-html[data-theme="light"] .practice-item span{color:#2a4060}
-
 /* Contact page */
 html[data-theme="light"] .contact-item{background:rgba(255,255,255,.82);border-color:rgba(77,163,255,.2)}
 html[data-theme="light"] a.contact-item:hover{background:rgba(255,255,255,.98);border-color:rgba(77,163,255,.52)}
