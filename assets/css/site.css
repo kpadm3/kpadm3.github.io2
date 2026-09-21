@@ -236,7 +236,7 @@ html[data-theme="light"] .glass-panel{background:linear-gradient(145deg,#ffffff,
 html[data-theme="light"] .glass-panel:hover{border-color:rgba(10,176,204,.55)}
 html[data-theme="light"] .glance-item strong{color:#0d1f35}
 html[data-theme="light"] .section-intro p{color:#607898}
-html[data-theme="light"] .cta-copy p{color:#2a4060}
+
 
 /* Shared across sub-pages */
 html[data-theme="light"] .page-lead{color:#607898}
