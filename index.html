@@ -23,9 +23,6 @@
 .sh-progs.in{opacity:1;transform:none}
 
 .solution-icon-wrap{position:relative;display:inline-flex}
-.solution-icon-ring{position:absolute;inset:-8px;border-radius:50%;border:1px solid var(--project);opacity:0;pointer-events:none}
-@keyframes icon-ring-out{0%{transform:scale(.8);opacity:.7}100%{transform:scale(2.2);opacity:0}}
-.i-ring{animation:icon-ring-out .55s ease-out forwards}
 @property --cta-angle{syntax:'<angle>';initial-value:0deg;inherits:false}
 @keyframes cta-spin{to{--cta-angle:360deg}}
 .recruiter-cta{position:relative}
@@ -33,7 +30,6 @@
 .sp-click-cue{display:inline-flex;align-items:center;gap:7px;font-size:.73rem;color:#35d4f1;opacity:.6;margin-top:9px;letter-spacing:.01em}
 .sp-click-cue i{font-size:15px}
 .sp-disc{font-size:.68rem;color:#3a5570;margin:5px 0 0;line-height:1.4;max-width:none!important;white-space:nowrap}
-.section{padding:48px 0!important}
 .section-heading h2{font-size:clamp(.95rem,1.4vw,1.1rem)!important;font-weight:700!important;line-height:1.5!important;margin-top:6px!important;color:var(--muted)!important}
 .recruiter-cta h2{font-size:clamp(1.1rem,1.9vw,1.45rem)!important;font-weight:800!important;line-height:1.35!important}
 .section{padding:36px 0!important}
@@ -45,7 +41,6 @@
 .card-cta span{font-size:10px;font-weight:800;letter-spacing:.05em;color:var(--project)}
 .card-cta i{font-size:14px;color:var(--project)}
 .solution-card-v3>a{display:none!important}
-.solution-icon-ring{display:none!important}
 .solution-aiagent{display:flex;flex-direction:column;gap:7px;margin-bottom:18px}
 .saa-row{display:flex;align-items:flex-start;gap:9px;padding:9px 11px;border-radius:9px;border:1px solid color-mix(in srgb,var(--project) 28%,var(--line));background:rgba(8,19,33,.68)}
 .saa-label{flex-shrink:0;width:42px;padding:2px 0;text-align:center;border-radius:4px;font-size:.56rem;font-weight:900;letter-spacing:.08em;text-transform:uppercase}
@@ -246,9 +241,6 @@ html[data-theme="light"] .heroX-valuebox article{border-bottom-color:rgba(8,145,
 
 }
 /* SVG coordinates aligned to the new 24/34/26/16 zone boundaries */
-@media(min-width:1201px){
-
-}
 
 
 
@@ -558,6 +550,8 @@ html[data-theme="light"] .heroX-links{
 .heroX-map .heroX-zone>header>b{margin:0;line-height:1.2}
 .heroX-map .heroX-zone>header>small{margin-top:8px;line-height:1.25}
 @media(max-width:1200px){.heroX-map .heroX-zone>header{height:auto;min-height:58px;padding-top:0}}
+
+}
 </style>
 
 <style id="heroX-cap-tooltips">
@@ -743,7 +737,7 @@ html[data-theme="light"] .heroX-enterprise article.hx-scan::after{background:lin
 
       <div class="solution-grid-v3">
         <article class="solution-card-v3" style="--project:#35d4f1" tabindex="0">
-      <div class="solution-icon-wrap"><div class="solution-icon-ring" aria-hidden="true"></div><div class="solution-icon-v3" aria-hidden="true"><i class="ti ti-adjustments"></i></div></div>
+      <div class="solution-icon-wrap"><div class="solution-icon-v3" aria-hidden="true"><i class="ti ti-adjustments"></i></div></div>
       <div class="solution-meta-v3"><span>01</span><span>Configuration</span></div>
       <h3>Enterprise Product Configuration</h3>
       <div class="solution-aiagent">
@@ -753,7 +747,7 @@ html[data-theme="light"] .heroX-enterprise article.hx-scan::after{background:lin
       <div class="solution-outcome-v3"><span>Business outcome</span><strong>More consistent configurations with fewer rule errors.</strong></div>
       <a href="solutions/enterprise-product-configuration.html">View the work →</a>
     </article><article class="solution-card-v3" style="--project:#7c8cff" tabindex="0">
-      <div class="solution-icon-wrap"><div class="solution-icon-ring" aria-hidden="true"></div><div class="solution-icon-v3" aria-hidden="true"><i class="ti ti-arrows-exchange"></i></div></div>
+      <div class="solution-icon-wrap"><div class="solution-icon-v3" aria-hidden="true"><i class="ti ti-arrows-exchange"></i></div></div>
       <div class="solution-meta-v3"><span>02</span><span>Integration</span></div>
       <h3>Enterprise Data Integration</h3>
       <div class="solution-aiagent">
@@ -763,7 +757,7 @@ html[data-theme="light"] .heroX-enterprise article.hx-scan::after{background:lin
       <div class="solution-outcome-v3"><span>Business outcome</span><strong>Reliable mappings with clear data lineage.</strong></div>
       <a href="solutions/product-data-integration.html">View the work →</a>
     </article><article class="solution-card-v3" style="--project:#ff8a5b" tabindex="0">
-      <div class="solution-icon-wrap"><div class="solution-icon-ring" aria-hidden="true"></div><div class="solution-icon-v3" aria-hidden="true"><i class="ti ti-send"></i></div></div>
+      <div class="solution-icon-wrap"><div class="solution-icon-v3" aria-hidden="true"><i class="ti ti-send"></i></div></div>
       <div class="solution-meta-v3"><span>03</span><span>Delivery</span></div>
       <h3>Requirements-to-Release Delivery</h3>
       <div class="solution-aiagent">
@@ -773,7 +767,7 @@ html[data-theme="light"] .heroX-enterprise article.hx-scan::after{background:lin
       <div class="solution-outcome-v3"><span>Business outcome</span><strong>A clearer path from business decision to production.</strong></div>
       <a href="solutions/requirements-to-release.html">View the work →</a>
     </article><article class="solution-card-v3" style="--project:#46d39a" tabindex="0">
-      <div class="solution-icon-wrap"><div class="solution-icon-ring" aria-hidden="true"></div><div class="solution-icon-v3" aria-hidden="true"><i class="ti ti-bolt"></i></div></div>
+      <div class="solution-icon-wrap"><div class="solution-icon-v3" aria-hidden="true"><i class="ti ti-bolt"></i></div></div>
       <div class="solution-meta-v3"><span>04</span><span>Automation</span></div>
       <h3>Business Reporting Automation</h3>
       <div class="solution-aiagent">
@@ -783,7 +777,7 @@ html[data-theme="light"] .heroX-enterprise article.hx-scan::after{background:lin
       <div class="solution-outcome-v3"><span>Business outcome</span><strong>Less manual reporting. More dependable outputs.</strong></div>
       <a href="solutions/automated-business-reporting.html">View the work →</a>
     </article><article class="solution-card-v3" style="--project:#f4c95d" tabindex="0">
-      <div class="solution-icon-wrap"><div class="solution-icon-ring" aria-hidden="true"></div><div class="solution-icon-v3" aria-hidden="true"><i class="ti ti-shield-check"></i></div></div>
+      <div class="solution-icon-wrap"><div class="solution-icon-v3" aria-hidden="true"><i class="ti ti-shield-check"></i></div></div>
       <div class="solution-meta-v3"><span>05</span><span>Validation</span></div>
       <h3>Technical Issue & Root-Cause Analysis</h3>
       <div class="solution-aiagent">
@@ -793,7 +787,7 @@ html[data-theme="light"] .heroX-enterprise article.hx-scan::after{background:lin
       <div class="solution-outcome-v3"><span>Business outcome</span><strong>Faster diagnosis with reusable technical knowledge.</strong></div>
       <a href="solutions/technical-issue-analysis.html">View the work →</a>
     </article><article class="solution-card-v3" style="--project:#ef6da8" tabindex="0">
-      <div class="solution-icon-wrap"><div class="solution-icon-ring" aria-hidden="true"></div><div class="solution-icon-v3" aria-hidden="true"><i class="ti ti-database-export"></i></div></div>
+      <div class="solution-icon-wrap"><div class="solution-icon-v3" aria-hidden="true"><i class="ti ti-database-export"></i></div></div>
       <div class="solution-meta-v3"><span>06</span><span>Migration</span></div>
       <h3>Enterprise Data Migration</h3>
       <div class="solution-aiagent">
@@ -831,27 +825,27 @@ html[data-theme="light"] .heroX-enterprise article.hx-scan::after{background:lin
             <div class="cw-status"><span class="cw-online"></span>Online now</div>
           </div>
         </div>
-        <button class="cw-close" onclick="toggleChat()" aria-label="Close chat">&#x2715;</button>
+        <button class="cw-close" type="button" onclick="toggleChat()" aria-label="Close chat">&#x2715;</button>
       </div>
       <div class="cw-msgs" id="cwMsgs">
         <div class="cw-bubble ai">
           Hi. I know Krishna's background, programs, and experience well. What would you like to know?
           <div class="cw-chips">
-            <button class="cw-chip" onclick="cwSendChip(this,'recruiter','I am a recruiter — give me the summary')">I am a recruiter — give me the summary</button>
-            <button class="cw-chip" onclick="cwSendChip(this,'ai','What is your AI transformation experience?')">What is your AI transformation experience?</button>
-            <button class="cw-chip" onclick="cwSendChip(this,'programs','Walk me through one of your programs')">Walk me through one of your programs</button>
-            <button class="cw-chip" onclick="cwSendChip(this,'diff','What makes you different from other BAs?')">What makes you different from other BAs?</button>
+            <button class="cw-chip" type="button" onclick="cwSendChip(this,'recruiter','I am a recruiter. Give me the summary')">I am a recruiter. Give me the summary</button>
+            <button class="cw-chip" type="button" onclick="cwSendChip(this,'ai','What is your AI transformation experience?')">What is your AI transformation experience?</button>
+            <button class="cw-chip" type="button" onclick="cwSendChip(this,'programs','Walk me through one of your programs')">Walk me through one of your programs</button>
+            <button class="cw-chip" type="button" onclick="cwSendChip(this,'diff','What makes you different from other BAs?')">What makes you different from other BAs?</button>
           </div>
         </div>
       </div>
       <div class="cw-input-row">
-        <input class="cw-input" id="cwInput" type="text" placeholder="Ask anything about Krishna...">
-        <button class="cw-send" onclick="cwSendCustom()">
+        <input class="cw-input" id="cwInput" type="text" aria-label="Ask about Krishna" placeholder="Ask anything about Krishna...">
+        <button class="cw-send" type="button" onclick="cwSendCustom()" aria-label="Send message">
           <svg viewBox="0 0 24 24"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
         </button>
       </div>
     </div>
-    <button class="chat-fab-btn" onclick="toggleChat()" id="chatFabBtn">
+    <button class="chat-fab-btn" type="button" onclick="toggleChat()" id="chatFabBtn">
       <span class="chat-fab-dot"></span>
       <span>Ask about Krishna</span>
     </button>
@@ -910,11 +904,14 @@ html[data-theme="light"] .heroX-enterprise article.hx-scan::after{background:lin
       cta.innerHTML='<span>Read the program</span><i class="ti ti-arrow-right" aria-hidden="true"></i>';
       card.appendChild(cta);
       var link=card.querySelector('a');
-      var ring=card.querySelector('.solution-icon-ring');
       var busy=false;
+      var hoverTimer=0;
+      var heading=card.querySelector('h3');
+      card.setAttribute('role','link');
+      if(heading)card.setAttribute('aria-label','Open '+heading.textContent.trim());
       card.addEventListener('mouseenter',function(){
-        if(ring){ring.classList.remove('i-ring');void ring.offsetWidth;ring.classList.add('i-ring');}
         if(busy)return;busy=true;
+        if(hoverTimer)clearTimeout(hoverTimer);
         cta.style.opacity='0';
         scan.style.transition='none';
         scan.style.opacity='.9';
@@ -922,16 +919,28 @@ html[data-theme="light"] .heroX-enterprise article.hx-scan::after{background:lin
         void scan.offsetWidth;
         scan.style.transition='top .55s linear';
         scan.style.top='100%';
-        setTimeout(function(){cta.style.opacity='1';busy=false;},560);
+        hoverTimer=setTimeout(function(){
+          if(card.matches(':hover'))cta.style.opacity='1';
+          busy=false;
+          hoverTimer=0;
+        },560);
       });
       card.addEventListener('mouseleave',function(){
-        if(ring)ring.classList.remove('i-ring');
+        if(hoverTimer)clearTimeout(hoverTimer);
+        hoverTimer=0;
+        busy=false;
         cta.style.opacity='0';
         scan.style.opacity='0';
         scan.style.top='-4px';
       });
       card.addEventListener('click',function(e){
         if(!e.target.closest('a')&&link)link.click();
+      });
+      card.addEventListener('keydown',function(e){
+        if((e.key==='Enter'||e.key===' ')&&!e.target.closest('a,button')&&link){
+          e.preventDefault();
+          link.click();
+        }
       });
     });
   }
@@ -959,7 +968,7 @@ html[data-theme="light"] .heroX-enterprise article.hx-scan::after{background:lin
   window.cwSendCustom=function(){
     var inp=document.getElementById('cwInput');var val=inp.value.trim();if(!val)return;
     inp.value='';addUser(val);addTyping();
-    setTimeout(function(){addAI('I'm currently set up to answer specific questions about Krishna's experience and enterprise programs. Try one of the suggested questions above.');},900);
+    setTimeout(function(){addAI("I'm currently set up to answer specific questions about Krishna's experience and enterprise programs. Try one of the suggested questions above.");},900);
   };
   window.toggleChat=function(){
     var w=document.getElementById('chatWidget');
