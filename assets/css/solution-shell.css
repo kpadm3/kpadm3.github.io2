@@ -1,3 +1,21 @@
+/* Keep the global portfolio header identical even when a solution defines local accent variables. */
+body.solution-page .site-header{
+  --text:#f5f8fc;
+  --soft:#d8e4ef;
+  --muted:#91a5bb;
+  --line:#243c5a;
+  --accent:#35d4f1;
+  --accent-2:#8c70ff;
+}
+html[data-theme="light"] body.solution-page .site-header{
+  --text:#0d1f35;
+  --soft:#2a4060;
+  --muted:#607898;
+  --line:#c0d5e8;
+  --accent:#0891b2;
+  --accent-2:#6c50e0;
+}
+
 /* Shared portfolio shell for detailed solution pages.
    Header, progress bar and theme controls intentionally inherit the global site.css shell. */
 

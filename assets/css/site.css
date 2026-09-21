@@ -609,3 +609,15 @@ html[data-theme="light"] body .heroX .heroX-valuebox article{
 }
 html[data-theme="light"] body .heroX .heroX-valuebox article.violet{border-color:rgba(147,112,255,.28)!important}
 html[data-theme="light"] body .heroX .heroX-valuebox article.teal{border-color:rgba(44,225,205,.28)!important}
+
+
+/* Shared portfolio header presentation used by landing and detail pages. */
+.nav-positioning{display:flex;align-items:center;gap:9px;text-decoration:none;font-size:.62rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--accent);white-space:nowrap}
+.nav-positioning span{color:var(--muted);font-weight:400}
+.nav-social{display:flex;align-items:center;gap:7px}
+.nav-soc-btn{width:28px;height:28px;border:1px solid #1e3248;border-radius:6px;display:flex;align-items:center;justify-content:center;color:#5a7a94;font-size:15px;text-decoration:none;transition:border-color .18s,color .18s}
+.nav-soc-btn:hover{border-color:#35d4f166;color:#35d4f1}
+.theme-header-host{display:flex;align-items:center;margin-left:4px}
+.theme-header-host .theme-fab{position:static!important;right:auto!important;bottom:auto!important;z-index:auto!important}
+@media(max-width:1050px){.nav-positioning{font-size:.54rem;letter-spacing:.12em}}
+@media(max-width:720px){.nav-positioning{display:none}.theme-header-host{margin-left:0}}
