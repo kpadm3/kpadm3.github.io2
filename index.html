@@ -3,7 +3,6 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
-  <script>(() => { const s = localStorage.getItem('kp-theme'); const t = s || (matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark'); document.documentElement.setAttribute('data-theme', t); })();</script>
   <meta name="description" content="Enterprise product, technical program delivery and AI transformation portfolio covering enterprise systems, automation, agentic solution design and governed AI-enabled workflows.">
 <meta name="author" content="Krishna Padmanabhan">
 <meta property="og:type" content="website">
@@ -561,6 +560,91 @@ html[data-theme="light"] .heroX-links{
 @media(max-width:1200px){.heroX-map .heroX-zone>header{height:auto;min-height:58px;padding-top:0}}
 </style>
 
+<style id="heroX-cap-tooltips">
+.heroX-caps span{position:relative;cursor:help;outline:none;transition:color .24s ease,opacity .24s ease,text-shadow .24s ease,background .24s ease,border-color .24s ease,box-shadow .24s ease}
+.heroX-caps span::after{content:attr(data-tip);position:absolute;left:50%;bottom:calc(100% + 10px);transform:translate(-50%,4px);width:max-content;max-width:260px;padding:7px 10px;border:1px solid rgba(125,238,255,.18);border-radius:7px;background:#08101d;color:#dceaf3;font-size:10px;font-weight:500;line-height:1.35;letter-spacing:.01em;text-transform:none;white-space:normal;box-shadow:0 8px 22px rgba(0,0,0,.22);opacity:0;visibility:hidden;pointer-events:none;transition:opacity .16s ease,transform .16s ease,visibility .16s ease;z-index:20}
+.heroX-caps span::before{content:"";position:absolute;left:50%;bottom:calc(100% + 5px);width:9px;height:9px;transform:translateX(-50%) rotate(45deg);background:#08101d;border-right:1px solid rgba(125,238,255,.18);border-bottom:1px solid rgba(125,238,255,.18);opacity:0;visibility:hidden;pointer-events:none;transition:opacity .16s ease,visibility .16s ease;z-index:21}
+.heroX-caps span:hover::after,.heroX-caps span:focus-visible::after{opacity:1;visibility:visible;transform:translate(-50%,0)}
+.heroX-caps span:hover::before,.heroX-caps span:focus-visible::before{opacity:1;visibility:visible}
+.heroX-caps span:hover,.heroX-caps span:focus-visible,.heroX-caps span.hx-cap-active{color:#7deeff}
+.heroX-caps span.hx-cap-active{opacity:1;text-shadow:0 0 10px rgba(89,239,255,.28)}
+
+html[data-theme="light"] .heroX-caps span:hover,html[data-theme="light"] .heroX-caps span:focus-visible,html[data-theme="light"] .heroX-caps span.hx-cap-active{background:#f5fcff!important;color:#17627b!important;border-color:rgba(8,145,178,.58)!important;box-shadow:0 3px 10px rgba(18,119,151,.10)!important;text-shadow:none!important}
+html[data-theme="light"] .heroX-caps span::after{background:#ffffff;color:#294c64;border-color:rgba(17,142,172,.24);box-shadow:0 8px 22px rgba(25,72,98,.13)}
+html[data-theme="light"] .heroX-caps span::before{background:#ffffff;border-right-color:rgba(17,142,172,.24);border-bottom-color:rgba(17,142,172,.24)}
+@media(max-width:700px){.heroX-caps span::after{max-width:190px;font-size:9px}}
+</style>
+<style id="heroX-signal-port-effects">
+.heroX-agents article div small{display:block;margin-top:4px;font-size:9px;line-height:1.25;letter-spacing:.07em;color:#91a8bb;font-style:normal}
+.heroX-valuebox article div small{color:#91a8bb}
+.heroX-map article{overflow:visible}
+.heroX-map article::after{
+  content:"";position:absolute;inset:1px;border-radius:inherit;pointer-events:none;opacity:0;
+  background:linear-gradient(90deg,transparent 0%,rgba(67,229,251,.035) 35%,rgba(125,238,255,.18) 50%,rgba(67,229,251,.035) 65%,transparent 100%);
+  background-size:220% 100%;background-position:120% 0;
+}
+.heroX-enterprise article.hx-scan::after{opacity:1;animation:hxArchitectureScan .82s ease-in-out infinite}
+@keyframes hxArchitectureScan{0%{background-position:125% 0}100%{background-position:-25% 0}}
+.hx-out-port,.hx-in-port,.hx-value-port{
+  transition:background .18s ease,box-shadow .18s ease,transform .18s ease!important;
+}
+.hx-port-live{
+  background:#7deeff!important;
+  box-shadow:0 0 0 2px rgba(6,37,61,.98),0 0 10px rgba(67,229,251,.95)!important;
+}
+@media (prefers-reduced-motion:reduce){.heroX-enterprise article.hx-scan::after{animation:none;opacity:.08}}
+</style>
+<style id="heroX-light-polish-final">
+/* LIGHT MODE HERO ONLY — presentation overrides; geometry,HTML and lifecycle remain locked. */
+html[data-theme="light"] .heroX{
+  background:radial-gradient(ellipse at 58% 12%,rgba(29,165,211,.10),transparent 35%),linear-gradient(180deg,#f3f9fd 0%,#eaf5fb 55%,#f4f9fc 100%)!important;
+}
+html[data-theme="light"] .heroX:before{opacity:.035!important}
+html[data-theme="light"] .heroX:after{opacity:.12!important;filter:none!important;mask-image:linear-gradient(to top,rgba(0,0,0,.52) 8%,transparent 78%)!important}
+html[data-theme="light"] .heroX-map .heroX-zone{background:linear-gradient(180deg,rgba(255,255,255,.08),rgba(212,236,247,.055))!important}
+html[data-theme="light"] .heroX-zone header>b{color:#087f9e!important;text-shadow:none!important;font-weight:800!important}
+html[data-theme="light"] .heroX-zone header small{color:#4c6d82!important;font-weight:600!important}
+
+/* Same light-mode surface treatment; existing card sizes and positions are untouched. */
+html[data-theme="light"] .heroX-enterprise article,html[data-theme="light"] .heroX-agents article,html[data-theme="light"] .heroX-valuebox article{
+  background:linear-gradient(100deg,rgba(255,255,255,.95),rgba(245,251,254,.90))!important;
+  border-color:rgba(21,135,170,.27)!important;
+  box-shadow:0 5px 15px rgba(25,72,98,.075),inset 0 0 18px rgba(40,185,220,.025)!important;
+  color:#17364d!important;
+}
+html[data-theme="light"] .heroX-enterprise article b,html[data-theme="light"] .heroX-agents article b,html[data-theme="light"] .heroX-valuebox article b{color:#17364d!important}
+html[data-theme="light"] .heroX-enterprise article small,html[data-theme="light"] .heroX-agents article small,html[data-theme="light"] .heroX-valuebox article small{color:#486a80!important;opacity:1!important}
+
+/* Improve Architecture helper readability without changing card geometry. */
+html[data-theme="light"] .heroX-enterprise article small{font-size:9px!important;font-weight:500!important;letter-spacing:0!important;white-space:nowrap!important}
+
+/* Value keeps its native 70px cards / 55px icon column. Only typography is normalized. */
+.heroX-valuebox article div{min-width:0!important}
+.heroX-valuebox article div b{white-space:nowrap!important}
+.heroX-valuebox article div small{white-space:nowrap!important;font-style:normal!important}
+html[data-theme="light"] .heroX-valuebox article div small{color:#56778d!important}
+
+/* Intelligence Fabric keeps the existing lifecycle while light mode gets a contained AI halo. */
+html[data-theme="light"] .heroX-ai .hx-dotcube{
+  background:radial-gradient(ellipse at center,rgba(32,188,216,.115) 0%,rgba(94,109,232,.045) 38%,rgba(255,255,255,0) 69%)!important;
+  filter:drop-shadow(0 8px 14px rgba(31,139,171,.09))!important;
+}
+html[data-theme="light"] .heroX-ai .hx-cube-dots circle{opacity:.79!important}
+
+html[data-theme="light"] .heroX-caps span{background:rgba(249,253,255,.88)!important;color:#42677e!important;border-color:rgba(20,145,178,.38)!important;box-shadow:0 2px 7px rgba(25,72,98,.035)!important}
+html[data-theme="light"] .hx-flow-path{opacity:.66!important;filter:drop-shadow(0 0 1px rgba(32,158,192,.30))!important}
+html[data-theme="light"] .hx-flow-path.secondary{opacity:.66!important}
+html[data-theme="light"] .hx-flow-comet{filter:drop-shadow(0 0 3px rgba(22,157,190,.72))!important}
+
+html[data-theme="light"] .heroX-enterprise article.hx-scan::after{background:linear-gradient(90deg,transparent 0%,rgba(23,173,204,.03) 34%,rgba(23,173,204,.19) 50%,rgba(23,173,204,.03) 66%,transparent 100%)!important}
+
+@media(max-width:1200px){
+  .heroX-valuebox article div b,.heroX-valuebox article div small{white-space:normal!important}
+  html[data-theme="light"] .heroX-enterprise article small{white-space:normal!important}
+}
+@media(prefers-reduced-motion:reduce){html[data-theme="light"] .heroX-enterprise article.hx-scan::after{animation:none!important;opacity:.08!important}}
+</style>
+<script>(() => { const s = localStorage.getItem('kp-theme'); const t = s || (matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark'); document.documentElement.setAttribute('data-theme', t); })();</script>
 </head>
 <body>
   <div class="page-progress" data-progress></div>
@@ -887,92 +971,11 @@ html[data-theme="light"] .heroX-links{
 </script>
 
 
-<style id="heroX-cap-tooltips">
-.heroX-caps span{position:relative;cursor:help;outline:none;transition:color .24s ease,opacity .24s ease,text-shadow .24s ease,background .24s ease,border-color .24s ease,box-shadow .24s ease}
-.heroX-caps span::after{content:attr(data-tip);position:absolute;left:50%;bottom:calc(100% + 10px);transform:translate(-50%,4px);width:max-content;max-width:260px;padding:7px 10px;border:1px solid rgba(125,238,255,.18);border-radius:7px;background:#08101d;color:#dceaf3;font-size:10px;font-weight:500;line-height:1.35;letter-spacing:.01em;text-transform:none;white-space:normal;box-shadow:0 8px 22px rgba(0,0,0,.22);opacity:0;visibility:hidden;pointer-events:none;transition:opacity .16s ease,transform .16s ease,visibility .16s ease;z-index:20}
-.heroX-caps span::before{content:"";position:absolute;left:50%;bottom:calc(100% + 5px);width:9px;height:9px;transform:translateX(-50%) rotate(45deg);background:#08101d;border-right:1px solid rgba(125,238,255,.18);border-bottom:1px solid rgba(125,238,255,.18);opacity:0;visibility:hidden;pointer-events:none;transition:opacity .16s ease,visibility .16s ease;z-index:21}
-.heroX-caps span:hover::after,.heroX-caps span:focus-visible::after{opacity:1;visibility:visible;transform:translate(-50%,0)}
-.heroX-caps span:hover::before,.heroX-caps span:focus-visible::before{opacity:1;visibility:visible}
-.heroX-caps span:hover,.heroX-caps span:focus-visible,.heroX-caps span.hx-cap-active{color:#7deeff}
-.heroX-caps span.hx-cap-active{opacity:1;text-shadow:0 0 10px rgba(89,239,255,.28)}
-
-html[data-theme="light"] .heroX-caps span:hover,html[data-theme="light"] .heroX-caps span:focus-visible,html[data-theme="light"] .heroX-caps span.hx-cap-active{background:#f5fcff!important;color:#17627b!important;border-color:rgba(8,145,178,.58)!important;box-shadow:0 3px 10px rgba(18,119,151,.10)!important;text-shadow:none!important}
-html[data-theme="light"] .heroX-caps span::after{background:#ffffff;color:#294c64;border-color:rgba(17,142,172,.24);box-shadow:0 8px 22px rgba(25,72,98,.13)}
-html[data-theme="light"] .heroX-caps span::before{background:#ffffff;border-right-color:rgba(17,142,172,.24);border-bottom-color:rgba(17,142,172,.24)}
-@media(max-width:700px){.heroX-caps span::after{max-width:190px;font-size:9px}}
-</style>
 
 
-<style id="heroX-signal-port-effects">
-.heroX-agents article div small{display:block;margin-top:4px;font-size:9px;line-height:1.25;letter-spacing:.07em;color:#91a8bb;font-style:normal}
-.heroX-valuebox article div small{color:#91a8bb}
-.heroX-map article{overflow:visible}
-.heroX-map article::after{
-  content:"";position:absolute;inset:1px;border-radius:inherit;pointer-events:none;opacity:0;
-  background:linear-gradient(90deg,transparent 0%,rgba(67,229,251,.035) 35%,rgba(125,238,255,.18) 50%,rgba(67,229,251,.035) 65%,transparent 100%);
-  background-size:220% 100%;background-position:120% 0;
-}
-.heroX-enterprise article.hx-scan::after{opacity:1;animation:hxArchitectureScan .82s ease-in-out infinite}
-@keyframes hxArchitectureScan{0%{background-position:125% 0}100%{background-position:-25% 0}}
-.hx-out-port,.hx-in-port,.hx-value-port{
-  transition:background .18s ease,box-shadow .18s ease,transform .18s ease!important;
-}
-.hx-port-live{
-  background:#7deeff!important;
-  box-shadow:0 0 0 2px rgba(6,37,61,.98),0 0 10px rgba(67,229,251,.95)!important;
-}
-@media (prefers-reduced-motion:reduce){.heroX-enterprise article.hx-scan::after{animation:none;opacity:.08}}
-</style>
-<style id="heroX-light-polish-final">
-/* LIGHT MODE HERO ONLY — presentation overrides; geometry,HTML and lifecycle remain locked. */
-html[data-theme="light"] .heroX{
-  background:radial-gradient(ellipse at 58% 12%,rgba(29,165,211,.10),transparent 35%),linear-gradient(180deg,#f3f9fd 0%,#eaf5fb 55%,#f4f9fc 100%)!important;
-}
-html[data-theme="light"] .heroX:before{opacity:.035!important}
-html[data-theme="light"] .heroX:after{opacity:.12!important;filter:none!important;mask-image:linear-gradient(to top,rgba(0,0,0,.52) 8%,transparent 78%)!important}
-html[data-theme="light"] .heroX-map .heroX-zone{background:linear-gradient(180deg,rgba(255,255,255,.08),rgba(212,236,247,.055))!important}
-html[data-theme="light"] .heroX-zone header>b{color:#087f9e!important;text-shadow:none!important;font-weight:800!important}
-html[data-theme="light"] .heroX-zone header small{color:#4c6d82!important;font-weight:600!important}
 
-/* Same light-mode surface treatment; existing card sizes and positions are untouched. */
-html[data-theme="light"] .heroX-enterprise article,html[data-theme="light"] .heroX-agents article,html[data-theme="light"] .heroX-valuebox article{
-  background:linear-gradient(100deg,rgba(255,255,255,.95),rgba(245,251,254,.90))!important;
-  border-color:rgba(21,135,170,.27)!important;
-  box-shadow:0 5px 15px rgba(25,72,98,.075),inset 0 0 18px rgba(40,185,220,.025)!important;
-  color:#17364d!important;
-}
-html[data-theme="light"] .heroX-enterprise article b,html[data-theme="light"] .heroX-agents article b,html[data-theme="light"] .heroX-valuebox article b{color:#17364d!important}
-html[data-theme="light"] .heroX-enterprise article small,html[data-theme="light"] .heroX-agents article small,html[data-theme="light"] .heroX-valuebox article small{color:#486a80!important;opacity:1!important}
 
-/* Improve Architecture helper readability without changing card geometry. */
-html[data-theme="light"] .heroX-enterprise article small{font-size:9px!important;font-weight:500!important;letter-spacing:0!important;white-space:nowrap!important}
 
-/* Value keeps its native 70px cards / 55px icon column. Only typography is normalized. */
-.heroX-valuebox article div{min-width:0!important}
-.heroX-valuebox article div b{white-space:nowrap!important}
-.heroX-valuebox article div small{white-space:nowrap!important;font-style:normal!important}
-html[data-theme="light"] .heroX-valuebox article div small{color:#56778d!important}
-
-/* Intelligence Fabric keeps the existing lifecycle while light mode gets a contained AI halo. */
-html[data-theme="light"] .heroX-ai .hx-dotcube{
-  background:radial-gradient(ellipse at center,rgba(32,188,216,.115) 0%,rgba(94,109,232,.045) 38%,rgba(255,255,255,0) 69%)!important;
-  filter:drop-shadow(0 8px 14px rgba(31,139,171,.09))!important;
-}
-html[data-theme="light"] .heroX-ai .hx-cube-dots circle{opacity:.79!important}
-
-html[data-theme="light"] .heroX-caps span{background:rgba(249,253,255,.88)!important;color:#42677e!important;border-color:rgba(20,145,178,.38)!important;box-shadow:0 2px 7px rgba(25,72,98,.035)!important}
-html[data-theme="light"] .hx-flow-path{opacity:.66!important;filter:drop-shadow(0 0 1px rgba(32,158,192,.30))!important}
-html[data-theme="light"] .hx-flow-path.secondary{opacity:.66!important}
-html[data-theme="light"] .hx-flow-comet{filter:drop-shadow(0 0 3px rgba(22,157,190,.72))!important}
-
-html[data-theme="light"] .heroX-enterprise article.hx-scan::after{background:linear-gradient(90deg,transparent 0%,rgba(23,173,204,.03) 34%,rgba(23,173,204,.19) 50%,rgba(23,173,204,.03) 66%,transparent 100%)!important}
-
-@media(max-width:1200px){
-  .heroX-valuebox article div b,.heroX-valuebox article div small{white-space:normal!important}
-  html[data-theme="light"] .heroX-enterprise article small{white-space:normal!important}
-}
-@media(prefers-reduced-motion:reduce){html[data-theme="light"] .heroX-enterprise article.hx-scan::after{animation:none!important;opacity:.08!important}}
-</style>
 
 <!-- HERO X COORDINATED AI LIFECYCLE -->
 <script>
