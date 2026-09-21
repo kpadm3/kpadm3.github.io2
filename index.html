@@ -1923,33 +1923,27 @@ html[data-theme="light"] .heroX-enterprise article.hx-scan::after{background:lin
     cubeMode='reset';capIndex=-1;
   }
   function wave(p){
-    // One physical crest crosses the fabric once per lifecycle.
-    // Four Architecture colors follow one another as takeover fronts inside that same pass.
+    // One physical AI-analysis crest crosses the fabric once per lifecycle.
+    // All four Architecture stream colors participate inside that single pass as stable mixed clusters.
     var center=-.18+p*1.36,sigma=.115;
     var streamColors=['#42ddf6','#4da1ff','#9877ff','#2de0ce'];
-    var colorProgress=Math.max(0,Math.min(1,(p-.03)/.94));
-    var frontSpacing=.18,frontWidth=.045;
-    var fronts=[
-      -0.10+colorProgress*1.28,
-      -0.10+(colorProgress-frontSpacing)*1.28,
-      -0.10+(colorProgress-frontSpacing*2)*1.28,
-      -0.10+(colorProgress-frontSpacing*3)*1.28
-    ];
-    dots.forEach(function(d){
+    dots.forEach(function(d,index){
       var z=(d.nx-center)/sigma;
       var crest=Math.exp(-.5*z*z);
       var depth=d.face===0?1:(d.face===1?.88:.94);
       var dy=-15.5*crest*depth;
       d.el.setAttribute('cy',(d.baseY+dy).toFixed(2));
-      d.el.style.opacity=String(Math.min(1,d.baseOpacity+crest*.10));
 
-      // Each front begins at the left edge and progressively takes over the whole fabric.
-      // Later Architecture colors replace earlier ones back-to-back; nothing repeats inside this lifecycle.
-      var activeColor=-1;
-      for(var ci=0;ci<fronts.length;ci++){
-        if(fronts[ci]>=d.nx-frontWidth){activeColor=ci;}
-      }
-      d.el.style.fill=activeColor>=0?streamColors[activeColor]:'';
+      // Deterministic per-dot stream identity: varied enough to feel analytical, stable enough to avoid flicker.
+      var streamIndex=(index*7+d.face*11+Math.floor(d.nx*17))%4;
+      var activation=Math.max(0,Math.min(1,(crest-.055)/.945));
+      // A wider color envelope trails the crest briefly so multiple Architecture inputs are visible together.
+      var trailCenter=center-.075;
+      var trailZ=(d.nx-trailCenter)/(.185);
+      var trail=Math.exp(-.5*trailZ*trailZ);
+      var analysis=Math.max(activation,trail*.82);
+      d.el.style.opacity=String(Math.min(1,d.baseOpacity+analysis*.22));
+      d.el.style.fill=analysis>.07?streamColors[streamIndex]:'';
     });
     cubeMode='wave';
     if(capEls.length===5){
