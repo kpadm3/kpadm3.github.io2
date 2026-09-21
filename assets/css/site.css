@@ -204,18 +204,6 @@ html[data-theme="light"] .cpn-pulsing{animation:cpn-pulse-light 1.1s ease infini
 .solution-card-v3:hover .card-cta,.solution-card-v3.is-active .card-cta{opacity:1}
 
 /* Floating theme pill button */
-@keyframes fab-enter{from{transform:translateX(72px);opacity:0}to{transform:none;opacity:1}}
-.theme-fab{position:fixed;bottom:28px;right:24px;z-index:7500;display:flex;align-items:center;gap:7px;padding:8px 14px 8px 10px;border-radius:24px;border:1px solid rgba(255,255,255,.14);background:rgba(3,9,20,.85);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);color:rgba(255,255,255,.72);font-size:12px;font-weight:700;letter-spacing:.03em;cursor:pointer;transition:border-color .18s,color .18s,background .18s;box-shadow:0 4px 20px rgba(0,0,0,.4);font-family:inherit;line-height:1;animation:fab-enter .55s cubic-bezier(.22,1,.36,1) .9s both}
-.theme-fab i{font-size:15px;flex-shrink:0}
-.theme-fab:hover{border-color:rgba(53,212,241,.55);color:#35d4f1}
-html[data-theme="light"] .theme-fab{background:rgba(240,245,251,.92);border-color:rgba(192,213,232,.75);color:#607898;box-shadow:0 4px 20px rgba(13,31,53,.12)}
-html[data-theme="light"] .theme-fab:hover{border-color:rgba(10,176,204,.55);color:#0ab0cc}
-/* Tooltip that appears above the fab */
-.theme-fab-tip{position:absolute;bottom:calc(100% + 10px);right:-1px;white-space:nowrap;padding:6px 11px;border-radius:9px;border:1px solid rgba(53,212,241,.32);background:rgba(3,9,20,.93);backdrop-filter:blur(10px);color:#35d4f1;font-size:11px;font-weight:700;letter-spacing:.02em;pointer-events:none;opacity:0;transform:translateY(5px);transition:opacity .32s ease,transform .32s ease}
-.theme-fab-tip::after{content:'';position:absolute;top:100%;right:14px;border:5px solid transparent;border-top-color:rgba(53,212,241,.32)}
-.theme-fab-tip.vis{opacity:1;transform:none}
-html[data-theme="light"] .theme-fab-tip{background:rgba(240,245,251,.97);border-color:rgba(10,176,204,.38);color:#0ab0cc}
-html[data-theme="light"] .theme-fab-tip::after{border-top-color:rgba(10,176,204,.38)}
 
 /* ── Light theme ─────────────────────────────────────── */
 html[data-theme="light"]{
@@ -240,10 +228,6 @@ html[data-theme="light"] .sp-click-cue{color:#0891b2;opacity:.85}
 /* Card CTA overlay on light cards */
 html[data-theme="light"] .card-cta{background:rgba(240,245,251,.93);border-top-color:var(--project)}
 html[data-theme="light"] .section-heading .sp-disc{color:#607898}
-/* Fab and fab-tip accent update */
-html[data-theme="light"] .theme-fab:hover{border-color:rgba(8,145,178,.55);color:#0891b2}
-html[data-theme="light"] .theme-fab-tip{border-color:rgba(8,145,178,.38);color:#0891b2}
-html[data-theme="light"] .theme-fab-tip::after{border-top-color:rgba(8,145,178,.38)}
 html[data-theme="light"] .nav-soc-btn{border-color:rgba(192,213,232,.8);color:#607898}
 html[data-theme="light"] .nav-soc-btn:hover{border-color:color-mix(in srgb,#0ab0cc 55%,transparent);color:#0ab0cc}
 /* Solution page nav circles */
@@ -484,8 +468,8 @@ html[data-theme="light"] body .heroX .heroX-valuebox article.teal{border-color:r
 .nav-social{display:flex;align-items:center;gap:7px}
 .nav-soc-btn{width:28px;height:28px;border:1px solid #1e3248;border-radius:6px;display:flex;align-items:center;justify-content:center;color:#5a7a94;font-size:15px;text-decoration:none;transition:border-color .18s,color .18s}
 .nav-soc-btn:hover{border-color:#35d4f166;color:#35d4f1}
-.theme-header-host{display:flex;align-items:center;margin-left:4px}
-.theme-header-host .theme-fab{position:static!important;right:auto!important;bottom:auto!important;z-index:auto!important}
+.theme-header-host{display:flex;align-items:center;margin-left:0}
+.theme-toggle-btn{padding:0;background:transparent;cursor:pointer;flex:0 0 28px;appearance:none}
 @media(max-width:1050px){.nav-positioning{font-size:.54rem;letter-spacing:.12em}}
 @media(max-width:720px){.nav-positioning{display:none}.theme-header-host{margin-left:0}}
 

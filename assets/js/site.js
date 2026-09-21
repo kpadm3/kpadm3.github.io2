@@ -103,15 +103,14 @@
 (() => {
   const THEME_KEY = 'kp-theme';
   const root = document.documentElement;
+  const host = document.querySelector('.theme-header-host');
+  if (!host) return;
 
-  // Floating pill button
-  const fab = document.createElement('button');
-  fab.className = 'theme-fab';
-  fab.setAttribute('aria-label', 'Toggle light/dark theme');
-  fab.innerHTML = '<i class="ti ti-sun" aria-hidden="true"></i><span class="theme-fab-lbl">Light</span><span class="theme-fab-tip"></span>';
-  (document.querySelector('.theme-header-host') || document.body).appendChild(fab);
-
-  const tip = fab.querySelector('.theme-fab-tip');
+  const button = document.createElement('button');
+  button.type = 'button';
+  button.className = 'nav-soc-btn theme-toggle-btn';
+  button.innerHTML = '<i class="ti ti-sun" aria-hidden="true"></i>';
+  host.appendChild(button);
 
   function isVisuallyLight() {
     const explicit = root.getAttribute('data-theme');
@@ -120,35 +119,20 @@
     return window.matchMedia('(prefers-color-scheme: light)').matches;
   }
 
-  function updateFab() {
+  function updateButton() {
     const light = isVisuallyLight();
-    fab.querySelector('i').className = light ? 'ti ti-moon-stars' : 'ti ti-sun';
-    fab.querySelector('.theme-fab-lbl').textContent = light ? 'Dark' : 'Light';
-    tip.textContent = light ? 'Switch to dark mode' : 'Switch to light mode';
+    button.querySelector('i').className = light ? 'ti ti-moon-stars' : 'ti ti-sun';
+    button.setAttribute('aria-label', light ? 'Switch to dark mode' : 'Switch to light mode');
     const meta = document.querySelector('meta[name="theme-color"]');
     if (meta) meta.content = light ? '#f0f5fb' : '#050b14';
   }
 
-  fab.addEventListener('click', () => {
-    tip.classList.remove('vis');
-    if (isVisuallyLight()) {
-      root.setAttribute('data-theme', 'dark');
-      localStorage.setItem(THEME_KEY, 'dark');
-    } else {
-      root.setAttribute('data-theme', 'light');
-      localStorage.setItem(THEME_KEY, 'light');
-    }
-    updateFab();
+  button.addEventListener('click', () => {
+    const next = isVisuallyLight() ? 'dark' : 'light';
+    root.setAttribute('data-theme', next);
+    localStorage.setItem(THEME_KEY, next);
+    updateButton();
   });
 
-  // Show tooltip on first visit per session
-  if (!sessionStorage.getItem('kp-theme-tip')) {
-    sessionStorage.setItem('kp-theme-tip', '1');
-    setTimeout(() => {
-      tip.classList.add('vis');
-      setTimeout(() => tip.classList.remove('vis'), 3800);
-    }, 1800);
-  }
-
-  updateFab();
+  updateButton();
 })();
