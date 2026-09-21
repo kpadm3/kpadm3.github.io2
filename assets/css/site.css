@@ -601,6 +601,9 @@ html:not([data-theme="light"]) body .heroX .heroX-ai .hx-cube-dots circle{
   filter:none!important;
   stroke:none!important;
 }
+html:not([data-theme="light"]) body .heroX .heroX-ai .hx-cube-dots circle.hx-wave-color{
+  fill:var(--hx-travel-color,#18b8dd)!important;
+}
 
 html[data-theme="light"] body .heroX .heroX-valuebox article{
   background:rgba(255,255,255,.58)!important;
