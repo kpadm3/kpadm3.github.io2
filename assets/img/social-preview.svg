@@ -1,0 +1,37 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" role="img" aria-labelledby="title desc">
+  <title id="title">Krishna Padmanabhan portfolio sharing image</title>
+  <desc id="desc">Enterprise Product and AI Transformation. Technical program delivery, enterprise systems, agentic solutions and governed AI-enabled workflows.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#04101d"/>
+      <stop offset=".6" stop-color="#07192a"/>
+      <stop offset="1" stop-color="#1b1546"/>
+    </linearGradient>
+    <linearGradient id="border" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#35d4f1" stop-opacity=".42"/>
+      <stop offset="1" stop-color="#8c70ff" stop-opacity=".36"/>
+    </linearGradient>
+    <pattern id="cyanDots" width="18" height="18" patternUnits="userSpaceOnUse">
+      <circle cx="9" cy="9" r="4" fill="#35d4f1"/>
+    </pattern>
+    <pattern id="blueDots" width="18" height="18" patternUnits="userSpaceOnUse">
+      <circle cx="9" cy="9" r="4" fill="#5694ff"/>
+    </pattern>
+    <pattern id="purpleDots" width="18" height="18" patternUnits="userSpaceOnUse">
+      <circle cx="9" cy="9" r="4" fill="#8c70ff"/>
+    </pattern>
+  </defs>
+  <rect width="1200" height="630" fill="url(#bg)"/>
+  <rect x="22" y="22" width="1156" height="586" rx="26" fill="none" stroke="url(#border)" stroke-width="2"/>
+  <text x="72" y="98" fill="#e2eff8" font-family="Inter,Arial,sans-serif" font-size="28" font-weight="800" letter-spacing="1">KRISHNA PADMANABHAN</text>
+  <text x="72" y="214" fill="#f5f8fc" font-family="Inter,Arial,sans-serif" font-size="58" font-weight="800">ENTERPRISE PRODUCT</text>
+  <text x="72" y="286" fill="#35d4f1" font-family="Inter,Arial,sans-serif" font-size="58" font-weight="800">&amp; AI TRANSFORMATION</text>
+  <text x="72" y="370" fill="#aac2d6" font-family="Inter,Arial,sans-serif" font-size="23">Technical program delivery · Enterprise systems</text>
+  <text x="72" y="404" fill="#aac2d6" font-family="Inter,Arial,sans-serif" font-size="23">Agentic solutions · Governed AI-enabled workflows</text>
+  <text x="72" y="532" fill="#7391aa" font-family="Inter,Arial,sans-serif" font-size="18" font-weight="800" letter-spacing="1">DIGITAL PORTFOLIO</text>
+  <g transform="translate(900 125)">
+    <polygon points="115,0 220,55 115,110 10,55" fill="url(#cyanDots)" opacity=".95"/>
+    <polygon points="10,128 115,183 115,318 10,263" fill="url(#blueDots)" opacity=".9"/>
+    <polygon points="115,128 220,183 220,318 115,263" fill="url(#purpleDots)" opacity=".9"/>
+  </g>
+</svg>
