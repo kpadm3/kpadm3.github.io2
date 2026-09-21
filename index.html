@@ -1938,7 +1938,7 @@ html[data-theme="light"] .heroX-enterprise article.hx-scan::after{background:lin
     dots.forEach(function(d){
       var dx=d.nx-center;
       // Skip expensive Gaussian work for dots well outside both moving fields.
-      if(Math.abs(dx)>.62&&(p<=.34||p>=.82)){
+      if(Math.abs(dx)>.62&&(p<=.28||p>=.86)){
         if(d.lastX!==d.baseX){d.el.setAttribute('cx',d.baseX.toFixed(2));d.lastX=d.baseX;}
         if(d.lastY!==d.baseY){d.el.setAttribute('cy',d.baseY.toFixed(2));d.lastY=d.baseY;}
         if(d.lastOpacity!==d.baseOpacity){d.el.style.opacity=String(d.baseOpacity);d.lastOpacity=d.baseOpacity;}
@@ -1948,22 +1948,26 @@ html[data-theme="light"] .heroX-enterprise article.hx-scan::after{background:lin
       var z=dx/sigma;
       var crest=Math.exp(-.5*z*z);
 
-      // Kinetic reconfiguration: six coherent fabric regions briefly separate and lock back together.
-      // The envelope is zero at the start/end, so the original cube geometry is always restored.
-      var k=0;
-      if(p>.34&&p<.82){
-        var kp=(p-.34)/.48;
+      // Kinetic reconfiguration: regions separate, cross/mix, then resolve back into the fabric.
+      // Shared region motion keeps this dramatic without animating every dot with unique expensive math.
+      var k=0,mix=0;
+      if(p>.28&&p<.86){
+        var kp=(p-.28)/.58;
         k=Math.sin(kp*Math.PI);
         k=k*k;
+        // A second pulse reverses selected regions through one another instead of simple expansion.
+        mix=Math.sin(kp*Math.PI*2)*k;
       }
-      var rx=[-5.0,-2.6,2.2,4.8,2.4,-3.8][d.region]*k;
-      var ry=[-3.2,3.8,-4.6,2.8,4.4,-2.5][d.region]*k*d.depth;
-      // Keep each face coherent while giving the transformation a subtle 3D stagger.
-      if(d.face===0)ry-=2.2*k;
-      else if(d.face===1)rx-=1.3*k;
-      else rx+=1.3*k;
-      var nextX=d.baseX+rx;
-      var nextY=d.baseY-15.5*crest*d.depth+ry;
+      var spreadX=[-10.5,-6.2,4.8,10.8,6.5,-8.4][d.region]*k;
+      var spreadY=[-7.0,7.8,-9.5,6.2,9.0,-5.8][d.region]*k*d.depth;
+      var crossX=[7.5,10.0,-9.0,-7.0,-10.5,8.5][d.region]*mix;
+      var crossY=[5.0,-6.5,7.0,-5.5,6.5,-7.5][d.region]*mix*d.depth;
+      // Face offsets preserve the 3D object while the internal regions rearrange.
+      if(d.face===0)spreadY-=4.2*k;
+      else if(d.face===1)spreadX-=2.8*k;
+      else spreadX+=2.8*k;
+      var nextX=d.baseX+spreadX+crossX;
+      var nextY=d.baseY-15.5*crest*d.depth+spreadY+crossY;
       if(Math.abs(nextX-d.lastX)>.08){d.el.setAttribute('cx',nextX.toFixed(2));d.lastX=nextX;}
       if(Math.abs(nextY-d.lastY)>.08){d.el.setAttribute('cy',nextY.toFixed(2));d.lastY=nextY;}
 
