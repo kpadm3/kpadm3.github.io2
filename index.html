@@ -1918,7 +1918,7 @@ html[data-theme="light"] .heroX-enterprise article.hx-scan::after{background:lin
   }
   function resetCube(){
     if(cubeMode==='reset')return;
-    dots.forEach(function(d){d.el.setAttribute('cy',d.baseY.toFixed(2));d.el.style.opacity=String(d.baseOpacity);d.el.style.fill='';});
+    dots.forEach(function(d){d.el.setAttribute('cy',d.baseY.toFixed(2));d.el.style.opacity=String(d.baseOpacity);d.el.style.removeProperty('fill');});
     capEls.forEach(function(el){el.classList.remove('hx-cap-active');el.style.opacity='';el.style.color='';el.style.textShadow='';});
     cubeMode='reset';capIndex=-1;
   }
@@ -1934,16 +1934,19 @@ html[data-theme="light"] .heroX-enterprise article.hx-scan::after{background:lin
       var dy=-15.5*crest*depth;
       d.el.setAttribute('cy',(d.baseY+dy).toFixed(2));
 
-      // Deterministic per-dot stream identity: varied enough to feel analytical, stable enough to avoid flicker.
+      // Stable mixed signal identity: all four Architecture inputs appear inside one visible analysis field.
       var streamIndex=(index*7+d.face*11+Math.floor(d.nx*17))%4;
-      var activation=Math.max(0,Math.min(1,(crest-.055)/.945));
-      // A wider color envelope trails the crest briefly so multiple Architecture inputs are visible together.
-      var trailCenter=center-.075;
-      var trailZ=(d.nx-trailCenter)/(.185);
-      var trail=Math.exp(-.5*trailZ*trailZ);
-      var analysis=Math.max(activation,trail*.82);
-      d.el.style.opacity=String(Math.min(1,d.baseOpacity+analysis*.22));
-      d.el.style.fill=analysis>.07?streamColors[streamIndex]:'';
+      var signal=((index*37+d.face*19+Math.floor(d.nx*101))%100)/100;
+      // Keep the color field substantially wider than the physical crest so it reads at normal playback speed.
+      var analysisZ=(d.nx-(center-.045))/.27;
+      var analysis=Math.exp(-.5*analysisZ*analysisZ);
+      var active=analysis>.16&&signal<(.48+analysis*.34);
+      d.el.style.opacity=String(Math.min(1,d.baseOpacity+(active?analysis*.34:crest*.08)));
+      if(active){
+        d.el.style.setProperty('fill',streamColors[streamIndex],'important');
+      }else{
+        d.el.style.removeProperty('fill');
+      }
     });
     cubeMode='wave';
     if(capEls.length===5){
