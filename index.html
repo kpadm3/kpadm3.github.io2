@@ -1991,9 +1991,10 @@ html[data-theme="light"] .heroX-enterprise article.hx-scan::after{background:lin
   }
   function wave(p){
     // One physical AI-analysis crest crosses the fabric once per lifecycle.
-    // All four Architecture stream colors participate inside that single pass as stable mixed clusters.
+    // Dark mode keeps every dot at its resting luminance/color; only geometry moves.
     var center=-.18+p*1.36,sigma=.115;
     var streamColors=['#42ddf6','#4da1ff','#9877ff','#2de0ce'];
+    var darkMode=document.documentElement.getAttribute('data-theme')!=='light';
     dots.forEach(function(d){
       var dx=d.nx-center;
       // Skip expensive Gaussian work for dots well outside both moving fields.
@@ -2001,7 +2002,10 @@ html[data-theme="light"] .heroX-enterprise article.hx-scan::after{background:lin
         if(d.lastX!==d.baseX){d.el.setAttribute('cx',d.baseX.toFixed(2));d.lastX=d.baseX;}
         if(d.lastY!==d.baseY){d.el.setAttribute('cy',d.baseY.toFixed(2));d.lastY=d.baseY;}
         if(d.lastOpacity!==d.baseOpacity){d.el.style.opacity=String(d.baseOpacity);d.lastOpacity=d.baseOpacity;}
-        if(d.fillState!==-1){d.el.style.removeProperty('fill');d.fillState=-1;}
+        if(d.fillState!==-1||darkMode){
+          d.el.style.removeProperty('fill');
+          d.fillState=-1;
+        }
         return;
       }
       var z=dx/sigma;
@@ -2012,19 +2016,24 @@ html[data-theme="light"] .heroX-enterprise article.hx-scan::after{background:lin
       if(d.lastX!==d.baseX){d.el.setAttribute('cx',d.baseX.toFixed(2));d.lastX=d.baseX;}
       if(Math.abs(nextY-d.lastY)>.08){d.el.setAttribute('cy',nextY.toFixed(2));d.lastY=nextY;}
 
-      // Organic pattern is precomputed per dot; only the moving field is evaluated here.
+      // Light mode retains the existing analysis highlight. Dark mode never boosts individual dots.
       var analysisZ=(d.nx-(center-.035+d.ripple))/.205;
       var analysis=Math.exp(-.5*analysisZ*analysisZ);
       var active=analysis>.14&&d.seed<(.34+analysis*.38);
-      var nextOpacity=Math.min(1,d.baseOpacity+(active?analysis*.30:crest*.07));
+      var nextOpacity=darkMode?d.baseOpacity:Math.min(1,d.baseOpacity+(active?analysis*.30:crest*.07));
       if(d.lastOpacity===null||Math.abs(nextOpacity-d.lastOpacity)>.025){
         d.el.style.opacity=String(nextOpacity);d.lastOpacity=nextOpacity;
       }
-      var nextFill=active?d.streamIndex:-1;
-      if(nextFill!==d.fillState){
-        if(nextFill>=0)d.el.style.setProperty('fill',streamColors[nextFill],'important');
-        else d.el.style.removeProperty('fill');
-        d.fillState=nextFill;
+      if(darkMode){
+        if(d.el.style.getPropertyValue('fill'))d.el.style.removeProperty('fill');
+        d.fillState=-1;
+      }else{
+        var nextFill=active?d.streamIndex:-1;
+        if(nextFill!==d.fillState){
+          if(nextFill>=0)d.el.style.setProperty('fill',streamColors[nextFill],'important');
+          else d.el.style.removeProperty('fill');
+          d.fillState=nextFill;
+        }
       }
     });
     cubeMode='wave';
