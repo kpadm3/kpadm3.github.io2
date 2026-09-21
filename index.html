@@ -3,6 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
+  <script>(() => { const s = localStorage.getItem('kp-theme'); const t = s || (matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark'); document.documentElement.setAttribute('data-theme', t); })();</script>
   <meta name="description" content="Enterprise product, technical program delivery and AI transformation portfolio covering enterprise systems, automation, agentic solution design and governed AI-enabled workflows.">
 <meta name="author" content="Krishna Padmanabhan">
 <meta property="og:type" content="website">
@@ -559,7 +560,7 @@ html[data-theme="light"] .heroX-links{
 .heroX-map .heroX-zone>header>small{margin-top:8px;line-height:1.25}
 @media(max-width:1200px){.heroX-map .heroX-zone>header{height:auto;min-height:58px;padding-top:0}}
 </style>
-<script>(() => { const s = localStorage.getItem('kp-theme'); const t = s || (matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark'); document.documentElement.setAttribute('data-theme', t); })();</script>
+
 </head>
 <body>
   <div class="page-progress" data-progress></div>
