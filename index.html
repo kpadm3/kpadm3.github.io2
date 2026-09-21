@@ -193,8 +193,7 @@ html[data-theme="light"] .saa-agent .saa-label{background:rgba(0,0,0,.05);color:
 @media(prefers-reduced-motion:reduce){.heroX:after{animation:none!important}}
 
 
-.heroX-map .heroX-zone{background:linear-gradient(180deg,rgba(3,22,39,.06),rgba(3,22,39,.18))}\n
-.heroX-links{opacity:.98}
+.heroX-map .heroX-zone{background:linear-gradient(180deg,rgba(3,22,39,.06),rgba(3,22,39,.18))}
 
 .heroX-zone header>b{text-shadow:0 0 14px rgba(82,225,244,.18)}
 .heroX-enterprise article>i,.heroX-agents article>i,.heroX-valuebox i{filter:drop-shadow(0 0 8px currentColor)}
@@ -234,16 +233,16 @@ html[data-theme="light"] .heroX-valuebox article{border-bottom-color:rgba(8,145,
 .heroX-caps{max-width:430px!important;gap:8px!important}.heroX-caps span{font-size:9px!important;padding:7px 17px!important}
 
 .heroX-valuebox i{font-size:34px!important}.heroX-valuebox em{font-size:10px!important}.heroX-valuebox b{font-size:12px!important}
-.heroX-links{height:400px!important}
+
 
 }
 /* SVG coordinates aligned to the new 24/34/26/16 zone boundaries */
 @media(min-width:1201px){
-.heroX-links{overflow:visible}
+
 }
 
 
-.heroX-links{filter:drop-shadow(0 0 6px rgba(42,217,247,.34))!important}
+
 
 
 
@@ -252,7 +251,7 @@ html[data-theme="light"] .heroX-valuebox article{border-bottom-color:rgba(8,145,
 .heroX:after{height:220px!important;bottom:0!important;opacity:.72!important;background-size:22px 15px,100% 100%!important}
 /* Dark reference is exact target. Light mode preserves geometry/effects with a coherent light palette. */
 
-html[data-theme="light"] .heroX-links{filter:drop-shadow(0 0 3px rgba(8,145,178,.34))!important}
+
 /* Make the actual card ports sit visually on the connection system. */
 
 .heroX-enterprise article:after,.heroX-agents article:after{content:"";position:absolute;right:-17px;top:50%;width:12px;height:1px;background:linear-gradient(90deg,currentColor,transparent);opacity:.55}
@@ -313,9 +312,7 @@ html[data-theme="light"] .heroX-links{filter:drop-shadow(0 0 3px rgba(8,145,178,
 
 
 
-.heroX-links{
-  filter:drop-shadow(0 0 4px rgba(45,213,245,.22))
-}
+
 
 html[data-theme="light"] .heroX-map,html[data-theme="light"] .heroX-map .heroX-zone{
   background:transparent!important;
@@ -496,6 +493,7 @@ html[data-theme="light"] .heroX-valuebox article{
 }
 
 /* Keep the connector canvas large enough for all four rows and never clip the routes. */
+/* HERO X AUTHORITATIVE CONNECTOR CANVAS */
 .heroX-links{
   position:absolute!important;
   inset:0!important;
@@ -504,7 +502,11 @@ html[data-theme="light"] .heroX-valuebox article{
   min-height:430px!important;
   overflow:visible!important;
   z-index:5!important;
-  pointer-events:none!important
+  pointer-events:none!important;
+  filter:drop-shadow(0 0 6px rgba(42,217,247,.34))!important
+}
+html[data-theme="light"] .heroX-links{
+  filter:drop-shadow(0 0 3px rgba(8,145,178,.34))!important
 }
 .heroX-enterprise article,.heroX-agents article,.heroX-valuebox article{z-index:6!important}
 
