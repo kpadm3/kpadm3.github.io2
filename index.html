@@ -1806,9 +1806,12 @@ html[data-theme="light"] .heroX-enterprise article.hx-scan::after{background:lin
       var ripple=Math.sin(p.y*.115+p.x*.031+faceIndex*1.7)*.055+
                  Math.sin(p.y*.047-p.x*.019+dotIndex*.013)*.035;
       var region=Math.min(5,Math.max(0,Math.floor(nx*6)));
+      // Three deterministic subregions per slice create a coordinated shuffle without per-frame random work.
+      var sub=(row+col*2+faceIndex)%3;
+      var kinetic=region*3+sub;
       dots.push({el:el,baseX:p.x,baseY:p.y,nx:nx,face:faceIndex,depth:faceIndex===0?1:(faceIndex===1?.88:.94),
-        baseOpacity:parseFloat(getComputedStyle(el).opacity)||1,streamIndex:streamIndex,seed:seed,ripple:ripple,region:region,
-        fillState:-1,lastX:p.x,lastY:p.y,lastOpacity:null});
+        baseOpacity:parseFloat(getComputedStyle(el).opacity)||1,streamIndex:streamIndex,seed:seed,ripple:ripple,
+        region:region,sub:sub,kinetic:kinetic,fillState:-1,lastX:p.x,lastY:p.y,lastOpacity:null});
     }
   }
   face('hx-dot-top',T,R,C,L,0);
@@ -1938,7 +1941,7 @@ html[data-theme="light"] .heroX-enterprise article.hx-scan::after{background:lin
     dots.forEach(function(d){
       var dx=d.nx-center;
       // Skip expensive Gaussian work for dots well outside both moving fields.
-      if(Math.abs(dx)>.62&&(p<=.28||p>=.86)){
+      if(Math.abs(dx)>.62&&(p<=.25||p>=.90)){
         if(d.lastX!==d.baseX){d.el.setAttribute('cx',d.baseX.toFixed(2));d.lastX=d.baseX;}
         if(d.lastY!==d.baseY){d.el.setAttribute('cy',d.baseY.toFixed(2));d.lastY=d.baseY;}
         if(d.lastOpacity!==d.baseOpacity){d.el.style.opacity=String(d.baseOpacity);d.lastOpacity=d.baseOpacity;}
@@ -1948,26 +1951,36 @@ html[data-theme="light"] .heroX-enterprise article.hx-scan::after{background:lin
       var z=dx/sigma;
       var crest=Math.exp(-.5*z*z);
 
-      // Kinetic reconfiguration: regions separate, cross/mix, then resolve back into the fabric.
-      // Shared region motion keeps this dramatic without animating every dot with unique expensive math.
-      var k=0,mix=0;
-      if(p>.28&&p<.86){
-        var kp=(p-.28)/.58;
-        k=Math.sin(kp*Math.PI);
-        k=k*k;
-        // A second pulse reverses selected regions through one another instead of simple expansion.
-        mix=Math.sin(kp*Math.PI*2)*k;
+      // Kinetic reconfiguration: unlock → staggered shuffle → cross/mix → converge → precise lock.
+      // Motion is shared by 18 precomputed subregions, keeping the effect dramatic but inexpensive.
+      var k=0,shuffle=0,lock=0;
+      if(p>.25&&p<.90){
+        var kp=(p-.25)/.65;
+        var envelope=Math.sin(kp*Math.PI);
+        k=envelope*envelope;
+        shuffle=Math.sin(kp*Math.PI*3)*k;
+        // Short opposite-direction settling pulse near the end makes the fabric visibly lock into place.
+        if(kp>.72){
+          var lp=(kp-.72)/.28;
+          lock=Math.sin(lp*Math.PI*2)*(1-lp)*2.2;
+        }
       }
-      var spreadX=[-10.5,-6.2,4.8,10.8,6.5,-8.4][d.region]*k;
-      var spreadY=[-7.0,7.8,-9.5,6.2,9.0,-5.8][d.region]*k*d.depth;
-      var crossX=[7.5,10.0,-9.0,-7.0,-10.5,8.5][d.region]*mix;
-      var crossY=[5.0,-6.5,7.0,-5.5,6.5,-7.5][d.region]*mix*d.depth;
-      // Face offsets preserve the 3D object while the internal regions rearrange.
-      if(d.face===0)spreadY-=4.2*k;
-      else if(d.face===1)spreadX-=2.8*k;
-      else spreadX+=2.8*k;
-      var nextX=d.baseX+spreadX+crossX;
-      var nextY=d.baseY-15.5*crest*d.depth+spreadY+crossY;
+      var sx=[-12,-7,5,12,7,-10],sy=[-7,9,-10,7,10,-6];
+      var mx=[8,11,-10,-8,-12,10],my=[6,-8,8,-7,7,-9];
+      var subX=[-5.2,1.4,5.8],subY=[4.8,-5.5,1.8];
+      var phase=d.sub===0?1:(d.sub===1?-1:.65);
+      var spreadX=sx[d.region]*k+subX[d.sub]*k;
+      var spreadY=(sy[d.region]*k+subY[d.sub]*k)*d.depth;
+      // Alternating subregions cross neighboring paths; this reads as rearrangement rather than expansion.
+      var crossX=mx[d.region]*shuffle*phase;
+      var crossY=my[d.region]*shuffle*(d.sub===2?-1:1)*d.depth;
+      // Small tangential exchange lets dots interleave locally instead of moving as six solid slabs.
+      var weave=(d.sub-1)*5.5*Math.sin(kp*Math.PI*2)*k;
+      if(d.face===0){spreadY-=4.5*k;crossX+=weave;}
+      else if(d.face===1){spreadX-=3.2*k;crossY+=weave*.55;}
+      else{spreadX+=3.2*k;crossY-=weave*.55;}
+      var nextX=d.baseX+spreadX+crossX+(d.sub-1)*lock;
+      var nextY=d.baseY-15.5*crest*d.depth+spreadY+crossY-(d.face===0?lock:lock*.35);
       if(Math.abs(nextX-d.lastX)>.08){d.el.setAttribute('cx',nextX.toFixed(2));d.lastX=nextX;}
       if(Math.abs(nextY-d.lastY)>.08){d.el.setAttribute('cy',nextY.toFixed(2));d.lastY=nextY;}
 
