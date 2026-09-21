@@ -1273,7 +1273,7 @@ html[data-theme="light"] .heroX-ai .hx-cube-dots circle{opacity:.52}
 .hx-flow-path.blue{stroke:#4da1ff}
 .hx-flow-path.purple{stroke:#9877ff}
 .hx-flow-path.teal{stroke:#2de0ce}
-.hx-flow-path.secondary{stroke-width:1.35;opacity:.42}
+.hx-flow-path.secondary{stroke-width:2.15;opacity:.82}
 
 /* Moving "intelligence" packets. */
 .hx-flow-comet{
@@ -1768,7 +1768,7 @@ html[data-theme="light"] .heroX-ai .hx-cube-dots circle{opacity:.79!important}
 
 html[data-theme="light"] .heroX-caps span{background:rgba(249,253,255,.88)!important;color:#42677e!important;border-color:rgba(20,145,178,.38)!important;box-shadow:0 2px 7px rgba(25,72,98,.035)!important}
 html[data-theme="light"] .hx-flow-path{opacity:.66!important;filter:drop-shadow(0 0 1px rgba(32,158,192,.30))!important}
-html[data-theme="light"] .hx-flow-path.secondary{opacity:.30!important}
+html[data-theme="light"] .hx-flow-path.secondary{opacity:.66!important}
 html[data-theme="light"] .hx-flow-comet{filter:drop-shadow(0 0 3px rgba(22,157,190,.72))!important}
 
 /* Connector geometry is unchanged; only light-mode contrast is strengthened. */
@@ -1830,12 +1830,12 @@ html[data-theme="light"] .heroX-enterprise article.hx-scan::after{background:lin
       var px=p.x.toFixed(2),py=p.y.toFixed(2),key=px+','+py;
       if(fabricPoints.has(key))continue;
       fabricPoints.add(key);
-      var edge=row===0||col===0||row===N-1||col===N-1;
       var el=document.createElementNS(NS,'circle');
       el.setAttribute('class',cls);
       el.setAttribute('cx',px);
       el.setAttribute('cy',py);
-      el.setAttribute('r',edge?1.22:1.08);
+      // Uniform resting dot size prevents perimeter/seam points from reading brighter in dark mode.
+      el.setAttribute('r','1.08');
       grp.appendChild(el);
       var dotIndex=dots.length,nx=(p.x-92)/376;
       var streamIndex=(dotIndex*7+faceIndex*11+Math.floor(p.x*.071)+Math.floor(p.y*.053))%4;
