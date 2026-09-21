@@ -224,7 +224,6 @@ html[data-theme="light"] .heroX-core{background:none!important;filter:none!impor
 .heroX-enterprise article>span,.heroX-agents article>span{color:#3de5f6;animation:hxNode 2.1s ease-in-out infinite}.heroX-enterprise article.violet>span,.heroX-agents article.violet>span{color:#9b7cff}.heroX-agents article.teal>span{color:#35dfca}
 .heroX-zone header>b{text-shadow:0 0 14px rgba(82,225,244,.18)}
 .heroX-enterprise article>i,.heroX-agents article>i,.heroX-valuebox i{filter:drop-shadow(0 0 8px currentColor)}
-.heroX-valuebox article{position:relative;overflow:hidden}
 .heroX-valuebox article:before{animation-duration:8s}
 .heroX-scale>div{box-shadow:0 0 8px rgba(44,224,224,.22)}
 .heroX-intro h1 em{text-shadow:0 0 22px rgba(34,212,241,.2)}
@@ -1017,26 +1016,6 @@ html[data-theme="light"] .heroX-enterprise article small{font-size:9px!important
 .heroX-valuebox article div b{margin-top:0!important;font-size:12px!important;line-height:1.15!important;letter-spacing:.03em!important;white-space:nowrap!important}
 .heroX-valuebox article div small{display:block!important;margin-top:4px!important;font-size:10px!important;line-height:1.2!important;letter-spacing:0!important;white-space:nowrap!important;font-style:normal!important}
 html[data-theme="light"] .heroX-valuebox article div small{color:#56778d!important}
-
-/* Agent-to-Value handoff nodes are identical square endpoints. */
-.heroX-valuebox article{
-  position:relative!important;
-  overflow:visible!important;
-}
-.heroX-agents .hx-out-port,.heroX-valuebox .hx-value-port{
-  width:10px!important;
-  height:10px!important;
-  border-radius:3px!important;
-  overflow:visible!important;
-}
-.heroX-agents .hx-out-port{
-  right:-5px!important;
-  left:auto!important;
-}
-.heroX-valuebox .hx-value-port{
-  left:-5px!important;
-  right:auto!important;
-}
 
 /* Intelligence Fabric keeps the existing lifecycle while light mode gets a contained AI halo. */
 html[data-theme="light"] .heroX-ai .hx-dotcube{
