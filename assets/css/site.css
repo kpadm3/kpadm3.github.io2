@@ -597,7 +597,7 @@ html body .heroX .heroX-valuebox .hx-value-port{
    The wave still moves and recolors dots, but cannot create near-white brightness spikes. */
 html:not([data-theme="light"]) body .heroX .heroX-ai .hx-cube-dots circle{
   fill:#18b8dd!important;
-  opacity:.65!important;
+  opacity:.52!important;
   filter:none!important;
   stroke:none!important;
 }
