@@ -84,7 +84,7 @@ html[data-theme="light"] .nav-soc-btn:hover{border-color:rgba(8,145,178,.4);colo
 <script>(() => { const s = localStorage.getItem('kp-theme'); const t = s || (matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark'); document.documentElement.setAttribute('data-theme', t); })();</script>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;500;600;700;800;900&display=swap">
 </head>
-<body>
+<body id="top">
 <div class="page-progress" data-progress></div>
 <div class="ambient ambient-a" aria-hidden="true"></div>
 <div class="ambient ambient-b" aria-hidden="true"></div>
@@ -193,6 +193,12 @@ html[data-theme="light"] .nav-soc-btn:hover{border-color:rgba(8,145,178,.4);colo
         <h3 id="footer-credentials-contact-html">CREDENTIALS</h3>
         <span class="footer-static">PMP®</span>
         <span class="footer-static">Download Resume</span>
+      </section>
+      <section class="footer-group footer-about" aria-labelledby="footer-about-contact-html">
+        <h3 id="footer-about-contact-html">ABOUT &amp; LEGAL</h3>
+        <span>Designed &amp; developed by Krishna Padmanabhan.</span>
+        <span>Built with HTML, CSS &amp; JavaScript.</span>
+        <a class="footer-back-top" href="#top">Back to Top <span aria-hidden="true">→</span></a>
       </section>
     </div>
     <div class="site-footer-bottom">© 2026 Krishna Padmanabhan</div>

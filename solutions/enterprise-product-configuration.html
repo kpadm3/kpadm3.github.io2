@@ -37,7 +37,7 @@ html[data-theme="light"]{
 <link rel="stylesheet" href="../assets/css/solution-shell.css">
 <script>(() => { const s = localStorage.getItem('kp-theme'); const t = s || (matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark'); document.documentElement.setAttribute('data-theme', t); })();</script>
 </head>
-<body class="solution-page">
+<body class="solution-page" id="top">
 <div class="page-progress" data-progress></div>
 <div class="ambient ambient-a" aria-hidden="true"></div>
 <div class="ambient ambient-b" aria-hidden="true"></div>
@@ -245,6 +245,12 @@ html[data-theme="light"]{
         <h3 id="footer-credentials-solutions-enterprise-product-configuration-html">CREDENTIALS</h3>
         <span class="footer-static">PMP®</span>
         <span class="footer-static">Download Resume</span>
+      </section>
+      <section class="footer-group footer-about" aria-labelledby="footer-about-solutions-enterprise-product-configuration-html">
+        <h3 id="footer-about-solutions-enterprise-product-configuration-html">ABOUT &amp; LEGAL</h3>
+        <span>Designed &amp; developed by Krishna Padmanabhan.</span>
+        <span>Built with HTML, CSS &amp; JavaScript.</span>
+        <a class="footer-back-top" href="#top">Back to Top <span aria-hidden="true">→</span></a>
       </section>
     </div>
     <div class="site-footer-bottom">© 2026 Krishna Padmanabhan</div>
