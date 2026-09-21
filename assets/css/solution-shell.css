@@ -113,6 +113,20 @@ body.solution-page .value-row{
   gap:8px!important;
   margin:0 0 14px!important;
 }
+body.solution-page .solution-scope-note{
+  max-width:920px;
+  margin:-2px 0 16px;
+  padding:8px 11px;
+  border-left:2px solid color-mix(in srgb,var(--accent) 48%,transparent);
+  background:color-mix(in srgb,var(--accent) 5%,rgba(7,22,37,.72));
+  color:#8fa7ba;
+  font-size:.68rem;
+  line-height:1.55;
+}
+body.solution-page .solution-scope-note strong{
+  color:color-mix(in srgb,var(--accent) 78%,#eef7ff);
+  font-weight:800;
+}
 body.solution-page .value-chip{
   padding:6px 12px!important;
   border-radius:999px!important;
@@ -335,6 +349,14 @@ html[data-theme="light"] body.solution-page .value-chip{
   background:color-mix(in srgb,var(--accent) 7%,#fff)!important;
   color:color-mix(in srgb,var(--accent) 74%,#17364d)!important;
   border-color:color-mix(in srgb,var(--accent) 32%,#c0d5e8)!important;
+}
+html[data-theme="light"] body.solution-page .solution-scope-note{
+  background:color-mix(in srgb,var(--accent) 4%,#fff);
+  border-left-color:color-mix(in srgb,var(--accent) 42%,transparent);
+  color:#58758d;
+}
+html[data-theme="light"] body.solution-page .solution-scope-note strong{
+  color:color-mix(in srgb,var(--accent) 72%,#17364d);
 }
 html[data-theme="light"] body.solution-page .sol-two-col>div,
 html[data-theme="light"] body.solution-page .sol-two-col-wide>div,
