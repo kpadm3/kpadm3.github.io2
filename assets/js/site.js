@@ -6,14 +6,20 @@
   const coarse = matchMedia('(pointer:coarse)').matches;
   const reduced = matchMedia('(prefers-reduced-motion:reduce)').matches;
 
-  const onScroll = () => {
+  let scrollRaf = 0;
+  const updateScrollUi = () => {
+    scrollRaf = 0;
     header?.classList.toggle('is-scrolled', scrollY > 8);
     const available = document.documentElement.scrollHeight - innerHeight;
     if (progress) progress.style.width = `${available > 0 ? Math.min(100, Math.max(0, scrollY / available * 100)) : 0}%`;
   };
-  onScroll();
-  addEventListener('scroll', onScroll, { passive: true });
-  addEventListener('resize', onScroll);
+  const scheduleScrollUi = () => {
+    if (scrollRaf) return;
+    scrollRaf = requestAnimationFrame(updateScrollUi);
+  };
+  updateScrollUi();
+  addEventListener('scroll', scheduleScrollUi, { passive: true });
+  addEventListener('resize', scheduleScrollUi, { passive: true });
 
   const revealItems = all('.reveal');
   if (!reduced && 'IntersectionObserver' in window) {
