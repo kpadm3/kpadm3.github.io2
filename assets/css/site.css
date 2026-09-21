@@ -262,20 +262,8 @@ html[data-theme="light"] .section-intro p{color:#607898}
 html[data-theme="light"] .page-lead{color:#607898}
 html[data-theme="light"] .cta-copy p{color:#2a4060}
 
-/* Experience page — cyan text readability in light mode */
-html[data-theme="light"] .timeline-heading,html[data-theme="light"] .tl-date-range,html[data-theme="light"] .tl-company,html[data-theme="light"] .sidebar-heading,html[data-theme="light"] .panel-heading{ color: #0891b2; }
-
-/* Experience page */
-html[data-theme="light"] .exp-stat{background:rgba(255,255,255,.85);border-color:rgba(10,176,204,.28)}
-html[data-theme="light"] .exp-stat strong{color:#0d1f35}
-html[data-theme="light"] .exp-stat span{color:#607898}
-html[data-theme="light"] .tl-role{color:#0d1f35}
-html[data-theme="light"] .tl-date-label{color:#8090a5}
-html[data-theme="light"] .tl-desc{color:#607898}
-html[data-theme="light"] .tl-tags span{background:rgba(255,255,255,.82);border-color:rgba(10,176,204,.32);color:#0d1f35}
-html[data-theme="light"] .cap-tile{background:rgba(255,255,255,.7);border-left-color:rgba(10,176,204,.35)}
-html[data-theme="light"] .cap-tile:hover{background:rgba(255,255,255,.97);border-left-color:#0ab0cc}
-html[data-theme="light"] .cap-tile span{color:#2a4060}
+/* Shared light-mode heading used by Contact and any sub-page panel heading. */
+html[data-theme="light"] .panel-heading{color:#0891b2}
 
 /* Framework page */
 html[data-theme="light"] .framework-step{background:radial-gradient(circle at 50% 0,color-mix(in srgb,var(--case-cyan) 7%,transparent),transparent 36%),linear-gradient(180deg,#ffffff,#f4f8fd);border-color:color-mix(in srgb,var(--case-cyan) 22%,rgba(192,213,232,.65))}

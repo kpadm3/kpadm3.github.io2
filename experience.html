@@ -3,16 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Experience | Krishna Padmanabhan</title>
-<meta name="description" content="10+ years of enterprise business analysis and technical product delivery experience across SAP, integrations, data migration, reporting, and release. Progression from analyst to technical product manager.">
+<title>Enterprise Product & AI Transformation Experience | Krishna Padmanabhan</title>
+<meta name="description" content="10+ years of enterprise product, systems integration, data, validation and release delivery experience, evolving into automation, AI-enabled workflows and enterprise transformation leadership.">
 <meta name="theme-color" content="#050b14">
 <link rel="stylesheet" href="assets/css/site.css">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@3/dist/tabler-icons.min.css">
 <style>
 :root{
   --case-cyan:#35d4f1;
-  --case-panel:rgba(7,18,31,.90);
   --case-border:rgba(93,135,179,.52);
 }
 body{
@@ -35,7 +33,7 @@ body{
 /* Stats row */
 .exp-stats{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:14px}
 .exp-stat{padding:18px 20px;border:1px solid rgba(53,212,241,.28);border-radius:13px;background:rgba(5,17,29,.72)}
-.exp-stat strong{display:block;color:#edf5fb;font-size:1.8rem;font-weight:300;letter-spacing:-.03em;line-height:1}
+.exp-stat strong{display:block;color:#edf5fb;font-size:clamp(1.22rem,1.7vw,1.75rem);font-weight:300;letter-spacing:-.03em;line-height:1.08}
 .exp-stat span{display:block;margin-top:6px;color:#9fb0c3;font-size:var(--type-support);line-height:1.45}
 
 .experience-bridge{display:grid;grid-template-columns:minmax(210px,.34fr) 1fr;gap:20px;align-items:center;margin-bottom:14px;padding:16px 20px}
@@ -66,7 +64,8 @@ html[data-theme="light"] .experience-bridge p{color:#3a5a74}
 .tl-entry:last-child .tl-line{display:none}
 .tl-body{padding-bottom:32px}
 .tl-role{margin:0 0 3px;color:#edf5fb;font-size:1.02rem;font-weight:800}
-.tl-company{color:var(--case-cyan);font-size:.78rem;font-weight:700;margin-bottom:10px}
+.tl-company{color:var(--case-cyan);font-size:.78rem;font-weight:700;margin-bottom:4px}
+.tl-official{color:#7894ac;font-size:var(--type-label);font-weight:650;margin-bottom:10px;letter-spacing:.02em}
 .tl-desc{margin:0 0 12px;color:#9fb0c3;font-size:var(--type-body-sm);line-height:1.62}
 .tl-tags{display:flex;flex-wrap:wrap;gap:7px}
 .tl-tags span{
@@ -82,12 +81,19 @@ html[data-theme="light"] .experience-bridge p{color:#3a5a74}
 .tl-bullets li::before{content:'›';color:var(--case-cyan);flex-shrink:0;font-weight:700;margin-top:1px}
 html[data-theme="light"] .tl-bullets li{color:#3a5a74}
 
+.earlier-block{margin-top:24px}
 .earlier-heading{margin:0 0 12px;color:var(--case-cyan);font-size:.78rem;font-weight:900;letter-spacing:.08em;text-transform:uppercase}
 
 /* Sidebar */
 .exp-sidebar{display:flex;flex-direction:column;gap:14px}
 .sidebar-panel{padding:22px 24px}
 .sidebar-heading{margin:0 0 16px;color:var(--case-cyan);font-size:.78rem;font-weight:900;letter-spacing:.08em;text-transform:uppercase}
+.evidence-list{display:flex;flex-direction:column;gap:8px}
+.evidence-link{display:grid;grid-template-columns:1fr auto;gap:10px;align-items:center;padding:11px 12px;border:1px solid rgba(53,212,241,.2);border-radius:9px;background:rgba(5,15,28,.5);text-decoration:none;transition:border-color .18s,background .18s,transform .18s}
+.evidence-link:hover{border-color:rgba(53,212,241,.5);background:rgba(5,20,36,.76);transform:translateX(2px)}
+.evidence-link strong{display:block;color:#d9e7f2;font-size:var(--type-support);font-weight:750;line-height:1.3}
+.evidence-link small{display:block;margin-top:3px;color:#7894ac;font-size:var(--type-label);line-height:1.35}
+.evidence-link i{color:var(--case-cyan);font-size:15px}
 
 /* CTA */
 .case-cta{display:grid;grid-template-columns:1.35fr .65fr;gap:22px;align-items:center;margin:14px 0 24px;padding:22px 28px}
@@ -123,7 +129,7 @@ html[data-theme="light"] .page-lead{color:#2a4a62}
 html[data-theme="light"] .exp-stat{background:#f0f8fc;border-color:rgba(8,145,178,.22)}
 html[data-theme="light"] .exp-stat strong{color:#0d1f30}
 html[data-theme="light"] .exp-stat span{color:#5a7a94}
-html[data-theme="light"] .tl-date-label{color:#5a7a94}
+html[data-theme="light"] .tl-date-label,html[data-theme="light"] .tl-official{color:#5a7a94}
 html[data-theme="light"] .tl-line{background:linear-gradient(180deg,rgba(8,145,178,.35),rgba(8,145,178,.04))}
 html[data-theme="light"] .tl-role{color:#0d1f30}
 html[data-theme="light"] .tl-desc{color:#3a5a74}
@@ -131,6 +137,10 @@ html[data-theme="light"] .tl-tags span{background:#f0f8fc;border-color:rgba(8,14
 html[data-theme="light"] .cap-tile{background:#f4f9fd;border-left-color:rgba(8,145,178,.28)}
 html[data-theme="light"] .cap-tile:hover{border-left-color:#0891b2;background:#e8f5fb}
 html[data-theme="light"] .cap-tile span{color:#2a4a62}
+html[data-theme="light"] .evidence-link{background:#f4f9fd;border-color:rgba(8,145,178,.18)}
+html[data-theme="light"] .evidence-link:hover{background:#e8f5fb;border-color:rgba(8,145,178,.38)}
+html[data-theme="light"] .evidence-link strong{color:#17364d}
+html[data-theme="light"] .evidence-link small{color:#5a7a94}
 html[data-theme="light"] .cta-copy p{color:#3a5a74}
 html[data-theme="light"] .nav-soc-btn{border-color:rgba(8,145,178,.18)}
 html[data-theme="light"] .nav-soc-btn:hover{border-color:rgba(8,145,178,.4);color:#0891b2}
@@ -169,22 +179,17 @@ html[data-theme="light"] .nav-soc-btn:hover{border-color:rgba(8,145,178,.4);colo
 
   <main>
     <section class="page-hero reveal-case">
-      <div class="page-kicker">Enterprise Transformation Experience</div>
-      <h1 class="page-title">From Enterprise Systems to Technical Product Delivery</h1>
-      <p class="page-lead">10+ years working across enterprise systems, requirements, integration, data, validation and release delivery. Connecting business needs with technical execution and increasingly applying automation and AI-enabled workflow design.</p>
+      <div class="page-kicker">Enterprise Product &amp; AI Transformation</div>
+      <h1 class="page-title">Enterprise Product &amp; AI Transformation Lead</h1>
+      <p class="page-lead">10+ years across enterprise systems, product delivery, requirements, integration, data, validation and release leadership. I connect complex business and technology environments with scalable delivery—now extending that foundation through automation, AI-enabled workflows and specialized agent solution design.</p>
     </section>
 
     <div class="exp-stats reveal-case">
-      <div class="exp-stat"><strong>10+</strong><span>Years of enterprise delivery experience</span></div>
-      <div class="exp-stat"><strong>Business → Technology</strong><span>Requirements through implementation</span></div>
-      <div class="exp-stat"><strong>Systems + Data</strong><span>Integration, migration and validation</span></div>
-      <div class="exp-stat"><strong>Delivery Ownership</strong><span>UAT, readiness and release</span></div>
+      <div class="exp-stat"><strong>10+</strong><span>Years across enterprise technology and transformation</span></div>
+      <div class="exp-stat"><strong>Enterprise Product</strong><span>Configuration, lifecycle and cross-functional delivery</span></div>
+      <div class="exp-stat"><strong>Systems + Data</strong><span>ERP, PLM, integration, migration and validation</span></div>
+      <div class="exp-stat"><strong>AI + Automation</strong><span>Workflow design, reasoning and specialized-agent thinking</span></div>
     </div>
-
-    <section class="experience-bridge glass-panel reveal-case" aria-labelledby="experience-bridge-title">
-      <div class="experience-bridge-label">Experience → AI-enabled transformation</div>
-      <p id="experience-bridge-title">My enterprise delivery background provides the process, systems, data and governance context to identify what should remain deterministic, where AI can add reasoning, and where human decision authority must stay.</p>
-    </section>
 
     <div class="exp-layout">
       <section class="timeline-panel glass-panel reveal-case">
@@ -198,16 +203,18 @@ html[data-theme="light"] .nav-soc-btn:hover{border-color:rgba(8,145,178,.4);colo
             </div>
             <div class="tl-spine"><div class="tl-dot"></div><div class="tl-line"></div></div>
             <div class="tl-body">
-              <h3 class="tl-role">IT Business Analyst and Project Lead</h3>
+              <h3 class="tl-role">Enterprise Product &amp; AI Transformation Lead</h3>
               <div class="tl-company">Global Technology and Engineering Company</div>
-              <p class="tl-desc">Lead requirements and delivery across enterprise product, configuration and systems initiatives, connecting engineering, product, pricing, sales and supply-chain stakeholders.</p>
+              <div class="tl-official">Official role: IT Business Analyst / Project Lead</div>
+              <p class="tl-desc">Lead cross-functional enterprise product and transformation delivery across product configuration, pricing, product data and connected business systems, translating operational needs into scalable requirements, controls and release outcomes.</p>
               <ul class="tl-bullets">
-                <li>Own requirements, user stories, acceptance criteria and cross-system dependency analysis from discovery through release.</li>
-                <li>Coordinate UAT, regression validation, evidence, stakeholder sign-offs and production readiness across recurring release cycles.</li>
-                <li>Work across ERP, PLM, product data, configuration and integration processes to identify gaps, improve controls and reduce manual delivery effort.</li>
+                <li>Own requirements-to-release delivery across discovery, process analysis, user stories, acceptance criteria, dependency mapping, UAT, regression evidence, stakeholder sign-off and production readiness.</li>
+                <li>Coordinate end-to-end validation across UI, middleware, PLM/Windchill, SAP, product data and downstream fulfillment flows, surfacing integration gaps and driving issues to resolution.</li>
+                <li>Design controls, reporting and automation that reduce manual effort while improving repeatability, traceability and decision visibility across recurring delivery cycles.</li>
+                <li>Apply enterprise process context to AI-enabled workflow design—identifying where deterministic systems should remain authoritative, where AI reasoning can assist and where specialized agents can orchestrate bounded tasks with human oversight.</li>
               </ul>
               <div class="tl-tags">
-                <span>Technical Product Delivery</span><span>Enterprise Systems</span><span>Requirements</span><span>Integration</span><span>UAT</span><span>Release Governance</span>
+                <span>Enterprise Product</span><span>AI Transformation</span><span>Product Configuration</span><span>Systems Integration</span><span>SAP + PLM</span><span>Requirements-to-Release</span><span>UAT &amp; Release Governance</span>
               </div>
             </div>
           </div>
@@ -215,7 +222,7 @@ html[data-theme="light"] .nav-soc-btn:hover{border-color:rgba(8,145,178,.4);colo
 
         </div>
 
-        <div style="margin-top:24px">
+        <div class="earlier-block">
           <h2 class="earlier-heading">Earlier Experience</h2>
           <div class="career-grid">
 
@@ -268,27 +275,44 @@ html[data-theme="light"] .nav-soc-btn:hover{border-color:rgba(8,145,178,.4);colo
         <section class="sidebar-panel glass-panel reveal-case">
           <h2 class="sidebar-heading">Core Capabilities</h2>
           <div class="cap-grid">
-            <div class="cap-tile"><i class="ti ti-building-skyscraper" aria-hidden="true"></i><span>Enterprise Transformation</span></div>
-            <div class="cap-tile"><i class="ti ti-rocket" aria-hidden="true"></i><span>Technical Product Delivery</span></div>
-            <div class="cap-tile"><i class="ti ti-file-description" aria-hidden="true"></i><span>Requirements & Process Design</span></div>
+            <div class="cap-tile"><i class="ti ti-building-skyscraper" aria-hidden="true"></i><span>Enterprise Product &amp; Transformation</span></div>
+            <div class="cap-tile"><i class="ti ti-brain" aria-hidden="true"></i><span>AI-Enabled Workflow Design</span></div>
+            <div class="cap-tile"><i class="ti ti-file-description" aria-hidden="true"></i><span>Requirements &amp; Process Architecture</span></div>
             <div class="cap-tile"><i class="ti ti-arrows-exchange" aria-hidden="true"></i><span>Systems Integration</span></div>
-            <div class="cap-tile"><i class="ti ti-database" aria-hidden="true"></i><span>Data & Migration</span></div>
-            <div class="cap-tile"><i class="ti ti-checklist" aria-hidden="true"></i><span>Testing & UAT</span></div>
-            <div class="cap-tile"><i class="ti ti-shield-check" aria-hidden="true"></i><span>Release Governance</span></div>
-            <div class="cap-tile"><i class="ti ti-robot" aria-hidden="true"></i><span>Automation & AI-Enabled Workflow Design</span></div>
+            <div class="cap-tile"><i class="ti ti-database" aria-hidden="true"></i><span>Product Data &amp; Migration</span></div>
+            <div class="cap-tile"><i class="ti ti-checklist" aria-hidden="true"></i><span>Testing, UAT &amp; Validation</span></div>
+            <div class="cap-tile"><i class="ti ti-shield-check" aria-hidden="true"></i><span>Release &amp; Delivery Governance</span></div>
+            <div class="cap-tile"><i class="ti ti-robot" aria-hidden="true"></i><span>Automation &amp; Agentic Solutions</span></div>
+          </div>
+        </section>
+
+        <section class="sidebar-panel glass-panel reveal-case">
+          <h2 class="sidebar-heading">Related Portfolio Evidence</h2>
+          <div class="evidence-list">
+            <a class="evidence-link" href="solutions/enterprise-product-configuration.html"><span><strong>Enterprise Product Configuration</strong><small>Configuration and connected enterprise systems</small></span><i class="ti ti-arrow-up-right" aria-hidden="true"></i></a>
+            <a class="evidence-link" href="solutions/product-data-integration.html"><span><strong>Product Data Integration</strong><small>Product data, integration and validation</small></span><i class="ti ti-arrow-up-right" aria-hidden="true"></i></a>
+            <a class="evidence-link" href="solutions/requirements-to-release.html"><span><strong>Requirements to Release</strong><small>Requirements, UAT and release governance</small></span><i class="ti ti-arrow-up-right" aria-hidden="true"></i></a>
+            <a class="evidence-link" href="solutions/technical-issue-analysis.html"><span><strong>Technical Issue Analysis</strong><small>Root cause and cross-system investigation</small></span><i class="ti ti-arrow-up-right" aria-hidden="true"></i></a>
+            <a class="evidence-link" href="solutions/enterprise-data-migration.html"><span><strong>Enterprise Data Migration</strong><small>Migration, validation and controls</small></span><i class="ti ti-arrow-up-right" aria-hidden="true"></i></a>
+            <a class="evidence-link" href="solutions/automated-business-reporting.html"><span><strong>Automated Business Reporting</strong><small>Automation, reporting and decision support</small></span><i class="ti ti-arrow-up-right" aria-hidden="true"></i></a>
           </div>
         </section>
       </aside>
     </div>
 
+    <section class="experience-bridge glass-panel reveal-case" aria-labelledby="experience-bridge-title">
+      <div class="experience-bridge-label">Enterprise experience → AI-enabled transformation</div>
+      <p id="experience-bridge-title">Years inside complex enterprise delivery environments shape how I approach AI transformation: keep systems of record and critical controls deterministic, use AI where reasoning and synthesis add value, use specialized agents for bounded orchestration, and retain human decision authority where risk or governance requires it.</p>
+    </section>
+
     <div class="case-cta glass-panel reveal-case">
       <div class="cta-copy">
-        <h2>From delivery experience to AI-enabled transformation</h2>
-        <p>Bringing requirements, systems, data, governance and delivery experience into practical AI-enabled enterprise solutions.</p>
+        <h2>From enterprise delivery to AI-enabled transformation</h2>
+        <p>Bringing product, systems, data, governance and delivery experience into practical AI-enabled enterprise solutions with clear controls and measurable operational value.</p>
       </div>
       <div class="cta-actions">
         <a class="button magnetic" href="contact.html">Start a Conversation</a>
-        <a class="button secondary magnetic" href="framework.html">View Framework</a>
+        <a class="button secondary magnetic" href="framework.html">Explore Framework</a>
       </div>
     </div>
   </main>
