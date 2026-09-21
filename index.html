@@ -910,7 +910,7 @@ html[data-theme="light"] .heroX-enterprise article.hx-scan::after{background:lin
     [33,215,244]
   ];
   var reduced=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  var drawRaf=0,startTime=0,particlePool=[],visibleParticleCount=0,activeState={enterprise:null,agents:null,values:null},portState={architecture:null,agents:null,values:null},cubeMode='reset',capIndex=-1;
+  var drawRaf=0,lifecycleRaf=0,startTime=0,particlePool=[],visibleParticleCount=0,heroVisible=true,pausedAt=0,activeState={enterprise:null,agents:null,values:null},portState={architecture:null,agents:null,values:null},cubeMode='reset',capIndex=-1;
 
   // Intelligence Fabric: wider, deeper three-face field with a stronger sense of depth.
   // Shared seam coordinates are generated once so corners never become dark from stacked dots.
@@ -1045,6 +1045,8 @@ html[data-theme="light"] .heroX-enterprise article.hx-scan::after{background:lin
           routed(ao[agentIndex],vi[valueIndex],colors[agentIndex],paths.value,agentIndex,valueIndex);
         });
       });
+      // Pooled particles stay above rebuilt structural paths without being re-appended every frame.
+      particlePool.forEach(function(el){linkSvg.appendChild(el);});
     });
   }
 
@@ -1052,6 +1054,7 @@ html[data-theme="light"] .heroX-enterprise article.hx-scan::after{background:lin
     if(particlePool[index])return particlePool[index];
     var el=document.createElementNS(NS,'circle');
     el.setAttribute('class','hx-life-particle hx-flow-comet');
+    el._hxClass='hx-life-particle hx-flow-comet';
     el.setAttribute('r','3.2');
     el.style.display='none';
     el.style.pointerEvents='none';
@@ -1073,12 +1076,11 @@ html[data-theme="light"] .heroX-enterprise article.hx-scan::after{background:lin
     // Keep the particle beneath the card node at both ends to eliminate endpoint flashes.
     var safe=.018+linear*.964;
     var pt=spec.el.getPointAtLength(spec.length*safe);
-    el.setAttribute('class','hx-life-particle hx-flow-comet '+spec.cls);
+    var cls='hx-life-particle hx-flow-comet '+spec.cls;
+    if(el._hxClass!==cls){el.setAttribute('class',cls);el._hxClass=cls;}
     el.setAttribute('cx',pt.x.toFixed(2));el.setAttribute('cy',pt.y.toFixed(2));
-    el.setAttribute('r','3.2');
     el.style.opacity=String(.72+.22*Math.sin((linear+index*.17)*Math.PI));
-    el.style.display='';
-    linkSvg.appendChild(el);
+    if(index>=visibleParticleCount)el.style.display='';
   }
   function stageParticles(list,p,segmentMs){
     var used=0;
@@ -1097,7 +1099,7 @@ html[data-theme="light"] .heroX-enterprise article.hx-scan::after{background:lin
       d.el.setAttribute('cy',d.baseY.toFixed(2));
       d.el.style.opacity=String(d.baseOpacity);
       d.el.style.removeProperty('fill');
-      d.fillState=-1;d.lastY=d.baseY;d.lastOpacity=null;
+      d.fillState=-1;d.lastY=d.baseY;d.lastOpacity=d.baseOpacity;
     });
     cubeGradient.setAttribute('gradientTransform','translate(-220 0)');
     cubeWaveStop.setAttribute('stop-color','#18b8dd');
@@ -1246,7 +1248,11 @@ html[data-theme="light"] .heroX-enterprise article.hx-scan::after{background:lin
   function valueRoutesForAgent(agentIndex){
     return valueRoutesByAgent[agentIndex]||[];
   }
+  function scheduleLifecycle(){
+    if(!reduced&&heroVisible&&!lifecycleRaf)lifecycleRaf=requestAnimationFrame(lifecycle);
+  }
   function lifecycle(now){
+    lifecycleRaf=0;
     if(!startTime)startTime=now;
     var elapsed=now-startTime;
     var t=elapsed%TOTAL;
@@ -1284,7 +1290,7 @@ html[data-theme="light"] .heroX-enterprise article.hx-scan::after{background:lin
     }else{
       hideParticles();resetCube();clearActive();clearPorts();
     }
-    requestAnimationFrame(lifecycle);
+    scheduleLifecycle();
   }
 
   draw();
@@ -1293,7 +1299,26 @@ html[data-theme="light"] .heroX-enterprise article.hx-scan::after{background:lin
   if('ResizeObserver' in window)new ResizeObserver(draw).observe(map);
 
   cubeMode='';resetCube();
-  if(!reduced)requestAnimationFrame(lifecycle);
+  if(!reduced){
+    if('IntersectionObserver' in window){
+      new IntersectionObserver(function(entries){
+        var visible=!!(entries[0]&&entries[0].isIntersecting);
+        if(visible===heroVisible)return;
+        if(!visible){
+          heroVisible=false;
+          pausedAt=performance.now();
+          if(lifecycleRaf){cancelAnimationFrame(lifecycleRaf);lifecycleRaf=0;}
+        }else{
+          var now=performance.now();
+          if(pausedAt&&startTime)startTime+=now-pausedAt;
+          pausedAt=0;
+          heroVisible=true;
+          scheduleLifecycle();
+        }
+      },{threshold:0}).observe(hero);
+    }
+    scheduleLifecycle();
+  }
 })();
 </script>
 
