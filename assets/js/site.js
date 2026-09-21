@@ -34,13 +34,25 @@
   const reduced = matchMedia('(prefers-reduced-motion:reduce)').matches;
   if (coarse || reduced) return;
   document.querySelectorAll('.magnetic').forEach(button => {
+    let raf = 0;
+    let lastEvent = null;
     button.addEventListener('pointermove', event => {
-      const rect = button.getBoundingClientRect();
-      const x = event.clientX - rect.left - rect.width / 2;
-      const y = event.clientY - rect.top - rect.height / 2;
-      button.style.transform = `translate3d(${x * 0.05}px, ${y * 0.07}px, 0) translateY(-2px)`;
+      lastEvent = event;
+      if (raf) return;
+      raf = requestAnimationFrame(() => {
+        raf = 0;
+        const rect = button.getBoundingClientRect();
+        const x = lastEvent.clientX - rect.left - rect.width / 2;
+        const y = lastEvent.clientY - rect.top - rect.height / 2;
+        button.style.transform = `translate3d(${x * 0.05}px, ${y * 0.07}px, 0) translateY(-2px)`;
+      });
     });
-    button.addEventListener('pointerleave', () => { button.style.transform = ''; });
+    button.addEventListener('pointerleave', () => {
+      if (raf) cancelAnimationFrame(raf);
+      raf = 0;
+      lastEvent = null;
+      button.style.transform = '';
+    });
   });
 })();
 
@@ -51,10 +63,22 @@
   const coarse = matchMedia('(pointer:coarse)').matches;
   cards.forEach(card => {
     if (!coarse) {
+      let raf = 0;
+      let lastEvent = null;
       card.addEventListener('pointermove', e => {
-        const r = card.getBoundingClientRect();
-        card.style.setProperty('--mx', `${e.clientX - r.left}px`);
-        card.style.setProperty('--my', `${e.clientY - r.top}px`);
+        lastEvent = e;
+        if (raf) return;
+        raf = requestAnimationFrame(() => {
+          raf = 0;
+          const r = card.getBoundingClientRect();
+          card.style.setProperty('--mx', `${lastEvent.clientX - r.left}px`);
+          card.style.setProperty('--my', `${lastEvent.clientY - r.top}px`);
+        });
+      });
+      card.addEventListener('pointerleave', () => {
+        if (raf) cancelAnimationFrame(raf);
+        raf = 0;
+        lastEvent = null;
       });
     }
     card.addEventListener('click', e => {
