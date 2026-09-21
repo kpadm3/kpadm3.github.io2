@@ -623,13 +623,14 @@ html[data-theme="light"] body .heroX .heroX-valuebox article.teal{border-color:r
 @media(max-width:720px){.nav-positioning{display:none}.theme-header-host{margin-left:0}}
 
 
-/* Hero capability tooltips must render above the connector SVG. */
+/* Hero capability tooltips must render above the connector SVG.
+   Connector SVG is z-index:5, so the AI zone must sit above that stacking context. */
 html body .heroX .heroX-ai{
-  z-index:4!important;
+  z-index:7!important;
 }
 html body .heroX .heroX-ai .heroX-caps{
   position:relative;
-  z-index:5!important;
+  z-index:8!important;
   overflow:visible!important;
 }
 
