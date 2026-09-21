@@ -168,7 +168,7 @@ html[data-theme="light"] .saa-agent .saa-label{background:rgba(0,0,0,.05);color:
 .heroX-ai{text-align:center}.heroX-core{position:relative;width:250px;height:250px;margin:-4px auto 2px;display:grid;place-items:center}
 .heroX-caps{display:flex;flex-wrap:wrap;justify-content:center;gap:8px;max-width:390px;margin:auto}.heroX-caps span{padding:7px 15px;border:1px solid rgba(54,197,240,.6);border-radius:18px;background:rgba(3,31,53,.92);font-size:8px;font-weight:700}
 .heroX-valuebox{border:1px solid rgba(40,222,210,.68);border-radius:20px;overflow:hidden;background:linear-gradient(180deg,rgba(4,69,81,.42),rgba(3,29,45,.55))}.heroX-valuebox article{height:70px;display:grid;grid-template-columns:55px 1fr;align-items:center;padding:0 12px;border-bottom:1px solid rgba(53,212,241,.13)}.heroX-valuebox article:last-child{border-bottom:0}.heroX-valuebox i{font-size:29px;color:#32dff2}.heroX-valuebox .violet i,.heroX-valuebox .violet em{color:#9b7cff}.heroX-valuebox .teal i,.heroX-valuebox .teal em{color:#34dfc8}.heroX-valuebox em{display:block;font-size:9px;font-style:normal;font-weight:800;color:#31d9ef}.heroX-valuebox b{display:block;margin-top:5px;font-size:11px}
-.heroX-links{position:absolute;inset:0;width:100%;height:400px;z-index:3;pointer-events:none}.hx-path path{fill:none;stroke-width:2;stroke-linecap:round;filter:url(#hxg)}.hx-in path{stroke:url(#hxc)}.hx-ag path,.hx-val path{stroke:url(#hxt)}
+.heroX-links{position:absolute;inset:0;width:100%;height:400px;z-index:3;pointer-events:none}.hx-in path{stroke:url(#hxc)}.hx-ag path,.hx-val path{stroke:url(#hxt)}
 .heroX-scale{position:absolute;left:24px;right:24px;bottom:16px;z-index:4;display:grid;grid-template-columns:105px 1fr 55px;gap:14px;align-items:center;font-size:9px;letter-spacing:.2em;color:#7692a8}.heroX-scale>div{height:1px;background:linear-gradient(90deg,#2bcde8,#2ce3d0);position:relative}.heroX-scale>div:after{content:"";position:absolute;right:0;top:-5px;width:9px;height:9px;border-top:2px solid #2ce3d0;border-right:2px solid #2ce3d0;transform:rotate(45deg)}.heroX-scale i{position:absolute;top:-3px;width:7px;height:7px;border-radius:50%;background:#36e0ed}.heroX-scale i:nth-child(1){left:15%}.heroX-scale i:nth-child(2){left:40%}.heroX-scale i:nth-child(3){left:65%}.heroX-scale i:nth-child(4){left:85%}
 
 @media(max-width:1200px){.heroX{padding:24px 20px}.heroX-intro{grid-template-columns:1fr;gap:16px}.heroX-intro h1{white-space:normal}.heroX-intro p{padding-left:0;border-left:0}.heroX-map{height:auto;grid-template-columns:1fr 1fr}.heroX-links{display:none}.heroX-zone{padding-bottom:22px}.heroX-scale{display:none}}
@@ -186,7 +186,6 @@ html[data-theme="light"] .heroX-core{background:none!important;filter:none!impor
 
 @keyframes hxAurora{0%,100%{opacity:.35;transform:scale(1)}50%{opacity:.7;transform:scale(1.04)}}
 @keyframes hxCorePulse{0%,100%{transform:scale(.985);filter:drop-shadow(0 0 14px rgba(53,218,246,.18))}50%{transform:scale(1.015);filter:drop-shadow(0 0 34px rgba(53,218,246,.42))}}
-@keyframes hxDash{to{stroke-dashoffset:-42}}
 @keyframes hxRail{0%{transform:translateX(-18%);opacity:0}18%,82%{opacity:.9}100%{transform:translateX(118%);opacity:0}}
 
 @keyframes hxWave{to{background-position:90px 0,0 0}}
@@ -196,15 +195,10 @@ html[data-theme="light"] .heroX-core{background:none!important;filter:none!impor
 .heroX-map:before{content:"";position:absolute;inset:-25% -10%;z-index:0;pointer-events:none;background:radial-gradient(circle at 46% 47%,rgba(20,167,236,.16),transparent 24%),radial-gradient(circle at 69% 50%,rgba(126,91,255,.10),transparent 24%),radial-gradient(circle at 90% 50%,rgba(31,225,198,.08),transparent 18%);animation:hxAurora 8s ease-in-out infinite}
 .heroX-enterprise article,.heroX-agents article{box-shadow:inset 0 0 20px rgba(31,163,225,.04),0 0 8px rgba(31,210,245,.05)}
 .heroX-core{animation:hxCorePulse 4.6s ease-in-out infinite}
-.heroX-caps span{box-shadow:inset 0 0 12px rgba(53,212,241,.04)}.heroX-caps span:hover{transform:translateY(-2px);border-color:#43e2f3;box-shadow:0 0 15px rgba(53,212,241,.18)}
-.hx-path path{stroke-dasharray:9 9;animation:hxDash 3.5s linear infinite}.hx-path path:nth-child(2){animation-delay:-.8s}.hx-path path:nth-child(3){animation-delay:-1.6s}.hx-path path:nth-child(4){animation-delay:-2.4s}.heroX-links{filter:drop-shadow(0 0 5px rgba(45,213,245,.25))}
+.heroX-caps span{box-shadow:inset 0 0 12px rgba(53,212,241,.04)}.heroX-caps span:hover{transform:translateY(-2px);border-color:#43e2f3;box-shadow:0 0 15px rgba(53,212,241,.18)}.heroX-links{filter:drop-shadow(0 0 5px rgba(45,213,245,.25))}
 .heroX-valuebox{box-shadow:inset 0 0 28px rgba(39,220,205,.07),0 0 22px rgba(39,220,205,.07)}
 .heroX-scale>div:before{content:"";position:absolute;top:-1px;left:0;width:22%;height:3px;border-radius:4px;background:linear-gradient(90deg,transparent,#83f6ff,transparent);animation:hxRail 4.2s linear infinite}.heroX-scale i{box-shadow:0 0 9px rgba(54,224,237,.75);animation:hxpulse 2.2s ease-in-out infinite}
-@media(prefers-reduced-motion:reduce){.heroX:before,.heroX:after,.heroX-map:before,.heroX-core,.hx-path path,.heroX-scale>div:before,.heroX-scale i{animation:none!important}}
-
-
-/* HERO X REFERENCE EFFECTS v2 */
-@keyframes hxTracer{0%{stroke-dashoffset:0;opacity:.45}50%{opacity:1}100%{stroke-dashoffset:-120;opacity:.45}}
+@media(prefers-reduced-motion:reduce){.heroX:before,.heroX:after,.heroX-map:before,.heroX-core,.heroX-scale>div:before,.heroX-scale i{animation:none!important}}
 @keyframes hxHalo{0%,100%{opacity:.35;transform:scale(.96)}50%{opacity:.8;transform:scale(1.04)}}
 @keyframes hxScan{0%{transform:translateX(-130%);opacity:0}15%{opacity:.65}80%{opacity:.25}100%{transform:translateX(430%);opacity:0}}
 @keyframes hxNode{0%,100%{opacity:.5;box-shadow:0 0 6px currentColor}50%{opacity:1;box-shadow:0 0 18px currentColor,0 0 32px currentColor}}
@@ -212,8 +206,6 @@ html[data-theme="light"] .heroX-core{background:none!important;filter:none!impor
 .heroX-map{box-shadow:inset 0 0 70px rgba(5,126,194,.055),0 0 32px rgba(0,0,0,.16)}
 .heroX-map .heroX-zone{background:linear-gradient(180deg,rgba(3,22,39,.06),rgba(3,22,39,.18))}\n.heroX-map:before{content:"";position:absolute;inset:0;pointer-events:none;z-index:0;background-image:linear-gradient(rgba(48,214,242,.045) 1px,transparent 1px),linear-gradient(90deg,rgba(48,214,242,.04) 1px,transparent 1px);background-size:72px 72px;background-position:0 0;opacity:.55}
 .heroX-links{opacity:.98}
-.hx-path path{stroke-dasharray:18 7 3 7;animation:hxTracer 5.2s linear infinite}
-.hx-path path:nth-child(2){animation-duration:4.5s}.hx-path path:nth-child(3){animation-duration:5.8s}.hx-path path:nth-child(4){animation-duration:4.9s}
 .heroX-core:before,.heroX-core:after{content:"";position:absolute;border-radius:50%;pointer-events:none}
 .heroX-core:before{inset:-24px;background:radial-gradient(circle,transparent 46%,rgba(31,204,245,.12) 58%,transparent 72%);animation:hxHalo 4s ease-in-out infinite}
 .heroX-core:after{inset:-10px;border:1px dotted rgba(59,213,245,.28);animation:hxOrbit2 28s linear infinite}
@@ -237,7 +229,7 @@ html[data-theme="light"] .heroX-core{filter:drop-shadow(0 0 24px rgba(8,145,178,
 html[data-theme="light"] .heroX-valuebox{background:linear-gradient(180deg,rgba(225,248,248,.92),rgba(237,248,251,.95))!important;color:#17364d!important}
 html[data-theme="light"] .heroX-valuebox article{border-bottom-color:rgba(8,145,178,.13)!important}
 html[data-theme="light"] .heroX-scale{color:#58778d!important}
-@media(prefers-reduced-motion:reduce){.hx-path path,.heroX-core:before,.heroX-core:after,.heroX-enterprise article:before,.heroX-agents article:before,.heroX-valuebox article:before{animation:none!important}}
+@media(prefers-reduced-motion:reduce){.heroX-core:before,.heroX-core:after,.heroX-enterprise article:before,.heroX-agents article:before,.heroX-valuebox article:before{animation:none!important}}
 
 
 /* HERO X PIXEL MATCH v3 */
@@ -267,8 +259,6 @@ html[data-theme="light"] .heroX-scale{color:#58778d!important}
 @media(min-width:1201px){
 .heroX-links{overflow:visible}
 }
-/* Reference-grade solid luminous paths,not dashed guide lines */
-.hx-path path{stroke-dasharray:none!important;stroke-width:2.15!important;opacity:.95!important;animation:none!important}
 .hx-in path:nth-child(4),.hx-ag path:nth-child(2){stroke:#9a79ff!important}
 .hx-ag path:nth-child(4),.hx-val path:nth-child(4){stroke:#28dfcf!important}
 .heroX-links{filter:drop-shadow(0 0 6px rgba(42,217,247,.34))!important}
@@ -281,16 +271,6 @@ html[data-theme="light"] .heroX-scale{color:#58778d!important}
 /* Dark reference is exact target. Light mode preserves geometry/effects with a coherent light palette. */
 
 html[data-theme="light"] .heroX-links{filter:drop-shadow(0 0 3px rgba(8,145,178,.34))!important}
-}
-
-
-/* HERO X CONNECTION + LIGHT CORE FIX v4 */
-/* Paths are continuous and terminate on explicit glowing junctions. */
-.hx-path path{fill:none!important;stroke:url(#hxc)!important;stroke-width:2.35!important;stroke-linecap:round!important;stroke-linejoin:round!important;opacity:.98!important;filter:url(#hxg)!important}
-.hx-path path.purple{stroke:#9578ff!important}.hx-path path.teal{stroke:#2be2cf!important}
-.hx-junction circle{fill:#6eeeff;stroke:#d7fbff;stroke-width:1;filter:url(#hxg);animation:hxNodeSvg 2s ease-in-out infinite}
-.hx-junction circle.purple{fill:#9b7cff;stroke:#e4dbff}.hx-junction circle.teal{fill:#31e1cc;stroke:#d8fff8}
-@keyframes hxNodeSvg{0%,100%{opacity:.68}50%{opacity:1}}
 /* Make the actual card ports sit visually on the connection system. */
 .heroX-enterprise article>span{right:-6px!important}.heroX-agents article>span{right:-6px!important}
 .heroX-enterprise article:after,.heroX-agents article:after{content:"";position:absolute;right:-17px;top:50%;width:12px;height:1px;background:linear-gradient(90deg,currentColor,transparent);opacity:.55}
@@ -298,10 +278,6 @@ html[data-theme="light"] .heroX-links{filter:drop-shadow(0 0 3px rgba(8,145,178,
 .heroX-core{isolation:isolate;background:radial-gradient(circle at 50% 50%,#06263f 0 31%,rgba(6,44,70,.9) 32% 42%,rgba(7,57,88,.36) 43% 58%,transparent 70%)!important}
 /* Light mode keeps the same engineered core instead of a dark solid disk. */
 html[data-theme="light"] .heroX-core{background:radial-gradient(circle at 50% 50%,rgba(237,250,255,.98) 0 31%,rgba(205,239,249,.82) 32% 42%,rgba(155,220,240,.22) 43% 58%,transparent 70%)!important;filter:drop-shadow(0 0 25px rgba(8,159,194,.16))!important}
-html[data-theme="light"] .hx-path path{opacity:.82!important;filter:drop-shadow(0 0 3px rgba(0,164,204,.28))!important}
-html[data-theme="light"] .hx-path path.purple{stroke:#8067ef!important}html[data-theme="light"] .hx-path path.teal{stroke:#0bc9b6!important}
-html[data-theme="light"] .hx-junction circle{filter:drop-shadow(0 0 4px rgba(0,160,198,.5))!important}
-@media(prefers-reduced-motion:reduce){.hx-junction circle{animation:none!important}}
 
 /* AI MESH FINAL RESET v6
    Deliberately overrides every legacy ring/core effect without touching routing. */
@@ -384,12 +360,6 @@ html[data-theme="light"] .heroX-ai .heroX-core{background:transparent!important;
 .heroX-links{
   height:100%!important;
   filter:drop-shadow(0 0 4px rgba(45,213,245,.22))
-}
-
-/* Keep only the meaningful transformation connectors as structural lines. */
-.hx-path path{
-  stroke-width:2!important;
-  stroke-dasharray:18 7 3 7
 }
 
 html[data-theme="light"] .heroX-map,html[data-theme="light"] .heroX-map .heroX-zone{
@@ -631,40 +601,7 @@ html[data-theme="light"] .heroX-ai .hx-cube-dots circle{opacity:.52}
   </div>
 
   <div class="heroX-map">
-    <svg class="heroX-links" viewBox="0 0 1600 400" preserveAspectRatio="none" aria-hidden="true">
-  <defs>
-    <filter id="hxg" x="-30%" y="-30%" width="160%" height="160%"><feGaussianBlur stdDeviation="2.4" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
-    <linearGradient id="hxc" x1="0" x2="1"><stop stop-color="#31e4ff"/><stop offset=".62" stop-color="#39bfff"/><stop offset="1" stop-color="#8476ff"/></linearGradient>
-    <linearGradient id="hxp" x1="0" x2="1"><stop stop-color="#8476ff"/><stop offset=".48" stop-color="#39cfff"/><stop offset="1" stop-color="#27e2d0"/></linearGradient>
-  </defs>
-  <g class="hx-path hx-in">
-    <path d="M355 111 C430 111 452 178 535 183"/>
-    <path d="M355 180 C438 180 468 188 535 190"/>
-    <path d="M355 249 C438 249 468 199 535 197"/>
-    <path class="purple" d="M355 318 C430 318 452 210 535 204"/>
-  </g>
-  <g class="hx-junction">
-    <circle cx="535" cy="183" r="4"/><circle cx="535" cy="190" r="4"/><circle cx="535" cy="197" r="4"/><circle cx="535" cy="204" r="4" class="purple"/>
-  </g>
-  <g class="hx-path hx-ag">
-    <path d="M865 183 C935 180 945 111 990 111"/>
-    <path class="purple" d="M865 190 C935 188 950 180 990 180"/>
-    <path class="purple" d="M865 197 C935 202 950 249 990 249"/>
-    <path class="teal" d="M865 204 C935 214 945 318 990 318"/>
-  </g>
-  <g class="hx-junction">
-    <circle cx="865" cy="183" r="4"/><circle cx="865" cy="190" r="4" class="purple"/><circle cx="865" cy="197" r="4" class="purple"/><circle cx="865" cy="204" r="4" class="teal"/>
-  </g>
-  <g class="hx-path hx-val">
-    <path d="M1295 111 C1335 111 1338 111 1360 111"/>
-    <path class="purple" d="M1295 180 C1335 180 1338 180 1360 180"/>
-    <path d="M1295 249 C1335 249 1338 249 1360 249"/>
-    <path class="teal" d="M1295 318 C1335 318 1338 318 1360 318"/>
-  </g>
-  <g class="hx-junction hx-value-junction">
-    <circle cx="1360" cy="111" r="4"/><circle cx="1360" cy="180" r="4" class="purple"/><circle cx="1360" cy="249" r="4"/><circle cx="1360" cy="318" r="4" class="teal"/>
-  </g>
-</svg>
+    <svg class="heroX-links" viewBox="0 0 1600 400" preserveAspectRatio="none" aria-hidden="true"></svg>
 
     <section class="heroX-zone heroX-enterprise">
       <header><b>Enterprise Architecture Layer</b><small>THE FOUNDATION FOR AI</small></header>
@@ -1123,7 +1060,7 @@ html[data-theme="light"] .heroX-enterprise article.hx-scan::after{background:lin
   function draw(){
     cancelAnimationFrame(drawRaf);
     drawRaf=requestAnimationFrame(function(){
-      linkSvg.querySelectorAll('.hx-path,.hx-junction,.hx-flow-path').forEach(function(n){n.remove();});
+      linkSvg.querySelectorAll('.hx-flow-path').forEach(function(n){n.remove();});
       hideParticles();
       paths={incoming:[],outgoing:[],value:[]};
       valueRoutesByAgent=[[],[],[],[]];
