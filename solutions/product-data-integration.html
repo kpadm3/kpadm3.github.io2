@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Enterprise Data Integration | Krishna</title>
-<meta name="description" content="Structured source-to-target integration connecting field mappings, transformation rules and validation controls. Sr. Business Analyst / Technical Product Manager delivery program.">
+<title>Enterprise Data Integration | Krishna Padmanabhan</title>
+<meta name="description" content="Enterprise data integration case study combining deterministic mapping controls, AI-assisted interpretation, agent routing and human approval.">
 <meta name="theme-color" content="#050b14">
 <link rel="stylesheet" href="../assets/css/site.css">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@3/dist/tabler-icons.min.css">
@@ -73,23 +73,25 @@ html[data-theme="light"]{
   <p class="hero-lead">Structured source-to-target integration connecting field mappings, transformation rules and validation controls.</p>
 </div>
 <div class="stack-row">
-  <span class="stack-label">Target stack</span>
+  <span class="stack-label">Proposed extension stack</span>
   <span class="stack-chip">Python</span><span class="stack-chip">Enterprise LLM</span><span class="stack-chip">SharePoint</span>
 </div>
+<p class="solution-scope-note"><strong>Case scope:</strong> The enterprise process, systems and control foundation reflects hands-on delivery patterns. AI and agent components shown below are proposed design extensions.</p>
 <div class="value-row">
   <span class="value-chip">Faster mapping analysis</span><span class="value-chip">Fewer integration gaps</span>
   <span class="value-chip">Consistent field definitions</span><span class="value-chip">Traceable decisions</span>
 </div>
 </div>
 
-<div id="sec-ai" class="sol-two-col" style="margin-bottom:24px">
+<div id="sec-ai" class="sol-two-col">
   <div>
     <div class="sol-col-label">At a Glance</div>
     <div class="glance-grid">
       <div class="glance-item"><span class="glance-label">Business problem</span><span class="glance-value">Source and target systems use different field names, structures and rules, creating mapping ambiguity and downstream integration risk</span></div>
-      <div class="glance-item"><span class="glance-label">My role</span><span class="glance-value">Sr. Business Analyst / Technical Product Manager</span></div>
+      <div class="glance-item"><span class="glance-label">My contribution</span>
+        <span class="glance-value">Integration requirements · field mapping · XML/API validation · UAT</span></div>
       <div class="glance-item"><span class="glance-label">Current environment</span><span class="glance-value">SAP exports · source/target schemas · mapping specifications · SharePoint</span></div>
-      <div class="glance-item"><span class="glance-label">Outcome</span><span class="glance-value">Reliable mappings, fewer integration gaps and clear data lineage</span></div>
+      <div class="glance-item"><span class="glance-label">Business value</span><span class="glance-value">Reliable mappings, fewer integration gaps and clear data lineage</span></div>
     </div>
   </div>
   <div>
@@ -113,7 +115,7 @@ html[data-theme="light"]{
 </div>
 </div>
 
-<div id="sec-ownership" class="sol-two-col-wide" style="margin-top:20px;margin-bottom:20px">
+<div id="sec-ownership" class="sol-two-col-wide" style="margin-top:20px">
   <div>
     <div class="sol-col-label">What I Owned</div>
     <div class="owned-list">
@@ -125,7 +127,7 @@ html[data-theme="light"]{
     </div>
   </div>
   <div id="sec-arch">
-    <div class="sol-col-label">Target Architecture</div>
+    <div class="sol-col-label">Proposed AI-enabled architecture</div>
     <div class="arch-flow">
       <span class="arch-step">SAP export</span><span class="arch-arrow">→</span>
       <span class="arch-step">SharePoint</span><span class="arch-arrow">→</span>
@@ -143,7 +145,7 @@ html[data-theme="light"]{
   <summary>Technical design</summary>
   <div class="details-inner">
     <div>
-      <div class="section-label" style="margin-bottom:10px">MVP scenarios</div>
+      <div class="section-label">MVP scenarios</div>
       <div class="scenarios">
         <div class="scenario"><span class="sc-num">Scenario 1</span><span class="sc-text">Exact match. Source and target fields match clearly with no ambiguity.</span><span class="sc-badge pass">Pass</span></div>
         <div class="scenario"><span class="sc-num">Scenario 2</span><span class="sc-text">Known transformation. Field requires a predefined transformation rule. Handled deterministically.</span><span class="sc-badge det">Deterministic</span></div>
@@ -152,7 +154,7 @@ html[data-theme="light"]{
       </div>
     </div>
     <div>
-      <div class="section-label" style="margin-bottom:10px">Controls and governance</div>
+      <div class="section-label">Controls and governance</div>
       <div class="controls-list">
         <div class="control-item">Exact matches and hard validation rules remain deterministic.</div>
         <div class="control-item">AI only evaluates unresolved or ambiguous cases.</div>
@@ -163,7 +165,7 @@ html[data-theme="light"]{
       </div>
     </div>
     <div>
-      <div class="section-label" style="margin-bottom:8px">Implementation note</div>
+      <div class="section-label">Implementation note</div>
       <p style="font-size:.72rem;color:var(--soft);line-height:1.55;">Azure OpenAI can serve as the managed LLM layer for evaluating ambiguous source-to-target mappings.</p>
     </div>
   </div>
