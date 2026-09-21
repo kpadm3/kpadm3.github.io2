@@ -20,11 +20,8 @@ body{
     radial-gradient(circle at 87% 9%,rgba(53,212,241,.08),transparent 25%),
     linear-gradient(180deg,#04101d 0%,#06111e 56%,#030914 100%);
 }
-.case-wrap{width:min(1380px,100%);margin:auto;padding:24px 32px}
 
 .page-hero{margin-bottom:14px;padding:10px 0 6px}
-.page-kicker{color:var(--case-cyan);font-size:.78rem;font-weight:900;letter-spacing:.09em;text-transform:uppercase;margin-bottom:14px}
-.page-title{font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif!important;font-size:clamp(1.7rem,2.8vw,2.4rem);line-height:1.1;letter-spacing:-.02em;margin:0 0 16px;font-weight:200!important}
 .page-lead{max-width:700px;color:#bac8d8;font-size:clamp(.95rem,1.35vw,1.12rem);line-height:1.62;margin:0}
 
 .glass-panel{
@@ -65,14 +62,11 @@ a.contact-item:hover{border-color:rgba(53,212,241,.56);transform:translateX(3px)
 .contact-item-value{display:block;color:#d5e2ef;font-size:.76rem;font-weight:700;line-height:1.35}
 .contact-item-sub{display:block;margin-top:3px;color:#7e9ab5;font-size:.65rem}
 
-.reveal-case{opacity:0;transform:translateY(14px);transition:opacity .55s ease,transform .55s cubic-bezier(.22,1,.36,1)}
-.reveal-case.visible{opacity:1;transform:none}
 @media(max-width:600px){
   .case-wrap{padding:16px}
   .page-title{font-size:clamp(2.2rem,12vw,3.2rem)}
   .contact-items-grid{grid-template-columns:1fr}
 }
-@media(prefers-reduced-motion:reduce){.reveal-case{opacity:1;transform:none}}
 .contact-icon i{font-size:1.05rem}
 html[data-theme="light"]{--case-cyan:#0891b2;--case-border:rgba(8,145,178,.15)}
 html[data-theme="light"] body{background:#f0f6fc}
