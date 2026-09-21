@@ -1718,6 +1718,20 @@ html[data-theme="light"] .heroX-enterprise article small{font-size:9px!important
 .heroX-valuebox article div small{display:block!important;margin-top:5px!important;font-size:8.4px!important;line-height:1.15!important;letter-spacing:0!important;white-space:nowrap!important;font-style:normal!important}
 html[data-theme="light"] .heroX-valuebox article div small{color:#56778d!important}
 
+/* Keep Operational Value input ports as full square handoff nodes. */
+.heroX-valuebox article{
+  position:relative!important;
+  overflow:visible!important;
+}
+.heroX-valuebox .hx-value-port{
+  left:-5px!important;
+  right:auto!important;
+  width:10px!important;
+  height:10px!important;
+  border-radius:3px!important;
+  overflow:visible!important;
+}
+
 /* Intelligence Fabric keeps the existing lifecycle while light mode gets a contained AI halo. */
 html[data-theme="light"] .heroX-ai .hx-dotcube{
   background:radial-gradient(ellipse at center,rgba(32,188,216,.115) 0%,rgba(94,109,232,.045) 38%,rgba(255,255,255,0) 69%)!important;
@@ -1865,13 +1879,36 @@ html[data-theme="light"] .heroX-enterprise article.hx-scan::after{background:lin
       linkSvg.setAttribute('viewBox','0 0 '+mr.width+' '+mr.height);
       linkSvg.setAttribute('preserveAspectRatio','none');
 
-      var cr=cubeSvg.getBoundingClientRect();
-      var left={x:cr.left-mr.left+cr.width*.20,y:cr.top-mr.top+cr.height*.49};
-      var right={x:cr.left-mr.left+cr.width*.80,y:cr.top-mr.top+cr.height*.49};
-      var offsets=[-15,-5,5,15];
+      // Convert real Intelligence Fabric SVG coordinates into the rendered hero-map coordinate system.
+      // Using the SVG screen matrix keeps the routes attached to the actual cube geometry at every desktop size.
+      function cubeMapPoint(x,y){
+        var p=cubeSvg.createSVGPoint();
+        p.x=x;p.y=y;
+        var screen=p.matrixTransform(cubeSvg.getScreenCTM());
+        return{x:screen.x-mr.left,y:screen.y-mr.top};
+      }
 
-      enterprise.forEach(function(card,i){simple(point(card.querySelector('.hx-out-port')),{x:left.x,y:left.y+offsets[i]},colors[i],paths.incoming);});
-      agents.forEach(function(card,i){simple({x:right.x,y:right.y+offsets[i]},point(card.querySelector('.hx-in-port')),colors[i],paths.outgoing);});
+      // Terminate the structural wires just outside the cube's true left/right perimeter.
+      // This preserves a clean visual boundary so connectors feed the fabric instead of lying across its dots.
+      var leftAnchors=[
+        cubeMapPoint(88,100),
+        cubeMapPoint(88,126),
+        cubeMapPoint(88,152),
+        cubeMapPoint(88,178)
+      ];
+      var rightAnchors=[
+        cubeMapPoint(472,100),
+        cubeMapPoint(472,126),
+        cubeMapPoint(472,152),
+        cubeMapPoint(472,178)
+      ];
+
+      enterprise.forEach(function(card,i){
+        simple(point(card.querySelector('.hx-out-port')),leftAnchors[i],colors[i],paths.incoming);
+      });
+      agents.forEach(function(card,i){
+        simple(rightAnchors[i],point(card.querySelector('.hx-in-port')),colors[i],paths.outgoing);
+      });
 
       var ao=agents.map(function(card){return point(card.querySelector('.hx-out-port'));});
       var vi=values.map(function(card){return point(card.querySelector('.hx-value-port'));});
