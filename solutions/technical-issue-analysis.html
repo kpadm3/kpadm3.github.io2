@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Technical Issue and Root-Cause Analysis | Krishna</title>
-<meta name="description" content="Evidence-led investigation connecting deterministic comparison, AI-assisted interpretation and validated closure. Sr. Business Analyst / Technical Product Manager delivery program.">
+<title>Technical Issue and Root-Cause Analysis | Krishna Padmanabhan</title>
+<meta name="description" content="Technical issue and root-cause analysis case study combining deterministic comparison, AI-assisted interpretation, agent coordination and human-confirmed closure.">
 <meta name="theme-color" content="#050b14">
 <link rel="stylesheet" href="../assets/css/site.css">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@3/dist/tabler-icons.min.css">
@@ -73,11 +73,12 @@ html[data-theme="light"]{--bg:#f0f4f8;--panel:#ffffff;--text:#1a2c3e;--muted:#45
   <p class="hero-lead">Evidence-led investigation connecting deterministic comparison, AI-assisted interpretation and validated closure.</p>
 </div>
 <div class="stack-row">
-  <span class="stack-label">Target stack</span>
+  <span class="stack-label">Proposed extension stack</span>
   <span class="stack-chip">Python</span><span class="stack-chip">XML Compare Utility</span>
   <span class="stack-chip">Enterprise LLM</span><span class="stack-chip">SharePoint</span>
 </div>
-<div class="value-row" style="margin-bottom:28px">
+<p class="solution-scope-note"><strong>Case scope:</strong> The enterprise process, systems and control foundation reflects hands-on delivery patterns. AI and agent components shown below are proposed design extensions.</p>
+<div class="value-row">
   <span class="value-chip">Faster investigation</span><span class="value-chip">Clearer ownership</span>
   <span class="value-chip">Reusable knowledge</span><span class="value-chip">Stronger closure</span>
 </div>
@@ -87,9 +88,10 @@ html[data-theme="light"]{--bg:#f0f4f8;--panel:#ffffff;--text:#1a2c3e;--muted:#45
     <div class="sol-col-label">At a glance</div>
     <div class="glance-grid" style="margin-bottom:0">
       <div class="glance-item"><span class="glance-label">Business problem</span><span class="glance-value">Issues often span XMLs, logs, tickets and multiple systems, making it difficult to separate symptoms from root cause and coordinate ownership</span></div>
-      <div class="glance-item"><span class="glance-label">My role</span><span class="glance-value">Sr. Business Analyst / Technical Product Manager</span></div>
+      <div class="glance-item"><span class="glance-label">My contribution</span>
+        <span class="glance-value">Issue triage · comparison criteria · root-cause investigation · validation</span></div>
       <div class="glance-item"><span class="glance-label">Current environment</span><span class="glance-value">XML Compare Utility · test evidence · issue logs · SharePoint</span></div>
-      <div class="glance-item"><span class="glance-label">Outcome</span><span class="glance-value">Faster diagnosis, clearer ownership and reusable technical knowledge</span></div>
+      <div class="glance-item"><span class="glance-label">Business value</span><span class="glance-value">Faster diagnosis, clearer ownership and reusable technical knowledge</span></div>
     </div>
   </div>
   <div>
@@ -125,7 +127,7 @@ html[data-theme="light"]{--bg:#f0f4f8;--panel:#ffffff;--text:#1a2c3e;--muted:#45
     </div>
   </div>
   <div>
-    <div class="sol-col-label">Target architecture</div>
+    <div class="sol-col-label">Proposed AI-enabled architecture</div>
     <div class="arch-flow" style="margin-bottom:0">
       <span class="arch-step">XML / logs / evidence</span><span class="arch-arrow">→</span>
       <span class="arch-step hi">XML Compare Utility + Python</span><span class="arch-arrow">→</span>
@@ -142,7 +144,7 @@ html[data-theme="light"]{--bg:#f0f4f8;--panel:#ffffff;--text:#1a2c3e;--muted:#45
   <summary>Technical design</summary>
   <div class="details-inner">
     <div>
-      <div class="section-label" style="margin-bottom:10px">MVP scenarios</div>
+      <div class="section-label">MVP scenarios</div>
       <div class="scenarios">
         <div class="scenario"><span class="sc-num">Scenario 1</span><span class="sc-text">Known structural difference. XML comparison detects a known structural change. Handled by the XML Compare Utility without AI involvement.</span><span class="sc-badge det">Deterministic</span></div>
         <div class="scenario"><span class="sc-num">Scenario 2</span><span class="sc-text">Known invalid value. A defined rule or expected value is violated. Fails deterministic check.</span><span class="sc-badge fail">Fail</span></div>
@@ -154,7 +156,7 @@ html[data-theme="light"]{--bg:#f0f4f8;--panel:#ffffff;--text:#1a2c3e;--muted:#45
       </div>
     </div>
     <div>
-      <div class="section-label" style="margin-bottom:10px">Controls and governance</div>
+      <div class="section-label">Controls and governance</div>
       <div class="controls-list">
         <div class="control-item">Deterministic comparison remains authoritative for known rules and structural differences.</div>
         <div class="control-item">AI does not declare the final root cause by itself.</div>
@@ -166,7 +168,7 @@ html[data-theme="light"]{--bg:#f0f4f8;--panel:#ffffff;--text:#1a2c3e;--muted:#45
       </div>
     </div>
     <div>
-      <div class="section-label" style="margin-bottom:8px">Implementation note</div>
+      <div class="section-label">Implementation note</div>
       <p style="font-size:.72rem;color:var(--soft);line-height:1.55;">Azure OpenAI can serve as the managed LLM layer for grouping symptoms and generating root-cause hypotheses from validated evidence.</p>
     </div>
   </div>
