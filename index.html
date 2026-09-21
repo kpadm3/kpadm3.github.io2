@@ -1119,10 +1119,10 @@ html[data-theme="light"] .heroX-valuebox{
 }
 .heroX-valuebox article:nth-child(2){border-color:rgba(152,119,255,.32)!important}
 
-/* Balanced desktop geometry: Architecture, Agents and Value use identical layer widths. */
+/* Balanced desktop geometry with a dedicated Agent-to-Value routing corridor. */
 @media(min-width:1201px){
   .heroX-map{
-    grid-template-columns:24% 28% 24% 24%!important;
+    grid-template-columns:23% 29% 23% 2% 23%!important;
     column-gap:0!important
   }
   .heroX-enterprise{grid-column:1}
@@ -1135,7 +1135,7 @@ html[data-theme="light"] .heroX-valuebox{
     padding-right:25px!important
   }
   .heroX-value{
-    grid-column:4;
+    grid-column:5;
     padding-left:25px!important;
     padding-right:25px!important
   }
@@ -1734,18 +1734,25 @@ html[data-theme="light"] .heroX-enterprise article small{font-size:9px!important
 .heroX-valuebox article div small{display:block!important;margin-top:4px!important;font-size:10px!important;line-height:1.2!important;letter-spacing:0!important;white-space:nowrap!important;font-style:normal!important}
 html[data-theme="light"] .heroX-valuebox article div small{color:#56778d!important}
 
-/* Keep Operational Value input ports as full square handoff nodes. */
+/* Agent-to-Value handoff nodes are identical square endpoints. */
 .heroX-valuebox article{
   position:relative!important;
   overflow:visible!important;
 }
+.heroX-agents .hx-out-port,
 .heroX-valuebox .hx-value-port{
-  left:-5px!important;
-  right:auto!important;
   width:10px!important;
   height:10px!important;
   border-radius:3px!important;
   overflow:visible!important;
+}
+.heroX-agents .hx-out-port{
+  right:-5px!important;
+  left:auto!important;
+}
+.heroX-valuebox .hx-value-port{
+  left:-5px!important;
+  right:auto!important;
 }
 
 /* Intelligence Fabric keeps the existing lifecycle while light mode gets a contained AI halo. */
