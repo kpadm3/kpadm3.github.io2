@@ -5,6 +5,15 @@
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Requirements-to-Release Delivery | Krishna</title>
 <meta name="description" content="Traceable delivery connecting requirements, acceptance criteria, test evidence, dependencies and release decisions. Sr. Business Analyst / Technical Product Manager delivery program.">
+<link rel="canonical" href="https://kpadm3.github.io/kpadm3.github.io2/solutions/requirements-to-release.html">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Krishna Padmanabhan Portfolio">
+<meta property="og:title" content="Requirements-to-Release Delivery | Krishna">
+<meta property="og:description" content="Traceable delivery connecting requirements, acceptance criteria, test evidence, dependencies and release decisions. Sr. Business Analyst / Technical Product Manager delivery program.">
+<meta property="og:url" content="https://kpadm3.github.io/kpadm3.github.io2/solutions/requirements-to-release.html">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Requirements-to-Release Delivery | Krishna">
+<meta name="twitter:description" content="Traceable delivery connecting requirements, acceptance criteria, test evidence, dependencies and release decisions. Sr. Business Analyst / Technical Product Manager delivery program.">
 <meta name="theme-color" content="#050b14">
 <link rel="stylesheet" href="../assets/css/site.css">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@3/dist/tabler-icons.min.css">
@@ -82,7 +91,7 @@ html[data-theme="light"]{
 
 <div class="sol-two-col">
   <div>
-    <div class="sol-col-label">At a glance</div>
+    <div class="sol-col-label" role="heading" aria-level="2">At a glance</div>
     <div class="glance-grid" style="margin-bottom:0">
       <div class="glance-item"><span class="glance-label">Business problem</span><span class="glance-value">Requirements, evidence and sign-offs are spread across Azure DevOps, documents and stakeholder conversations, making release risk hard to see early</span></div>
       <div class="glance-item"><span class="glance-label">My role</span><span class="glance-value">Sr. Business Analyst / Technical Product Manager</span></div>
@@ -91,7 +100,7 @@ html[data-theme="light"]{
     </div>
   </div>
   <div>
-    <div class="sol-col-label">Proposed AI extension · AI / Agent / Human</div>
+    <div class="sol-col-label" role="heading" aria-level="2">Proposed AI extension · AI / Agent / Human</div>
     <div class="aaa-grid" style="margin-bottom:0;grid-template-columns:1fr">
       <div class="aaa-card ai-card"><span class="aaa-label">AI</span><p class="aaa-text">Finds gaps across requirements, acceptance criteria, dependencies and evidence before they become release issues.</p></div>
       <div class="aaa-card agent-card"><span class="aaa-label">Agent</span><p class="aaa-text">Keeps readiness checks, blockers and outstanding actions moving across the release workflow.</p></div>
@@ -100,7 +109,7 @@ html[data-theme="light"]{
   </div>
 </div>
 
-<div class="section-label">Current workflow</div>
+<div class="section-label" role="heading" aria-level="2">Current workflow</div>
 <div class="flow-strip">
   <div class="flow-step"><small>01</small>Discovery</div>
   <div class="flow-step"><small>02</small>User stories</div>
@@ -112,7 +121,7 @@ html[data-theme="light"]{
 
 <div class="sol-two-col-wide">
   <div>
-    <div class="sol-col-label">What I owned</div>
+    <div class="sol-col-label" role="heading" aria-level="2">What I owned</div>
     <div class="owned-list" style="margin-bottom:0">
       <span class="owned-tag">Requirements lifecycle</span><span class="owned-tag">Backlog and story definition</span>
       <span class="owned-tag">Acceptance criteria</span><span class="owned-tag">Dependency tracking</span>
@@ -122,7 +131,7 @@ html[data-theme="light"]{
     </div>
   </div>
   <div>
-    <div class="sol-col-label">Target architecture</div>
+    <div class="sol-col-label" role="heading" aria-level="2">Target architecture</div>
     <div class="arch-flow" style="margin-bottom:0">
       <span class="arch-step">Azure DevOps + SharePoint</span><span class="arch-arrow">→</span>
       <span class="arch-step">Power Automate</span><span class="arch-arrow">→</span>
@@ -140,7 +149,7 @@ html[data-theme="light"]{
   <summary>Technical design</summary>
   <div class="details-inner">
     <div>
-      <div class="section-label" style="margin-bottom:10px">MVP scenarios</div>
+      <div class="section-label" style="margin-bottom:10px" role="heading" aria-level="2">MVP scenarios</div>
       <div class="scenarios">
         <div class="scenario"><span class="sc-num">Scenario 1</span><span class="sc-text">Complete story. Required fields, acceptance criteria, UAT evidence and sign-off are all present.</span><span class="sc-badge pass">Ready</span></div>
         <div class="scenario"><span class="sc-num">Scenario 2</span><span class="sc-text">Missing mandatory evidence. Required UAT evidence or approval is absent. Deterministic rule flags the gap.</span><span class="sc-badge fail">Fail</span></div>
@@ -150,7 +159,7 @@ html[data-theme="light"]{
       </div>
     </div>
     <div>
-      <div class="section-label" style="margin-bottom:10px">Controls and governance</div>
+      <div class="section-label" style="margin-bottom:10px" role="heading" aria-level="2">Controls and governance</div>
       <div class="controls-list">
         <div class="control-item">Mandatory readiness rules remain deterministic.</div>
         <div class="control-item">AI does not mark a story release-ready.</div>
@@ -161,7 +170,7 @@ html[data-theme="light"]{
       </div>
     </div>
     <div>
-      <div class="section-label" style="margin-bottom:8px">Implementation note</div>
+      <div class="section-label" style="margin-bottom:8px" role="heading" aria-level="2">Implementation note</div>
       <p style="font-size:.72rem;color:var(--soft);line-height:1.55;">Azure OpenAI can serve as the managed LLM layer for identifying ambiguity and risk in requirements and readiness evidence.</p>
     </div>
   </div>
