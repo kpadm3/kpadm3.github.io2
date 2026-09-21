@@ -975,7 +975,7 @@ html[data-theme="light"] .heroX-enterprise article.hx-scan::after{background:lin
     [33,215,244]
   ];
   var reduced=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  var drawRaf=0,startTime=0,particlePool=[],visibleParticleCount=0,activeState={enterprise:null,agents:null,values:null},portState={architecture:null,agents:null,values:null},cubeMode='reset',capIndex=-1;
+  var drawRaf=0,startTime=0,lifecycleRaf=0,heroVisible=true,pausedAt=0,particlePool=[],visibleParticleCount=0,activeState={enterprise:null,agents:null,values:null},portState={architecture:null,agents:null,values:null},cubeMode='reset',capIndex=-1;
 
   // Intelligence Fabric: wider, deeper three-face field with a stronger sense of depth.
   // Shared seam coordinates are generated once so corners never become dark from stacked dots.
@@ -1313,7 +1313,12 @@ html[data-theme="light"] .heroX-enterprise article.hx-scan::after{background:lin
   function valueRoutesForAgent(agentIndex){
     return valueRoutesByAgent[agentIndex]||[];
   }
+  function scheduleLifecycle(){
+    if(reduced||!heroVisible||lifecycleRaf)return;
+    lifecycleRaf=requestAnimationFrame(lifecycle);
+  }
   function lifecycle(now){
+    lifecycleRaf=0;
     if(!startTime)startTime=now;
     var elapsed=now-startTime;
     var t=elapsed%TOTAL;
@@ -1351,7 +1356,7 @@ html[data-theme="light"] .heroX-enterprise article.hx-scan::after{background:lin
     }else{
       hideParticles();resetCube();clearActive();clearPorts();
     }
-    requestAnimationFrame(lifecycle);
+    scheduleLifecycle();
   }
 
   draw();
@@ -1360,7 +1365,23 @@ html[data-theme="light"] .heroX-enterprise article.hx-scan::after{background:lin
   if('ResizeObserver' in window)new ResizeObserver(draw).observe(map);
 
   cubeMode='';resetCube();
-  if(!reduced)requestAnimationFrame(lifecycle);
+  if(!reduced&&'IntersectionObserver' in window){
+    new IntersectionObserver(function(entries){
+      var visible=entries[0].isIntersecting;
+      if(visible===heroVisible)return;
+      heroVisible=visible;
+      if(!visible){
+        pausedAt=performance.now();
+        if(lifecycleRaf){cancelAnimationFrame(lifecycleRaf);lifecycleRaf=0;}
+        return;
+      }
+      var now=performance.now();
+      if(pausedAt&&startTime)startTime+=now-pausedAt;
+      pausedAt=0;
+      scheduleLifecycle();
+    },{threshold:0,rootMargin:'120px 0px'}).observe(hero);
+  }
+  if(!reduced)scheduleLifecycle();
 })();
 </script>
 
