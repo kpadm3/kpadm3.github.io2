@@ -2011,8 +2011,10 @@ html[data-theme="light"] .heroX-enterprise article.hx-scan::after{background:lin
       var z=dx/sigma;
       var crest=Math.exp(-.5*z*z);
 
-      // Single physical analysis wave: dots lift with the crest, then settle back into the fabric.
-      var nextY=d.baseY-15.5*crest*d.depth;
+      // One continuous physical crest across all three faces.
+      // Shared seam dots must move by the same amount as neighboring face dots,
+      // otherwise the deduplicated 3D lattice visibly separates during the wave.
+      var nextY=d.baseY-15.5*crest;
       if(d.lastX!==d.baseX){d.el.setAttribute('cx',d.baseX.toFixed(2));d.lastX=d.baseX;}
       if(Math.abs(nextY-d.lastY)>.08){d.el.setAttribute('cy',nextY.toFixed(2));d.lastY=nextY;}
 
