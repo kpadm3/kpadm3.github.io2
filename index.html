@@ -1066,7 +1066,7 @@ html[data-theme="light"] .heroX-enterprise article.hx-scan::after{background:lin
   ];
   var colors=['','blue','purple','teal'];
   var reduced=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  var drawRaf=0,startTime=0,particlePool=[],activeState={enterprise:null,agents:null,values:null},cubeMode='reset',capIndex=-1;
+  var drawRaf=0,startTime=0,particlePool=[],visibleParticleCount=0,activeState={enterprise:null,agents:null,values:null},portState={architecture:null,agents:null,values:null},cubeMode='reset',capIndex=-1;
 
   // Intelligence Fabric: wider, deeper three-face field with a stronger sense of depth.
   // Shared seam coordinates are generated once so corners never become dark from stacked dots.
@@ -1216,7 +1216,9 @@ html[data-theme="light"] .heroX-enterprise article.hx-scan::after{background:lin
     return el;
   }
   function hideParticles(){
-    particlePool.forEach(function(el){el.style.display='none';});
+    if(!visibleParticleCount)return;
+    for(var i=0;i<visibleParticleCount;i++)particlePool[i].style.display='none';
+    visibleParticleCount=0;
   }
   var FLOW_DURATION_MS=450,FLOW_STAGGER_MS=42;
   function particle(spec,progress,index){
@@ -1242,7 +1244,8 @@ html[data-theme="light"] .heroX-enterprise article.hx-scan::after{background:lin
       var local=(elapsed-delay)/FLOW_DURATION_MS;
       if(local>=0&&local<=1){particle(spec,local,used);used++;}
     });
-    for(var i=used;i<particlePool.length;i++)particlePool[i].style.display='none';
+    for(var i=used;i<visibleParticleCount;i++)particlePool[i].style.display='none';
+    visibleParticleCount=used;
   }
   function resetCube(){
     if(cubeMode==='reset')return;
@@ -1354,9 +1357,14 @@ html[data-theme="light"] .heroX-enterprise article.hx-scan::after{background:lin
   }
   function portLive(el,on){if(el)el.classList.toggle('hx-port-live',!!on);}
   function clearPorts(){
-    hero.querySelectorAll('.hx-port-live').forEach(function(el){el.classList.remove('hx-port-live');});
+    architectureScan(-1,false);
+    agentPorts(-1,false);
+    valuePorts([]);
   }
   function architectureScan(index,on){
+    var next=on?String(index):'';
+    if(portState.architecture===next)return;
+    portState.architecture=next;
     enterprise.forEach(function(card,i){
       var live=!!on&&i===index;
       card.classList.toggle('hx-scan',live);
@@ -1364,9 +1372,15 @@ html[data-theme="light"] .heroX-enterprise article.hx-scan::after{background:lin
     });
   }
   function agentPorts(index,on){
+    var next=on?String(index):'';
+    if(portState.agents===next)return;
+    portState.agents=next;
     agents.forEach(function(card,i){var live=on&&i===index;portLive(card.querySelector('.hx-in-port'),live);portLive(card.querySelector('.hx-out-port'),live);});
   }
   function valuePorts(active){
+    var next=active.join(',');
+    if(portState.values===next)return;
+    portState.values=next;
     values.forEach(function(card,i){portLive(card.querySelector('.hx-value-port'),active.indexOf(i)!==-1);});
   }
   function clearActive(){
