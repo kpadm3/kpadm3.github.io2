@@ -1,4 +1,4 @@
-﻿<!doctype html>
+<!doctype html>
 <html lang="en">
 <head>
   <meta charset="utf-8">
@@ -949,32 +949,125 @@ html[data-theme="light"] .heroX-enterprise article.hx-scan::after{background:lin
 </script>
 <script>
 (function(){
-  var responses={
-    recruiter:'10+ years across enterprise systems, business analysis and technical product delivery, with experience spanning requirements, integration, data, UAT and release governance. My current focus is applying that enterprise foundation to automation, AI-enabled workflows and controlled agentic delivery.',
-    ai:'My approach starts with the enterprise process, rules, data and controls. Deterministic logic handles known rules, AI supports interpretation where ambiguity exists, agents coordinate actions, and humans retain approval for consequential decisions.',
-    programs:'One strong example is an enterprise product configuration framework delivered end to end. Seven phases: requirement intake, data modeling, business rule design, validation logic, functional architecture, delivery assurance, and order-ready output. I owned the full specification and led the program through to UAT sign-off.',
-    diff:'Most business analysts hand off once the requirements document is written. I stay through delivery, UAT, and hypercare. I keep the original business need traceable from the first stakeholder session to the last acceptance sign-off.'
-  };
+  var CHAT_API='https://qa-krishna-portfolio-agent.pskrishna112.workers.dev/chat';
   var msgs=document.getElementById('cwMsgs');
-  function addUser(text){var el=document.createElement('div');el.className='cw-bubble user';el.textContent=text;msgs.appendChild(el);msgs.scrollTop=msgs.scrollHeight;}
-  function addTyping(){var el=document.createElement('div');el.className='cw-bubble ai typing';el.id='cwTyping';el.innerHTML='<span></span><span></span><span></span>';msgs.appendChild(el);msgs.scrollTop=msgs.scrollHeight;}
-  function addAI(text){var t=document.getElementById('cwTyping');if(t)t.remove();var el=document.createElement('div');el.className='cw-bubble ai';el.textContent=text;msgs.appendChild(el);msgs.scrollTop=msgs.scrollHeight;}
+  var busy=false;
+
+  function addUser(text){
+    var el=document.createElement('div');
+    el.className='cw-bubble user';
+    el.textContent=text;
+    msgs.appendChild(el);
+    msgs.scrollTop=msgs.scrollHeight;
+  }
+
+  function addTyping(){
+    var existing=document.getElementById('cwTyping');
+    if(existing)existing.remove();
+
+    var el=document.createElement('div');
+    el.className='cw-bubble ai typing';
+    el.id='cwTyping';
+    el.innerHTML='<span></span><span></span><span></span>';
+    msgs.appendChild(el);
+    msgs.scrollTop=msgs.scrollHeight;
+  }
+
+  function addAI(text){
+    var typing=document.getElementById('cwTyping');
+    if(typing)typing.remove();
+
+    var el=document.createElement('div');
+    el.className='cw-bubble ai';
+    el.textContent=text;
+    msgs.appendChild(el);
+    msgs.scrollTop=msgs.scrollHeight;
+  }
+
+  function setBusy(state){
+    busy=state;
+
+    var input=document.getElementById('cwInput');
+    var send=document.querySelector('.cw-send');
+
+    if(input)input.disabled=state;
+    if(send)send.disabled=state;
+  }
+
+  async function askPortfolio(message){
+    if(busy)return;
+
+    addUser(message);
+    addTyping();
+    setBusy(true);
+
+    try{
+      var response=await fetch(CHAT_API,{
+        method:'POST',
+        headers:{
+          'Content-Type':'application/json'
+        },
+        body:JSON.stringify({
+          message:message
+        })
+      });
+
+      var data=await response.json();
+
+      if(!response.ok){
+        throw new Error(data && data.error ? data.error : 'Request failed');
+      }
+
+      if(!data || typeof data.reply!=='string' || !data.reply.trim()){
+        throw new Error('Empty response');
+      }
+
+      addAI(data.reply.trim());
+    }catch(error){
+      console.error('Portfolio assistant error:',error);
+      addAI("I couldn't reach Krishna's portfolio assistant right now. Please try again in a moment.");
+    }finally{
+      setBusy(false);
+
+      var input=document.getElementById('cwInput');
+      if(input)input.focus();
+    }
+  }
+
   window.cwSendChip=function(btn,key,label){
-    document.querySelectorAll('.cw-chip').forEach(function(c){c.disabled=true;});
-    addUser(label);addTyping();
-    setTimeout(function(){addAI(responses[key]);},900);
+    askPortfolio(label);
   };
+
   window.cwSendCustom=function(){
-    var inp=document.getElementById('cwInput');var val=inp.value.trim();if(!val)return;
-    inp.value='';addUser(val);addTyping();
-    setTimeout(function(){addAI("I'm currently set up to answer specific questions about Krishna's experience and enterprise programs. Try one of the suggested questions above.");},900);
+    var input=document.getElementById('cwInput');
+    var value=input.value.trim();
+
+    if(!value || busy)return;
+
+    input.value='';
+    askPortfolio(value);
   };
+
   window.toggleChat=function(){
-    var w=document.getElementById('chatWidget');
-    w.classList.toggle('open');
+    var widget=document.getElementById('chatWidget');
+    widget.classList.toggle('open');
+
+    if(widget.classList.contains('open')){
+      var input=document.getElementById('cwInput');
+      if(input)setTimeout(function(){input.focus();},150);
+    }
   };
-  var inp=document.getElementById('cwInput');
-  if(inp)inp.addEventListener('keydown',function(e){if(e.key==='Enter')window.cwSendCustom();});
+
+  var input=document.getElementById('cwInput');
+
+  if(input){
+    input.addEventListener('keydown',function(event){
+      if(event.key==='Enter'){
+        event.preventDefault();
+        window.cwSendCustom();
+      }
+    });
+  }
 })();
 </script>
 
