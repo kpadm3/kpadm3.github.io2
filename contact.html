@@ -237,6 +237,10 @@ html[data-theme="light"] .nav-soc-btn:hover{border-color:rgba(8,145,178,.4);colo
           <p class="direct-contact-copy">Share your contact details and complete the quick verification to reveal Krishna’s direct email.</p>
 
           <form id="direct-contact-form">
+            <div aria-hidden="true" style="position:absolute;left:-10000px;top:auto;width:1px;height:1px;overflow:hidden;">
+              <label for="contact-ref">Reference</label>
+              <input id="contact-ref" name="contact_ref" type="text" tabindex="-1" autocomplete="off">
+            </div>
             <div class="direct-contact-grid">
               <div class="direct-contact-field">
                 <label for="contact-name">Name</label>
@@ -377,6 +381,7 @@ html[data-theme="light"] .nav-soc-btn:hover{border-color:rgba(8,145,178,.4);colo
     const name = document.getElementById("contact-name").value.trim();
     const email = document.getElementById("contact-email").value.trim();
     const company = document.getElementById("contact-company").value.trim();
+    const contactRef = document.getElementById("contact-ref").value.trim();
     const intent = document.getElementById("contact-intent").value;
     const reason = document.getElementById("contact-reason").value;
     const token = form.querySelector('[name="cf-turnstile-response"]')?.value || "";
@@ -414,6 +419,7 @@ html[data-theme="light"] .nav-soc-btn:hover{border-color:rgba(8,145,178,.4);colo
             name,
             email,
             company,
+            contact_ref: contactRef,
             intent,
             reason,
             token,

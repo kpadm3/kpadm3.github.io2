@@ -19,6 +19,7 @@
   <title>Krishna Padmanabhan | Enterprise Product & AI Transformation</title>
   <link rel="stylesheet" href="assets/css/site.css">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@3/dist/tabler-icons.min.css">
+  <script src="https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit" async defer></script>
 <style>
 
 .sh-progs{opacity:0;transform:translateY(16px);transition:opacity .7s cubic-bezier(.22,1,.36,1),transform .7s cubic-bezier(.22,1,.36,1)}
@@ -93,6 +94,10 @@ html[data-theme="light"] .saa-agent .saa-label{background:rgba(0,0,0,.05);color:
 .cw-send{width:32px;height:32px;border-radius:50%;background:var(--accent);color:#fff;border:none;cursor:pointer;display:grid;place-items:center;flex-shrink:0;transition:opacity .18s}
 .cw-send:hover{opacity:.88}
 .cw-send svg{width:12px;height:12px;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.cw-verify{padding:12px 14px;border-top:1px solid var(--line);background:var(--bg-2);flex-shrink:0}
+.cw-verify[hidden]{display:none!important}
+.cw-verify-copy{font-size:.66rem;line-height:1.45;color:var(--muted);margin-bottom:9px}
+.cw-turnstile{min-height:65px;display:flex;align-items:center;justify-content:center}
 
 
 /* Wider portfolio canvas below the hero */
@@ -840,8 +845,12 @@ html[data-theme="light"] .heroX-enterprise article.hx-scan::after{background:lin
           </div>
         </div>
       </div>
+      <div class="cw-verify" id="cwVerify" hidden>
+        <div class="cw-verify-copy" id="cwVerifyCopy">Complete the quick verification to start a secure chat session.</div>
+        <div class="cw-turnstile" id="cwTurnstile"></div>
+      </div>
       <div class="cw-input-row">
-        <input class="cw-input" id="cwInput" type="text" aria-label="Ask about Krishna" placeholder="Ask anything about Krishna...">
+        <input class="cw-input" id="cwInput" type="text" maxlength="2000" aria-label="Ask about Krishna" placeholder="Ask anything about Krishna...">
         <button class="cw-send" type="button" onclick="cwSendCustom()" aria-label="Send message">
           <svg viewBox="0 0 24 24"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
         </button>
@@ -952,8 +961,16 @@ html[data-theme="light"] .heroX-enterprise article.hx-scan::after{background:lin
 <script>
 (function(){
   var CHAT_API='https://krishna-portfolio-agent-qa.pskrishna112.workers.dev/chat';
+  var CHAT_SESSION_API='https://krishna-portfolio-agent-qa.pskrishna112.workers.dev/chat/session';
+  var TURNSTILE_SITE_KEY='0x4AAAAAAFE4HBAbmuMtNTB-';
+  var SESSION_KEY='kp-chat-session';
+
   var msgs=document.getElementById('cwMsgs');
   var busy=false;
+  var verificationBusy=false;
+  var turnstileWidgetId=null;
+  var turnstileWaitTimer=0;
+  var chatSessionToken=sessionStorage.getItem(SESSION_KEY)||'';
 
   function addUser(text){
     var el=document.createElement('div');
@@ -961,11 +978,16 @@ html[data-theme="light"] .heroX-enterprise article.hx-scan::after{background:lin
     el.textContent=text;
     msgs.appendChild(el);
     msgs.scrollTop=msgs.scrollHeight;
+    return el;
+  }
+
+  function removeTyping(){
+    var typing=document.getElementById('cwTyping');
+    if(typing)typing.remove();
   }
 
   function addTyping(){
-    var existing=document.getElementById('cwTyping');
-    if(existing)existing.remove();
+    removeTyping();
 
     var el=document.createElement('div');
     el.className='cw-bubble ai typing';
@@ -976,8 +998,7 @@ html[data-theme="light"] .heroX-enterprise article.hx-scan::after{background:lin
   }
 
   function addAI(text){
-    var typing=document.getElementById('cwTyping');
-    if(typing)typing.remove();
+    removeTyping();
 
     var el=document.createElement('div');
     el.className='cw-bubble ai';
@@ -986,53 +1007,291 @@ html[data-theme="light"] .heroX-enterprise article.hx-scan::after{background:lin
     msgs.scrollTop=msgs.scrollHeight;
   }
 
-  function setBusy(state){
-    busy=state;
-
+  function syncControls(){
+    var locked=busy||!chatSessionToken;
     var input=document.getElementById('cwInput');
     var send=document.querySelector('.cw-send');
 
-    if(input)input.disabled=state;
-    if(send)send.disabled=state;
+    if(input)input.disabled=locked;
+    if(send)send.disabled=locked;
+
+    document.querySelectorAll('.cw-chip').forEach(function(button){
+      button.disabled=locked;
+    });
+  }
+
+  function setBusy(state){
+    busy=state;
+    syncControls();
+  }
+
+  function clearSession(){
+    chatSessionToken='';
+    sessionStorage.removeItem(SESSION_KEY);
+    syncControls();
+  }
+
+  function hideVerification(){
+    var panel=document.getElementById('cwVerify');
+    if(panel)panel.hidden=true;
+  }
+
+  function resetTurnstile(){
+    if(
+      window.turnstile &&
+      turnstileWidgetId!==null
+    ){
+      try{
+        window.turnstile.reset(turnstileWidgetId);
+      }catch(error){
+        console.error('Turnstile reset error:',error);
+      }
+    }
+  }
+
+  function ensureTurnstileRendered(){
+    if(turnstileWidgetId!==null)return;
+
+    if(
+      !window.turnstile ||
+      typeof window.turnstile.render!=='function'
+    ){
+      if(turnstileWaitTimer){
+        clearTimeout(turnstileWaitTimer);
+      }
+
+      turnstileWaitTimer=setTimeout(
+        ensureTurnstileRendered,
+        100
+      );
+
+      return;
+    }
+
+    turnstileWaitTimer=0;
+
+    turnstileWidgetId=window.turnstile.render(
+      '#cwTurnstile',
+      {
+        sitekey:TURNSTILE_SITE_KEY,
+
+        callback:function(token){
+          exchangeTurnstileToken(token);
+        },
+
+        'expired-callback':function(){
+          clearSession();
+
+          var copy=document.getElementById(
+            'cwVerifyCopy'
+          );
+
+          if(copy){
+            copy.textContent=
+              'Verification expired. Complete it again to continue.';
+          }
+
+          resetTurnstile();
+        },
+
+        'error-callback':function(){
+          clearSession();
+
+          var copy=document.getElementById(
+            'cwVerifyCopy'
+          );
+
+          if(copy){
+            copy.textContent=
+              'Verification could not load. Please try again.';
+          }
+        }
+      }
+    );
+  }
+
+  function showVerification(message,reset){
+    clearSession();
+
+    var panel=document.getElementById('cwVerify');
+    var copy=document.getElementById('cwVerifyCopy');
+
+    if(copy){
+      copy.textContent=
+        message||
+        'Complete the quick verification to start a secure chat session.';
+    }
+
+    if(panel){
+      panel.hidden=false;
+    }
+
+    ensureTurnstileRendered();
+
+    if(reset){
+      setTimeout(resetTurnstile,0);
+    }
+  }
+
+  async function exchangeTurnstileToken(token){
+    if(verificationBusy||!token)return;
+
+    verificationBusy=true;
+
+    var copy=document.getElementById('cwVerifyCopy');
+
+    if(copy){
+      copy.textContent='Securing your chat session…';
+    }
+
+    try{
+      var response=await fetch(
+        CHAT_SESSION_API,
+        {
+          method:'POST',
+          headers:{
+            'Content-Type':'application/json'
+          },
+          body:JSON.stringify({
+            token:token
+          })
+        }
+      );
+
+      var data=await response.json();
+
+      if(
+        !response.ok ||
+        !data ||
+        typeof data.sessionToken!=='string' ||
+        !data.sessionToken
+      ){
+        throw new Error(
+          data&&data.error
+            ? data.error
+            :'Verification failed'
+        );
+      }
+
+      chatSessionToken=data.sessionToken;
+      sessionStorage.setItem(
+        SESSION_KEY,
+        chatSessionToken
+      );
+
+      hideVerification();
+      syncControls();
+
+      var input=document.getElementById('cwInput');
+
+      if(input){
+        input.focus();
+      }
+    }catch(error){
+      console.error(
+        'Chat verification error:',
+        error
+      );
+
+      clearSession();
+
+      if(copy){
+        copy.textContent=
+          'Verification could not be completed. Please try again.';
+      }
+
+      resetTurnstile();
+    }finally{
+      verificationBusy=false;
+    }
   }
 
   async function askPortfolio(message){
     if(busy)return;
 
-    addUser(message);
+    var input=document.getElementById('cwInput');
+
+    if(!chatSessionToken){
+      if(input)input.value=message;
+
+      showVerification(
+        'Complete the quick verification to continue.'
+      );
+
+      return;
+    }
+
+    var userBubble=addUser(message);
+
     addTyping();
     setBusy(true);
 
     try{
-      var response=await fetch(CHAT_API,{
-        method:'POST',
-        headers:{
-          'Content-Type':'application/json'
-        },
-        body:JSON.stringify({
-          message:message
-        })
-      });
+      var response=await fetch(
+        CHAT_API,
+        {
+          method:'POST',
+          headers:{
+            'Content-Type':'application/json',
+            'Authorization':'Bearer '+chatSessionToken
+          },
+          body:JSON.stringify({
+            message:message
+          })
+        }
+      );
 
       var data=await response.json();
 
-      if(!response.ok){
-        throw new Error(data && data.error ? data.error : 'Request failed');
+      if(response.status===401){
+        if(userBubble)userBubble.remove();
+
+        removeTyping();
+
+        if(input){
+          input.value=message;
+        }
+
+        showVerification(
+          'Session expired — complete the quick verification to continue.',
+          true
+        );
+
+        return;
       }
 
-      if(!data || typeof data.reply!=='string' || !data.reply.trim()){
+      if(!response.ok){
+        throw new Error(
+          data&&data.error
+            ? data.error
+            :'Request failed'
+        );
+      }
+
+      if(
+        !data ||
+        typeof data.reply!=='string' ||
+        !data.reply.trim()
+      ){
         throw new Error('Empty response');
       }
 
       addAI(data.reply.trim());
     }catch(error){
-      console.error('Portfolio assistant error:',error);
-      addAI("I couldn't reach Krishna's portfolio assistant right now. Please try again in a moment.");
+      console.error(
+        'Portfolio assistant error:',
+        error
+      );
+
+      addAI(
+        "I couldn't reach Krishna's portfolio assistant right now. Please try again in a moment."
+      );
     }finally{
       setBusy(false);
 
-      var input=document.getElementById('cwInput');
-      if(input)input.focus();
+      if(chatSessionToken&&input){
+        input.focus();
+      }
     }
   }
 
@@ -1044,7 +1303,7 @@ html[data-theme="light"] .heroX-enterprise article.hx-scan::after{background:lin
     var input=document.getElementById('cwInput');
     var value=input.value.trim();
 
-    if(!value || busy)return;
+    if(!value||busy)return;
 
     input.value='';
     askPortfolio(value);
@@ -1052,24 +1311,45 @@ html[data-theme="light"] .heroX-enterprise article.hx-scan::after{background:lin
 
   window.toggleChat=function(){
     var widget=document.getElementById('chatWidget');
+
     widget.classList.toggle('open');
 
-    if(widget.classList.contains('open')){
-      var input=document.getElementById('cwInput');
-      if(input)setTimeout(function(){input.focus();},150);
+    if(!widget.classList.contains('open')){
+      return;
+    }
+
+    if(!chatSessionToken){
+      showVerification(
+        'Complete the quick verification to start a secure chat session.'
+      );
+
+      return;
+    }
+
+    var input=document.getElementById('cwInput');
+
+    if(input){
+      setTimeout(function(){
+        input.focus();
+      },150);
     }
   };
 
   var input=document.getElementById('cwInput');
 
   if(input){
-    input.addEventListener('keydown',function(event){
-      if(event.key==='Enter'){
-        event.preventDefault();
-        window.cwSendCustom();
+    input.addEventListener(
+      'keydown',
+      function(event){
+        if(event.key==='Enter'){
+          event.preventDefault();
+          window.cwSendCustom();
+        }
       }
-    });
+    );
   }
+
+  syncControls();
 })();
 </script>
 
