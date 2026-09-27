@@ -71,6 +71,37 @@ a.contact-item:hover{border-color:rgba(53,212,241,.56);transform:translateX(3px)
 .contact-item-value{display:block;color:#d5e2ef;font-size:.76rem;font-weight:700;line-height:1.35}
 .contact-item-sub{display:block;margin-top:3px;color:#7e9ab5;font-size:.65rem}
 .contact-actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:20px}
+
+.direct-contact-panel{
+  margin-top:18px;
+  padding:20px;
+  border:1px solid rgba(53,212,241,.24);
+  border-radius:14px;
+  background:rgba(5,15,28,.68);
+}
+.direct-contact-panel[hidden]{display:none}
+.direct-contact-title{margin:0 0 6px;color:#d5e2ef;font-size:.95rem;font-weight:800}
+.direct-contact-copy{margin:0 0 16px;color:#8fa8bd;font-size:.74rem;line-height:1.55}
+.direct-contact-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin-bottom:16px}
+.direct-contact-field{display:flex;flex-direction:column;gap:6px}
+.direct-contact-field label{color:var(--case-cyan);font-size:.64rem;font-weight:900;text-transform:uppercase;letter-spacing:.05em}
+.direct-contact-field select{
+  width:100%;
+  padding:10px 12px;
+  border:1px solid rgba(53,212,241,.24);
+  border-radius:9px;
+  background:#071524;
+  color:#d5e2ef;
+  font:inherit;
+  font-size:.76rem;
+}
+.direct-contact-turnstile{margin:4px 0 14px}
+.direct-contact-status{min-height:20px;margin-top:10px;color:#9fb5c7;font-size:.7rem;line-height:1.4}
+.direct-contact-result{margin-top:14px;padding:14px 16px;border:1px solid rgba(53,212,241,.3);border-radius:10px;background:rgba(3,12,23,.7)}
+.direct-contact-result[hidden]{display:none}
+.direct-contact-result a{color:var(--case-cyan);font-weight:800;text-decoration:none;word-break:break-all}
+.direct-contact-result a:hover{text-decoration:underline}
+
 .opportunity-panel{margin-top:14px;padding:22px 24px}
 .opportunity-copy{display:grid;grid-template-columns:minmax(210px,.42fr) 1fr;gap:22px;align-items:center}
 .opportunity-title{margin:0;color:var(--case-cyan);font-size:.78rem;font-weight:900;letter-spacing:.08em;text-transform:uppercase}
@@ -81,6 +112,7 @@ a.contact-item:hover{border-color:rgba(53,212,241,.56);transform:translateX(3px)
   .case-wrap{padding:16px}
   .page-title{font-size:clamp(2.2rem,12vw,3.2rem)}
   .contact-items-grid{grid-template-columns:1fr}
+  .direct-contact-grid{grid-template-columns:1fr}
   .opportunity-copy{grid-template-columns:1fr;gap:12px}
 }
 .contact-icon i{font-size:1.05rem}
@@ -95,11 +127,18 @@ html[data-theme="light"] .contact-icon{border-color:rgba(8,145,178,.28)}
 html[data-theme="light"] .contact-item-value{color:#0d1f30}
 html[data-theme="light"] .contact-item-sub{color:#5a7a94}
 html[data-theme="light"] .opportunity-tag{background:#f0f8fc;border-color:rgba(8,145,178,.18);color:#2a4a62}
+html[data-theme="light"] .direct-contact-panel{background:#f0f8fc;border-color:rgba(8,145,178,.18)}
+html[data-theme="light"] .direct-contact-title{color:#0d1f30}
+html[data-theme="light"] .direct-contact-copy,
+html[data-theme="light"] .direct-contact-status{color:#5a7a94}
+html[data-theme="light"] .direct-contact-field select{background:#fff;color:#0d1f30;border-color:rgba(8,145,178,.2)}
+html[data-theme="light"] .direct-contact-result{background:#fff;border-color:rgba(8,145,178,.22)}
 html[data-theme="light"] .nav-soc-btn{border-color:rgba(8,145,178,.18)}
 html[data-theme="light"] .nav-soc-btn:hover{border-color:rgba(8,145,178,.4);color:#0891b2}
 </style>
 <script>(() => { const s = localStorage.getItem('kp-theme'); const t = s || (matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark'); document.documentElement.setAttribute('data-theme', t); })();</script>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;500;600;700;800;900&display=swap">
+<script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
 </head>
 <body id="top">
 <div class="page-progress" data-progress></div>
@@ -181,7 +220,49 @@ html[data-theme="light"] .nav-soc-btn:hover{border-color:rgba(8,145,178,.4);colo
         </div>
         <div class="contact-actions">
           <a class="button magnetic" href="https://www.linkedin.com/in/krishna-s-a046a9176/" target="_blank" rel="noopener noreferrer">Connect on LinkedIn</a>
-          <a class="button secondary magnetic" href="index.html#foundation">Explore Solutions</a>
+          <button class="button secondary magnetic" type="button" id="direct-contact-toggle">Request Direct Contact</button>
+        </div>
+
+        <div class="direct-contact-panel" id="direct-contact-panel" hidden>
+          <h3 class="direct-contact-title">Request direct contact</h3>
+          <p class="direct-contact-copy">For recruiting, hiring and genuine collaboration inquiries, complete the quick verification below to reveal Krishna’s direct email.</p>
+
+          <form id="direct-contact-form">
+            <div class="direct-contact-grid">
+              <div class="direct-contact-field">
+                <label for="contact-intent">I’m a</label>
+                <select id="contact-intent" required>
+                  <option value="">Select one</option>
+                  <option value="recruiter">Recruiter</option>
+                  <option value="hiring_manager">Hiring Manager</option>
+                  <option value="founder">Founder / Startup Leader</option>
+                  <option value="other">Other</option>
+                </select>
+              </div>
+
+              <div class="direct-contact-field">
+                <label for="contact-reason">Reason for reaching out</label>
+                <select id="contact-reason" required>
+                  <option value="">Select one</option>
+                  <option value="role_opportunity">Role Opportunity</option>
+                  <option value="networking">Professional Networking</option>
+                  <option value="collaboration">Collaboration</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="direct-contact-turnstile">
+              <div class="cf-turnstile" data-sitekey="0x4AAAAAAFE4HBAbmuMtNTB-"></div>
+            </div>
+
+            <button class="button magnetic" type="submit" id="direct-contact-submit">Reveal Email</button>
+            <div class="direct-contact-status" id="direct-contact-status" role="status" aria-live="polite"></div>
+
+            <div class="direct-contact-result" id="direct-contact-result" hidden>
+              <span class="contact-item-label">Direct Email</span>
+              <a id="direct-contact-email" href=""></a>
+            </div>
+          </form>
         </div>
       </section>
 
@@ -244,6 +325,83 @@ html[data-theme="light"] .nav-soc-btn:hover{border-color:rgba(8,145,178,.4);colo
   </div>
 </footer>
 <script src="assets/js/site.js"></script>
+<script>
+(() => {
+  const toggle = document.getElementById("direct-contact-toggle");
+  const panel = document.getElementById("direct-contact-panel");
+  const form = document.getElementById("direct-contact-form");
+  const status = document.getElementById("direct-contact-status");
+  const result = document.getElementById("direct-contact-result");
+  const emailLink = document.getElementById("direct-contact-email");
+  const submit = document.getElementById("direct-contact-submit");
+
+  if (!toggle || !panel || !form) return;
+
+  toggle.addEventListener("click", () => {
+    panel.hidden = !panel.hidden;
+
+    if (!panel.hidden) {
+      panel.scrollIntoView({ behavior: "smooth", block: "nearest" });
+    }
+  });
+
+  form.addEventListener("submit", async (event) => {
+    event.preventDefault();
+
+    const intent = document.getElementById("contact-intent").value;
+    const reason = document.getElementById("contact-reason").value;
+    const token = form.querySelector('[name="cf-turnstile-response"]')?.value || "";
+
+    result.hidden = true;
+    status.textContent = "";
+
+    if (!intent || !reason) {
+      status.textContent = "Please select who you are and your reason for reaching out.";
+      return;
+    }
+
+    if (!token) {
+      status.textContent = "Please complete the verification first.";
+      return;
+    }
+
+    submit.disabled = true;
+    status.textContent = "Verifying…";
+
+    try {
+      const response = await fetch(
+        "https://krishna-portfolio-agent-qa.pskrishna112.workers.dev/contact/reveal",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            intent,
+            reason,
+            token,
+          }),
+        },
+      );
+
+      const data = await response.json();
+
+      if (!response.ok || typeof data?.email !== "string") {
+        throw new Error(data?.error || "Unable to reveal contact details.");
+      }
+
+      emailLink.textContent = data.email;
+      emailLink.href = `mailto:${data.email}`;
+      result.hidden = false;
+      status.textContent = "Verified.";
+    } catch (error) {
+      status.textContent = error?.message || "Unable to verify right now. Please try again.";
+    } finally {
+      submit.disabled = false;
+    }
+  });
+})();
+</script>
 <script>
 (() => {
   const items = document.querySelectorAll(".reveal-case");
