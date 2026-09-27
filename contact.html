@@ -85,6 +85,7 @@ a.contact-item:hover{border-color:rgba(53,212,241,.56);transform:translateX(3px)
 .direct-contact-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin-bottom:16px}
 .direct-contact-field{display:flex;flex-direction:column;gap:6px}
 .direct-contact-field label{color:var(--case-cyan);font-size:.64rem;font-weight:900;text-transform:uppercase;letter-spacing:.05em}
+.direct-contact-field input,
 .direct-contact-field select{
   width:100%;
   padding:10px 12px;
@@ -94,6 +95,12 @@ a.contact-item:hover{border-color:rgba(53,212,241,.56);transform:translateX(3px)
   color:#d5e2ef;
   font:inherit;
   font-size:.76rem;
+}
+.direct-contact-privacy{
+  margin:0 0 14px;
+  color:#7e9ab5;
+  font-size:.66rem;
+  line-height:1.45;
 }
 .direct-contact-turnstile{margin:4px 0 14px}
 .direct-contact-status{min-height:20px;margin-top:10px;color:#9fb5c7;font-size:.7rem;line-height:1.4}
@@ -131,7 +138,9 @@ html[data-theme="light"] .direct-contact-panel{background:#f0f8fc;border-color:r
 html[data-theme="light"] .direct-contact-title{color:#0d1f30}
 html[data-theme="light"] .direct-contact-copy,
 html[data-theme="light"] .direct-contact-status{color:#5a7a94}
+html[data-theme="light"] .direct-contact-field input,
 html[data-theme="light"] .direct-contact-field select{background:#fff;color:#0d1f30;border-color:rgba(8,145,178,.2)}
+html[data-theme="light"] .direct-contact-privacy{color:#5a7a94}
 html[data-theme="light"] .direct-contact-result{background:#fff;border-color:rgba(8,145,178,.22)}
 html[data-theme="light"] .nav-soc-btn{border-color:rgba(8,145,178,.18)}
 html[data-theme="light"] .nav-soc-btn:hover{border-color:rgba(8,145,178,.4);color:#0891b2}
@@ -225,10 +234,25 @@ html[data-theme="light"] .nav-soc-btn:hover{border-color:rgba(8,145,178,.4);colo
 
         <div class="direct-contact-panel" id="direct-contact-panel" hidden>
           <h3 class="direct-contact-title">Request direct contact</h3>
-          <p class="direct-contact-copy">For recruiting, hiring and genuine collaboration inquiries, complete the quick verification below to reveal Krishna’s direct email.</p>
+          <p class="direct-contact-copy">Share your contact details and complete the quick verification to reveal Krishna’s direct email.</p>
 
           <form id="direct-contact-form">
             <div class="direct-contact-grid">
+              <div class="direct-contact-field">
+                <label for="contact-name">Name</label>
+                <input id="contact-name" type="text" maxlength="100" autocomplete="name" required>
+              </div>
+
+              <div class="direct-contact-field">
+                <label for="contact-email">Work email</label>
+                <input id="contact-email" type="email" maxlength="254" autocomplete="email" required>
+              </div>
+
+              <div class="direct-contact-field">
+                <label for="contact-company">Company <span aria-hidden="true">(optional)</span></label>
+                <input id="contact-company" type="text" maxlength="150" autocomplete="organization">
+              </div>
+
               <div class="direct-contact-field">
                 <label for="contact-intent">I’m a</label>
                 <select id="contact-intent" required>
@@ -251,11 +275,13 @@ html[data-theme="light"] .nav-soc-btn:hover{border-color:rgba(8,145,178,.4);colo
               </div>
             </div>
 
+            <p class="direct-contact-privacy">Your contact details are used only to respond to your inquiry.</p>
+
             <div class="direct-contact-turnstile">
               <div class="cf-turnstile" data-sitekey="0x4AAAAAAFE4HBAbmuMtNTB-"></div>
             </div>
 
-            <button class="button magnetic" type="submit" id="direct-contact-submit">Reveal Email</button>
+            <button class="button magnetic" type="submit" id="direct-contact-submit">Submit &amp; Reveal Email</button>
             <div class="direct-contact-status" id="direct-contact-status" role="status" aria-live="polite"></div>
 
             <div class="direct-contact-result" id="direct-contact-result" hidden>
@@ -348,6 +374,9 @@ html[data-theme="light"] .nav-soc-btn:hover{border-color:rgba(8,145,178,.4);colo
   form.addEventListener("submit", async (event) => {
     event.preventDefault();
 
+    const name = document.getElementById("contact-name").value.trim();
+    const email = document.getElementById("contact-email").value.trim();
+    const company = document.getElementById("contact-company").value.trim();
     const intent = document.getElementById("contact-intent").value;
     const reason = document.getElementById("contact-reason").value;
     const token = form.querySelector('[name="cf-turnstile-response"]')?.value || "";
@@ -355,8 +384,13 @@ html[data-theme="light"] .nav-soc-btn:hover{border-color:rgba(8,145,178,.4);colo
     result.hidden = true;
     status.textContent = "";
 
-    if (!intent || !reason) {
-      status.textContent = "Please select who you are and your reason for reaching out.";
+    if (!name || !email || !intent || !reason) {
+      status.textContent = "Please complete the required contact details.";
+      return;
+    }
+
+    if (!form.checkValidity()) {
+      form.reportValidity();
       return;
     }
 
@@ -377,6 +411,9 @@ html[data-theme="light"] .nav-soc-btn:hover{border-color:rgba(8,145,178,.4);colo
             "Content-Type": "application/json",
           },
           body: JSON.stringify({
+            name,
+            email,
+            company,
             intent,
             reason,
             token,
@@ -393,7 +430,7 @@ html[data-theme="light"] .nav-soc-btn:hover{border-color:rgba(8,145,178,.4);colo
       emailLink.textContent = data.email;
       emailLink.href = `mailto:${data.email}`;
       result.hidden = false;
-      status.textContent = "Verified.";
+      status.textContent = "Thanks — your details were submitted successfully.";
     } catch (error) {
       status.textContent = error?.message || "Unable to verify right now. Please try again.";
     } finally {
