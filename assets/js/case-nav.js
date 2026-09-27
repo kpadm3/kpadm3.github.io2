@@ -26,7 +26,8 @@
     'Data Migration'
   ];
 
-  const current = window.location.pathname.split('/').pop();
+  const currentPath = window.location.pathname.split('/').pop();
+  const current = currentPath.endsWith('.html') ? currentPath : currentPath + '.html';
   const idx = pages.indexOf(current);
   if (idx === -1) return;
 
