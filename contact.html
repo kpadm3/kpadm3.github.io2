@@ -263,7 +263,7 @@ html[data-theme="light"] .nav-soc-btn:hover{border-color:rgba(8,145,178,.4);colo
                   <option value="">Select one</option>
                   <option value="recruiter">Recruiter</option>
                   <option value="hiring_manager">Hiring Manager</option>
-                  <option value="founder">Founder / Startup Leader</option>
+                  <option value="founder">Founder/Startup Leader</option>
                   <option value="other">Other</option>
                 </select>
               </div>
@@ -405,7 +405,7 @@ html[data-theme="light"] .nav-soc-btn:hover{border-color:rgba(8,145,178,.4);colo
     }
 
     submit.disabled = true;
-    status.textContent = "Verifying…";
+    status.textContent = "Verifying...";
 
     try {
       const response = await fetch(
@@ -436,7 +436,7 @@ html[data-theme="light"] .nav-soc-btn:hover{border-color:rgba(8,145,178,.4);colo
       emailLink.textContent = data.email;
       emailLink.href = `mailto:${data.email}`;
       result.hidden = false;
-      status.textContent = "Thanks — your details were submitted successfully.";
+      status.textContent = "Thanks. Your details were submitted successfully.";
     } catch (error) {
       status.textContent = error?.message || "Unable to verify right now. Please try again.";
     } finally {
