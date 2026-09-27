@@ -1260,6 +1260,16 @@ html[data-theme="light"] .heroX-enterprise article.hx-scan::after{background:lin
         return;
       }
 
+      if(response.status===429){
+        removeTyping();
+
+        addAI(
+          "You're sending messages too quickly. Please wait about a minute and try again."
+        );
+
+        return;
+      }
+
       if(!response.ok){
         throw new Error(
           data&&data.error
